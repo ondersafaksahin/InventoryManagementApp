@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryManagementApp.Domain.Entities.Concrete
+namespace InventoryManagementApp.Domain.Entities.Abstract.Classes
 {
-    public class Batch:IBaseEntity,IEntity<int>
+    public class Company : IBaseEntity, IEntity<int>
     {
         //IBaseEntity
         public string? CreatedBy { get; set; }
@@ -24,13 +24,13 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //Additional Properties
 
-        public string BatchCode { get; set; }
-        public DateTime ProductionDate { get; set; }
-        public DateTime? ExpireDate { get; set; }
+        public string Name { get; set; }
+        public string? Contact { get; set; }
+        public City? City { get; set; }
+        public string? Address { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string Email { get; set; }
+        public string? WebPage { get; set; }
 
-        //Navigation Properties
-
-        public Product Product { get; set; }
-        public int ProductID { get; set; }
     }
 }

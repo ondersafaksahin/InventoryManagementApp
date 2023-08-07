@@ -8,9 +8,16 @@
 
   <ItemGroup>
     <Folder Include="DataAccess\" />
-    <Folder Include="EntitiyMapping\" />
     <Folder Include="Extensions\" />
     <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InventoryManagementApp.Domain\InventoryManagementApp.Domain.csproj" />
   </ItemGroup>
 
 </Project>

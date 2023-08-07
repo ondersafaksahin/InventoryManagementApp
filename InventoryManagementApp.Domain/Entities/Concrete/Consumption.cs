@@ -1,5 +1,4 @@
-﻿using InventoryManagementApp.Domain.Entities.Abstract;
-using InventoryManagementApp.Domain.Entities.Abstract.Interfaces;
+﻿using InventoryManagementApp.Domain.Entities.Abstract.Interfaces;
 using InventoryManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.Entities.Concrete
 {
-    public class Company:IBaseEntity,IEntity<int>
+    public class Consumption: IBaseEntity, IEntity<int>
     {
         //IBaseEntity
         public string? CreatedBy { get; set; }
@@ -25,13 +24,11 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //Additional Properties
 
-        public string Name { get; set; }
-        public string? Contact { get; set; }
-        public City? City { get; set; }
-        public string? Address { get; set; }
-        public string? PhoneNumber { get; set; }
-        public string Email { get; set; }
-        public string? WebPage { get; set; }
+        public float AmountUsed { get; set; }
+        public UnitType UnitofConsumption { get; set; }
+
+        //Navigation Properties
+        public virtual IGood UsedMaterial { get; set; }
 
     }
 }

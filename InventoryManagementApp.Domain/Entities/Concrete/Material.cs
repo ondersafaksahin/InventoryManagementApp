@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.Entities.Concrete
 {
-    public class Batch:IBaseEntity,IEntity<int>
+    public class Material:IEntity<int>,IBaseEntity,IGood
     {
         //IBaseEntity
         public string? CreatedBy { get; set; }
@@ -23,14 +23,5 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
 
         //Additional Properties
-
-        public string BatchCode { get; set; }
-        public DateTime ProductionDate { get; set; }
-        public DateTime? ExpireDate { get; set; }
-
-        //Navigation Properties
-
-        public Product Product { get; set; }
-        public int ProductID { get; set; }
     }
 }

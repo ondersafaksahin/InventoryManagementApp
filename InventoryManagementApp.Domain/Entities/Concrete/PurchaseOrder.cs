@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using InventoryManagementApp.Domain.Entities.Abstract.Classes;
 
 namespace InventoryManagementApp.Domain.Entities.Concrete
 {
-    public class Batch:IBaseEntity,IEntity<int>
+    public class PurchaseOrder: IBaseEntity, IEntity<int>
     {
         //IBaseEntity
         public string? CreatedBy { get; set; }
@@ -24,13 +25,12 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //Additional Properties
 
-        public string BatchCode { get; set; }
-        public DateTime ProductionDate { get; set; }
-        public DateTime? ExpireDate { get; set; }
+        public decimal PurchaseOrderTotal { get; set; }
+        public decimal TaxTotal { get; set; }
 
         //Navigation Properties
-
-        public Product Product { get; set; }
-        public int ProductID { get; set; }
+        public virtual List<PurchaseOrderDetails> PurchaseOrderDetails { get; set; }
+        public Supplier Supplier { get; set; }
+        public int SupplierID { get; set; }
     }
 }

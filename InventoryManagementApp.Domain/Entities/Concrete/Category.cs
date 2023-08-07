@@ -1,5 +1,4 @@
-﻿using InventoryManagementApp.Domain.Entities.Abstract;
-using InventoryManagementApp.Domain.Entities.Abstract.Interfaces;
+﻿using InventoryManagementApp.Domain.Entities.Abstract.Interfaces;
 using InventoryManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;

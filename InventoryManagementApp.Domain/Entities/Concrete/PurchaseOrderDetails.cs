@@ -1,14 +1,14 @@
 ﻿using InventoryManagementApp.Domain.Entities.Abstract.Interfaces;
-using InventoryManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using InventoryManagementApp.Domain.Enums;
 
 namespace InventoryManagementApp.Domain.Entities.Concrete
 {
-    public class Batch:IBaseEntity,IEntity<int>
+    public class PurchaseOrderDetails: IEntity<int>, IBaseEntity
     {
         //IBaseEntity
         public string? CreatedBy { get; set; }
@@ -22,15 +22,20 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public int ID { get; set; }
 
 
-        //Additional Properties
 
-        public string BatchCode { get; set; }
-        public DateTime ProductionDate { get; set; }
-        public DateTime? ExpireDate { get; set; }
+        //Additional Properties
+        public decimal UnitPrice { get; set; }
+        public float Quantity { get; set; }
+
 
         //Navigation Properties
-
+        public PurchaseOrder PurchaseOrder { get; set; }
+        public int PurchaseOrderID { get; set; }
         public Product Product { get; set; }
         public int ProductID { get; set; }
+        public Warehouse DestinationWarehouse { get; set; }
+        public int DestinationWarehouseID { get; set; }
+        public Shelf? DestinationShelf { get; set; }
+        public int? DestinationShelfID { get; set; }
     }
 }

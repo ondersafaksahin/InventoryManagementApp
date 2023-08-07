@@ -1,5 +1,4 @@
-﻿using InventoryManagementApp.Domain.Entities.Abstract;
-using InventoryManagementApp.Domain.Entities.Abstract.Interfaces;
+﻿using InventoryManagementApp.Domain.Entities.Abstract.Interfaces;
 using InventoryManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.Entities.Concrete
 {
-    public class Product : IBaseEntity, IEntity<int>
+    public class Product : IBaseEntity, IEntity<int>,IGood
     {
         //IBaseEntity
         public string? CreatedBy { get ; set ; }
@@ -32,8 +31,8 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public UnitType? PurchaseUnit { get; set; }
         public UnitType? SalesUnit { get; set; }
         public UnitType? ConsumptionUnit { get; set; }
-        public string? Brand { get; set; }
-        public string? Model { get; set; }
+        public Brand? Brand { get; set; }
+        public Model? Model { get; set; }
         public float? MinStock { get; set; }
         public byte TaxPercentage { get; set; }
         public decimal? PurchasePrice { get; set; }
@@ -50,6 +49,8 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public SubCategory? SubCategory { get; set; }
         public int? SubCategoryID { get; set; }
         public List<Batch>? Batches { get; set; }
+        public BillOfMaterial BillOfMaterial { get; set; }
+        public int BillOfMaterialID { get; set; }
 
     }
 }
