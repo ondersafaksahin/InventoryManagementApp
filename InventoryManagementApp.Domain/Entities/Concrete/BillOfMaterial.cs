@@ -25,6 +25,6 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         //Navigation Properties
         public virtual Product Product { get; set; }
         public int ProductID { get; set; }
-        public List<Tuple<IGood, float, UnitType>>? Consumptions { get; set; }
+        public List<Tuple<int, float, UnitType>>? Consumptions { get; set; }
     }
 }

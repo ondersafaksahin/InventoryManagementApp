@@ -10,8 +10,11 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Infrastructure.DataAccess
 {
-    public class Context:IdentityDbContext<AppUser,AppRole,Guid>
+    public class InventoryDbContext:IdentityDbContext<AppUser,AppRole,Guid>
 	{
+        public InventoryDbContext(DbContextOptions<InventoryDbContext> options):base(options) { }
+
+
         public DbSet<Batch> Batches { get; set; }
         public DbSet<BillOfMaterial> BillOfMaterials { get; set; }
 		public DbSet<Brand> Brands{ get; set; }	 
@@ -37,5 +40,5 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
 		{
 			base.OnConfiguring(optionsBuilder);
 		}
-	}
+    }
 }
