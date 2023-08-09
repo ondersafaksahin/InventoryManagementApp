@@ -23,11 +23,12 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
 
         //Additional Properties
-
+        public UnitType UnitType { get; set; }
+        public float Amount { get; set; }
         public string? Description { get; set; }
 
         //Navigation Properties
-        public virtual Product Product { get; set; }
+        public virtual IGood Good { get; set; }
         public Warehouse SourceWarehouse { get; set; }
         public int SourceWarehouseID { get; set; }
         public Shelf? SourceShelf { get; set; }

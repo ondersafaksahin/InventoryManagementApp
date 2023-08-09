@@ -30,7 +30,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //Navigation Properties
 
-        public Product Product { get; set; }
-        public int ProductID { get; set; }
+        public IGood Good { get; set; }
+        public int GoodID { get; set; }
     }
 }

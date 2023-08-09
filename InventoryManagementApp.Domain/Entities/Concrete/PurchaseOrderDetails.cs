@@ -31,8 +31,8 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         //Navigation Properties
         public PurchaseOrder PurchaseOrder { get; set; }
         public int PurchaseOrderID { get; set; }
-        public Product Product { get; set; }
-        public int ProductID { get; set; }
+        public IGood Good { get; set; }
+        public int GoodID { get; set; }
         public Warehouse DestinationWarehouse { get; set; }
         public int DestinationWarehouseID { get; set; }
         public Shelf? DestinationShelf { get; set; }

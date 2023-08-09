@@ -29,10 +29,11 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
 		public DbSet<StockTransfer> StockTransfers { get; set; }		 
 		public DbSet<SubCategory> SubCategories { get; set; }		 
 		public DbSet<Warehouse> Warehouses { get; set; }
+        public DbSet<Conversion> Conversions { get; set; }
 
 
 
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			base.OnConfiguring(optionsBuilder);
 		}

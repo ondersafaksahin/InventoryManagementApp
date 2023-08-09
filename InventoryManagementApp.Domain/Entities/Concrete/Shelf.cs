@@ -31,5 +31,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         public Warehouse Warehouse { get; set; }
         public int WarehouseID { get; set; }
+
+        public List<IGood> Goods { get; set; }
     }
 }

@@ -8,28 +8,25 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.Entities.Concrete
 {
-    public class Category : IEntity<int>, IBaseEntity
+    public class Conversion : IBaseEntity, IEntity<int>
     {
-        //IBaseEntity
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public Status Status { get; set; }
-
-
-        //IEntity
         public int ID { get; set; }
 
+        //Navigation properties
 
-        //Additional Properties
+        public virtual IGood BaseMaterial { get; set; }
+        public int BaseMaterialID { get; set; }
+        public float BaseMaterialAmount { get; set; }
+        public UnitType BaseUnit { get; set; }
+        public virtual IGood FinalMaterial { get; set; }
+        public int FinalMaterialID { get; set; }
+        public float FinalMaterialAmount { get; set; }
+        public UnitType FinalUnit { get; set; }
 
-        public string Name{ get; set; }
-        public string? Description { get; set; }
-
-        //Navigation Properties
-
-        public List<SubCategory>? SubCategories { get; set; }
-        public List<IGood>? Goods { get; set; }
     }
 }
