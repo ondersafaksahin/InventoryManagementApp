@@ -50,6 +50,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public List<Batch>? Batches { get; set; }
         public BillOfMaterial BillOfMaterial { get; set; }
         public int BillOfMaterialID { get; set; }
-       
+        public List<Warehouse> Warehouses { get; set; }
+        public List<Shelf> Shelves { get; set; }
     }
 }

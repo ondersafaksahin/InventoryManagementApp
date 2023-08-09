@@ -52,6 +52,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         public UnitType? PurchaseUnit { get; set; }
         public decimal? PurchasePrice { get; set; }
-       
+        public List<Warehouse> Warehouses { get; set; }
+        public List<Shelf> Shelves { get; set; }
     }
 }
