@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagementApp.Infrastructure.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    [Migration("20230811183107_mg1")]
-    partial class mg1
+    [Migration("20230811194049_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,65 +53,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasIndex("WarehousesID");
 
                     b.ToTable("GoodWarehouse");
-                });
-
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Abstract.Classes.Company", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("City")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Contact")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<string>("WebPage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Companies");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Company");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.AppRole", b =>
@@ -265,7 +206,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 8, 11, 21, 31, 6, 506, DateTimeKind.Local).AddTicks(3550));
+                        .HasDefaultValue(new DateTime(2023, 8, 11, 22, 40, 48, 939, DateTimeKind.Local).AddTicks(9359));
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
@@ -494,8 +435,14 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int?>("CompanyId")
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("City")
                         .HasColumnType("int");
+
+                    b.Property<string>("Contact")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -503,20 +450,30 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<string>("WebPage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ID");
 
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("Customer");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Good", b =>
@@ -542,7 +499,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 8, 11, 21, 31, 6, 508, DateTimeKind.Local).AddTicks(1971));
+                        .HasDefaultValue(new DateTime(2023, 8, 11, 22, 40, 48, 940, DateTimeKind.Local).AddTicks(6182));
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
@@ -667,6 +624,50 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasIndex("BrandID");
 
                     b.ToTable("Models");
+                });
+
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.ProductionOrder", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<float>("Amount")
+                        .HasColumnType("real");
+
+                    b.Property<int>("BatchId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UnitType")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("BatchId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductionOrders");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.PurchaseOrder", b =>
@@ -1018,6 +1019,57 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.ToTable("SubCategories");
                 });
 
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Supplier", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("City")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Contact")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WebPage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Suppliers");
+                });
+
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Warehouse", b =>
                 {
                     b.Property<int>("ID")
@@ -1162,31 +1214,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Supplier", b =>
-                {
-                    b.HasBaseType("InventoryManagementApp.Domain.Entities.Abstract.Classes.Company");
-
-                    b.Property<int?>("MaterialID")
-                        .HasColumnType("int");
-
-                    b.HasIndex("MaterialID");
-
-                    b.HasDiscriminator().HasValue("Supplier");
-                });
-
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Material", b =>
-                {
-                    b.HasBaseType("InventoryManagementApp.Domain.Entities.Concrete.Good");
-
-                    b.Property<decimal?>("PurchasePrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("PurchaseUnit")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("Material");
-                });
-
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Product", b =>
                 {
                     b.HasBaseType("InventoryManagementApp.Domain.Entities.Concrete.Good");
@@ -1287,15 +1314,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Navigation("FinalMaterial");
                 });
 
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Customer", b =>
-                {
-                    b.HasOne("InventoryManagementApp.Domain.Entities.Abstract.Classes.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
-
-                    b.Navigation("Company");
-                });
-
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Good", b =>
                 {
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Brand", "Brand")
@@ -1317,7 +1335,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .HasForeignKey("SubCategoryID");
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Supplier", null)
-                        .WithMany("PurchasedGoods")
+                        .WithMany("MaterialsProducing")
                         .HasForeignKey("SupplierID");
 
                     b.Navigation("Brand");
@@ -1338,6 +1356,25 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Brand");
+                });
+
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.ProductionOrder", b =>
+                {
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Batch", "Batch")
+                        .WithMany()
+                        .HasForeignKey("BatchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Product", "Product")
+                        .WithMany("ProductionOrders")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Batch");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.PurchaseOrder", b =>
@@ -1393,7 +1430,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.SalesOrder", b =>
                 {
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("SalesOrders")
                         .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1558,13 +1595,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Supplier", b =>
-                {
-                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Material", null)
-                        .WithMany("Suppliers")
-                        .HasForeignKey("MaterialID");
-                });
-
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Product", b =>
                 {
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.BillOfMaterial", "BillOfMaterial")
@@ -1596,6 +1626,11 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Navigation("SubCategories");
                 });
 
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Customer", b =>
+                {
+                    b.Navigation("SalesOrders");
+                });
+
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Good", b =>
                 {
                     b.Navigation("Batches");
@@ -1617,21 +1652,21 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Navigation("SalesOrderDetails");
                 });
 
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Supplier", b =>
+                {
+                    b.Navigation("MaterialsProducing");
+
+                    b.Navigation("PurchaseOrders");
+                });
+
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Warehouse", b =>
                 {
                     b.Navigation("Shelves");
                 });
 
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Supplier", b =>
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Product", b =>
                 {
-                    b.Navigation("PurchaseOrders");
-
-                    b.Navigation("PurchasedGoods");
-                });
-
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Material", b =>
-                {
-                    b.Navigation("Suppliers");
+                    b.Navigation("ProductionOrders");
                 });
 #pragma warning restore 612, 618
         }

@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.Entities.Concrete
 {
-    public class Customer: ITrader
+    public class ProductionOrder:IBaseEntity,IEntity<int>
     {
-      
         public int ID { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
@@ -18,18 +17,18 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public DateTime? ModifiedDate { get; set; }
         public Status Status { get; set; }
 
+        //Additional properties
 
-        //ITrader
+        public float Amount { get; set; }
+        public UnitType UnitType { get; set; }
 
-        public string? Name { get; set; }
-        public string? Contact { get; set; }
-        public City? City { get; set; }
-        public string? Address { get; set; }
-        public string? PhoneNumber { get; set; }
-        public string? Email { get; set; }
-        public string? WebPage { get; set; }
 
-        //Additional props
-        public List<SalesOrder>? SalesOrders { get; set; }
+        //Navigation props
+        public Product Product { get; set; }
+        public int ProductId { get; set; }
+        public Batch? Batch { get; set; }
+        public int BatchId { get; set; }
+
+        //Bu üretimin batch numarasını, üretimin productının batch listesine add yapılması gerekiyor
     }
 }

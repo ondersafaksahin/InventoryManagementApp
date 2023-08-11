@@ -8,43 +8,10 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.Entities.Concrete
 {
-    public class Product : Good, IBaseEntity
+    public class Product : Good
     {
-        
-
-        //IEntity
-        public int ID { get; set; }
-
-
-        //IGood
-
-        public string Name { get; set; }
-        public string? Picture { get; set; }
-        public float StockAmount { get; set; }
-        public float? ReservedStock { get; set; }
-        public UnitType? StockingUnit { get; set; }
-        public UnitType? SalesUnit { get; set; }
-        public UnitType? ConsumptionUnit { get; set; }
-        public Brand? Brand { get; set; }
-        public int? BrandId { get; set; }
-        public Model? Model { get; set; }
-        public int? ModelId { get; set; }
-        public float? MinStock { get; set; }
-        public byte TaxPercentage { get; set; }
-        public decimal? SalePrice { get; set; }
-        public string? Barcode { get; set; }
-        public float? GrossWeight { get; set; }
-        public float? NetWeight { get; set; }
-
-        //Navigation Properties
-        public Category Category { get; set; }
-        public int CategoryID { get; set; }
-        public SubCategory? SubCategory { get; set; }
-        public int? SubCategoryID { get; set; }
-        public List<Batch>? Batches { get; set; }
         public BillOfMaterial BillOfMaterial { get; set; }
         public int BillOfMaterialID { get; set; }
-        public List<Warehouse> Warehouses { get; set; }
-        public List<Shelf> Shelves { get; set; }
+        public List<ProductionOrder> ProductionOrders { get; set; }
     }
 }

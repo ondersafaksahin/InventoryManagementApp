@@ -31,8 +31,6 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         
         //Navigation Properties
 
-        public virtual Brand Brand { get; set; }
-        public int BrandID { get; set; }
         public virtual Good Good { get; set; }
         public int GoodID { get; set; }
     }

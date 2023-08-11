@@ -20,8 +20,8 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //IEntity
         public int ID { get; set; }
-        public int GoodID { get; set; }
-        public Good Good { get; set; }
+        public int MaterialID { get; set; }
+        public Good MaterialUsed { get; set; }
         public float ConsumptionAmount { get; set; }
         public UnitType UnitType { get; set; }
         public BillOfMaterial BillOfMaterial { get; set; }
