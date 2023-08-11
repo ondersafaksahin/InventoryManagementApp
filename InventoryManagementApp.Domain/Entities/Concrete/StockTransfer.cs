@@ -28,7 +28,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public string? Description { get; set; }
 
         //Navigation Properties
-        public virtual IGood Good { get; set; }
+        public virtual Good Good { get; set; }
         public Warehouse SourceWarehouse { get; set; }
         public int SourceWarehouseID { get; set; }
         public Shelf? SourceShelf { get; set; }
@@ -37,5 +37,8 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public int DestinationWarehouseID { get; set; }
         public Shelf? DestinationShelf { get; set; }
         public int? DestinationShelfID { get; set; }
+
+        public Batch? Batch { get; set; }
+        public int? BatchID { get; set; }
     }
 }

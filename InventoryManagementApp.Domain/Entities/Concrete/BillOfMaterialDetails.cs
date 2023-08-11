@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.Entities.Concrete
 {
-    public class Brand : IBaseEntity, IEntity<int>
+    public class BillOfMaterialDetails : IEntity<int>, IBaseEntity
     {
         //IBaseEntity
         public string? CreatedBy { get; set; }
@@ -20,15 +20,13 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //IEntity
         public int ID { get; set; }
+        public int GoodID { get; set; }
+        public Good Good { get; set; }
+        public float ConsumptionAmount { get; set; }
+        public UnitType UnitType { get; set; }
+        public BillOfMaterial BillOfMaterial { get; set; }
+        public int BillOfMaterialId { get; set; }
 
-
-        //Additional Properties
-
-        public string Name { get; set; }
-
-        //Navigation Properties
-
-        public List<Good>? Goods { get; set; }
-       
+        //public List<(int goodID, float consumption, UnitType unitType)>? Consumptions { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using InventoryManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,9 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public UnitType UnitofConsumption { get; set; }
 
         //Navigation Properties
-        public virtual IGood UsedMaterial { get; set; }
+        
+        public virtual Good UsedMaterial { get; set; }
+        public int GoodID { get; set; }
 
     }
 }

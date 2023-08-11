@@ -1,5 +1,6 @@
 ﻿using InventoryManagementApp.Domain.Entities.Abstract.Interfaces;
 using InventoryManagementApp.Domain.Enums;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,10 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         //Navigation Properties
         public virtual Product Product { get; set; }
         public int ProductID { get; set; }
-        public List<Tuple<int, float, UnitType>>? Consumptions { get; set; }
+        public List<BillOfMaterialDetails> BillOfMaterialDetails { get; set; }
+      
+
+
+        //public List<(int goodID, float consumption, UnitType unitType)>? Consumptions { get; set; }
     }
 }

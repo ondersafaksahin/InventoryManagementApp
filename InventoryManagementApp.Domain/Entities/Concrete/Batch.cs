@@ -2,6 +2,7 @@
 using InventoryManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,20 +18,20 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public DateTime? ModifiedDate { get; set; }
         public Status Status { get; set; }
 
-
         //IEntity
         public int ID { get; set; }
-
 
         //Additional Properties
 
         public string BatchCode { get; set; }
-        public DateTime ProductionDate { get; set; }
+        public DateTime? ProductionDate { get; set; }
         public DateTime? ExpireDate { get; set; }
 
         //Navigation Properties
-
-        public IGood Good { get; set; }
+    
+        public Good Good { get; set; }
         public int GoodID { get; set; }
+    
+
     }
 }

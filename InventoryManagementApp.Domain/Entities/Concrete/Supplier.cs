@@ -10,7 +10,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 {
 	public class Supplier:Company
 	{
-        public List<IGood>? PurchasedGoods { get; set; }
+        public List<Good>? PurchasedGoods { get; set; }
         public List<PurchaseOrder>? PurchaseOrders { get; set; }
 
         //Risk score to be added

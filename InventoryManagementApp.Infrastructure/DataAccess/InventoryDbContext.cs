@@ -1,5 +1,6 @@
 ﻿using InventoryManagementApp.Domain.Entities.Abstract.Classes;
 using InventoryManagementApp.Domain.Entities.Concrete;
+using InventoryManagementApp.Infrastructure.EntitiyMapping;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,7 +13,7 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
 {
     public class InventoryDbContext:IdentityDbContext<AppUser,AppRole,Guid>
 	{
-        public InventoryDbContext(DbContextOptions<InventoryDbContext> options):base(options) { }
+        public InventoryDbContext(DbContextOptions options):base(options) { }
 
 
         public DbSet<Batch> Batches { get; set; }
@@ -33,12 +34,17 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
 		public DbSet<SubCategory> SubCategories { get; set; }		 
 		public DbSet<Warehouse> Warehouses { get; set; }
         public DbSet<Conversion> Conversions { get; set; }
+        public DbSet<Good> Goods{ get; set; }
 
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-		{
-			base.OnConfiguring(optionsBuilder);
-		}
+			builder.ApplyConfiguration(new BillOfMaterialMapping());
+			builder.ApplyConfiguration(new GoodMapping());
+            base.OnModelCreating(builder);
+
+        }
+
     }
 }

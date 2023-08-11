@@ -32,11 +32,13 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         public SalesOrder SalesOrder { get; set; }
         public int SalesOrderID { get; set; }
-        public IGood Good { get; set; }
+        public Good Good { get; set; }
         public int GoodID { get; set; }
         public Warehouse SourceWarehouse { get; set; }
         public int SourceWarehouseID { get; set; }
         public Shelf? SourceShelf { get; set; }
         public int? SourceShelfID { get; set; }
+        public Batch? Batch { get; set; }
+        public int? BatchID { get; set; }
     }
 }

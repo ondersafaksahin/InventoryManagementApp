@@ -33,7 +33,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         public virtual Brand Brand { get; set; }
         public int BrandID { get; set; }
-        public virtual IGood Good { get; set; }
+        public virtual Good Good { get; set; }
         public int GoodID { get; set; }
     }
 }

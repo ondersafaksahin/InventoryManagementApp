@@ -8,17 +8,10 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.Entities.Concrete
 {
-    public class Material:Good,IBaseEntity
+    public class Good : IGood
     {
-        //IBaseEntity
-      
 
-
-        //IEntity
         public int ID { get; set; }
-
-
-        //IGood
         public string Name { get; set; }
         public string? Picture { get; set; }
         public float StockAmount { get; set; }
@@ -27,8 +20,8 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public UnitType? SalesUnit { get; set; }
         public UnitType? ConsumptionUnit { get; set; }
         public Brand? Brand { get; set; }
-        public Model? Model { get; set; }
         public int? BrandId { get; set; }
+        public Model? Model { get; set; }
         public int? ModelId { get; set; }
         public float? MinStock { get; set; }
         public byte TaxPercentage { get; set; }
@@ -36,19 +29,19 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public string? Barcode { get; set; }
         public float? GrossWeight { get; set; }
         public float? NetWeight { get; set; }
+
         public Category Category { get; set; }
         public int CategoryID { get; set; }
         public SubCategory? SubCategory { get; set; }
         public int? SubCategoryID { get; set; }
         public List<Batch>? Batches { get; set; }
-        public List<Supplier>? Suppliers { get; set; }
-
-
-        //Additional Properties
-
-        public UnitType? PurchaseUnit { get; set; }
-        public decimal? PurchasePrice { get; set; }
         public List<Warehouse> Warehouses { get; set; }
         public List<Shelf> Shelves { get; set; }
+        public string? CreatedBy { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public string? ModifiedBy { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public Status Status { get; set; }
+
     }
 }

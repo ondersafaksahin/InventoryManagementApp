@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.Entities.Abstract.Classes
 {
-    public class Company : IBaseEntity, IEntity<int>
+    public abstract class Company : IBaseEntity, IEntity<int>
     {
         //IBaseEntity
         public string? CreatedBy { get; set; }

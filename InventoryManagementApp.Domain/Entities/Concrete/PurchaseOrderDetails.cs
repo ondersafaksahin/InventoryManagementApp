@@ -31,11 +31,14 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         //Navigation Properties
         public PurchaseOrder PurchaseOrder { get; set; }
         public int PurchaseOrderID { get; set; }
-        public IGood Good { get; set; }
+        public Good Good { get; set; }
         public int GoodID { get; set; }
         public Warehouse DestinationWarehouse { get; set; }
         public int DestinationWarehouseID { get; set; }
         public Shelf? DestinationShelf { get; set; }
         public int? DestinationShelfID { get; set; }
+        public Batch? Batch { get; set; }
+        public int? BatchID { get; set; }
+        
     }
 }

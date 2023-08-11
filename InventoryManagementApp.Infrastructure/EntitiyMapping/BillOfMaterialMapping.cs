@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,8 @@ namespace InventoryManagementApp.Infrastructure.EntitiyMapping
 		{
 			base.Configure(builder);
 			builder.HasKey(x => x.ID);
-			builder.HasOne(x => x.Product).WithOne(x => x.BillOfMaterial);
-		}
+			builder.HasOne(x => x.Product).WithOne(x => x.BillOfMaterial).HasForeignKey<Product>(c => c.ID);
+			
+        }
 	}
 }

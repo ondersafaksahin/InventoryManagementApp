@@ -8,15 +8,9 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.Entities.Concrete
 {
-    public class Product : IBaseEntity,IGood
+    public class Product : Good, IBaseEntity
     {
-        //IBaseEntity
-        public string? CreatedBy { get ; set ; }
-        public DateTime? CreatedDate { get; set; }
-        public string? ModifiedBy { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-        public Status Status { get; set; }
-
+        
 
         //IEntity
         public int ID { get; set; }
