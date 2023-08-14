@@ -35,11 +35,16 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
 		public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
-        
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Manager> Managers { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+
+
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-
+            builder.ApplyConfiguration(new BatchMapping());
 			builder.ApplyConfiguration(new BillOfMaterialMapping());
 			builder.ApplyConfiguration(new GoodMapping());
             base.OnModelCreating(builder);

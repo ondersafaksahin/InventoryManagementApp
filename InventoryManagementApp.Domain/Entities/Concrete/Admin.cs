@@ -8,24 +8,22 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.Entities.Concrete
 {
-    public class Conversion : IBaseEntity, IEntity<int>
+    public class Admin : IUser
     {
+        public string? Picture { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? Job { get; set; }
+        public string? Department { get; set; }
+        public string? Title { get; set; }
+        public Gender? Gender { get; set; }
+        public AppUser AppUser { get; set; }
+        public Guid AppUserId { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public Status Status { get; set; }
-        public int ID { get; set; }
-
-        //Navigation properties
-
-        public virtual Good Material { get; set; }
-        public int MaterialID { get; set; }
-        public float BaseMaterialAmount { get; set; }
-        public UnitType BaseUnit { get; set; }
-        public float FinalMaterialAmount { get; set; }
-        public UnitType FinalUnit { get; set; }
-        public List<Consumption>? Consumptions { get; set; }
-
+        public Guid ID { get; set; }
     }
 }

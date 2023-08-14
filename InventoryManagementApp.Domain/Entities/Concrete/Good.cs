@@ -30,13 +30,12 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public float? GrossWeight { get; set; }
         public float? NetWeight { get; set; }
 
-        public Category Category { get; set; }
-        public int CategoryID { get; set; }
-        public SubCategory? SubCategory { get; set; }
-        public int? SubCategoryID { get; set; }
+        public Category? Categories { get; set; }
+        public SubCategory? SubCategories { get; set; }
         public List<Batch>? Batches { get; set; }
-        public List<Warehouse> Warehouses { get; set; }
-        public List<Shelf> Shelves { get; set; }
+        public List<Warehouse>? Warehouses { get; set; }
+        public List<Shelf>? Shelves { get; set; }
+        public List<Supplier>? Suppliers { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }

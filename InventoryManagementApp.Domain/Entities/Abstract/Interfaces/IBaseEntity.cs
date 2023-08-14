@@ -9,10 +9,10 @@ namespace InventoryManagementApp.Domain.Entities.Abstract.Interfaces
 {
     public interface IBaseEntity
     {
-        string? CreatedBy { get; set; }
-        DateTime? CreatedDate { get; set; }
-        string? ModifiedBy { get; set; }
-        DateTime? ModifiedDate { get; set; }
-        Status Status { get; set; }
+        public string? CreatedBy { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public string? ModifiedBy { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public Status Status { get; set; }
     }
 }

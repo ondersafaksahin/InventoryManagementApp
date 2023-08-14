@@ -31,7 +31,12 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
     
         public Good Good { get; set; }
         public int GoodID { get; set; }
-    
+        public ProductionOrder? ProductionOrder { get; set; }
+        public int? ProductionOrderId { get; set; }
+        public PurchaseOrderDetails? PurchaseOrderDetail { get; set; }
+        public int? PurchaseOrderDetailId { get; set; }
+
+
 
     }
 }

@@ -24,7 +24,6 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
 
         //Additional Properties
-
         public float AmountUsed { get; set; }
         public UnitType UnitofConsumption { get; set; }
 
@@ -32,6 +31,11 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         
         public virtual Good UsedMaterial { get; set; }
         public int GoodID { get; set; }
+        public ProductionOrder ProductionOrder { get; set; }
+        public int ProductionOrderId { get; set; }
+
+        public Conversion? Conversion { get; set; }
+        public int ConversionId { get; set; }
 
     }
 }

@@ -13,7 +13,9 @@ namespace InventoryManagementApp.Infrastructure.EntitiyMapping
 		public override void Configure(EntityTypeBuilder<Batch> builder)
 		{
 			base.Configure(builder);
-			builder.HasKey(x => x.ID);
+            builder.HasOne(x => x.ProductionOrder).WithOne(x => x.Batch).HasForeignKey<ProductionOrder>(x => x.ID);
+            builder.HasOne(x => x.PurchaseOrderDetail).WithOne(x => x.Batch).HasForeignKey<PurchaseOrderDetails>(x => x.ID);
+            builder.HasKey(x => x.ID);
 		}
 	}
 }
