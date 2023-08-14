@@ -25,5 +25,6 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public DateTime? ModifiedDate { get; set; }
         public Status Status { get; set; }
         public Guid ID { get; set; }
+
     }
 }
