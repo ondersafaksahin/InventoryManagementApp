@@ -16,7 +16,16 @@ namespace InventoryManagementApp.Application.Extensions
             //
             //
             //
+            //
+            //
+            //
+            //
             //Pelin
+            //
+            //
+            //
+            //
+            //
             //
             //
             //
@@ -26,12 +35,19 @@ namespace InventoryManagementApp.Application.Extensions
             //
             //
             //
+            //
+            //
+            //
             //Hatice
             //
             //
             //
             //
+            //
+            //
+            //
             //Tolga
+            //
             //
             //
             //
