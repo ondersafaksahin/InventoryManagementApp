@@ -35,7 +35,7 @@ namespace InventoryManagementApp.Infrastructure.Extensions
             services.AddScoped<IBrandRepository, BrandRepository>();
             services.AddScoped<IModelRepository, ModelRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
-            //
+            services.AddScoped<ISupplierRepository, SupplierRepository>();
             //
             //
             //Tolga
