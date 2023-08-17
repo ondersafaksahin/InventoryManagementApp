@@ -16,9 +16,9 @@ namespace InventoryManagementApp.Infrastructure.Extensions
 			//Önder
 			services.AddScoped<IBillOfMaterialRepository, BillOfMaterialRepository>();
 			services.AddScoped<IBillOfMaterialDetailsRepository, BillOfMaterialDetailRepository>();
-			//
-			//
-			//
+			services.AddScoped<IConsumptionRepository, ConsumptionRepository>();
+			services.AddScoped<IConversionRepository, ConversionRepository>();
+			services.AddScoped<IProductionOrderRepository, ProductionOrderRepository>();
 			//Pelin & Emre
 			//
 			//

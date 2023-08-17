@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Infrastructure.Repositories
 {
-	public class BillOfMaterialRepository : BaseRepository<BillOfMaterial>, IBillOfMaterialRepository
+	public class ConsumptionRepository : BaseRepository<Consumption>,IConsumptionRepository
 	{
-		public BillOfMaterialRepository(InventoryDbContext DbContext) : base(DbContext){}
+		public ConsumptionRepository(InventoryDbContext DbContext) : base(DbContext){}
 	}
 }
