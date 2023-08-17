@@ -19,33 +19,33 @@ namespace InventoryManagementApp.Infrastructure.Extensions
 			services.AddScoped<IConsumptionRepository, ConsumptionRepository>();
 			services.AddScoped<IConversionRepository, ConversionRepository>();
 			services.AddScoped<IProductionOrderRepository, ProductionOrderRepository>();
-			//Pelin & Emre
-			//
-			//
-			//
-			//
-			//
-			//
-			//
-			//
-			//
-			//
-			//
-			//Hatice
-			//
-			//
-			//
-			//
-			//
-			//
-			//Tolga
-			//
-			//
-			//
-			//
-			//
+            //Pelin & Emre
+            //
+            //
+            //
+            //
+            //
+            //
+            //
+            //
+            //
+            //
+            //
+            //Hatice
+            services.AddScoped<IBrandRepository, BrandRepository>();
+            //
+            //
+            //
+            //
+            //
+            //Tolga
+            //
+            //
+            //
+            //
+            //
 
-			return services;
+            return services;
 		}
 	}
 }
