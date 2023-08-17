@@ -15,25 +15,15 @@ namespace InventoryManagementApp.Infrastructure.Extensions
 		{
 			//Önder
 			services.AddScoped<IBillOfMaterialRepository, BillOfMaterialRepository>();
+			services.AddScoped<IBillOfMaterialDetailsRepository, BillOfMaterialDetailRepository>();
+			//
+			//
+			//
+			//Pelin & Emre
 			//
 			//
 			//
 			//
-			//
-			//
-			//
-			//
-			//Pelin
-			//
-			//
-			//
-			//
-			//
-			//
-			//
-			//
-			//
-			//Emre
 			//
 			//
 			//
@@ -42,7 +32,6 @@ namespace InventoryManagementApp.Infrastructure.Extensions
 			//
 			//
 			//Hatice
-			//
 			//
 			//
 			//
