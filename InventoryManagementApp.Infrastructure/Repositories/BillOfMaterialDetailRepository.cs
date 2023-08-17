@@ -12,12 +12,6 @@ namespace InventoryManagementApp.Infrastructure.Repositories
 {
 	public class BillOfMaterialDetailRepository : BaseRepository<BillOfMaterialDetails>, IBillOfMaterialDetailsRepository
 	{
-		InventoryDbContext _database;
-		DbSet<BillOfMaterialDetails> _BomTable;
-		public BillOfMaterialDetailRepository(InventoryDbContext DbContext) : base(DbContext)
-		{
-			_database = DbContext;
-			_BomTable = _database.BillOfMaterialDetails;
-		}
+		public BillOfMaterialDetailRepository(InventoryDbContext DbContext) : base(DbContext){}
 	}
 }
