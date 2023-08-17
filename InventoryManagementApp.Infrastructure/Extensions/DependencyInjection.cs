@@ -33,7 +33,7 @@ namespace InventoryManagementApp.Infrastructure.Extensions
             //
             //Hatice
             services.AddScoped<IBrandRepository, BrandRepository>();
-            //
+            services.AddScoped<IModelRepository, ModelRepository>();
             //
             //
             //
