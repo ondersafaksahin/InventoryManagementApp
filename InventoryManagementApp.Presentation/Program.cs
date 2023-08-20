@@ -1,5 +1,6 @@
 using InventoryManagementApp.Application.Extensions;
 using InventoryManagementApp.Infrastructure.DataAccess;
+using InventoryManagementApp.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddBusinessServices();
+builder.Services.AddRepositoryServices();
 builder.Services.AddDbContext<InventoryDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("dbConnection")));
 var app = builder.Build();
 
