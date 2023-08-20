@@ -26,6 +26,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         public decimal UnitPrice { get; set; }
         public float Quantity { get; set; }
+        public UnitType? SalesUnit { get; set; }
         public float Discount { get; set; }
 
         //Navigation Properties
@@ -34,11 +35,13 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public int SalesOrderID { get; set; }
         public Good Good { get; set; }
         public int GoodID { get; set; }
-        public Warehouse SourceWarehouse { get; set; }
-        public int SourceWarehouseID { get; set; }
+        public Warehouse? SourceWarehouse { get; set; }
+        public int? SourceWarehouseID { get; set; }
         public Shelf? SourceShelf { get; set; }
         public int? SourceShelfID { get; set; }
         public Batch? Batch { get; set; }
         public int? BatchID { get; set; }
+        public Conversion? Conversion { get; set; }
+        public int? ConversionId { get; set; }
     }
 }

@@ -231,7 +231,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 8, 17, 16, 46, 28, 619, DateTimeKind.Local).AddTicks(7670));
+                        .HasDefaultValue(new DateTime(2023, 8, 20, 14, 43, 14, 494, DateTimeKind.Local).AddTicks(3394));
 
                     b.Property<DateTime?>("ExpireDate")
                         .HasColumnType("datetime2");
@@ -280,16 +280,16 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 8, 17, 16, 46, 28, 625, DateTimeKind.Local).AddTicks(981));
+                        .HasDefaultValue(new DateTime(2023, 8, 20, 14, 43, 14, 495, DateTimeKind.Local).AddTicks(9419));
+
+                    b.Property<int>("GoodID")
+                        .HasColumnType("int");
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("ProductID")
-                        .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -321,10 +321,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MaterialID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MaterialUsedID")
+                    b.Property<int>("GoodID")
                         .HasColumnType("int");
 
                     b.Property<string>("ModifiedBy")
@@ -336,14 +333,14 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("UnitType")
+                    b.Property<int>("UnitOfComsumption")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("BillOfMaterialId");
 
-                    b.HasIndex("MaterialUsedID");
+                    b.HasIndex("GoodID");
 
                     b.ToTable("BillOfMaterialDetails");
                 });
@@ -426,7 +423,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<float>("AmountUsed")
                         .HasColumnType("real");
 
-                    b.Property<int>("ConversionId")
+                    b.Property<int?>("ConversionId")
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
@@ -472,7 +469,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<float>("BaseMaterialAmount")
+                    b.Property<float>("BaseGoodAmount")
                         .HasColumnType("real");
 
                     b.Property<int>("BaseUnit")
@@ -484,13 +481,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<float>("FinalMaterialAmount")
+                    b.Property<float>("FinalGoodAmount")
                         .HasColumnType("real");
 
                     b.Property<int>("FinalUnit")
                         .HasColumnType("int");
 
-                    b.Property<int>("MaterialID")
+                    b.Property<int>("GoodID")
                         .HasColumnType("int");
 
                     b.Property<string>("ModifiedBy")
@@ -504,7 +501,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("MaterialID");
+                    b.HasIndex("GoodID");
 
                     b.ToTable("Conversions");
                 });
@@ -618,10 +615,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<string>("Barcode")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("BillOfMaterialID")
+                        .HasColumnType("int");
+
                     b.Property<int?>("BrandId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoriesID")
+                    b.Property<int?>("CategoryID")
                         .HasColumnType("int");
 
                     b.Property<int?>("ConsumptionUnit")
@@ -633,14 +633,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 8, 17, 16, 46, 28, 628, DateTimeKind.Local).AddTicks(2113));
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasDefaultValue(new DateTime(2023, 8, 20, 14, 43, 14, 496, DateTimeKind.Local).AddTicks(9409));
 
                     b.Property<float?>("GrossWeight")
                         .HasColumnType("real");
+
+                    b.Property<decimal?>("ListPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<float?>("MinStock")
                         .HasColumnType("real");
@@ -667,12 +666,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<float?>("ReservedStock")
                         .HasColumnType("real");
 
-                    b.Property<decimal?>("SalePrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("SalesUnit")
-                        .HasColumnType("int");
-
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -684,29 +677,25 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<int?>("StockingUnit")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SubCategoriesID")
+                    b.Property<int?>("SubCategoryID")
                         .HasColumnType("int");
 
-                    b.Property<byte>("TaxPercentage")
+                    b.Property<byte?>("TaxPercentage")
                         .HasColumnType("tinyint");
 
                     b.HasKey("ID");
 
                     b.HasIndex("BrandId");
 
-                    b.HasIndex("CategoriesID");
+                    b.HasIndex("CategoryID");
 
                     b.HasIndex("ModelId")
                         .IsUnique()
                         .HasFilter("[ModelId] IS NOT NULL");
 
-                    b.HasIndex("SubCategoriesID");
+                    b.HasIndex("SubCategoryID");
 
                     b.ToTable("Goods");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Good");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Manager", b =>
@@ -819,14 +808,14 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("GoodId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -836,7 +825,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("GoodId");
 
                     b.ToTable("ProductionOrders");
                 });
@@ -888,6 +877,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<int?>("BatchID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ConversionId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -912,6 +904,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<int>("PurchaseOrderID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("PurchaseUnit")
+                        .HasColumnType("int");
+
                     b.Property<float>("Quantity")
                         .HasColumnType("real");
 
@@ -922,6 +917,8 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("ConversionId");
 
                     b.HasIndex("DestinationShelfID");
 
@@ -948,7 +945,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CustomerID")
+                    b.Property<int?>("CustomerID")
                         .HasColumnType("int");
 
                     b.Property<string>("ModifiedBy")
@@ -987,6 +984,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<int?>("BatchID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ConversionId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -1011,10 +1011,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<int>("SalesOrderID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SalesUnit")
+                        .HasColumnType("int");
+
                     b.Property<int?>("SourceShelfID")
                         .HasColumnType("int");
 
-                    b.Property<int>("SourceWarehouseID")
+                    b.Property<int?>("SourceWarehouseID")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -1026,6 +1029,8 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("BatchID");
+
+                    b.HasIndex("ConversionId");
 
                     b.HasIndex("GoodID");
 
@@ -1068,7 +1073,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("WarehouseID")
+                    b.Property<int?>("WarehouseID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -1101,10 +1106,10 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<int?>("DestinationShelfID")
                         .HasColumnType("int");
 
-                    b.Property<int>("DestinationWarehouseID")
+                    b.Property<int?>("DestinationWarehouseID")
                         .HasColumnType("int");
 
-                    b.Property<int>("GoodID")
+                    b.Property<int>("GoodId")
                         .HasColumnType("int");
 
                     b.Property<string>("ModifiedBy")
@@ -1116,13 +1121,10 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<int?>("SourceShelfID")
                         .HasColumnType("int");
 
-                    b.Property<int>("SourceWarehouseID")
+                    b.Property<int?>("SourceWarehouseID")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UnitType")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -1131,7 +1133,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.HasIndex("DestinationWarehouseID");
 
-                    b.HasIndex("GoodID");
+                    b.HasIndex("GoodId");
 
                     b.HasIndex("SourceShelfID");
 
@@ -1375,29 +1377,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Material", b =>
-                {
-                    b.HasBaseType("InventoryManagementApp.Domain.Entities.Concrete.Good");
-
-                    b.Property<decimal?>("PurchasePrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("PurchaseUnit")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("Material");
-                });
-
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Product", b =>
-                {
-                    b.HasBaseType("InventoryManagementApp.Domain.Entities.Concrete.Good");
-
-                    b.Property<int>("BillOfMaterialID")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("Product");
-                });
-
             modelBuilder.Entity("GoodShelf", b =>
                 {
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", null)
@@ -1475,7 +1454,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "MaterialUsed")
                         .WithMany()
-                        .HasForeignKey("MaterialUsedID")
+                        .HasForeignKey("GoodID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1488,9 +1467,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 {
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Conversion", "Conversion")
                         .WithMany("Consumptions")
-                        .HasForeignKey("ConversionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ConversionId");
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "UsedMaterial")
                         .WithMany()
@@ -1513,13 +1490,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Conversion", b =>
                 {
-                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "Material")
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "Good")
                         .WithMany()
-                        .HasForeignKey("MaterialID")
+                        .HasForeignKey("GoodID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Material");
+                    b.Navigation("Good");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Employee", b =>
@@ -1539,25 +1516,33 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .WithMany("Goods")
                         .HasForeignKey("BrandId");
 
-                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Category", "Categories")
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Category", "Category")
                         .WithMany("Goods")
-                        .HasForeignKey("CategoriesID");
+                        .HasForeignKey("CategoryID");
+
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.BillOfMaterial", "BillOfMaterial")
+                        .WithOne("Product")
+                        .HasForeignKey("InventoryManagementApp.Domain.Entities.Concrete.Good", "ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Model", "Model")
                         .WithOne("Good")
                         .HasForeignKey("InventoryManagementApp.Domain.Entities.Concrete.Good", "ModelId");
 
-                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.SubCategory", "SubCategories")
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.SubCategory", "SubCategory")
                         .WithMany()
-                        .HasForeignKey("SubCategoriesID");
+                        .HasForeignKey("SubCategoryID");
+
+                    b.Navigation("BillOfMaterial");
 
                     b.Navigation("Brand");
 
-                    b.Navigation("Categories");
+                    b.Navigation("Category");
 
                     b.Navigation("Model");
 
-                    b.Navigation("SubCategories");
+                    b.Navigation("SubCategory");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Manager", b =>
@@ -1573,15 +1558,15 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.ProductionOrder", b =>
                 {
-                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Batch", "Batch")
-                        .WithOne("ProductionOrder")
-                        .HasForeignKey("InventoryManagementApp.Domain.Entities.Concrete.ProductionOrder", "ID")
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "Product")
+                        .WithMany("ProductionOrders")
+                        .HasForeignKey("GoodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Product", "Product")
-                        .WithMany("ProductionOrders")
-                        .HasForeignKey("ProductId")
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Batch", "Batch")
+                        .WithOne("ProductionOrder")
+                        .HasForeignKey("InventoryManagementApp.Domain.Entities.Concrete.ProductionOrder", "ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1603,6 +1588,10 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.PurchaseOrderDetails", b =>
                 {
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Conversion", "Conversion")
+                        .WithMany("PurchaseOrderDetails")
+                        .HasForeignKey("ConversionId");
+
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Shelf", "DestinationShelf")
                         .WithMany()
                         .HasForeignKey("DestinationShelfID");
@@ -1614,7 +1603,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "Good")
-                        .WithMany()
+                        .WithMany("PurchaseOrderDetails")
                         .HasForeignKey("GoodID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1633,6 +1622,8 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.Navigation("Batch");
 
+                    b.Navigation("Conversion");
+
                     b.Navigation("DestinationShelf");
 
                     b.Navigation("DestinationWarehouse");
@@ -1646,9 +1637,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 {
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Customer", "Customer")
                         .WithMany("SalesOrders")
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerID");
 
                     b.Navigation("Customer");
                 });
@@ -1659,8 +1648,12 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("BatchID");
 
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Conversion", "Conversion")
+                        .WithMany("SalesOrderDetails")
+                        .HasForeignKey("ConversionId");
+
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "Good")
-                        .WithMany()
+                        .WithMany("SalesOrderDetails")
                         .HasForeignKey("GoodID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1677,11 +1670,11 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Warehouse", "SourceWarehouse")
                         .WithMany()
-                        .HasForeignKey("SourceWarehouseID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SourceWarehouseID");
 
                     b.Navigation("Batch");
+
+                    b.Navigation("Conversion");
 
                     b.Navigation("Good");
 
@@ -1696,9 +1689,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 {
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Warehouse", "Warehouse")
                         .WithMany("Shelves")
-                        .HasForeignKey("WarehouseID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("WarehouseID");
 
                     b.Navigation("Warehouse");
                 });
@@ -1711,13 +1702,11 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Warehouse", "DestinationWarehouse")
                         .WithMany()
-                        .HasForeignKey("DestinationWarehouseID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DestinationWarehouseID");
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "Good")
                         .WithMany()
-                        .HasForeignKey("GoodID")
+                        .HasForeignKey("GoodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1727,9 +1716,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Warehouse", "SourceWarehouse")
                         .WithMany()
-                        .HasForeignKey("SourceWarehouseID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SourceWarehouseID");
 
                     b.Navigation("DestinationShelf");
 
@@ -1804,17 +1791,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Product", b =>
-                {
-                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.BillOfMaterial", "BillOfMaterial")
-                        .WithOne("Product")
-                        .HasForeignKey("InventoryManagementApp.Domain.Entities.Concrete.Product", "ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BillOfMaterial");
-                });
-
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Batch", b =>
                 {
                     b.Navigation("ProductionOrder");
@@ -1845,6 +1821,10 @@ namespace InventoryManagementApp.Infrastructure.Migrations
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Conversion", b =>
                 {
                     b.Navigation("Consumptions");
+
+                    b.Navigation("PurchaseOrderDetails");
+
+                    b.Navigation("SalesOrderDetails");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Customer", b =>
@@ -1855,6 +1835,12 @@ namespace InventoryManagementApp.Infrastructure.Migrations
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Good", b =>
                 {
                     b.Navigation("Batches");
+
+                    b.Navigation("ProductionOrders");
+
+                    b.Navigation("PurchaseOrderDetails");
+
+                    b.Navigation("SalesOrderDetails");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Model", b =>
@@ -1886,11 +1872,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Warehouse", b =>
                 {
                     b.Navigation("Shelves");
-                });
-
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Product", b =>
-                {
-                    b.Navigation("ProductionOrders");
                 });
 #pragma warning restore 612, 618
         }

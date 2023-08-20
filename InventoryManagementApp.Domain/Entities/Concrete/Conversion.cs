@@ -19,13 +19,15 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //Navigation properties
 
-        public virtual Good Material { get; set; }
-        public int MaterialID { get; set; }
-        public float BaseMaterialAmount { get; set; }
+        public virtual Good Good { get; set; }
+        public int GoodID { get; set; }
+        public float BaseGoodAmount { get; set; }
         public UnitType BaseUnit { get; set; }
-        public float FinalMaterialAmount { get; set; }
+        public float FinalGoodAmount { get; set; }
         public UnitType FinalUnit { get; set; }
         public List<Consumption>? Consumptions { get; set; }
+        public List<SalesOrderDetails>? SalesOrderDetails { get; set; }
+        public List<PurchaseOrderDetails>? PurchaseOrderDetails { get; set; }
 
     }
 }

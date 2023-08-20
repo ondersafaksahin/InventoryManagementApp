@@ -57,11 +57,11 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 8, 14, 22, 8, 28, 912, DateTimeKind.Local).AddTicks(6831)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 8, 20, 14, 43, 14, 495, DateTimeKind.Local).AddTicks(9419)),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
-                    ProductID = table.Column<int>(type: "int", nullable: false)
+                    GoodID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -431,7 +431,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     SalesOrderTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TaxTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SalesPersonnel = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustomerID = table.Column<int>(type: "int", nullable: false)
+                    CustomerID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -440,8 +440,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         name: "FK_SalesOrders_Customers_CustomerID",
                         column: x => x.CustomerID,
                         principalTable: "Customers",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -483,7 +482,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WarehouseID = table.Column<int>(type: "int", nullable: false)
+                    WarehouseID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -492,8 +491,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         name: "FK_Shelves_Warehouses_WarehouseID",
                         column: x => x.WarehouseID,
                         principalTable: "Warehouses",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -506,24 +504,22 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     StockAmount = table.Column<float>(type: "real", nullable: false),
                     ReservedStock = table.Column<float>(type: "real", nullable: true),
                     StockingUnit = table.Column<int>(type: "int", nullable: true),
-                    SalesUnit = table.Column<int>(type: "int", nullable: true),
                     ConsumptionUnit = table.Column<int>(type: "int", nullable: true),
                     BrandId = table.Column<int>(type: "int", nullable: true),
                     ModelId = table.Column<int>(type: "int", nullable: true),
                     MinStock = table.Column<float>(type: "real", nullable: true),
-                    TaxPercentage = table.Column<byte>(type: "tinyint", nullable: false),
-                    SalePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    TaxPercentage = table.Column<byte>(type: "tinyint", nullable: true),
+                    ListPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Barcode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GrossWeight = table.Column<float>(type: "real", nullable: true),
                     NetWeight = table.Column<float>(type: "real", nullable: true),
-                    CategoriesID = table.Column<int>(type: "int", nullable: true),
-                    SubCategoriesID = table.Column<int>(type: "int", nullable: true),
+                    CategoryID = table.Column<int>(type: "int", nullable: true),
+                    SubCategoryID = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 8, 14, 22, 8, 28, 914, DateTimeKind.Local).AddTicks(4417)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 8, 20, 14, 43, 14, 496, DateTimeKind.Local).AddTicks(9409)),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BillOfMaterialID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -541,8 +537,8 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         principalTable: "Brands",
                         principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_Goods_Categories_CategoriesID",
-                        column: x => x.CategoriesID,
+                        name: "FK_Goods_Categories_CategoryID",
+                        column: x => x.CategoryID,
                         principalTable: "Categories",
                         principalColumn: "ID");
                     table.ForeignKey(
@@ -551,8 +547,8 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         principalTable: "Models",
                         principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_Goods_SubCategories_SubCategoriesID",
-                        column: x => x.SubCategoriesID,
+                        name: "FK_Goods_SubCategories_SubCategoryID",
+                        column: x => x.SubCategoryID,
                         principalTable: "SubCategories",
                         principalColumn: "ID");
                 });
@@ -564,7 +560,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 8, 14, 22, 8, 28, 910, DateTimeKind.Local).AddTicks(3516)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 8, 20, 14, 43, 14, 494, DateTimeKind.Local).AddTicks(3394)),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
@@ -597,10 +593,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    MaterialID = table.Column<int>(type: "int", nullable: false),
-                    MaterialUsedID = table.Column<int>(type: "int", nullable: false),
+                    GoodID = table.Column<int>(type: "int", nullable: false),
                     ConsumptionAmount = table.Column<float>(type: "real", nullable: false),
-                    UnitType = table.Column<int>(type: "int", nullable: false),
+                    UnitOfComsumption = table.Column<int>(type: "int", nullable: false),
                     BillOfMaterialId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -613,8 +608,8 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_BillOfMaterialDetails_Goods_MaterialUsedID",
-                        column: x => x.MaterialUsedID,
+                        name: "FK_BillOfMaterialDetails_Goods_GoodID",
+                        column: x => x.GoodID,
                         principalTable: "Goods",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.NoAction);
@@ -631,18 +626,18 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    MaterialID = table.Column<int>(type: "int", nullable: false),
-                    BaseMaterialAmount = table.Column<float>(type: "real", nullable: false),
+                    GoodID = table.Column<int>(type: "int", nullable: false),
+                    BaseGoodAmount = table.Column<float>(type: "real", nullable: false),
                     BaseUnit = table.Column<int>(type: "int", nullable: false),
-                    FinalMaterialAmount = table.Column<float>(type: "real", nullable: false),
+                    FinalGoodAmount = table.Column<float>(type: "real", nullable: false),
                     FinalUnit = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Conversions", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Conversions_Goods_MaterialID",
-                        column: x => x.MaterialID,
+                        name: "FK_Conversions_Goods_GoodID",
+                        column: x => x.GoodID,
                         principalTable: "Goods",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.NoAction);
@@ -731,21 +726,20 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    UnitType = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<float>(type: "real", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GoodID = table.Column<int>(type: "int", nullable: false),
-                    SourceWarehouseID = table.Column<int>(type: "int", nullable: false),
+                    GoodId = table.Column<int>(type: "int", nullable: false),
+                    SourceWarehouseID = table.Column<int>(type: "int", nullable: true),
                     SourceShelfID = table.Column<int>(type: "int", nullable: true),
-                    DestinationWarehouseID = table.Column<int>(type: "int", nullable: false),
+                    DestinationWarehouseID = table.Column<int>(type: "int", nullable: true),
                     DestinationShelfID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_StockTransfers", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_StockTransfers_Goods_GoodID",
-                        column: x => x.GoodID,
+                        name: "FK_StockTransfers_Goods_GoodId",
+                        column: x => x.GoodId,
                         principalTable: "Goods",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.NoAction);
@@ -763,14 +757,12 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         name: "FK_StockTransfers_Warehouses_DestinationWarehouseID",
                         column: x => x.DestinationWarehouseID,
                         principalTable: "Warehouses",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_StockTransfers_Warehouses_SourceWarehouseID",
                         column: x => x.SourceWarehouseID,
                         principalTable: "Warehouses",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -785,7 +777,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<float>(type: "real", nullable: false),
                     UnitType = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    GoodId = table.Column<int>(type: "int", nullable: false),
                     BatchId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -798,8 +790,8 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_ProductionOrders_Goods_ProductId",
-                        column: x => x.ProductId,
+                        name: "FK_ProductionOrders_Goods_GoodId",
+                        column: x => x.GoodId,
                         principalTable: "Goods",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.NoAction);
@@ -817,11 +809,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Quantity = table.Column<float>(type: "real", nullable: false),
+                    PurchaseUnit = table.Column<int>(type: "int", nullable: true),
                     PurchaseOrderID = table.Column<int>(type: "int", nullable: false),
                     GoodID = table.Column<int>(type: "int", nullable: false),
                     DestinationWarehouseID = table.Column<int>(type: "int", nullable: false),
                     DestinationShelfID = table.Column<int>(type: "int", nullable: true),
-                    BatchID = table.Column<int>(type: "int", nullable: true)
+                    BatchID = table.Column<int>(type: "int", nullable: true),
+                    ConversionId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -832,6 +826,11 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         principalTable: "Batches",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_PurchaseOrderDetails_Conversions_ConversionId",
+                        column: x => x.ConversionId,
+                        principalTable: "Conversions",
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_PurchaseOrderDetails_Goods_GoodID",
                         column: x => x.GoodID,
@@ -870,12 +869,14 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Quantity = table.Column<float>(type: "real", nullable: false),
+                    SalesUnit = table.Column<int>(type: "int", nullable: true),
                     Discount = table.Column<float>(type: "real", nullable: false),
                     SalesOrderID = table.Column<int>(type: "int", nullable: false),
                     GoodID = table.Column<int>(type: "int", nullable: false),
-                    SourceWarehouseID = table.Column<int>(type: "int", nullable: false),
+                    SourceWarehouseID = table.Column<int>(type: "int", nullable: true),
                     SourceShelfID = table.Column<int>(type: "int", nullable: true),
-                    BatchID = table.Column<int>(type: "int", nullable: true)
+                    BatchID = table.Column<int>(type: "int", nullable: true),
+                    ConversionId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -884,6 +885,11 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         name: "FK_SalesOrderDetails_Batches_BatchID",
                         column: x => x.BatchID,
                         principalTable: "Batches",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_SalesOrderDetails_Conversions_ConversionId",
+                        column: x => x.ConversionId,
+                        principalTable: "Conversions",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_SalesOrderDetails_Goods_GoodID",
@@ -906,8 +912,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         name: "FK_SalesOrderDetails_Warehouses_SourceWarehouseID",
                         column: x => x.SourceWarehouseID,
                         principalTable: "Warehouses",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -925,7 +930,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     UnitofConsumption = table.Column<int>(type: "int", nullable: false),
                     GoodID = table.Column<int>(type: "int", nullable: false),
                     ProductionOrderId = table.Column<int>(type: "int", nullable: false),
-                    ConversionId = table.Column<int>(type: "int", nullable: false)
+                    ConversionId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -934,8 +939,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         name: "FK_Consumptions_Conversions_ConversionId",
                         column: x => x.ConversionId,
                         principalTable: "Conversions",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Consumptions_Goods_GoodID",
                         column: x => x.GoodID,
@@ -1005,9 +1009,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 column: "BillOfMaterialId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BillOfMaterialDetails_MaterialUsedID",
+                name: "IX_BillOfMaterialDetails_GoodID",
                 table: "BillOfMaterialDetails",
-                column: "MaterialUsedID");
+                column: "GoodID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Consumptions_ConversionId",
@@ -1025,9 +1029,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 column: "ProductionOrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Conversions_MaterialID",
+                name: "IX_Conversions_GoodID",
                 table: "Conversions",
-                column: "MaterialID");
+                column: "GoodID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_AppUserId",
@@ -1040,9 +1044,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 column: "BrandId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Goods_CategoriesID",
+                name: "IX_Goods_CategoryID",
                 table: "Goods",
-                column: "CategoriesID");
+                column: "CategoryID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Goods_ModelId",
@@ -1052,9 +1056,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 filter: "[ModelId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Goods_SubCategoriesID",
+                name: "IX_Goods_SubCategoryID",
                 table: "Goods",
-                column: "SubCategoriesID");
+                column: "SubCategoryID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_GoodShelf_ShelvesID",
@@ -1077,9 +1081,14 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductionOrders_ProductId",
+                name: "IX_ProductionOrders_GoodId",
                 table: "ProductionOrders",
-                column: "ProductId");
+                column: "GoodId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PurchaseOrderDetails_ConversionId",
+                table: "PurchaseOrderDetails",
+                column: "ConversionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PurchaseOrderDetails_DestinationShelfID",
@@ -1110,6 +1119,11 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 name: "IX_SalesOrderDetails_BatchID",
                 table: "SalesOrderDetails",
                 column: "BatchID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SalesOrderDetails_ConversionId",
+                table: "SalesOrderDetails",
+                column: "ConversionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SalesOrderDetails_GoodID",
@@ -1152,9 +1166,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 column: "DestinationWarehouseID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StockTransfers_GoodID",
+                name: "IX_StockTransfers_GoodId",
                 table: "StockTransfers",
-                column: "GoodID");
+                column: "GoodId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StockTransfers_SourceShelfID",
@@ -1227,9 +1241,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Conversions");
-
-            migrationBuilder.DropTable(
                 name: "ProductionOrders");
 
             migrationBuilder.DropTable(
@@ -1237,6 +1248,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "PurchaseOrders");
+
+            migrationBuilder.DropTable(
+                name: "Conversions");
 
             migrationBuilder.DropTable(
                 name: "SalesOrders");

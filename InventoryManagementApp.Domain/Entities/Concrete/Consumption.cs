@@ -35,7 +35,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public int ProductionOrderId { get; set; }
 
         public Conversion? Conversion { get; set; }
-        public int ConversionId { get; set; }
+        public int? ConversionId { get; set; }
 
     }
 }
