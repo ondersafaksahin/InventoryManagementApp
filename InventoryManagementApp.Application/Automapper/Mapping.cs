@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
+using InventoryManagementApp.Domain.Entities.Concrete;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
@@ -63,19 +65,10 @@ namespace InventoryManagementApp.Application.Automapper
 
 
             //BillofMaterial
-
-
-
-
-
-
-
-
-
-
-
-
-
+            CreateMap<BillOfMaterial, BOMCreateDTO>().ReverseMap();
+            CreateMap<BillOfMaterial, BOMUpdateDTO>().ReverseMap();
+            CreateMap<BillOfMaterial, BOMListDTO>().ReverseMap();
+            CreateMap<BillOfMaterial, BOMDTO>().ReverseMap();
             //BillofMaterialDetails
 
 
