@@ -30,7 +30,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //Navigation Properties
         public virtual List<SalesOrderDetails> SalesOrderDetails { get; set; }
-        public Customer Customer { get; set; }
-        public int CustomerID { get; set; }
+        public Customer? Customer { get; set; }
+        public int? CustomerID { get; set; }
     }
 }

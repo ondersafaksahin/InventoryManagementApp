@@ -24,8 +24,8 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
 
         //Navigation Properties
-        public virtual Product Product { get; set; }
-        public int ProductID { get; set; }
+        public virtual Good Product { get; set; }
+        public int GoodID { get; set; }
         public List<BillOfMaterialDetails> BillOfMaterialDetails { get; set; }
       
 

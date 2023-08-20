@@ -26,6 +26,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         //Additional Properties
         public decimal UnitPrice { get; set; }
         public float Quantity { get; set; }
+        public UnitType? PurchaseUnit { get; set; }
 
 
         //Navigation Properties
@@ -39,6 +40,8 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public int? DestinationShelfID { get; set; }
         public Batch? Batch { get; set; }
         public int? BatchID { get; set; }
-        
+        public Conversion? Conversion { get; set; }
+        public int? ConversionId { get; set; }
+
     }
 }

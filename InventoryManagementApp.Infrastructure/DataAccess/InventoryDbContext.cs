@@ -38,8 +38,6 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Manager> Managers { get; set; }
         public DbSet<Admin> Admins { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Material> Materials { get; set; }
 
 
 

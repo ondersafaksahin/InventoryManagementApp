@@ -24,13 +24,13 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
 
         //Navigation props
-        public Product Product { get; set; }
-        public int ProductId { get; set; }
+        public Good Product { get; set; }
+        public int GoodId { get; set; }
         public Batch? Batch { get; set; }
         public int BatchId { get; set; }
 
         //Bu üretimin batch numarasını, üretimin productının batch listesine add yapılması gerekiyor
 
-        public List<Consumption> Consumptions { get; set; }
+        public List<Consumption>? Consumptions { get; set; }
     }
 }
