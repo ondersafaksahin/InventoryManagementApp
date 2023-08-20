@@ -7,14 +7,23 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Application.Services
 {
-    public interface IBaseService<T, T1> where T : class
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="C">CreateDTO class to use</typeparam>
+    /// <typeparam name="U">UpdateDTO class to use</typeparam>
+    /// <typeparam name="L">ListDTO class to use</typeparam>
+    /// <typeparam name="T">DTO Type of entity</typeparam>
+    /// <typeparam name="B">The base entity</typeparam>
+    /// <typeparam name="I">ID type of the entity</typeparam>
+    public interface IBaseService<C,U,L,T,B,I>
     {
-        Task Create(T itemDTO);
-        Task Edit(T itemDTO);
-        Task Remove(T itemDTO);
-        Task<List<T>> GetDefaults(Expression<Func<T, bool>> expression);
-        Task<List<T>> All();
-        Task<T> GetById(T1 id);
+        Task Create(C createDTO);
+        Task Update(U updateDTO);
+        Task Delete(I id);
+        Task<List<L>> GetDefaults(Expression<Func<B, bool>> expression);
+        Task<List<L>> All();
+        Task<T> GetById(I id);
 
     }
 }

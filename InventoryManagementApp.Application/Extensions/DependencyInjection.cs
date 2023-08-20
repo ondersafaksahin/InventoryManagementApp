@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using InventoryManagementApp.Application.Services.BillOfMaterialsService;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,7 @@ namespace InventoryManagementApp.Application.Extensions
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
             //Önder
-            //
-            //
+            services.AddScoped<IBillOfMatieralsService, BillOfMatieralsService>();
             //
             //
             //
