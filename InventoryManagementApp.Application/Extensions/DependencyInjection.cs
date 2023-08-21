@@ -1,4 +1,5 @@
-﻿using InventoryManagementApp.Application.Services.BillOfMaterialsService;
+﻿using InventoryManagementApp.Application.Services.BatchService;
+using InventoryManagementApp.Application.Services.BillOfMaterialsService;
 using InventoryManagementApp.Application.Services.BrandService;
 using InventoryManagementApp.Application.Services.GoodService;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +34,7 @@ namespace InventoryManagementApp.Application.Extensions
             //
             //
             //Emre
-            //
+            services.AddScoped<IBatchService, BatchService>();
             //
             //
             //
