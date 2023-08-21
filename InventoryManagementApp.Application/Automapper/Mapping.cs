@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
+using InventoryManagementApp.Application.DTOs.BrandDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using Microsoft.EntityFrameworkCore.Query;
@@ -82,20 +83,10 @@ namespace InventoryManagementApp.Application.Automapper
 
 
             //Brand
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            CreateMap<Brand, BrandCreateDTO>().ReverseMap();
+            CreateMap<Brand, BrandUpdateDTO>().ReverseMap();
+            CreateMap<Brand, BrandListDTO>().ReverseMap();
+            CreateMap<Brand, BrandDTO>().ReverseMap();
             //Category
 
 
