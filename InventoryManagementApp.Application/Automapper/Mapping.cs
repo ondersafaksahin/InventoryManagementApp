@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
+using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
@@ -199,7 +200,10 @@ namespace InventoryManagementApp.Application.Automapper
 
 
             //Good
-
+            CreateMap<Good, GoodCreateDTO>().ReverseMap();
+            CreateMap<Good, GoodListDTO>().ReverseMap();
+            CreateMap<Good, GoodUpdateDTO>().ReverseMap();
+            CreateMap<Good, GoodDTO>().ReverseMap();
 
 
 
