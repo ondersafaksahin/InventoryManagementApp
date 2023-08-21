@@ -24,7 +24,7 @@ namespace InventoryManagementApp.Infrastructure.Extensions
             services.AddScoped<IBatchRepository, BatchRepository>();
             services.AddScoped<IPurchaseOrderRepository, PurchaseOrderRepository>();
             services.AddScoped<IPurchaseOrderDetailsRepository, PurchaseOrderDetailsRepository>();
-            //
+            services.AddScoped<ISalesOrderRepository, SalesOrderRepository>();
             //
             //
             //
