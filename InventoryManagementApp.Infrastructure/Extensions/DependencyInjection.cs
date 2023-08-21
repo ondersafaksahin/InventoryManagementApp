@@ -22,7 +22,7 @@ namespace InventoryManagementApp.Infrastructure.Extensions
             //Pelin & Emre
             services.AddScoped<IGoodRepository, GoodRepository>();
             services.AddScoped<IBatchRepository, BatchRepository>();
-            //
+            services.AddScoped<IPurchaseOrderRepository, PurchaseOrderRepository>();
             //
             //
             //
