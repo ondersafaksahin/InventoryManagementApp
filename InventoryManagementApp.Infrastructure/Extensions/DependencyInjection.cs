@@ -26,9 +26,9 @@ namespace InventoryManagementApp.Infrastructure.Extensions
             services.AddScoped<IPurchaseOrderDetailsRepository, PurchaseOrderDetailsRepository>();
             services.AddScoped<ISalesOrderRepository, SalesOrderRepository>();
             services.AddScoped<ISalesOrderDetailsRepository, SalesOrderDetailsRepository>();
-            //
-            //
-            //
+            services.AddScoped<IShelfRepository, ShelfRepository>();
+            services.AddScoped<IStockTransferRepository, StockTransferRepository>();
+            services.AddScoped<IWareHouseRepository, WareHouseRepository>();
             //
             //
             //Hatice
