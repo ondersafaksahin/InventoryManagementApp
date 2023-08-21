@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InventoryManagementApp.Application.DTOs.BatchDTOs;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
 using InventoryManagementApp.Application.DTOs.BrandDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
@@ -56,10 +57,10 @@ namespace InventoryManagementApp.Application.Automapper
 
 
             //Batch
-
-
-
-
+            CreateMap<Batch, BatchCreateDTO>().ReverseMap();
+            CreateMap<Batch, BatchUpdateDTO>().ReverseMap();
+            CreateMap<Batch, BatchListDTO>().ReverseMap();
+            CreateMap<Batch, BatchDTO>().ReverseMap();
 
 
 
