@@ -23,7 +23,7 @@ namespace InventoryManagementApp.Infrastructure.Extensions
             services.AddScoped<IGoodRepository, GoodRepository>();
             services.AddScoped<IBatchRepository, BatchRepository>();
             services.AddScoped<IPurchaseOrderRepository, PurchaseOrderRepository>();
-            //
+            services.AddScoped<IPurchaseOrderDetailsRepository, PurchaseOrderDetailsRepository>();
             //
             //
             //
