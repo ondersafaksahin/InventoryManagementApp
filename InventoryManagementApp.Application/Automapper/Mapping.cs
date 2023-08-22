@@ -4,6 +4,7 @@ using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
 using InventoryManagementApp.Application.DTOs.BrandDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Application.DTOs.ModelDTOs;
+using InventoryManagementApp.Application.DTOs.ProductionOrderDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDetailDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDTOs;
 using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
@@ -29,18 +30,7 @@ namespace InventoryManagementApp.Application.Automapper
 
 
 
-
-
-
-
-
-
-
             //AppRole
-
-
-
-
 
 
 
@@ -54,22 +44,11 @@ namespace InventoryManagementApp.Application.Automapper
 
 
 
-
-
-
-
-
-
             //Batch
             CreateMap<Batch, BatchCreateDTO>().ReverseMap();
             CreateMap<Batch, BatchUpdateDTO>().ReverseMap();
             CreateMap<Batch, BatchListDTO>().ReverseMap();
             CreateMap<Batch, BatchDTO>().ReverseMap();
-
-
-
-
-
 
             //BillofMaterial
             CreateMap<BillOfMaterial, BOMCreateDTO>().ReverseMap();
@@ -83,26 +62,13 @@ namespace InventoryManagementApp.Application.Automapper
 
 
 
-
-
-
-
             //Brand
             CreateMap<Brand, BrandCreateDTO>().ReverseMap();
             CreateMap<Brand, BrandUpdateDTO>().ReverseMap();
             CreateMap<Brand, BrandListDTO>().ReverseMap();
             CreateMap<Brand, BrandDTO>().ReverseMap();
+
             //Category
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -114,34 +80,7 @@ namespace InventoryManagementApp.Application.Automapper
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
             //Conversion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -155,41 +94,7 @@ namespace InventoryManagementApp.Application.Automapper
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             //Employee
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -201,39 +106,7 @@ namespace InventoryManagementApp.Application.Automapper
             CreateMap<Good, GoodUpdateDTO>().ReverseMap();
             CreateMap<Good, GoodDTO>().ReverseMap();
 
-
-
-
-
-
-
-
-
-
-
-
-
             //Manager
-
-
-
-
-
-
-
-
-
-
-
-            //Material
-
-
-
-
-
-
-
-
 
 
 
@@ -246,64 +119,24 @@ namespace InventoryManagementApp.Application.Automapper
             CreateMap<Model, ModelListDTO>().ReverseMap();
             CreateMap<Model, ModelUpdateDTO>().ReverseMap();
             CreateMap<Model, ModelDTO>().ReverseMap();
-            //Product
 
+			//ProductionOrder
+			CreateMap<ProductionOrder, ProductionOrderCreateDTO>().ReverseMap();
+			CreateMap<ProductionOrder, ProductionOrderListDTO>().ReverseMap();
+			CreateMap<ProductionOrder, ProductionOrderUpdateDTO>().ReverseMap();
+			CreateMap<ProductionOrder, ProductionOrderDTO>().ReverseMap();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //ProductionOrder
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //PurchaseOrder
-            CreateMap<PurchaseOrder, PurchaseOrderCreateDTO>().ReverseMap();
+			//PurchaseOrder
+			CreateMap<PurchaseOrder, PurchaseOrderCreateDTO>().ReverseMap();
             CreateMap<PurchaseOrder, PurchaseOrderDTO>().ReverseMap();
             CreateMap<PurchaseOrder, PurchaseOrderListDTO>().ReverseMap();
             CreateMap<PurchaseOrder, PurchaseOrderUpdateDTO>().ReverseMap();
-
-
-
-
-
-
 
             //PurchaseOrderDetails
             CreateMap<PurchaseOrderDetails, PurchaseOrderDetailCreateDTO>().ReverseMap();
             CreateMap<PurchaseOrderDetails, PurchaseOrderDetailUpdateDTO>().ReverseMap();
             CreateMap<PurchaseOrderDetails, PurchaseOrderDetailListDTO>().ReverseMap();
             CreateMap<PurchaseOrderDetails, PurchaseOrderDetailDTO>().ReverseMap();
-
-
-
-
-
-
-
-
-
-
-
 
             //SalesOrder
 
@@ -312,29 +145,7 @@ namespace InventoryManagementApp.Application.Automapper
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             //SalesOrderDetails
-
-
-
-
-
-
-
-
 
 
 
@@ -350,35 +161,7 @@ namespace InventoryManagementApp.Application.Automapper
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
             //StockTransfer
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -393,25 +176,7 @@ namespace InventoryManagementApp.Application.Automapper
 
 
 
-
-
-
-
-
-
-
-
-
             //Supplier
-
-
-
-
-
-
-
-
-
 
 
 
@@ -424,24 +189,6 @@ namespace InventoryManagementApp.Application.Automapper
             CreateMap<Warehouse, WareHouseUpdateDTO>().ReverseMap();
             CreateMap<Warehouse, WareHouseListDTO>().ReverseMap();
             CreateMap<Warehouse, WareHouseDTO>().ReverseMap();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
     }
 }
