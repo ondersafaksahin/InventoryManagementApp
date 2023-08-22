@@ -4,6 +4,7 @@ using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
 using InventoryManagementApp.Application.DTOs.BrandDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDTOs;
+using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
@@ -427,7 +428,10 @@ namespace InventoryManagementApp.Application.Automapper
 
 
             //Warehouse
-
+            CreateMap<Warehouse, WareHouseCreateDTO>().ReverseMap();
+            CreateMap<Warehouse, WareHouseUpdateDTO>().ReverseMap();
+            CreateMap<Warehouse, WareHouseListDTO>().ReverseMap();
+            CreateMap<Warehouse, WareHouseDTO>().ReverseMap();
 
 
 
