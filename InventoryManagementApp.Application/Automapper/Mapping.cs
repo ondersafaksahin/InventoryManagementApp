@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InventoryManagementApp.Application.DTOs.AdminDTOs;
 using InventoryManagementApp.Application.DTOs.BatchDTOs;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
@@ -28,10 +29,10 @@ namespace InventoryManagementApp.Application.Automapper
         public Mapping()
         {
             //Admin
-
-
-
-
+            CreateMap<Admin, AdminCreateDTO>().ReverseMap();
+            CreateMap<Admin, AdminDTO>().ReverseMap();
+            CreateMap<Admin, AdminListDTO>().ReverseMap();
+            CreateMap<Admin, AdminUpdateDTO>().ReverseMap();
 
 
 

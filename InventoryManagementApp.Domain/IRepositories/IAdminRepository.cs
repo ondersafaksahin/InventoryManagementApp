@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.IRepositories
 {
-    public interface IAdminRepository:IBaseRepository<Admin>
+    public interface IAdminRepository:IUserBaseRepository<Admin>
     {
+        Task Add(Admin item);
 
     }
 }
