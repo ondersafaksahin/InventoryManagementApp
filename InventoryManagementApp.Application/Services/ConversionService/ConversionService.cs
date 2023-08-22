@@ -1,0 +1,57 @@
+﻿using AutoMapper;
+using InventoryManagementApp.Application.DTOs.ConversionDTOs;
+using InventoryManagementApp.Domain.Entities.Concrete;
+using InventoryManagementApp.Domain.IRepositories;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace InventoryManagementApp.Application.Services.ConversionService
+{
+	public class ConversionService : IConversionService
+	{
+		IConversionRepository _conversionRepository;
+		IMapper _mapper;
+
+		public ConversionService(IConversionRepository conversionRepository, IMapper mapper)
+		{
+			_conversionRepository = conversionRepository;
+			_mapper = mapper;
+		}
+
+
+		public async Task<List<ConversionListDTO>> All()
+		{
+			return _mapper.Map<List<ConversionListDTO>>(await _conversionRepository.GetAll());
+		}
+
+		public async Task Create(ConversionCreateDTO createDTO)
+		{
+			await _conversionRepository.Add(_mapper.Map<Conversion>(createDTO));
+		}
+
+		public async Task Delete(int id)
+		{
+			var Conversion = await _conversionRepository.GetById(x => x.ID == id);
+			await _conversionRepository.Delete(Conversion);
+		}
+
+		public async Task<ConversionDTO> GetById(int id)
+		{
+			return _mapper.Map<ConversionDTO>(await _conversionRepository.GetById(x => x.ID == id));
+		}
+
+		public async Task<List<ConversionListDTO>> GetDefaults(Expression<Func<Conversion, bool>> expression)
+		{
+			return _mapper.Map<List<ConversionListDTO>>(await _conversionRepository.GetDefaults(expression));
+		}
+
+		public async Task Update(ConversionUpdateDTO updateDTO)
+		{
+			await _conversionRepository.Update(_mapper.Map<Conversion>(updateDTO));
+		}
+	}
+}
