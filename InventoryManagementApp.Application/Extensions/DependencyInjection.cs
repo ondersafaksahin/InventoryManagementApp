@@ -1,4 +1,18 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using InventoryManagementApp.Application.Services.BatchService;
+using InventoryManagementApp.Application.Services.BillOfMaterialsDetailsService;
+using InventoryManagementApp.Application.Services.BillOfMaterialsService;
+using InventoryManagementApp.Application.Services.BrandService;
+using InventoryManagementApp.Application.Services.ConsumpitonService;
+using InventoryManagementApp.Application.Services.ConversionService;
+using InventoryManagementApp.Application.Services.CustomerService;
+using InventoryManagementApp.Application.Services.GoodService;
+using InventoryManagementApp.Application.Services.ModelService;
+using InventoryManagementApp.Application.Services.ProductionOrderService;
+using InventoryManagementApp.Application.Services.PurchaseOrderDetailService;
+using InventoryManagementApp.Application.Services.PurchaseOrderService;
+using InventoryManagementApp.Application.Services.ShelfService;
+using InventoryManagementApp.Application.Services.WareHouseService;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,26 +26,23 @@ namespace InventoryManagementApp.Application.Extensions
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
             //Önder
-            //
-            //
-            //
-            //
-            //
-            //
-            //
-            //
-            //Pelin
-            //
-            //
-            //
-            //
-            //
+            services.AddScoped<IBillOfMatieralsService, BillOfMatieralsService>();
+			services.AddScoped<IProductionOrderService, ProductionOrderService>();
+			services.AddScoped<IBillOfMaterialsDetailsService, BillOfMaterialsDetailsService>();
+			services.AddScoped<IConversionService, ConversionService>();
+			services.AddScoped<IConsumptionService, ConsumptionService>();
+			//Pelin
+			services.AddScoped<IGoodService, GoodService>();
+            services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
+            services.AddScoped<IWareHouseService, WareHouseService>();
+            services.AddScoped<IPurchaseOrderDetailService, PurchaseOrderDetailService>();
+            services.AddScoped<IShelfService, ShelfService>();
             //
             //
             //
             //
             //Emre
-            //
+            services.AddScoped<IBatchService, BatchService>();
             //
             //
             //
@@ -39,9 +50,9 @@ namespace InventoryManagementApp.Application.Extensions
             //
             //
             //Hatice
-            //
-            //
-            //
+            services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped<IModelService, ModelService>();
+            services.AddScoped<ICustomerService, CustomerService>();
             //
             //
             //
