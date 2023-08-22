@@ -38,7 +38,7 @@ namespace InventoryManagementApp.Infrastructure.Repositories
 
         public async Task Delete(T item)
         {
-            item.Status = Status.Deleted;//Oluşturduğun entitynin status propertysinin değerini deleted yap
+            item.Status = Status.Deleted; //Change status to deleted
             await Update(item);
         }
 
@@ -59,7 +59,7 @@ namespace InventoryManagementApp.Infrastructure.Repositories
 
         public async Task Update(T item)
         {
-            _dbContext.Entry<T>(item).State = EntityState.Modified;//Güncelleme Yap
+            _dbContext.Entry<T>(item).State = EntityState.Modified;//Update status
             await _dbContext.SaveChangesAsync();
         }
     }

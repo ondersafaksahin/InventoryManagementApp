@@ -4,6 +4,7 @@ using InventoryManagementApp.Application.Services.BrandService;
 using InventoryManagementApp.Application.Services.CustomerService;
 using InventoryManagementApp.Application.Services.GoodService;
 using InventoryManagementApp.Application.Services.ModelService;
+using InventoryManagementApp.Application.Services.ProductionOrderService;
 using InventoryManagementApp.Application.Services.PurchaseOrderDetailService;
 using InventoryManagementApp.Application.Services.PurchaseOrderService;
 using InventoryManagementApp.Application.Services.WareHouseService;
@@ -22,14 +23,14 @@ namespace InventoryManagementApp.Application.Extensions
         {
             //Önder
             services.AddScoped<IBillOfMatieralsService, BillOfMatieralsService>();
-            //
-            //
-            //
-            //
-            //
-            //
-            //Pelin
-            services.AddScoped<IGoodService, GoodService>();
+			services.AddScoped<IProductionOrderService, ProductionOrderService>();
+			//
+			//
+			//
+			//
+			//
+			//Pelin
+			services.AddScoped<IGoodService, GoodService>();
             services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
             services.AddScoped<IWareHouseService, WareHouseService>();
             services.AddScoped<IPurchaseOrderDetailService, PurchaseOrderDetailService>();
