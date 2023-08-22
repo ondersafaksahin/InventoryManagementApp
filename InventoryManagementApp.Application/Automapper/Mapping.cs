@@ -2,6 +2,7 @@
 using InventoryManagementApp.Application.DTOs.BatchDTOs;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
 using InventoryManagementApp.Application.DTOs.BrandDTOs;
+using InventoryManagementApp.Application.DTOs.CustomerDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Application.DTOs.ModelDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDetailDTOs;
@@ -149,8 +150,10 @@ namespace InventoryManagementApp.Application.Automapper
 
 
             //Customer
-
-
+            CreateMap<Customer, CustomerCreateDTO>().ReverseMap();
+            CreateMap<Customer, CustomerUpdateDTO>().ReverseMap();
+            CreateMap<Customer, CustomerListDTO>().ReverseMap();
+            CreateMap<Customer, CustomerDTO>().ReverseMap();
 
 
 
