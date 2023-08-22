@@ -1,4 +1,5 @@
-﻿using InventoryManagementApp.Application.Services.BatchService;
+﻿using InventoryManagementApp.Application.Services.AdminService;
+using InventoryManagementApp.Application.Services.BatchService;
 using InventoryManagementApp.Application.Services.BillOfMaterialsDetailsService;
 using InventoryManagementApp.Application.Services.BillOfMaterialsService;
 using InventoryManagementApp.Application.Services.BrandService;
@@ -58,7 +59,7 @@ namespace InventoryManagementApp.Application.Extensions
             //
             //
             //Tolga
-            //
+            services.AddScoped<IAdminService, AdminService>();
             //
             //
             //

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Application.DTOs.AdminDTOs
 {
-    internal class AdminDTO
+    public class AdminDTO
     {
         public string? UserName { get; set; }
         public string? Email { get; set; }
