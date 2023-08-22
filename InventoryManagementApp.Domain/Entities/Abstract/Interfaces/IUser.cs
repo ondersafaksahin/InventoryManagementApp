@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.Entities.Abstract.Interfaces
 {
-    public interface IUser: IBaseEntity, IEntity<Guid>
+    public interface IUser: IBaseEntity
     {
         public string? Picture { get; set; }
         public string? FirstName { get; set; }
@@ -17,7 +17,5 @@ namespace InventoryManagementApp.Domain.Entities.Abstract.Interfaces
         public string? Department { get; set; }
         public string? Title { get; set; }
         public Gender? Gender { get; set; }
-        public AppUser AppUser { get; set; }
-        public Guid AppUserId { get; set; }
     }
 }

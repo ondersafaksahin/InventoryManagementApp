@@ -1,15 +1,20 @@
-﻿using InventoryManagementApp.Domain.Entities.Abstract.Interfaces;
-using InventoryManagementApp.Domain.Enums;
+﻿using InventoryManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryManagementApp.Domain.Entities.Concrete
+namespace InventoryManagementApp.Application.DTOs.AdminDTOs
 {
-    public class Admin :AppUser, IUser
+    public class AdminCreateDTO
     {
+        public string? UserName { get; set; }
+        public string? Email { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? Password { get; set; }
+        public string? PasswordConfirm { get; set; }
         public string? Picture { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
@@ -22,6 +27,5 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public Status Status { get; set; }
-
     }
 }

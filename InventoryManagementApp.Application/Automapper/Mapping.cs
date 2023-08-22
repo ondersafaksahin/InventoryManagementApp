@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using InventoryManagementApp.Application.DTOs.AdminDTOs;
+using InventoryManagementApp.Domain.Entities.Concrete;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
@@ -13,10 +15,10 @@ namespace InventoryManagementApp.Application.Automapper
         public Mapping()
         {
             //Admin
-
-
-
-
+            CreateMap<Admin, AdminCreateDTO>().ReverseMap();
+            CreateMap<Admin, AdminDTO>().ReverseMap();
+            CreateMap<Admin, AdminListDTO>().ReverseMap();
+            CreateMap<Admin, AdminUpdateDTO>().ReverseMap();
 
 
 
