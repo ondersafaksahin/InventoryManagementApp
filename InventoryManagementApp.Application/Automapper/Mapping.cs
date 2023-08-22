@@ -12,7 +12,10 @@ using InventoryManagementApp.Application.DTOs.ModelDTOs;
 using InventoryManagementApp.Application.DTOs.ProductionOrderDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDetailDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDTOs;
+using InventoryManagementApp.Application.DTOs.SalesOrdesDetailsDTOs;
+using InventoryManagementApp.Application.DTOs.SalesOrdesDTOs;
 using InventoryManagementApp.Application.DTOs.ShelfDTOs;
+using InventoryManagementApp.Application.DTOs.StockTransferDTOs;
 using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using Microsoft.EntityFrameworkCore.Query;
@@ -146,17 +149,17 @@ namespace InventoryManagementApp.Application.Automapper
             CreateMap<PurchaseOrderDetails, PurchaseOrderDetailDTO>().ReverseMap();
 
             //SalesOrder
-
-
-
-
+            CreateMap<SalesOrder, SalesOrderCreateDTO>().ReverseMap();
+            CreateMap<SalesOrder, SalesOrderUpdateDTO>().ReverseMap();
+            CreateMap<SalesOrder, SalesOrderListDTO>().ReverseMap();
+            CreateMap<SalesOrder, SalesOrderDTO>().ReverseMap();
 
 
             //SalesOrderDetails
-
-
-
-
+            CreateMap<SalesOrderDetails, SalesOrdersDetailsCreateDTO>().ReverseMap();
+            CreateMap<SalesOrderDetails, SalesOrdersDetailsUpdateDTO>().ReverseMap();
+            CreateMap<SalesOrderDetails, SalesOrdersDetailsListDTO>().ReverseMap();
+            CreateMap<SalesOrderDetails, SalesOrdersDetailsDTO>().ReverseMap();
 
 
 
@@ -168,10 +171,10 @@ namespace InventoryManagementApp.Application.Automapper
 
 
             //StockTransfer
-
-
-
-
+            CreateMap<StockTransfer, StockTransferCreateDTO>().ReverseMap();
+            CreateMap<StockTransfer, StockTransferUpdateDTO>().ReverseMap();
+            CreateMap<StockTransfer, StockTransferListDTO>().ReverseMap();
+            CreateMap<StockTransfer, StockTransferDTO>().ReverseMap();
 
 
 

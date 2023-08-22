@@ -14,6 +14,7 @@ using InventoryManagementApp.Application.Services.PurchaseOrderService;
 using InventoryManagementApp.Application.Services.SalesOrdersDetailsService;
 using InventoryManagementApp.Application.Services.SalesOrderService;
 using InventoryManagementApp.Application.Services.ShelfService;
+using InventoryManagementApp.Application.Services.StockTransferService;
 using InventoryManagementApp.Application.Services.WareHouseService;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -48,7 +49,7 @@ namespace InventoryManagementApp.Application.Extensions
             services.AddScoped<IBatchService, BatchService>();
             services.AddScoped<ISalesOrderService, SalesOrderService>();
             services.AddScoped<ISalesOrdersDetailsService, SalesOrdersDetailsService>();
-            //
+            services.AddScoped<IStockTransferService, StockTransferService>();
             //
             //
             //
