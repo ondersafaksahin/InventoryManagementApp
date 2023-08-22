@@ -2,6 +2,7 @@
 using InventoryManagementApp.Application.Services.BillOfMaterialsDetailsService;
 using InventoryManagementApp.Application.Services.BillOfMaterialsService;
 using InventoryManagementApp.Application.Services.BrandService;
+using InventoryManagementApp.Application.Services.ConsumpitonService;
 using InventoryManagementApp.Application.Services.ConversionService;
 using InventoryManagementApp.Application.Services.CustomerService;
 using InventoryManagementApp.Application.Services.GoodService;
@@ -29,7 +30,7 @@ namespace InventoryManagementApp.Application.Extensions
 			services.AddScoped<IProductionOrderService, ProductionOrderService>();
 			services.AddScoped<IBillOfMaterialsDetailsService, BillOfMaterialsDetailsService>();
 			services.AddScoped<IConversionService, ConversionService>();
-			//
+			services.AddScoped<IConsumptionService, ConsumptionService>();
 			//Pelin
 			services.AddScoped<IGoodService, GoodService>();
             services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
