@@ -9,6 +9,7 @@ using InventoryManagementApp.Application.DTOs.ModelDTOs;
 using InventoryManagementApp.Application.DTOs.ProductionOrderDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDetailDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDTOs;
+using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using Microsoft.EntityFrameworkCore.Query;
@@ -158,11 +159,10 @@ namespace InventoryManagementApp.Application.Automapper
 
 
             //Shelf
-
-
-
-
-
+            CreateMap<Shelf, ShelfCreateDTO>().ReverseMap();
+            CreateMap<Shelf, ShelfUpdateDTO>().ReverseMap();
+            CreateMap<Shelf, ShelfListDTO>().ReverseMap();
+            CreateMap<Shelf, ShelfDTO>().ReverseMap();
 
 
             //StockTransfer

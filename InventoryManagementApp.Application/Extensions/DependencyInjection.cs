@@ -8,6 +8,7 @@ using InventoryManagementApp.Application.Services.ModelService;
 using InventoryManagementApp.Application.Services.ProductionOrderService;
 using InventoryManagementApp.Application.Services.PurchaseOrderDetailService;
 using InventoryManagementApp.Application.Services.PurchaseOrderService;
+using InventoryManagementApp.Application.Services.ShelfService;
 using InventoryManagementApp.Application.Services.WareHouseService;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -33,7 +34,7 @@ namespace InventoryManagementApp.Application.Extensions
             services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
             services.AddScoped<IWareHouseService, WareHouseService>();
             services.AddScoped<IPurchaseOrderDetailService, PurchaseOrderDetailService>();
-            //
+            services.AddScoped<IShelfService, ShelfService>();
             //
             //
             //
