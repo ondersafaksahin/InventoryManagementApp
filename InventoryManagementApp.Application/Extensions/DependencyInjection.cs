@@ -1,6 +1,7 @@
 ﻿using InventoryManagementApp.Application.Services.BatchService;
 using InventoryManagementApp.Application.Services.BillOfMaterialsService;
 using InventoryManagementApp.Application.Services.BrandService;
+using InventoryManagementApp.Application.Services.CustomerService;
 using InventoryManagementApp.Application.Services.GoodService;
 using InventoryManagementApp.Application.Services.ModelService;
 using InventoryManagementApp.Application.Services.PurchaseOrderDetailService;
@@ -48,7 +49,7 @@ namespace InventoryManagementApp.Application.Extensions
             //Hatice
             services.AddScoped<IBrandService, BrandService>();
             services.AddScoped<IModelService, ModelService>();
-            //
+            services.AddScoped<ICustomerService, CustomerService>();
             //
             //
             //
