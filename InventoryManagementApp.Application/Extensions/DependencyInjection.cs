@@ -2,6 +2,7 @@
 using InventoryManagementApp.Application.Services.BillOfMaterialsService;
 using InventoryManagementApp.Application.Services.BrandService;
 using InventoryManagementApp.Application.Services.GoodService;
+using InventoryManagementApp.Application.Services.PurchaseOrderService;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace InventoryManagementApp.Application.Extensions
             //
             //Pelin
             services.AddScoped<IGoodService, GoodService>();
-            //
+            services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
             //
             //
             //
