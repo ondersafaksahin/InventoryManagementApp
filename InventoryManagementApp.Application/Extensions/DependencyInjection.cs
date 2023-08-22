@@ -11,6 +11,7 @@ using InventoryManagementApp.Application.Services.ModelService;
 using InventoryManagementApp.Application.Services.ProductionOrderService;
 using InventoryManagementApp.Application.Services.PurchaseOrderDetailService;
 using InventoryManagementApp.Application.Services.PurchaseOrderService;
+using InventoryManagementApp.Application.Services.SalesOrdersDetailsService;
 using InventoryManagementApp.Application.Services.SalesOrderService;
 using InventoryManagementApp.Application.Services.ShelfService;
 using InventoryManagementApp.Application.Services.WareHouseService;
@@ -46,7 +47,7 @@ namespace InventoryManagementApp.Application.Extensions
             //Emre
             services.AddScoped<IBatchService, BatchService>();
             services.AddScoped<ISalesOrderService, SalesOrderService>();
-            //
+            services.AddScoped<ISalesOrdersDetailsService, SalesOrdersDetailsService>();
             //
             //
             //
