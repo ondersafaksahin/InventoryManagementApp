@@ -2,6 +2,7 @@
 using InventoryManagementApp.Application.Services.BillOfMaterialsService;
 using InventoryManagementApp.Application.Services.BrandService;
 using InventoryManagementApp.Application.Services.GoodService;
+using InventoryManagementApp.Application.Services.ModelService;
 using InventoryManagementApp.Application.Services.PurchaseOrderService;
 using InventoryManagementApp.Application.Services.WareHouseService;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,7 +46,7 @@ namespace InventoryManagementApp.Application.Extensions
             //
             //Hatice
             services.AddScoped<IBrandService, BrandService>();
-            //
+            services.AddScoped<IModelService, ModelService>();
             //
             //
             //
