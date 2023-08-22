@@ -3,6 +3,7 @@ using InventoryManagementApp.Application.DTOs.BatchDTOs;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
 using InventoryManagementApp.Application.DTOs.BrandDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
+using InventoryManagementApp.Application.DTOs.PurchaseOrderDetailDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDTOs;
 using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
@@ -296,11 +297,10 @@ namespace InventoryManagementApp.Application.Automapper
 
 
             //PurchaseOrderDetails
-
-
-
-
-
+            CreateMap<PurchaseOrderDetails, PurchaseOrderDetailCreateDTO>().ReverseMap();
+            CreateMap<PurchaseOrderDetails, PurchaseOrderDetailUpdateDTO>().ReverseMap();
+            CreateMap<PurchaseOrderDetails, PurchaseOrderDetailListDTO>().ReverseMap();
+            CreateMap<PurchaseOrderDetails, PurchaseOrderDetailDTO>().ReverseMap();
 
 
 

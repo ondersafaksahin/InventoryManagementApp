@@ -2,6 +2,7 @@
 using InventoryManagementApp.Application.Services.BillOfMaterialsService;
 using InventoryManagementApp.Application.Services.BrandService;
 using InventoryManagementApp.Application.Services.GoodService;
+using InventoryManagementApp.Application.Services.PurchaseOrderDetailService;
 using InventoryManagementApp.Application.Services.PurchaseOrderService;
 using InventoryManagementApp.Application.Services.WareHouseService;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,7 +30,7 @@ namespace InventoryManagementApp.Application.Extensions
             services.AddScoped<IGoodService, GoodService>();
             services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
             services.AddScoped<IWareHouseService, WareHouseService>();
-            //
+            services.AddScoped<IPurchaseOrderDetailService, PurchaseOrderDetailService>();
             //
             //
             //
