@@ -1,4 +1,5 @@
 ﻿using InventoryManagementApp.Application.Services.BatchService;
+using InventoryManagementApp.Application.Services.BillOfMaterialsDetailsService;
 using InventoryManagementApp.Application.Services.BillOfMaterialsService;
 using InventoryManagementApp.Application.Services.BrandService;
 using InventoryManagementApp.Application.Services.CustomerService;
@@ -24,9 +25,7 @@ namespace InventoryManagementApp.Application.Extensions
             //Önder
             services.AddScoped<IBillOfMatieralsService, BillOfMatieralsService>();
 			services.AddScoped<IProductionOrderService, ProductionOrderService>();
-			//
-			//
-			//
+			services.AddScoped<IBillOfMaterialsDetailsService, BillOfMaterialsDetailsService>();
 			//
 			//
 			//Pelin
