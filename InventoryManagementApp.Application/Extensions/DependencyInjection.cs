@@ -8,6 +8,7 @@ using InventoryManagementApp.Application.Services.ConsumpitonService;
 using InventoryManagementApp.Application.Services.ConversionService;
 using InventoryManagementApp.Application.Services.CustomerService;
 using InventoryManagementApp.Application.Services.GoodService;
+using InventoryManagementApp.Application.Services.ManagerService;
 using InventoryManagementApp.Application.Services.ModelService;
 using InventoryManagementApp.Application.Services.ProductionOrderService;
 using InventoryManagementApp.Application.Services.PurchaseOrderDetailService;
@@ -66,7 +67,7 @@ namespace InventoryManagementApp.Application.Extensions
 			//
 			//Tolga
 			services.AddScoped<IAdminService, AdminService>();
-            //
+            services.AddScoped<IManagerService, ManagerService>();
             //
             //
             //
