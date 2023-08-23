@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.IRepositories
 {
-    public interface IEmployeeRepository:IBaseRepository<Employee>
+    public interface IEmployeeRepository: IUserBaseRepository<Employee>
     {
+        Task Add(Employee item);
     }
 }
