@@ -3,6 +3,7 @@ using InventoryManagementApp.Application.Services.BatchService;
 using InventoryManagementApp.Application.Services.BillOfMaterialsDetailsService;
 using InventoryManagementApp.Application.Services.BillOfMaterialsService;
 using InventoryManagementApp.Application.Services.BrandService;
+using InventoryManagementApp.Application.Services.CategoryService;
 using InventoryManagementApp.Application.Services.ConsumpitonService;
 using InventoryManagementApp.Application.Services.ConversionService;
 using InventoryManagementApp.Application.Services.CustomerService;
@@ -59,7 +60,7 @@ namespace InventoryManagementApp.Application.Extensions
             services.AddScoped<IModelService, ModelService>();
             services.AddScoped<ICustomerService, CustomerService>();
 			services.AddScoped<ISupplierService, SupplierService>();
-			//
+			services.AddScoped<ICategoryService, CategoryService>();
 			//
 			//
 			//Tolga
