@@ -8,6 +8,7 @@ using InventoryManagementApp.Application.DTOs.CategoryDTOs;
 using InventoryManagementApp.Application.DTOs.ConsumptionDTOs;
 using InventoryManagementApp.Application.DTOs.ConversionDTOs;
 using InventoryManagementApp.Application.DTOs.CustomerDTOs;
+using InventoryManagementApp.Application.DTOs.EmployeeDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Application.DTOs.ManagerDTOs;
 using InventoryManagementApp.Application.DTOs.ModelDTOs;
@@ -109,10 +110,10 @@ namespace InventoryManagementApp.Application.Automapper
 
 
             //Employee
-
-
-
-
+            CreateMap<Employee, EmployeeCreateDTO>().ReverseMap();
+            CreateMap<Employee, EmployeeUpdateDTO>().ReverseMap();
+            CreateMap<Employee, EmployeeListDTO>().ReverseMap();
+            CreateMap<Employee, EmployeeDTO>().ReverseMap();
 
             //Good
             CreateMap<Good, GoodCreateDTO>().ReverseMap();
