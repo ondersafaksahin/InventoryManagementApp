@@ -12,12 +12,6 @@ namespace InventoryManagementApp.Infrastructure.Repositories
 {
     public class BrandRepository:BaseRepository<Brand>,IBrandRepository
     {
-        private readonly InventoryDbContext _dbContext;
-        protected DbSet<Brand> _brandTable;
-        public BrandRepository(InventoryDbContext dbContext):base(dbContext)
-        {
-            this._dbContext = dbContext;
-            this._brandTable = _dbContext.Brands;
-        }
+        public BrandRepository(InventoryDbContext dbContext):base(dbContext){}
     }
 }

@@ -12,13 +12,6 @@ namespace InventoryManagementApp.Infrastructure.Repositories
 {
     public class SubCategoryRepository : BaseRepository<SubCategory>, ISubCategoryRepository
     {
-        private readonly InventoryDbContext _dbContext;
-        protected DbSet<SubCategory> _subCategoryTable;
-        public SubCategoryRepository(InventoryDbContext dbContext) : base(dbContext)
-        {
-            this._dbContext = dbContext;
-            this._subCategoryTable = _dbContext.SubCategories;
-
-        }
+        public SubCategoryRepository(InventoryDbContext dbContext) : base(dbContext){}
     }
 }

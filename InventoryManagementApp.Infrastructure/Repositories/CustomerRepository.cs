@@ -12,13 +12,6 @@ namespace InventoryManagementApp.Infrastructure.Repositories
 {
     public class CustomerRepository : BaseRepository<Customer>, ICustomerRepository
     {
-        private readonly InventoryDbContext _dbContext;
-        protected DbSet<Customer> _customerTable;
-        public CustomerRepository(InventoryDbContext dbContext) : base(dbContext)
-        {
-            this._dbContext = dbContext;
-            this._customerTable = _dbContext.Customers;
-
-        }
+        public CustomerRepository(InventoryDbContext dbContext) : base(dbContext){}
     }
 }
