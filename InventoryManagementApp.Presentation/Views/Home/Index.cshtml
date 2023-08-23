@@ -1,8 +1,82 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model LoginVM
+
+@{
+	ViewData["Title"] = "Login";
+	Layout = null;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<html>
+<head>
+	<title>@ViewData["Title"]</title>
+	<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+	<link href="~/css/login-style.css" rel="stylesheet" />
+	<link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+
+	<style>
+		.divider:after,
+		.divider:before {
+		content: "";
+		flex: 1;
+		height: 1px;
+		background: #eee;
+	}
+
+	.h-custom {
+		height: calc(100% - 73px);
+	}
+
+	.show-psw {
+		float: right;
+		margin-right: 18px;
+		margin-top: -32px;
+	}
+	</style>
+</head>
+<body>
+	<section class="vh-100">
+		<div class="container-fluid h-custom">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col-md-9 col-lg-6 col-xl-5">
+					<img src="~/images/logo.png" class="img-fluid" alt="Mitombo Logo">
+				</div>
+				<div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+					<form asp-controller="Login" asp-action="index" id="loginForm">
+						<div class="form-outline mb-4">
+							<input asp-for="Email" placeholder="Email" class="form-control form-control-lg">
+							<span class="text-danger" asp-validation-for="Email"></span>
+						</div>
+						<div class="form-outline mb-4">
+							<input asp-for="Password" id="passwordField" type="password" placeholder="Password" class="form-control form-control-lg">
+							<div class="show-psw">
+								<a class="btn-show-hide" id="toggleButton"><i class="fa-solid fa-eye fa-lg text-dark"></i></a>
+							</div>
+							<span class="text-danger" asp-validation-for="Password"></span>
+						</div>
+						<span class="text-danger" id="loginError"></span>
+						<div class="text-center text-lg-start mt-4 pt-2">
+							<button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Giriş Yap</button>
+						</div>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	<script src="~/lib/jquery/dist/jquery.js"></script>
+	<script src="~/lib/bootstrap/js/bootstrap.js"></script>
+	<script>
+		const passwordField = document.getElementById('passwordField');
+		const toggleButton = document.getElementById('toggleButton');
+
+		toggleButton.addEventListener('click', function () {
+			if (passwordField.type === 'password') {
+				passwordField.type = 'text';
+			} else {
+				passwordField.type = 'password';
+			}
+		});
+	</script>
+@*	@await Component.InvokeAsync("Notyf")*@
+</body>
+</html>
+

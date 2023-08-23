@@ -12,6 +12,6 @@ namespace InventoryManagementApp.Infrastructure.Repositories
 {
 	public class BillOfMaterialRepository : BaseRepository<BillOfMaterial>, IBillOfMaterialRepository
 	{
-		public BillOfMaterialRepository(InventoryDbContext DbContext) : base(DbContext){}
+		public BillOfMaterialRepository(InventoryDbContext dbContext) : base(dbContext){}
 	}
 }

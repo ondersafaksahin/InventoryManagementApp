@@ -1,3 +1,4 @@
+using InventoryManagementApp.Application.Automapper;
 using InventoryManagementApp.Application.Extensions;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Infrastructure.DataAccess;
@@ -12,6 +13,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddBusinessServices();
 builder.Services.AddRepositoryServices();
 builder.Services.AddDbContext<InventoryDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("dbConnection")));
+builder.Services.AddAutoMapper(typeof(Mapping));
 
 builder.Services.AddIdentity<AppUser, AppRole>(options =>
 {
@@ -44,6 +46,11 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
 
 app.MapControllerRoute(
     name: "default",
