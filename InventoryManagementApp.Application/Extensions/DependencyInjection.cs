@@ -16,6 +16,7 @@ using InventoryManagementApp.Application.Services.SalesOrdersDetailsService;
 using InventoryManagementApp.Application.Services.SalesOrderService;
 using InventoryManagementApp.Application.Services.ShelfService;
 using InventoryManagementApp.Application.Services.StockTransferService;
+using InventoryManagementApp.Application.Services.SubCategoryService;
 using InventoryManagementApp.Application.Services.SupplierService;
 using InventoryManagementApp.Application.Services.WareHouseService;
 using Microsoft.Extensions.DependencyInjection;
@@ -61,7 +62,7 @@ namespace InventoryManagementApp.Application.Extensions
             services.AddScoped<ICustomerService, CustomerService>();
 			services.AddScoped<ISupplierService, SupplierService>();
 			services.AddScoped<ICategoryService, CategoryService>();
-			//
+			services.AddScoped<ISubCategoryService, SubCategoryService>();
 			//
 			//Tolga
 			services.AddScoped<IAdminService, AdminService>();

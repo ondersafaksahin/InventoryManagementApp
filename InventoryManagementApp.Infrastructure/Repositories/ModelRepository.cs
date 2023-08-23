@@ -12,13 +12,6 @@ namespace InventoryManagementApp.Infrastructure.Repositories
 {
     public class ModelRepository : BaseRepository<Model>, IModelRepository
     {
-        private readonly InventoryDbContext _dbContext;
-        protected DbSet<Model> _modelTable;
-        public ModelRepository(InventoryDbContext dbContext) : base(dbContext)
-        {
-            this._dbContext = dbContext;
-            this._modelTable = _dbContext.Models;
-          
-        }
+        public ModelRepository(InventoryDbContext dbContext) : base(dbContext){}
     }
 }

@@ -12,13 +12,6 @@ namespace InventoryManagementApp.Infrastructure.Repositories
 {
     public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
     {
-        private readonly InventoryDbContext _dbContext;
-        protected DbSet<Category> _categoryTable;
-        public CategoryRepository(InventoryDbContext dbContext) : base(dbContext)
-        {
-            this._dbContext = dbContext;
-            this._categoryTable = _dbContext.Categories;
-
-        }
+        public CategoryRepository(InventoryDbContext dbContext) : base(dbContext){}
     }
 }
