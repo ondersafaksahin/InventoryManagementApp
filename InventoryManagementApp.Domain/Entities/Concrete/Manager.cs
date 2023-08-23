@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.Entities.Concrete
 {
-    public class Manager:IUser
+    public class Manager: AppUser, IUser
     {
         public string? Picture { get; set; }
         public string? FirstName { get; set; }
@@ -17,13 +17,10 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public string? Department { get; set; }
         public string? Title { get; set; }
         public Gender? Gender { get; set; }
-        public AppUser AppUser { get; set; }
-        public Guid AppUserId { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public Status Status { get; set; }
-        public Guid ID { get; set; }
     }
 }

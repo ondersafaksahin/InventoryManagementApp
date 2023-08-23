@@ -40,7 +40,7 @@ namespace InventoryManagementApp.Infrastructure.Extensions
             services.AddScoped<ISubCategoryRepository, SubCategoryRepository>();
             //Tolga
             services.AddScoped<IAdminRepository, AdminRepository>();
-            //
+            services.AddScoped<IManagerRepository, ManagerRepository>();
             //
             //
             //
