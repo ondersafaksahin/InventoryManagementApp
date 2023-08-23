@@ -16,6 +16,7 @@ using InventoryManagementApp.Application.DTOs.SalesOrdesDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.SalesOrdesDTOs;
 using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.DTOs.StockTransferDTOs;
+using InventoryManagementApp.Application.DTOs.SupplierDTOs;
 using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using Microsoft.EntityFrameworkCore.Query;
@@ -178,23 +179,21 @@ namespace InventoryManagementApp.Application.Automapper
 
 
 
-            //SubCategory
+			//SubCategory
 
 
 
 
 
 
-            //Supplier
+			//Supplier
+			CreateMap<Supplier, SupplierCreateDTO>().ReverseMap();
+			CreateMap<Supplier, SupplierUpdateDTO>().ReverseMap();
+			CreateMap<Supplier, SupplierListDTO>().ReverseMap();
+			CreateMap<Supplier, SupplierDTO>().ReverseMap();
 
-
-
-
-
-
-
-            //Warehouse
-            CreateMap<Warehouse, WareHouseCreateDTO>().ReverseMap();
+			//Warehouse
+			CreateMap<Warehouse, WareHouseCreateDTO>().ReverseMap();
             CreateMap<Warehouse, WareHouseUpdateDTO>().ReverseMap();
             CreateMap<Warehouse, WareHouseListDTO>().ReverseMap();
             CreateMap<Warehouse, WareHouseDTO>().ReverseMap();
