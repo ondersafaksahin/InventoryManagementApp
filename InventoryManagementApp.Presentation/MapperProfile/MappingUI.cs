@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
+using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 
 namespace InventoryManagementApp.Presentation.MapperProfile
 {
@@ -176,12 +178,10 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             //
             //
             //Shelf
-            //
-            //
-            //
-            //
-            //
-            //
+            CreateMap<ShelfCreateDTO, ShelfCreateVM>().ReverseMap();
+            CreateMap<ShelfUpdateDTO, ShelfUpdateVM>().ReverseMap();
+            CreateMap<ShelfListDTO, ShelfListVM>().ReverseMap();
+            CreateMap<ShelfDTO, ShelfVM>().ReverseMap();
             //
             //StockTransfer
             //
