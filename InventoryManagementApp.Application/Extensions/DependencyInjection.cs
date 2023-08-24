@@ -1,4 +1,5 @@
 ﻿using InventoryManagementApp.Application.Services.AdminService;
+using InventoryManagementApp.Application.Services.AppRoleService;
 using InventoryManagementApp.Application.Services.AppUserService;
 using InventoryManagementApp.Application.Services.BatchService;
 using InventoryManagementApp.Application.Services.BillOfMaterialsDetailsService;
@@ -72,7 +73,7 @@ namespace InventoryManagementApp.Application.Extensions
             services.AddScoped<IManagerService, ManagerService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IAppUserService, AppUserService>();
-            //
+            services.AddScoped<IAppRoleService, AppRoleService>();
 
             return services;
         }
