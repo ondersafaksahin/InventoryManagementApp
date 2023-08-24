@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.AdminDTOs;
+using InventoryManagementApp.Application.DTOs.AppRoleDTOs;
 using InventoryManagementApp.Application.DTOs.AppUserDTOs;
 using InventoryManagementApp.Application.DTOs.BatchDTOs;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDetailsDTOs;
@@ -46,10 +47,10 @@ namespace InventoryManagementApp.Application.Automapper
 
 
             //AppRole
-
-
-
-
+            CreateMap<AppRole, AppRoleCreateDTO>().ReverseMap();
+            CreateMap<AppRole, AppRoleListDTO>().ReverseMap();
+            CreateMap<AppRole, AppRoleUpdateDTO>().ReverseMap();
+            CreateMap<AppUser, RoleAssignDTO>().ReverseMap();
 
 
             //AppUser
