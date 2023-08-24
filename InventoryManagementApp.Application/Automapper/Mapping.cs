@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.AdminDTOs;
+using InventoryManagementApp.Application.DTOs.AppUserDTOs;
 using InventoryManagementApp.Application.DTOs.BatchDTOs;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
@@ -52,7 +53,7 @@ namespace InventoryManagementApp.Application.Automapper
 
 
             //AppUser
-
+            CreateMap<AppUser, LoginDTO>().ReverseMap();
 
 
 
