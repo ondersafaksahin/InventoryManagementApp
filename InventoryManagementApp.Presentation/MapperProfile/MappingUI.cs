@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using InventoryManagementApp.Application.DTOs.GoodDTOs;
+using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
 
 namespace InventoryManagementApp.Presentation.MapperProfile
 {
@@ -104,12 +106,10 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             //
             //
             //Good
-            //
-            //
-            //
-            //
-            //
-            //
+            CreateMap<GoodCreateDTO, GoodCreateVM>().ReverseMap();
+            CreateMap<GoodUpdateDTO, GoodUpdateVM>().ReverseMap();
+            CreateMap<GoodListDTO, GoodListVM>().ReverseMap();
+            CreateMap<GoodDTO, GoodVM>().ReverseMap();
             //
             //Manager
             //
