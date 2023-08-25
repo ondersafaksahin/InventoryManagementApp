@@ -38,11 +38,10 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Manager> Managers { get; set; }
         public DbSet<Admin> Admins { get; set; }
+		public DbSet<Reservation> Reservations { get; set; }
 
 
-
-
-        protected override void OnModelCreating(ModelBuilder builder)
+		protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new BatchMapping());
 			builder.ApplyConfiguration(new BillOfMaterialMapping());
