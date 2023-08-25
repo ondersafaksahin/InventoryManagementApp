@@ -15,7 +15,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public string? Picture { get; set; }
         public float StockAmount { get; set; }
         public float? ReservedStock { get; set; }
-        public UnitType? StockingUnit { get; set; }
+		public UnitType? StockingUnit { get; set; }
         public UnitType? ConsumptionUnit { get; set; }
         public Brand? Brand { get; set; }
         public int? BrandId { get; set; }
@@ -46,6 +46,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public int? BillOfMaterialID { get; set; }
         public List<ProductionOrder>? ProductionOrders { get; set; }
         public List<SalesOrderDetails>? SalesOrderDetails { get; set; }
+        public List<Reservation>? Reservations { get; set; }
 
 
         //Material Part

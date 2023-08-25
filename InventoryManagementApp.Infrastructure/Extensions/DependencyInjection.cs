@@ -19,8 +19,9 @@ namespace InventoryManagementApp.Infrastructure.Extensions
 			services.AddScoped<IConsumptionRepository, ConsumptionRepository>();
 			services.AddScoped<IConversionRepository, ConversionRepository>();
 			services.AddScoped<IProductionOrderRepository, ProductionOrderRepository>();
-            //Pelin & Emre
-            services.AddScoped<IGoodRepository, GoodRepository>();
+			services.AddScoped<IReservationRepository, ReservationRepository>();
+			//Pelin & Emre
+			services.AddScoped<IGoodRepository, GoodRepository>();
             services.AddScoped<IBatchRepository, BatchRepository>();
             services.AddScoped<IPurchaseOrderRepository, PurchaseOrderRepository>();
             services.AddScoped<IPurchaseOrderDetailsRepository, PurchaseOrderDetailsRepository>();

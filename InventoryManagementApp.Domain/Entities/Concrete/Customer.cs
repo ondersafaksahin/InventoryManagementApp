@@ -31,5 +31,6 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //Additional props
         public List<SalesOrder>? SalesOrders { get; set; }
+        public List<Reservation>? Reservations { get; set; }
     }
 }

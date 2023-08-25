@@ -16,6 +16,7 @@ using InventoryManagementApp.Application.Services.ModelService;
 using InventoryManagementApp.Application.Services.ProductionOrderService;
 using InventoryManagementApp.Application.Services.PurchaseOrderDetailService;
 using InventoryManagementApp.Application.Services.PurchaseOrderService;
+using InventoryManagementApp.Application.Services.ReservationService;
 using InventoryManagementApp.Application.Services.SalesOrdersDetailsService;
 using InventoryManagementApp.Application.Services.SalesOrderService;
 using InventoryManagementApp.Application.Services.ShelfService;
@@ -42,6 +43,7 @@ namespace InventoryManagementApp.Application.Extensions
 			services.AddScoped<IBillOfMaterialsDetailsService, BillOfMaterialsDetailsService>();
 			services.AddScoped<IConversionService, ConversionService>();
 			services.AddScoped<IConsumptionService, ConsumptionService>();
+            services.AddScoped<IReservationService, ReservationService>();
 			//Pelin
 			services.AddScoped<IGoodService, GoodService>();
             services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
