@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
+using InventoryManagementApp.Application.DTOs.PurchaseOrderDTOs;
 using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
 using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs;
 
@@ -140,12 +142,10 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             //
             //
             //PurchaseOrder
-            //
-            //
-            //
-            //
-            //
-            //
+            CreateMap<PurchaseOrderCreateDTO, PurchaseOrderCreateVM>().ReverseMap();
+            CreateMap<PurchaseOrderUpdateDTO, PurchaseOrderUpdateVM>().ReverseMap();
+            CreateMap<PurchaseOrderListDTO, PurchaseOrderListVM>().ReverseMap();
+            CreateMap<PurchaseOrderDTO, PurchaseOrderVM>().ReverseMap();
             //
             //PurchaseOrderDetails
             //
