@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDetailsDTOs;
-using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
 using InventoryManagementApp.Application.Services.BillOfMaterialsDetailsService;
-using InventoryManagementApp.Application.Services.BillOfMaterialsService;
 using InventoryManagementApp.Presentation.Models.ViewModels.BillOfMaterialsDetailsVMs;
-using InventoryManagementApp.Presentation.Models.ViewModels.BillOfMaterialsVMs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagementApp.Presentation.Controllers
