@@ -41,7 +41,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 			return View(modelList);
 		}
 
-		//Adding Models
+		//Adding Model
 		[HttpGet]
 		public IActionResult Create()
 		{
