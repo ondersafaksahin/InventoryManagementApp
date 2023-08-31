@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagementApp.Infrastructure.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    [Migration("20230820114314_v1")]
+    [Migration("20230831100126_v1")]
     partial class v1
     {
         /// <inheritdoc />
@@ -70,58 +70,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.ToTable("GoodWarehouse");
                 });
 
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Admin", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AppUserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Department")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Gender")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Job")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Picture")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AppUserId");
-
-                    b.ToTable("Admins");
-                });
-
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.AppRole", b =>
                 {
                     b.Property<Guid>("Id")
@@ -161,6 +109,10 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -214,6 +166,10 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("AppUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Batch", b =>
@@ -234,7 +190,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 8, 20, 14, 43, 14, 494, DateTimeKind.Local).AddTicks(3394));
+                        .HasDefaultValue(new DateTime(2023, 8, 31, 13, 1, 26, 584, DateTimeKind.Local).AddTicks(9301));
 
                     b.Property<DateTime?>("ExpireDate")
                         .HasColumnType("datetime2");
@@ -283,7 +239,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 8, 20, 14, 43, 14, 495, DateTimeKind.Local).AddTicks(9419));
+                        .HasDefaultValue(new DateTime(2023, 8, 31, 13, 1, 26, 586, DateTimeKind.Local).AddTicks(2457));
 
                     b.Property<int>("GoodID")
                         .HasColumnType("int");
@@ -558,58 +514,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Employee", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AppUserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Department")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Gender")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Job")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Picture")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AppUserId");
-
-                    b.ToTable("Employees");
-                });
-
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Good", b =>
                 {
                     b.Property<int>("ID")
@@ -636,7 +540,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 8, 20, 14, 43, 14, 496, DateTimeKind.Local).AddTicks(9409));
+                        .HasDefaultValue(new DateTime(2023, 8, 31, 13, 1, 26, 587, DateTimeKind.Local).AddTicks(283));
 
                     b.Property<float?>("GrossWeight")
                         .HasColumnType("real");
@@ -699,58 +603,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasIndex("SubCategoryID");
 
                     b.ToTable("Goods");
-                });
-
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Manager", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AppUserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Department")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Gender")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Job")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Picture")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AppUserId");
-
-                    b.ToTable("Managers");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Model", b =>
@@ -932,6 +784,50 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasIndex("PurchaseOrderID");
 
                     b.ToTable("PurchaseOrderDetails");
+                });
+
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Reservation", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<float>("Amount")
+                        .HasColumnType("real");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GoodId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("GoodId");
+
+                    b.ToTable("Reservations");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.SalesOrder", b =>
@@ -1380,6 +1276,213 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Admin", b =>
+                {
+                    b.HasBaseType("InventoryManagementApp.Domain.Entities.Concrete.AppUser");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Department")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Job")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Picture")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("Admin");
+                });
+
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Employee", b =>
+                {
+                    b.HasBaseType("InventoryManagementApp.Domain.Entities.Concrete.AppUser");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Department")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Job")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Picture")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("AspNetUsers", t =>
+                        {
+                            t.Property("CreatedBy")
+                                .HasColumnName("Employee_CreatedBy");
+
+                            t.Property("CreatedDate")
+                                .HasColumnName("Employee_CreatedDate");
+
+                            t.Property("Department")
+                                .HasColumnName("Employee_Department");
+
+                            t.Property("FirstName")
+                                .HasColumnName("Employee_FirstName");
+
+                            t.Property("Gender")
+                                .HasColumnName("Employee_Gender");
+
+                            t.Property("Job")
+                                .HasColumnName("Employee_Job");
+
+                            t.Property("LastName")
+                                .HasColumnName("Employee_LastName");
+
+                            t.Property("ModifiedBy")
+                                .HasColumnName("Employee_ModifiedBy");
+
+                            t.Property("ModifiedDate")
+                                .HasColumnName("Employee_ModifiedDate");
+
+                            t.Property("Picture")
+                                .HasColumnName("Employee_Picture");
+
+                            t.Property("Status")
+                                .HasColumnName("Employee_Status");
+
+                            t.Property("Title")
+                                .HasColumnName("Employee_Title");
+                        });
+
+                    b.HasDiscriminator().HasValue("Employee");
+                });
+
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Manager", b =>
+                {
+                    b.HasBaseType("InventoryManagementApp.Domain.Entities.Concrete.AppUser");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Department")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Job")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Picture")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("AspNetUsers", t =>
+                        {
+                            t.Property("CreatedBy")
+                                .HasColumnName("Manager_CreatedBy");
+
+                            t.Property("CreatedDate")
+                                .HasColumnName("Manager_CreatedDate");
+
+                            t.Property("Department")
+                                .HasColumnName("Manager_Department");
+
+                            t.Property("FirstName")
+                                .HasColumnName("Manager_FirstName");
+
+                            t.Property("Gender")
+                                .HasColumnName("Manager_Gender");
+
+                            t.Property("Job")
+                                .HasColumnName("Manager_Job");
+
+                            t.Property("LastName")
+                                .HasColumnName("Manager_LastName");
+
+                            t.Property("ModifiedBy")
+                                .HasColumnName("Manager_ModifiedBy");
+
+                            t.Property("ModifiedDate")
+                                .HasColumnName("Manager_ModifiedDate");
+
+                            t.Property("Picture")
+                                .HasColumnName("Manager_Picture");
+
+                            t.Property("Status")
+                                .HasColumnName("Manager_Status");
+
+                            t.Property("Title")
+                                .HasColumnName("Manager_Title");
+                        });
+
+                    b.HasDiscriminator().HasValue("Manager");
+                });
+
             modelBuilder.Entity("GoodShelf", b =>
                 {
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", null)
@@ -1423,17 +1526,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .HasForeignKey("WarehousesID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Admin", b =>
-                {
-                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Batch", b =>
@@ -1502,17 +1594,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Navigation("Good");
                 });
 
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Employee", b =>
-                {
-                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-                });
-
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Good", b =>
                 {
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Brand", "Brand")
@@ -1546,17 +1627,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Navigation("Model");
 
                     b.Navigation("SubCategory");
-                });
-
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Manager", b =>
-                {
-                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.ProductionOrder", b =>
@@ -1634,6 +1704,25 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Navigation("Good");
 
                     b.Navigation("PurchaseOrder");
+                });
+
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Reservation", b =>
+                {
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Customer", "Customer")
+                        .WithMany("Reservations")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "Good")
+                        .WithMany("Reservations")
+                        .HasForeignKey("GoodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Good");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.SalesOrder", b =>
@@ -1832,6 +1921,8 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Customer", b =>
                 {
+                    b.Navigation("Reservations");
+
                     b.Navigation("SalesOrders");
                 });
 
@@ -1842,6 +1933,8 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Navigation("ProductionOrders");
 
                     b.Navigation("PurchaseOrderDetails");
+
+                    b.Navigation("Reservations");
 
                     b.Navigation("SalesOrderDetails");
                 });

@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDetailDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDTOs;
 using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
+using InventoryManagementApp.Presentation.Models.ViewModels.BillOfMaterialsVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderDetailVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderVMs;
@@ -48,15 +50,13 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             //
             //
             //
-            //
+
             //BillofMaterial
-            //
-            //
-            //
-            //
-            //
-            //
-            //
+            CreateMap<BOMCreateDTO, BillOfMaterialsCreateVM>().ReverseMap();
+            CreateMap<BOMUpdateDTO, BillOfMaterialsUpdateVM>().ReverseMap();
+            CreateMap<BOMListDTO, BillOfMaterialsListVM>().ReverseMap();
+            CreateMap<BOMDTO, BillOfMaterialsVM>().ReverseMap();
+
             //BillofMaterialDetails
             //
             //

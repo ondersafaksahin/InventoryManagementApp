@@ -30,6 +30,43 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Job = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gender = table.Column<int>(type: "int", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: true),
+                    Employee_Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Employee_FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Employee_LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Employee_Job = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Employee_Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Employee_Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Employee_Gender = table.Column<int>(type: "int", nullable: true),
+                    Employee_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Employee_CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Employee_ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Employee_ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Employee_Status = table.Column<int>(type: "int", nullable: true),
+                    Manager_Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Manager_FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Manager_LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Manager_Job = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Manager_Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Manager_Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Manager_Gender = table.Column<int>(type: "int", nullable: true),
+                    Manager_CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Manager_CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Manager_ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Manager_ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Manager_Status = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -57,7 +94,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 8, 20, 14, 43, 14, 495, DateTimeKind.Local).AddTicks(9419)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 8, 31, 13, 1, 26, 586, DateTimeKind.Local).AddTicks(2457)),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
@@ -217,36 +254,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Admins",
-                columns: table => new
-                {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Job = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Gender = table.Column<int>(type: "int", nullable: true),
-                    AppUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Admins", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Admins_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
@@ -326,66 +333,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Employees",
-                columns: table => new
-                {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Job = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Gender = table.Column<int>(type: "int", nullable: true),
-                    AppUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employees", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Employees_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Managers",
-                columns: table => new
-                {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Job = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Gender = table.Column<int>(type: "int", nullable: true),
-                    AppUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Managers", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Managers_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
@@ -516,7 +463,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     CategoryID = table.Column<int>(type: "int", nullable: true),
                     SubCategoryID = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 8, 20, 14, 43, 14, 496, DateTimeKind.Local).AddTicks(9409)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 8, 31, 13, 1, 26, 587, DateTimeKind.Local).AddTicks(283)),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
@@ -560,7 +507,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 8, 20, 14, 43, 14, 494, DateTimeKind.Local).AddTicks(3394)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 8, 31, 13, 1, 26, 584, DateTimeKind.Local).AddTicks(9301)),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
@@ -711,6 +658,39 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         name: "FK_GoodWarehouse_Warehouses_WarehousesID",
                         column: x => x.WarehousesID,
                         principalTable: "Warehouses",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reservations",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    GoodId = table.Column<int>(type: "int", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Amount = table.Column<float>(type: "real", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reservations", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Reservations_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Reservations_Goods_GoodId",
+                        column: x => x.GoodId,
+                        principalTable: "Goods",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.NoAction);
                 });
@@ -955,11 +935,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Admins_AppUserId",
-                table: "Admins",
-                column: "AppUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
                 column: "RoleId");
@@ -1034,11 +1009,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 column: "GoodID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_AppUserId",
-                table: "Employees",
-                column: "AppUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Goods_BrandId",
                 table: "Goods",
                 column: "BrandId");
@@ -1076,11 +1046,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 column: "WarehousesID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Managers_AppUserId",
-                table: "Managers",
-                column: "AppUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ProductionOrders_GoodId",
                 table: "ProductionOrders",
                 column: "GoodId");
@@ -1114,6 +1079,16 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 name: "IX_PurchaseOrders_SupplierID",
                 table: "PurchaseOrders",
                 column: "SupplierID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservations_CustomerId",
+                table: "Reservations",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservations_GoodId",
+                table: "Reservations",
+                column: "GoodId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SalesOrderDetails_BatchID",
@@ -1190,9 +1165,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Admins");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -1214,9 +1186,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 name: "Consumptions");
 
             migrationBuilder.DropTable(
-                name: "Employees");
-
-            migrationBuilder.DropTable(
                 name: "GoodShelf");
 
             migrationBuilder.DropTable(
@@ -1226,10 +1195,10 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 name: "GoodWarehouse");
 
             migrationBuilder.DropTable(
-                name: "Managers");
+                name: "PurchaseOrderDetails");
 
             migrationBuilder.DropTable(
-                name: "PurchaseOrderDetails");
+                name: "Reservations");
 
             migrationBuilder.DropTable(
                 name: "SalesOrderDetails");
@@ -1241,10 +1210,10 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "ProductionOrders");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "ProductionOrders");
 
             migrationBuilder.DropTable(
                 name: "PurchaseOrders");
