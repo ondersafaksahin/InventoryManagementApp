@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InventoryManagementApp.Application.DTOs.BatchDTOs;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
 using InventoryManagementApp.Application.DTOs.ConsumptionDTOs;
@@ -9,8 +10,10 @@ using InventoryManagementApp.Application.DTOs.ManagerDTOs;
 using InventoryManagementApp.Application.DTOs.ProductionOrderDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDetailDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDTOs;
+using InventoryManagementApp.Application.DTOs.SalesOrdesDTOs;
 using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
+using InventoryManagementApp.Presentation.Models.ViewModels.BatchVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.BillOfMaterialsDetailsVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.BillOfMaterialsVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ConsumptionVMs;
@@ -21,6 +24,7 @@ using InventoryManagementApp.Presentation.Models.ViewModels.ManagerVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ProductionOrderVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderDetailVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.SalesOrderVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs;
 
@@ -56,11 +60,11 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             //
             //
             //Batch
-            //
-            //
-            //
-            //
-            //
+            CreateMap<BatchCreateDTO, BatchCreateVM>().ReverseMap();
+            CreateMap<BatchUpdateDTO, BatchUpdateVM>().ReverseMap();
+            CreateMap<BatchListDTO, BatchListVM>().ReverseMap();
+            CreateMap<BatchDTO, BatchVM>().ReverseMap();
+            CreateMap<BatchDTO, BatchUpdateVM>().ReverseMap();
             //
 
             //BillofMaterial
@@ -168,11 +172,11 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             //
             //
             //SalesOrder
-            //
-            //
-            //
-            //
-            //
+            CreateMap<SalesOrderCreateDTO, SalesOrderCreateVM>().ReverseMap();
+            CreateMap<SalesOrderUpdateDTO, SalesOrderUpdateVM>().ReverseMap();
+            CreateMap<SalesOrderListDTO, SalesOrderListVM>().ReverseMap();
+            CreateMap<SalesOrderDTO, SalesOrderVM>().ReverseMap();
+            CreateMap<SalesOrderDTO, SalesOrderUpdateVM>().ReverseMap();
             //
             //
             //SalesOrderDetails
