@@ -10,6 +10,7 @@ using InventoryManagementApp.Application.DTOs.ManagerDTOs;
 using InventoryManagementApp.Application.DTOs.ProductionOrderDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDetailDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDTOs;
+using InventoryManagementApp.Application.DTOs.SalesOrdesDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.SalesOrdesDTOs;
 using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
@@ -24,6 +25,7 @@ using InventoryManagementApp.Presentation.Models.ViewModels.ManagerVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ProductionOrderVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderDetailVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.SalesOrderDetailsVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.SalesOrderVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs;
@@ -180,11 +182,11 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             //
             //
             //SalesOrderDetails
-            //
-            //
-            //
-            //
-            //
+            CreateMap<SalesOrdersDetailsCreateDTO, SalesOrderDetailsCreateVM>().ReverseMap();
+            CreateMap<SalesOrdersDetailsUpdateDTO, SalesOrderDetailsUpdateVM>().ReverseMap();
+            CreateMap<SalesOrdersDetailsListDTO, SalesOrderDetailsListVM>().ReverseMap();
+            CreateMap<SalesOrdersDetailsDTO, SalesOrderDetailsVM>().ReverseMap();
+            CreateMap<SalesOrdersDetailsDTO, SalesOrderDetailsUpdateVM>().ReverseMap();
             //
             //
             //Shelf
