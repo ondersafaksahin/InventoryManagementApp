@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
+using InventoryManagementApp.Application.DTOs.ConversionDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Application.DTOs.ProductionOrderDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDetailDTOs;
@@ -9,6 +10,7 @@ using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
 using InventoryManagementApp.Presentation.Models.ViewModels.BillOfMaterialsDetailsVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.BillOfMaterialsVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.ConversionVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ProductionOrderVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderDetailVMs;
@@ -60,12 +62,14 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             CreateMap<BOMUpdateDTO, BillOfMaterialsUpdateVM>().ReverseMap();
             CreateMap<BOMListDTO, BillOfMaterialsListVM>().ReverseMap();
             CreateMap<BOMDTO, BillOfMaterialsVM>().ReverseMap();
+            CreateMap<BOMDTO, BillOfMaterialsUpdateVM>().ReverseMap();
 
             //BillofMaterialDetails
             CreateMap<BillOfMaterialsDetailsCreateDTO, BillOfMaterialsDetailsCreateVM>().ReverseMap();
             CreateMap<BillOfMaterialsDetailsUpdateDTO, BillOfMaterialsDetailsUpdateVM>().ReverseMap();
             CreateMap<BillOfMaterialsDetailsListDTO, BillOfMaterialsDetailsListVM>().ReverseMap();
             CreateMap<BillOfMaterialsDetailsDTO, BillOfMaterialsDetailsVM>().ReverseMap();
+            CreateMap<BillOfMaterialsDetailsDTO, BillOfMaterialsDetailsUpdateVM>().ReverseMap();
 
             //Brand
             //
@@ -92,12 +96,11 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             //
             //
             //Conversion
-            //
-            //
-            //
-            //
-            //
-            //
+            CreateMap<ConversionCreateDTO, ConversionCreateVM>().ReverseMap();
+            CreateMap<ConversionUpdateDTO, ConversionUpdateVM>().ReverseMap();
+            CreateMap<ConversionListDTO, ConversionListVM>().ReverseMap();
+            CreateMap<ConversionDTO, ConversionVM>().ReverseMap();
+            CreateMap<ConversionDTO, ConversionUpdateVM>().ReverseMap();
             //
             //Customer
             //
