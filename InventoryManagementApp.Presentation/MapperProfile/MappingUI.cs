@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using InventoryManagementApp.Application.DTOs.BatchDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDetailDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDTOs;
 using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
-using InventoryManagementApp.Presentation.Models.ViewModels.BatchVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderDetailVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderVMs;
@@ -44,10 +42,10 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             //
             //
             //Batch
-            CreateMap<BatchCreateDTO, BatchCreateVM>().ReverseMap();
-            CreateMap<BatchUpdateDTO, BatchUpdateVM>().ReverseMap();
-            CreateMap<BatchListDTO, BatchListVM>().ReverseMap();
-            CreateMap<BatchDTO, BatchVM>().ReverseMap();
+            //
+            //
+            //
+            //
             //
             //
             //
