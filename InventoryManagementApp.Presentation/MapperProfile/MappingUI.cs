@@ -3,6 +3,7 @@ using InventoryManagementApp.Application.DTOs.BillOfMaterialsDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
 using InventoryManagementApp.Application.DTOs.ConsumptionDTOs;
 using InventoryManagementApp.Application.DTOs.ConversionDTOs;
+using InventoryManagementApp.Application.DTOs.EmployeeDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Application.DTOs.ManagerDTOs;
 using InventoryManagementApp.Application.DTOs.ProductionOrderDTOs;
@@ -14,6 +15,7 @@ using InventoryManagementApp.Presentation.Models.ViewModels.BillOfMaterialsDetai
 using InventoryManagementApp.Presentation.Models.ViewModels.BillOfMaterialsVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ConsumptionVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ConversionVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.EmployeeVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ManagerVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ProductionOrderVMs;
@@ -114,19 +116,17 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             //
             //
             //Employee
-            //
-            //
-            //
-            //
-            //
-            //
-            //
+            CreateMap<EmployeeCreateDTO, EmployeeCreateVM>().ReverseMap();
+            CreateMap<EmployeeUpdateDTO, EmployeeUpdateVM>().ReverseMap();
+            CreateMap<EmployeeListDTO, EmployeeListVM>().ReverseMap();
+            CreateMap<EmployeeDTO, EmployeeVM>().ReverseMap();
+            CreateMap<EmployeeDTO, EmployeeUpdateVM>().ReverseMap();
             //Good
             CreateMap<GoodCreateDTO, GoodCreateVM>().ReverseMap();
             CreateMap<GoodUpdateDTO, GoodUpdateVM>().ReverseMap();
             CreateMap<GoodListDTO, GoodListVM>().ReverseMap();
             CreateMap<GoodDTO, GoodVM>().ReverseMap();
-            //
+            CreateMap<GoodDTO, GoodUpdateVM>().ReverseMap();
             //Manager
             CreateMap<ManagerCreateDTO, ManagerCreateVM>().ReverseMap();
             CreateMap<ManagerUpdateDTO, ManagerUpdateVM>().ReverseMap();
