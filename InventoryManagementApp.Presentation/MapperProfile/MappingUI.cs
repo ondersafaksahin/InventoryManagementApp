@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
+using InventoryManagementApp.Application.DTOs.ConsumptionDTOs;
 using InventoryManagementApp.Application.DTOs.ConversionDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Application.DTOs.ProductionOrderDTOs;
@@ -10,6 +11,7 @@ using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
 using InventoryManagementApp.Presentation.Models.ViewModels.BillOfMaterialsDetailsVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.BillOfMaterialsVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.ConsumptionVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ConversionVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ProductionOrderVMs;
@@ -88,12 +90,11 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             //
             //
             //Consumption
-            //
-            //
-            //
-            //
-            //
-            //
+            CreateMap<ConsumptionCreateDTO, ConsumptionCreateVM>().ReverseMap();
+            CreateMap<ConsumptionUpdateDTO, ConsumptionUpdateVM>().ReverseMap();
+            CreateMap<ConsumptionListDTO, ConsumptionListVM>().ReverseMap();
+            CreateMap<ConsumptionDTO, ConsumptionVM>().ReverseMap();
+            CreateMap<ConsumptionDTO, ConsumptionUpdateVM>().ReverseMap();
             //
             //Conversion
             CreateMap<ConversionCreateDTO, ConversionCreateVM>().ReverseMap();
