@@ -13,6 +13,7 @@ using InventoryManagementApp.Application.DTOs.PurchaseOrderDTOs;
 using InventoryManagementApp.Application.DTOs.SalesOrdesDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.SalesOrdesDTOs;
 using InventoryManagementApp.Application.DTOs.ShelfDTOs;
+using InventoryManagementApp.Application.DTOs.StockTransferDTOs;
 using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
 using InventoryManagementApp.Presentation.Models.ViewModels.BatchVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.BillOfMaterialsDetailsVMs;
@@ -28,6 +29,7 @@ using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.SalesOrderDetailsVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.SalesOrderVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.StockTransferVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs;
 
 namespace InventoryManagementApp.Presentation.MapperProfile
@@ -196,11 +198,11 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             CreateMap<ShelfDTO, ShelfVM>().ReverseMap();
             //
             //StockTransfer
-            //
-            //
-            //
-            //
-            //
+            CreateMap<StockTransferCreateDTO, StockTransferCreateVM>().ReverseMap();
+            CreateMap<StockTransferUpdateDTO, StockTransferUpdateVM>().ReverseMap();
+            CreateMap<StockTransferListDTO, StockTransferListVM>().ReverseMap();
+            CreateMap<StockTransferDTO, StockTransferVM>().ReverseMap();
+            CreateMap<StockTransferDTO, StockTransferUpdateVM>().ReverseMap();
             //
             //
             //SubCategory
