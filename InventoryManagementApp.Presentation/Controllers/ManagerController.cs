@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
-using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Application.DTOs.ManagerDTOs;
-using InventoryManagementApp.Application.Services.GoodService;
 using InventoryManagementApp.Application.Services.ManagerService;
-using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ManagerVMs;
 using Microsoft.AspNetCore.Mvc;
 

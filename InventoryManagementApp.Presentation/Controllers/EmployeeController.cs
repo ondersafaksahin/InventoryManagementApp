@@ -1,15 +1,17 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.EmployeeDTOs;
-using InventoryManagementApp.Application.DTOs.ManagerDTOs;
 using InventoryManagementApp.Application.Services.EmployeeService;
-using InventoryManagementApp.Application.Services.ManagerService;
+using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Presentation.Models.ViewModels.EmployeeVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ManagerVMs;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace InventoryManagementApp.Presentation.Controllers
 {
-    //[Authorize(Roles = "Admin", "Manager", "Employee")]
+    //[Authorize(Roles = "Admin, Manager, Employee")]
 
     public class EmployeeController : Controller
     {
@@ -22,7 +24,6 @@ namespace InventoryManagementApp.Presentation.Controllers
             _employeeService = employeeService;
             _mapper = mapper;
             _webHostEnvironment = webHostEnvironment;
-
         }
 
         public IActionResult Index()
@@ -46,11 +47,12 @@ namespace InventoryManagementApp.Presentation.Controllers
         {
             List<EmployeeListVM> employeeList = _mapper.Map<List<EmployeeListVM>>(await _employeeService.All());
             return View(employeeList);
-        }
+		}
 
-        //Adding employee
+		//Adding employee
         [HttpGet]
-        public IActionResult Create()
+		//[Authorize(Roles = "Admin,Manager")]
+		public IActionResult Create()
         {
             EmployeeCreateVM employeeCreateVm = new EmployeeCreateVM();
 
