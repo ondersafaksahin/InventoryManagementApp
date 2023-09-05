@@ -43,12 +43,13 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
 
 		protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new BatchMapping());
+            builder.Entity<Manager>().ToTable("Managers");
+			builder.Entity<Admin>().ToTable("Admins");
+			builder.Entity<Employee>().ToTable("Employees");
+			builder.ApplyConfiguration(new BatchMapping());
 			builder.ApplyConfiguration(new BillOfMaterialMapping());
 			builder.ApplyConfiguration(new GoodMapping());
             base.OnModelCreating(builder);
-
         }
-
     }
 }

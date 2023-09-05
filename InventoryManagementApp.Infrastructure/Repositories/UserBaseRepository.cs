@@ -84,7 +84,7 @@ namespace InventoryManagementApp.Infrastructure.Repositories
             // Karakterleri karıştır
             string shuffledPassword = new string(password.ToString().OrderBy(c => random.Next()).ToArray());
 
-            return shuffledPassword;
+            return await Task.FromResult(shuffledPassword);
         }
     }
 }

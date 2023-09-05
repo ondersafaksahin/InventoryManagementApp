@@ -108,10 +108,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -164,9 +160,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.ToTable("AspNetUsers", (string)null);
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("AppUser");
-
-                    b.UseTphMappingStrategy();
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Batch", b =>
@@ -187,7 +181,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 8, 31, 13, 1, 26, 584, DateTimeKind.Local).AddTicks(9301));
+                        .HasDefaultValue(new DateTime(2023, 9, 5, 20, 55, 21, 176, DateTimeKind.Local).AddTicks(8931));
 
                     b.Property<DateTime?>("ExpireDate")
                         .HasColumnType("datetime2");
@@ -236,7 +230,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 8, 31, 13, 1, 26, 586, DateTimeKind.Local).AddTicks(2457));
+                        .HasDefaultValue(new DateTime(2023, 9, 5, 20, 55, 21, 178, DateTimeKind.Local).AddTicks(1229));
 
                     b.Property<int>("GoodID")
                         .HasColumnType("int");
@@ -537,7 +531,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 8, 31, 13, 1, 26, 587, DateTimeKind.Local).AddTicks(283));
+                        .HasDefaultValue(new DateTime(2023, 9, 5, 20, 55, 21, 179, DateTimeKind.Local).AddTicks(676));
 
                     b.Property<float?>("GrossWeight")
                         .HasColumnType("real");
@@ -1313,7 +1307,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("Admin");
+                    b.ToTable("Admins", (string)null);
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Employee", b =>
@@ -1356,46 +1350,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("AspNetUsers", t =>
-                        {
-                            t.Property("CreatedBy")
-                                .HasColumnName("Employee_CreatedBy");
-
-                            t.Property("CreatedDate")
-                                .HasColumnName("Employee_CreatedDate");
-
-                            t.Property("Department")
-                                .HasColumnName("Employee_Department");
-
-                            t.Property("FirstName")
-                                .HasColumnName("Employee_FirstName");
-
-                            t.Property("Gender")
-                                .HasColumnName("Employee_Gender");
-
-                            t.Property("Job")
-                                .HasColumnName("Employee_Job");
-
-                            t.Property("LastName")
-                                .HasColumnName("Employee_LastName");
-
-                            t.Property("ModifiedBy")
-                                .HasColumnName("Employee_ModifiedBy");
-
-                            t.Property("ModifiedDate")
-                                .HasColumnName("Employee_ModifiedDate");
-
-                            t.Property("Picture")
-                                .HasColumnName("Employee_Picture");
-
-                            t.Property("Status")
-                                .HasColumnName("Employee_Status");
-
-                            t.Property("Title")
-                                .HasColumnName("Employee_Title");
-                        });
-
-                    b.HasDiscriminator().HasValue("Employee");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Manager", b =>
@@ -1438,46 +1393,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("AspNetUsers", t =>
-                        {
-                            t.Property("CreatedBy")
-                                .HasColumnName("Manager_CreatedBy");
-
-                            t.Property("CreatedDate")
-                                .HasColumnName("Manager_CreatedDate");
-
-                            t.Property("Department")
-                                .HasColumnName("Manager_Department");
-
-                            t.Property("FirstName")
-                                .HasColumnName("Manager_FirstName");
-
-                            t.Property("Gender")
-                                .HasColumnName("Manager_Gender");
-
-                            t.Property("Job")
-                                .HasColumnName("Manager_Job");
-
-                            t.Property("LastName")
-                                .HasColumnName("Manager_LastName");
-
-                            t.Property("ModifiedBy")
-                                .HasColumnName("Manager_ModifiedBy");
-
-                            t.Property("ModifiedDate")
-                                .HasColumnName("Manager_ModifiedDate");
-
-                            t.Property("Picture")
-                                .HasColumnName("Manager_Picture");
-
-                            t.Property("Status")
-                                .HasColumnName("Manager_Status");
-
-                            t.Property("Title")
-                                .HasColumnName("Manager_Title");
-                        });
-
-                    b.HasDiscriminator().HasValue("Manager");
+                    b.ToTable("Managers", (string)null);
                 });
 
             modelBuilder.Entity("GoodShelf", b =>
@@ -1876,6 +1792,33 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Admin", b =>
+                {
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.AppUser", null)
+                        .WithOne()
+                        .HasForeignKey("InventoryManagementApp.Domain.Entities.Concrete.Admin", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Employee", b =>
+                {
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.AppUser", null)
+                        .WithOne()
+                        .HasForeignKey("InventoryManagementApp.Domain.Entities.Concrete.Employee", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Manager", b =>
+                {
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.AppUser", null)
+                        .WithOne()
+                        .HasForeignKey("InventoryManagementApp.Domain.Entities.Concrete.Manager", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
