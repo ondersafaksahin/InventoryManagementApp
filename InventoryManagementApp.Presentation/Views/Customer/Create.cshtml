@@ -1,8 +1,70 @@
-﻿
+﻿@using InventoryManagementApp.Domain.Enums;
+
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model CustomerCreateVM
 
-<h1>Create</h1>
+<div class="form-floating mb-8 p-4">
+    <div class="container-fluid pt-8 px-8">
+
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h4 class="mb-4">Add Customer</h4>
+                <form method="post" asp-action="Create" asp-controller="Customer">
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for=@Model.Name placeholder="Name" aria-label="NameOfCustomer">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="@Model.Contact" placeholder="Contact" aria-label="Contact">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <select class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example" asp-for="@Model.City" asp-items="@Html.GetEnumSelectList<City>()">
+                                <option selected>Choose City...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="@Model.Address" placeholder="Address" aria-label="AddressOfCustomer">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="@Model.PhoneNumber" placeholder="PhoneNumber" aria-label="PhoneNumberOfCustomer">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="@Model.Email" placeholder="Email" aria-label="EmailOfCustomer">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="@Model.WebPage" placeholder="WebPage" aria-label="WebPageOfCustomer">
+                        </div>
+                    </div>
+                    <br />
+
+                    <button type="submit" class="btn btn-outline-success m-2">Add Customer</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
 

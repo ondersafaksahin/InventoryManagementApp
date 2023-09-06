@@ -2,11 +2,15 @@
 using InventoryManagementApp.Application.DTOs.BatchDTOs;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
+using InventoryManagementApp.Application.DTOs.BrandDTOs;
+using InventoryManagementApp.Application.DTOs.CategoryDTOs;
 using InventoryManagementApp.Application.DTOs.ConsumptionDTOs;
 using InventoryManagementApp.Application.DTOs.ConversionDTOs;
+using InventoryManagementApp.Application.DTOs.CustomerDTOs;
 using InventoryManagementApp.Application.DTOs.EmployeeDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Application.DTOs.ManagerDTOs;
+using InventoryManagementApp.Application.DTOs.ModelDTOs;
 using InventoryManagementApp.Application.DTOs.ProductionOrderDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDetailDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDTOs;
@@ -14,15 +18,21 @@ using InventoryManagementApp.Application.DTOs.SalesOrdesDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.SalesOrdesDTOs;
 using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.DTOs.StockTransferDTOs;
+using InventoryManagementApp.Application.DTOs.SubCategoryDTOs;
+using InventoryManagementApp.Application.DTOs.SupplierDTOs;
 using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
 using InventoryManagementApp.Presentation.Models.ViewModels.BatchVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.BillOfMaterialsDetailsVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.BillOfMaterialsVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.CategoryVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ConsumptionVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ConversionVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.CustomerVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.EmployeeVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ManagerVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.ModelVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ProductionOrderVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderDetailVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderVMs;
@@ -30,6 +40,8 @@ using InventoryManagementApp.Presentation.Models.ViewModels.SalesOrderDetailsVMs
 using InventoryManagementApp.Presentation.Models.ViewModels.SalesOrderVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.StockTransferVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.SubCategoryVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.SupplierVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs;
 
 namespace InventoryManagementApp.Presentation.MapperProfile
@@ -86,19 +98,19 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             CreateMap<BillOfMaterialsDetailsDTO, BillOfMaterialsDetailsUpdateVM>().ReverseMap();
 
             //Brand
-            //
-            //
-            //
-            //
-            //
+            CreateMap<BrandCreateDTO, BrandCreateVM>().ReverseMap();
+            CreateMap<BrandUpdateDTO, BrandUpdateVM>().ReverseMap();
+            CreateMap<BrandListDTO, BrandListVM>().ReverseMap();
+            CreateMap<BrandDTO, BrandVM>().ReverseMap();
+            CreateMap<BrandDTO, BrandUpdateVM>().ReverseMap();
             //
             //
             //Category
-            //
-            //
-            //
-            //
-            //
+            CreateMap<CategoryCreateDTO, CategoryCreateVM>().ReverseMap();
+            CreateMap<CategoryUpdateDTO, CategoryUpdateVM>().ReverseMap();
+            CreateMap<CategoryListDTO, CategoryListVM>().ReverseMap();
+            CreateMap<CategoryDTO, CategoryVM>().ReverseMap();
+            CreateMap<CategoryDTO, CategoryUpdateVM>().ReverseMap();
             //
             //
             //Consumption
@@ -116,11 +128,11 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             CreateMap<ConversionDTO, ConversionUpdateVM>().ReverseMap();
             //
             //Customer
-            //
-            //
-            //
-            //
-            //
+            CreateMap<CustomerCreateDTO, CustomerCreateVM>().ReverseMap();
+            CreateMap<CustomerUpdateDTO, CustomerUpdateVM>().ReverseMap();
+            CreateMap<CustomerListDTO, CustomerListVM>().ReverseMap();
+            CreateMap<CustomerDTO, CustomerVM>().ReverseMap();
+            CreateMap<CustomerDTO, CustomerUpdateVM>().ReverseMap();
             //
             //
             //Employee
@@ -142,11 +154,11 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             CreateMap<ManagerDTO, ManagerVM>().ReverseMap();
             CreateMap<ManagerDTO, ManagerUpdateVM>().ReverseMap();
             //Model
-            //
-            //
-            //
-            //
-            //
+            CreateMap<ModelCreateDTO, ModelCreateVM>().ReverseMap();
+            CreateMap<ModelUpdateDTO, ModelUpdateVM>().ReverseMap();
+            CreateMap<ModelListDTO, ModelListVM>().ReverseMap();
+            CreateMap<ModelDTO, ModelVM>().ReverseMap();
+            CreateMap<ModelDTO, ModelUpdateVM>().ReverseMap();
             //
             //
             //ProductionOrder
@@ -206,19 +218,19 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             //
             //
             //SubCategory
-            //
-            //
-            //
-            //
-            //
+            CreateMap<SubCategoryCreateDTO, SubCategoryCreateVM>().ReverseMap();
+            CreateMap<SubCategoryUpdateDTO, SubCategoryUpdateVM>().ReverseMap();
+            CreateMap<SubCategoryListDTO, SubCategoryListVM>().ReverseMap();
+            CreateMap<SubCategoryDTO, SubCategoryVM>().ReverseMap();
+            CreateMap<SubCategoryDTO, SubCategoryUpdateVM>().ReverseMap();
             //
             //
             //Supplier
-            //
-            //
-            //
-            //
-            //
+            CreateMap<SupplierCreateDTO, SupplierCreateVM>().ReverseMap();
+            CreateMap<SupplierUpdateDTO, SupplierUpdateVM>().ReverseMap();
+            CreateMap<SupplierListDTO, SupplierListVM>().ReverseMap();
+            CreateMap<SupplierDTO, SupplierVM>().ReverseMap();
+            CreateMap<SupplierDTO, SupplierUpdateVM>().ReverseMap();
             //
             //
             //Warehouse

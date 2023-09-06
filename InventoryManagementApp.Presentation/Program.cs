@@ -13,7 +13,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddBusinessServices();
 builder.Services.AddRepositoryServices();
 builder.Services.AddDbContext<InventoryDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("dbConnection")));
-builder.Services.AddAutoMapper(typeof(Mapping));
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddIdentity<AppUser, AppRole>(options =>
 {
