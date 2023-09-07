@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.BatchDTOs;
-using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.Services.BatchService;
-using InventoryManagementApp.Application.Services.ShelfService;
 using InventoryManagementApp.Presentation.Models.ViewModels.BatchVMs;
-using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagementApp.Presentation.Controllers
