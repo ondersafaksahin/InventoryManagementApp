@@ -25,14 +25,6 @@ namespace InventoryManagementApp.Presentation.Controllers
             return View();
         }
 
-        //Listing only active brands
-        public async Task<IActionResult> GetAllActiveBrands()
-        {
-            var brandListDto = await _brandService.GetDefaults(x => x.Status == Domain.Enums.Status.Active);
-            var brandListVM = _mapper.Map<List<BrandListVM>>(brandListDto);
-            return View(brandListVM);
-        }
-
         //Listing all brands
         public async Task<IActionResult> GetAllBrands()
         {
@@ -56,7 +48,11 @@ namespace InventoryManagementApp.Presentation.Controllers
 				try
 				{
 					var brandCreateDto = _mapper.Map<BrandCreateDTO>(brandCreateVM);
-					await _brandService.Create(brandCreateDto);
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        brandCreateDto.CreatedBy = User.Identity.Name;
+                    }
+                    await _brandService.Create(brandCreateDto);
 					return RedirectToAction("GetAllBrands");
 				}
 				catch (Exception ex)
@@ -64,6 +60,10 @@ namespace InventoryManagementApp.Presentation.Controllers
 					TempData["error"] = ex.Message;
 				}
 			}
+            else
+            {
+                TempData["error"] = ModelState.Values.First().Errors[0].ErrorMessage;
+            }
 			return View(brandCreateVM);
 		}
 
