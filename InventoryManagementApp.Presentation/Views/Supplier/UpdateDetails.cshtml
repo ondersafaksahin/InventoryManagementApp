@@ -1,8 +1,101 @@
-﻿
+﻿@using InventoryManagementApp.Domain.Enums;
+
 @{
     ViewData["Title"] = "UpdateDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>UpdateDetails</h1>
+@model SupplierUpdateVM
+
+<div class="form-floating mb-8 p-4">
+    <div class="container-fluid pt-8 px-8">
+
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h4 class="mb-4">Update Supplier</h4>
+                <form method="post" asp-action="UpdateDetails" asp-controller="Supplier">
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" readonly asp-for="@Model.ID" placeholder="ID" aria-label="IDOfSupplier">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for=@Model.Name placeholder="Name" aria-label="NameOfSupplier">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="@Model.Contact" placeholder="Contact" aria-label="Contact">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <select class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example" asp-for="@Model.City" asp-items="@Html.GetEnumSelectList<City>()">
+                                <option selected>Choose City...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="@Model.Address" placeholder="Address" aria-label="AddressOfSupplier">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="@Model.PhoneNumber" placeholder="PhoneNumber" aria-label="PhoneNumberOfSupplier">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="@Model.Email" placeholder="Email" aria-label="EmailOfSupplier">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="@Model.WebPage" placeholder="WebPage" aria-label="WebPageOfSupplier">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" readonly asp-for="@Model.CreatedBy" placeholder="CreatedBy" aria-label="CreatedByOfSupplier">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="date" class="form-control" readonly asp-for="@Model.CreatedDate" placeholder="CreatedDate" aria-label="CreatedDateOfCustomer">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" readonly asp-for="@Model.ModifiedBy" placeholder="ModifiedBy" aria-label="ModifiedByOfSupplier">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="date" class="form-control" readonly asp-for="@Model.ModifiedDate" placeholder="ModifiedDate" aria-label="ModifiedDateOfSupplier">
+                        </div>
+                    </div>
+                    <br />
+
+                    <button type="submit" class="btn btn-outline-success m-2">Save Changes</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
 
