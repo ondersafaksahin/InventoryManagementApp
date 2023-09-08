@@ -13,12 +13,14 @@ namespace InventoryManagementApp.Presentation.Controllers
 	{
 		private readonly IMapper _mapper;
 		private readonly ISubCategoryService _subCategoryService;
-		public SubCategoryController(IMapper mapper, ISubCategoryService subCategoryService)
-		{
-			_mapper = mapper;
-			_subCategoryService = subCategoryService;
-		}
-		public IActionResult Index()
+		private readonly ICategoryService _categoryService;
+        public SubCategoryController(IMapper mapper, ISubCategoryService subCategoryService, ICategoryService categoryService)
+        {
+            _mapper = mapper;
+            _subCategoryService = subCategoryService;
+            _categoryService = categoryService;
+        }
+        public IActionResult Index()
 		{
 			return View();
 		}
@@ -42,10 +44,11 @@ namespace InventoryManagementApp.Presentation.Controllers
 
 		//Adding SubCategory
 		[HttpGet]
-		public IActionResult Create()
+		public async Task<IActionResult> Create()
 		{
 			SubCategoryCreateVM subCategoryCreateVM = new SubCategoryCreateVM();
-			return View(subCategoryCreateVM);
+			subCategoryCreateVM.CategoryList = await _categoryService.All();
+            return View(subCategoryCreateVM);
 		}
 
 		[HttpPost]
