@@ -1,8 +1,60 @@
-﻿
+﻿@using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
+
 @{
     ViewData["Title"] = "GetAllBrands";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>GetAllBrands</h1>
+@model List<BrandListVM>
+
+@if (TempData["error"] is not null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"]
+    </div>
+}
+
+<div class="col-12">
+    <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">Responsive Table</h6>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Created By</th>
+                        <th scope="col">Created Date</th>
+                        <th scope="col">Modified By</th>
+                        <th scope="col">Modified Date</th>   
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var brand in Model)
+                    {
+                        <tr>
+                            <th scope="row">@brand.ID</th>
+                            <td>@brand.Name</td>
+                            <td>@brand.Status</td>
+                            <td>@brand.CreatedBy</td>
+                            <td>@brand.CreatedDate</td>
+                            <td>@brand.ModifiedBy</td>
+                            <td>@brand.ModifiedDate</td>
+                            <td class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Options
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" asp-action="Update" asp-controller="Brand" asp-route-id="@brand.ID">Update</a></li>
+                                    <li><a class="dropdown-item" asp-action="Delete" asp-controller="Brand" asp-route-id="@brand.ID">Delete</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
