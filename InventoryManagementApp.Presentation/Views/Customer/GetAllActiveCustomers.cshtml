@@ -4,5 +4,52 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>GetAllActiveCustomers</h1>
+@model List<CustomerListVM>
+
+<div class="bg-light rounded h-100 p-4">
+    <h6 class="mb-4">List All Customers</h6>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col"> Name</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Web Page</th>
+                <th scope="col">Status</th>
+                <th scope="col">Details</th>
+                <th scope="col">Delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.ID</th>
+                    <td>@item.Name</td>
+                    <td>@item.Contact</td>
+                    <td>@item.Email</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.WebPage</td>
+                    <td>@item.Status</td>
+                    <td>
+                        <a asp-action="UpdateDetails" asp-controller="Customer" asp-route-id="@item.ID" type="button" class="btn btn-primary m-2">
+                            Detail
+                        </a>
+                    </td>
+
+                    <td>
+                        <a asp-action="Delete" asp-controller="Customer" asp-route-id="@item.ID" type="button" class="btn btn-danger m-2">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
 
