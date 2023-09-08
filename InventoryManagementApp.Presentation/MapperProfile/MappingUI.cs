@@ -238,7 +238,7 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             CreateMap<WareHouseListDTO, WarehouseListVM>().ReverseMap();
             CreateMap<WareHouseCreateDTO, WarehouseCreateVM>().ReverseMap();
             CreateMap<WareHouseDTO, WarehouseVM>().ReverseMap();
-            //
+            CreateMap<WareHouseDTO, WarehouseUpdateVM>();
             //
             //
 

@@ -120,7 +120,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 
             var warehouseUpdateDto = _mapper.Map<WareHouseUpdateDTO>(vm);
             await _warehouseService.Update(warehouseUpdateDto);
-            return RedirectToAction("GetAllActiveWarehouses");
+            return RedirectToAction("GetAllWarehouses");
         }
 
     }
