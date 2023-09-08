@@ -20,6 +20,8 @@
                     <th scope="col">Created By</th>
                     <th scope="col">Created Date</th><th scope="col">Modified By</th><th scope="col">Modified Date</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,6 +39,17 @@
                         <td> <p class="fw-normal mb-1" asp-for="@item.ModifiedBy">@item.ModifiedBy</p></td>
                         <td> <p class="fw-normal mb-1" asp-for="@item.ModifiedDate">@item.ModifiedDate</p></td>
                         <td> <p class="fw-normal mb-1" asp-for="@item.Status">@item.Status</p></td>
+                        <td>
+                            <a asp-action="UpdateDetails" asp-controller="Warehouse" asp-route-id="@item.ID" type="button" class="btn btn-primary m-2">
+                                Details
+                            </a>
+                        </td>
+
+                        <td>
+                            <a asp-action="Delete" asp-controller="Warehouse" asp-route-id="@item.ID" type="button" class="btn btn-danger m-2">
+                                Delete
+                            </a>
+                        </td>
                         </tr>
                     }
                     
