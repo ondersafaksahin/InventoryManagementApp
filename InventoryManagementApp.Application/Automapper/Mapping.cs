@@ -84,9 +84,10 @@ namespace InventoryManagementApp.Application.Automapper
             CreateMap<Brand, BrandUpdateDTO>().ReverseMap();
             CreateMap<Brand, BrandListDTO>().ReverseMap();
             CreateMap<Brand, BrandDTO>().ReverseMap();
+            CreateMap<BrandDTO, BrandUpdateDTO>().ReverseMap();
 
-			//Category
-			CreateMap<Category, CategoryCreateDTO>().ReverseMap();
+            //Category
+            CreateMap<Category, CategoryCreateDTO>().ReverseMap();
 			CreateMap<Category, CategoryUpdateDTO>().ReverseMap();
 			CreateMap<Category, CategoryListDTO>().ReverseMap();
 			CreateMap<Category, CategoryDTO>().ReverseMap();

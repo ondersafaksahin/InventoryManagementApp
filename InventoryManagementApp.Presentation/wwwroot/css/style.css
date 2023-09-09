@@ -275,3 +275,21 @@
     background: var(--dark);
     border-color: var(--primary);
 }
+
+.dropdown-menu {
+    min-width:6rem;
+    max-height:fit-content;
+    margin-left:2.75rem;
+}
+
+.dropend:hover > .dropdown-menu {
+    display: inline-flex;
+    position:  fixed;
+    padding:0;
+}
+
+.dropend > .dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+

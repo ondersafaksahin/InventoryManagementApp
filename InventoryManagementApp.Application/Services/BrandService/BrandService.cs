@@ -49,7 +49,9 @@ namespace InventoryManagementApp.Application.Services.BrandService
 
         public async Task Update(BrandUpdateDTO updateDTO)
         {
-            await _brandRepository.Update(_mapper.Map<Brand>(updateDTO));
+            var brand = await GetById(updateDTO.ID);
+            var updatedBrand = _mapper.Map(updateDTO, brand);
+            await _brandRepository.Update(_mapper.Map<Brand>(updatedBrand));
         }
     }
 }
