@@ -9,7 +9,7 @@ namespace InventoryManagementApp.Domain.Enums
     public enum Status
     {
         Active=1,
-        Inactive=2,
+        Passive=2,
         Deleted=4
     }
 }

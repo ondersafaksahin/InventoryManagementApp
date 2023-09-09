@@ -1,0 +1,39 @@
+﻿@using InventoryManagementApp.Domain.Enums;
+@using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
+
+@{
+    ViewData["Title"] = "UpdateDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model BrandUpdateVM
+<div class="form-floating mb-8 p-4">
+    <div class="container-fluid pt-8 px-8">
+
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h4 class="mb-4">Update Brand</h4>
+                <form method="post" asp-action="Edit" asp-controller="Brand">
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="@Model.Name" placeholder="Name" aria-label="Name">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <select class="form-select" asp-for="@Model.Status" asp-items="@Html.GetEnumSelectList<Status>()">
+                                <option selected style="display:none">@Model.Status</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+
+                    <button type="submit" class="btn btn-outline-success m-2">Save</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

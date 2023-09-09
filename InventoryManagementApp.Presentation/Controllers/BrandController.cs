@@ -84,7 +84,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 
         //Update Brand
         [HttpGet]
-        public async Task<IActionResult> UpdateDetails(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             if (await _brandService.GetById(id) == null)
             {
@@ -99,11 +99,11 @@ namespace InventoryManagementApp.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateDetails(BrandUpdateVM brandUpdateVM)
+        public async Task<IActionResult> Edit(BrandUpdateVM brandUpdateVM)
         {
-			var brandUpdateDto = _mapper.Map<BrandUpdateDTO>(brandUpdateVM);
+            var brandUpdateDto = _mapper.Map<BrandUpdateDTO>(brandUpdateVM);
             await _brandService.Update(brandUpdateDto);
-            return RedirectToAction("GetAllActiveBrands");
+            return RedirectToAction("GetAllBrands");
         }
     }
 }

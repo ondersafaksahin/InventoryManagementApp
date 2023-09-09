@@ -39,6 +39,7 @@ namespace InventoryManagementApp.Infrastructure.Repositories
         public async Task Delete(T item)
         {
             item.Status = Status.Deleted; //Change status to deleted
+            item.ModifiedDate = DateTime.Now;
             await Update(item);
         }
 
@@ -49,7 +50,7 @@ namespace InventoryManagementApp.Infrastructure.Repositories
 
         public async Task<T> GetById(Expression<Func<T, bool>> expression)
         {
-            return await _table.Where(expression).FirstAsync();
+            return await _table.Where(expression).AsNoTracking().FirstAsync();
         }
 
         public async Task<List<T>> GetDefaults(Expression<Func<T, bool>> expression)
