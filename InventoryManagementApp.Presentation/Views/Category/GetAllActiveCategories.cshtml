@@ -13,12 +13,8 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Warehouse</th>
                     <th scope="col">Category</th>
-                    <th scope="col">Created By</th>
-                    <th scope="col">Created Date</th>
-                    <th scope="col">Modified By</th>
-                    <th scope="col">Modified Date</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Status</th>
                     <th scope="col">Details</th>
                     <th scope="col">Delete</th>
@@ -32,10 +28,6 @@
                         <td> <p class="fw-normal mb-1" asp-for="@item.ID">@item.ID</p></td>
                         <td> <p class="fw-normal mb-1" asp-for="@item.Name">@item.Name</p></td>
                         <td> <p class="fw-normal mb-1" asp-for="@item.Description">@item.Description</p></td>
-                        <td> <p class="fw-normal mb-1" asp-for="@item.CreatedBy">@item.CreatedBy</p></td>
-                        <td> <p class="fw-normal mb-1" asp-for="@item.CreatedDate">@item.CreatedDate</p></td>
-                        <td> <p class="fw-normal mb-1" asp-for="@item.ModifiedBy">@item.ModifiedBy</p></td>
-                        <td> <p class="fw-normal mb-1" asp-for="@item.ModifiedDate">@item.ModifiedDate</p></td>
                         <td> <p class="fw-normal mb-1" asp-for="@item.Status">@item.Status</p></td>
                         <td>
                             <a asp-action="UpdateDetails" asp-controller="Category" asp-route-id="@item.ID" type="button" class="btn btn-primary m-2">

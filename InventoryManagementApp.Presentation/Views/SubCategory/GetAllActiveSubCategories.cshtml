@@ -4,5 +4,51 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>GetAllActiveSubCategories</h1>
+
+@model List<SubCategoryListVM>
+
+<div class="bg-light rounded h-100 p-4">
+    <h6 class="mb-4">All Active SubCategories</h6>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">SubCategory</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td> <p class="fw-normal mb-1" asp-for="@item.ID">@item.ID</p></td>
+                        <td> <p class="fw-normal mb-1" asp-for="@item.Name">@item.Name</p></td>
+                        <td> <p class="fw-normal mb-1" asp-for="@item.Description">@item.Description</p></td>
+                        <td> <p class="fw-normal mb-1" asp-for="@item.CategoryID">@item.CategoryID</p></td>
+                        <td> <p class="fw-normal mb-1" asp-for="@item.Status">@item.Status</p></td>
+                        <td>
+                            <a asp-action="UpdateDetails" asp-controller="SubCategory" asp-route-id="@item.ID" type="button" class="btn btn-primary m-2">
+                                Details
+                            </a>
+                        </td>
+
+                        <td>
+                            <a asp-action="Delete" asp-controller="SubCategory" asp-route-id="@item.ID" type="button" class="btn btn-danger m-2">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
 

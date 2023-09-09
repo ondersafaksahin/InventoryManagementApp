@@ -24,6 +24,30 @@
                         </div>
                     </div>
                     <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" readonly asp-for="@Model.CreatedBy" placeholder="CreatedBy" aria-label="CreatedByOfCustomer">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="date" class="form-control" readonly asp-for="@Model.CreatedDate" placeholder="CreatedDate" aria-label="CreatedDateOfCustomer">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" readonly asp-for="@Model.ModifiedBy" placeholder="ModifiedBy" aria-label="ModifiedByOfCustomer">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="date" class="form-control" readonly asp-for="@Model.ModifiedDate" placeholder="ModifiedDate" aria-label="ModifiedDateOfCustomer">
+                        </div>
+                    </div>
+                    <br />
 
 
                     <button type="submit" class="btn btn-outline-success m-2">Save Changes</button>
