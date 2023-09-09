@@ -95,7 +95,8 @@ namespace InventoryManagementApp.Presentation.Controllers
 			else
 			{
 				SubCategoryUpdateVM subCategoryUpdateVm = _mapper.Map<SubCategoryUpdateVM>(await _subCategoryService.GetById(id));
-				return View(subCategoryUpdateVm);
+                subCategoryUpdateVm.CategoryList = await _categoryService.All();
+                return View(subCategoryUpdateVm);
 			}
 		}
 
