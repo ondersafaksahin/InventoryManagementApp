@@ -23,7 +23,7 @@
     <!-- Libraries Stylesheet -->
     <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="~/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
+    <link href="~/css/jquery.datatables.min.css" rel="stylesheet" />
     <!-- Customized Bootstrap Stylesheet -->
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
 
@@ -176,7 +176,7 @@
             <!-- Navbar End -->
             @RenderBody()
             <!-- Footer Start -->
-            <div class="container-fluid pt-4 px-4">
+            <div class="container-fluid pt-4 px-4" style="position:fixed;bottom:0">
                 <div class="bg-light rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
@@ -208,9 +208,15 @@
     <script src="~/lib/tempusdominus/js/moment.min.js"></script>
     <script src="~/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="~/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
+    <script src="~/js/jquery-3.7.0.js"></script>
+    <script src="~/js/jquery.datatables.min.js"></script>
     <!-- Template Javascript -->
     <script src="~/js/main.js"></script>
+    <script>
+    new DataTable('#example', {
+    order: [[3, 'desc']]
+    });
+    </script>
 </body>
 
 </html>

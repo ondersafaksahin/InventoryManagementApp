@@ -1,20 +1,24 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.ConversionDTOs;
 using InventoryManagementApp.Application.Services.ConversionService;
+using InventoryManagementApp.Application.Services.GoodService;
 using InventoryManagementApp.Presentation.Models.ViewModels.ConversionVMs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InventoryManagementApp.Presentation.Controllers
 {
     public class ConversionController : Controller
     {
         IConversionService _conversionService;
+        IGoodService _goodService;
         IMapper _mapper;
 
-        public ConversionController(IConversionService conversionService, IMapper mapper)
+        public ConversionController(IConversionService conversionService, IMapper mapper, IGoodService goodService)
         {
             _conversionService = conversionService;
             _mapper = mapper;
+            _goodService = goodService;
         }
 
         public IActionResult Index()
@@ -40,7 +44,10 @@ namespace InventoryManagementApp.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            return View();
+            var conversionCreateVM = new ConversionCreateVM();
+            var selectList = new SelectList(await _goodService.GetDefaults(x => x.Status == Domain.Enums.Status.Active));
+            conversionCreateVM.GoodsList = selectList;
+            return View(conversionCreateVM);
         }
 
         [HttpPost]
@@ -51,13 +58,21 @@ namespace InventoryManagementApp.Presentation.Controllers
                 try
                 {
                     var conversion = _mapper.Map<ConversionCreateDTO>(conversionCreateVM);
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        conversion.CreatedBy = User.Identity.Name;
+                    }
                     await _conversionService.Create(conversion);
                     return RedirectToAction("GetAllActive");
                 }
                 catch (Exception ex)
                 {
-                    TempData["Error"] = ex.Message;
+                    TempData["error"] = ex.Message;
                 }
+            }
+            else
+            {
+                TempData["error"] = ModelState.Values.First().Errors[0].ErrorMessage;
             }
             return View(conversionCreateVM);
         }
@@ -80,8 +95,12 @@ namespace InventoryManagementApp.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            var conversionVM = _mapper.Map<ConversionUpdateVM>(_conversionService.GetById(id));
-            return View(conversionVM);
+            if (_conversionService.GetById(id) is null)
+            {
+                return NotFound();
+            }
+                var conversionVM = _mapper.Map<ConversionUpdateVM>(_conversionService.GetById(id));
+                return View(conversionVM);
         }
 
         [HttpPost]
