@@ -277,9 +277,9 @@
 }
 
 .dropdown-menu {
-    min-width:6rem;
-    max-height:fit-content;
-    margin-left:2.75rem;
+    min-width: 6rem;
+    max-height: fit-content;
+    margin-left: 2.75rem;
 }
 
 .dropend:hover > .dropdown-menu {

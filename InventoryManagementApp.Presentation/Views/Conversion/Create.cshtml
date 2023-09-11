@@ -1,0 +1,68 @@
+﻿@using InventoryManagementApp.Domain.Enums;
+@using InventoryManagementApp.Presentation.Models.ViewModels.ConversionVMs;
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model ConversionCreateVM
+
+@if (TempData["error"] is not null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"]
+    </div>
+}
+
+<div class="form-floating mb-8 p-4">
+    <div class="container-fluid pt-8 px-8">
+
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h4 class="mb-4">Add Conversion</h4>
+                <form method="post" asp-action="Create" asp-controller="Conversion">
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <select class="form-select" asp-for="@Model.Good" asp-items="@Model.GoodsList" placeholder="Good" aria-label="Good">
+                                <option selected>Choose the good to add conversion...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="form-floating mb-6 col-md-2">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" asp-for=@Model.BaseGoodAmount placeholder="BaseAmount" aria-label="BaseAmount">
+                            </div>
+                        </div>
+                        <div class="form-floating mb-6 col-md-3">
+                            <div class="input-group mb-3">
+                                <select class="form-select" asp-for=@Model.BaseUnit asp-items="@Html.GetEnumSelectList<UnitType>()" aria-label="BaseUnit">
+                                    <option selected>Choose base unit type...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2 text-center pt-2">
+                            <i class="fas fa-equals pt-1"></i>
+                        </div>
+                        <div class="form-floating mb-6 col-md-2">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" asp-for=@Model.FinalGoodAmount placeholder="FinalAmount" aria-label="FinalAmount">
+                            </div>
+                        </div>
+                        <div class="form-floating mb-6 col-md-3">
+                            <div class="input-group mb-3">
+                                <select class="form-select" asp-for=@Model.FinalUnit asp-items="@Html.GetEnumSelectList<UnitType>()" aria-label="FinalUnit">
+                                    <option selected>Choose final unit type...</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <br />
+                    <button type="submit" class="btn btn-outline-success m-2">Add Conversion</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
