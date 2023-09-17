@@ -57,7 +57,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 				{
 					var customerCreateDto = _mapper.Map<CustomerCreateDTO>(customerCreateVm);
 					await _customerService.Create(customerCreateDto);
-					return RedirectToAction("GetAllCustomers");
+					return RedirectToAction("GetAllActiveCustomers");
 				}
 				catch (Exception ex)
 				{
@@ -73,12 +73,12 @@ namespace InventoryManagementApp.Presentation.Controllers
 			try
 			{
 				await _customerService.Delete(id);
-				return RedirectToAction("GetAllCustomers");
+				return RedirectToAction("GetAllActiveCustomers");
 			}
 			catch (Exception ex)
 			{
 				TempData["error"] = ex.Message;
-				return RedirectToAction("GetAllCustomers");
+				return RedirectToAction("GetAllActiveCustomers");
 			}
 		}
 

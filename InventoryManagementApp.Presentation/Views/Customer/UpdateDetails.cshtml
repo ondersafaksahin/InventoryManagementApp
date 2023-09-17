@@ -27,6 +27,14 @@
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <select class="form-select" asp-for="@Model.Status" asp-items="@Html.GetEnumSelectList<Status>()">
+                                <option selected style="display:none">@Model.Status</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
                             <input type="text" class="form-control" asp-for="@Model.Contact" placeholder="Contact" aria-label="Contact">
                         </div>
                     </div>
