@@ -29,7 +29,7 @@ namespace InventoryManagementApp.Application.DTOs.WareHouseDTOs
         public string? Description { get; set; }
         public City? City { get; set; }
         public string? District { get; set; }
-
+   
 
         //Navigation Properties
 
