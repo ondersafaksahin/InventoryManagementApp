@@ -208,7 +208,7 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             CreateMap<ShelfUpdateDTO, ShelfUpdateVM>().ReverseMap();
             CreateMap<ShelfListDTO, ShelfListVM>().ReverseMap();
             CreateMap<ShelfDTO, ShelfVM>().ReverseMap();
-            //
+            CreateMap<ShelfDTO, ShelfUpdateVM>().ReverseMap();
             //StockTransfer
             CreateMap<StockTransferCreateDTO, StockTransferCreateVM>().ReverseMap();
             CreateMap<StockTransferUpdateDTO, StockTransferUpdateVM>().ReverseMap();
