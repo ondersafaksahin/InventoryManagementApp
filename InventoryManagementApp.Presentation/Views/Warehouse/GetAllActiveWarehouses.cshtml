@@ -1,48 +1,79 @@
-﻿@using InventoryManagementApp.Domain.Enums;
+﻿@using InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs;
+
 @{
-    ViewData["Title"] = "GetAllActiveWarehouses";
+    ViewData["Title"] = "GetAllActiveWareHouses";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @model List<WarehouseListVM>
 
-<div class="bg-light rounded h-100 p-4">
-    <h6 class="mb-4">All Active Warehouses</h6>
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Warehouse</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">City</th>
-                    <th scope="col">District</th>
-                    <th scope="col">Created By</th>
-                    <th scope="col">Created Date</th>
-                    <th scope="col">Modified By</th>
-                    <th scope="col">Modified Date</th>
-                    <th scope="col">Status</th>
-                </tr>
-            </thead>
-            <tbody>
+@if (TempData["error"] is not null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"]
+    </div>
+}
 
-                @foreach (var item in Model)
-                {
+<div class="col-12">
+    <div class="bg-light rounded h-100 p-4">
+        <div class="d-flex justify-content-between align-items-center" style="margin-bottom:16px">
+            <a class="btn btn-success" asp-action="Create" asp-controller="Warehouse">Add Warehouse</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table" id="example">
+                <thead>
                     <tr>
-                        <td> <p class="fw-normal mb-1" asp-for="@item.ID">@item.ID</p></td>
-                        <td> <p class="fw-normal mb-1" asp-for="@item.Name">@item.Name</p></td>
-                        <td> <p class="fw-normal mb-1" asp-for="@item.Description">@item.Description</p></td>
-                        <td> <p class="fw-normal mb-1" asp-for="@item.City">@item.City</p></td>
-                        <td> <p class="fw-normal mb-1" asp-for="@item.District">@item.District</p></td>
-                        <td> <p class="fw-normal mb-1" asp-for="@item.CreatedBy">@item.CreatedBy</p></td>
-                        <td> <p class="fw-normal mb-1" asp-for="@item.CreatedDate">@item.CreatedDate</p></td>
-                        <td> <p class="fw-normal mb-1" asp-for="@item.ModifiedBy">@item.ModifiedBy</p></td>
-                        <td> <p class="fw-normal mb-1" asp-for="@item.ModifiedDate">@item.ModifiedDate</p></td>
-                        <td> <p class="fw-normal mb-1" asp-for="@item.Status">@item.Status</p></td>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Status</th>
+@*                      <th scope="col">Created By</th>
+                        <th scope="col">Created Date</th>
+                        <th scope="col">Modified By</th>
+                        <th scope="col">Modified Date</th>*@
+                        <th scope="col">Description</th>
+                        <th scope="col">City</th>
+                        <th scope="col">District</th>
+                        <th class="text-center">Actions</th>
                     </tr>
-                }
-
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var warehouse in Model)
+                    {
+                        <tr>
+                            <th scope="row">@warehouse.ID</th>
+                            <td>@warehouse.Name</td>
+                            <td>@warehouse.Status</td>
+@*                            <td>@brand.CreatedBy</td>
+                            <td>@brand.CreatedDate</td>
+                            <td>@brand.ModifiedBy</td>
+                            <td>@brand.ModifiedDate</td>*@
+                            <td>@warehouse.Description</td>
+                            <td>@warehouse.City</td>
+                            <td>@warehouse.District</td>
+                            <td class="text-center">
+                                <a class="btn pt-0" asp-action="UpdateDetails" asp-controller="Warehouse" asp-route-id="@warehouse.ID" type="button" data-toggle="popover" title="Update">
+                                    <i class="far fa-edit" style="color:coral;font-size:20px"></i>
+                                </a>
+                                <a class="btn pt-0" asp-action="Delete" asp-controller="Warehouse" asp-route-id="@warehouse.ID" type="button" data-toggle="popover" title="Delete">
+                                    <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
+                                </a>
+                                <a class="btn pt-0" asp-action="Create" asp-controller="Shelf" asp-route-id="@warehouse.ID" type="button" data-toggle="popover" title="Add Shelf">
+                                    <i class="fas fa-layer-group" style="color: saddlebrown;font-size:20px"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $('#example').DataTable;
+        });
+    });
+</script>
+

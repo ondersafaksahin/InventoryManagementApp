@@ -11,7 +11,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        public Status Status { get; set; }
+        public Status Status => Status.Active;
 
 
         //IEntity
