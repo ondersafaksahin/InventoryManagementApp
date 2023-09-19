@@ -81,7 +81,7 @@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Last Modified Date</span>
+                                <span class="input-group-text">Modified Date</span>
                             </div>
                             <input type="date" class="form-control" asp-for="@Model.ModifiedDate" placeholder="@DateTime.Today.ToString()" aria-label="ModifiedDate" value="@DateTime.Now.ToShortTimeString()">
                         </div>
@@ -90,7 +90,7 @@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Last Modified By</span>
+                                <span class="input-group-text">Modified By</span>
                             </div>
                             <input type="text" readonly class="form-control" asp-for="@Model.ModifiedBy" placeholder="ModifiedBy" aria-label="ModifiedBy">
                         </div>
