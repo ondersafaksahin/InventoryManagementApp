@@ -42,7 +42,7 @@ namespace InventoryManagementApp.Application.Services.CategoryService
 
 		public async Task<List<CategoryListDTO>> GetDefaults(Expression<Func<Category, bool>> expression)
 		{
-			return _mapper.Map<List<CategoryListDTO>>(_categoryRepository.GetDefaults(expression));
+			return _mapper.Map<List<CategoryListDTO>>(await _categoryRepository.GetDefaults(expression));
 		}
 
 		public async Task Update(CategoryUpdateDTO updateDTO)
