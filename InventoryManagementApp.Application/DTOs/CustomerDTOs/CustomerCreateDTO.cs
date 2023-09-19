@@ -16,5 +16,7 @@ namespace InventoryManagementApp.Application.DTOs.CustomerDTOs
 		public string? PhoneNumber { get; set; }
 		public string? Email { get; set; }
 		public string? WebPage { get; set; }
-	}
+        public DateTime? CreatedDate { get; set; } = DateTime.Now;
+        public Status Status { get; set; } = Status.Active;
+    }
 }
