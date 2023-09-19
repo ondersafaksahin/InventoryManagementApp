@@ -67,7 +67,7 @@ namespace InventoryManagementApp.Presentation.Controllers
                 {
                     var warehouseCreateDto = _mapper.Map<WareHouseCreateDTO>(warehouseCreateVm);
                     await _warehouseService.Create(warehouseCreateDto);
-                    return RedirectToAction("GetAllWarehouses");
+                    return RedirectToAction("GetAllActiveWarehouses");
                 }
                 catch (Exception ex)
                 {
@@ -85,12 +85,12 @@ namespace InventoryManagementApp.Presentation.Controllers
             try
             {
                 await _warehouseService.Delete(id);
-                return RedirectToAction("GetAllWarehouses");
+                return RedirectToAction("GetAllActiveWarehouses");
             }
             catch (Exception ex)
             {
                 TempData["error"] = ex.Message;
-                return RedirectToAction("GetAllWarehouses");
+                return RedirectToAction("GetAllActiveWarehouses");
             }
         }
 
@@ -106,9 +106,7 @@ namespace InventoryManagementApp.Presentation.Controllers
             else
             {
                 WarehouseUpdateVM warehouseUpdateVm = _mapper.Map<WarehouseUpdateVM>(await _warehouseService.GetById(id));
-                //burada getById DTO dönüyor.
-                //onu update olarak dönecek şekilde mi değiştirilerim?
-                //DTO ile UpdateVm mi mapleyelim?
+               
 
                 return View(warehouseUpdateVm);
             }
@@ -120,7 +118,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 
             var warehouseUpdateDto = _mapper.Map<WareHouseUpdateDTO>(vm);
             await _warehouseService.Update(warehouseUpdateDto);
-            return RedirectToAction("GetAllWarehouses");
+            return RedirectToAction("GetAllActiveWarehouses");
         }
 
     }
