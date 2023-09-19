@@ -15,18 +15,27 @@
                 <form method="post" asp-action="UpdateDetails" asp-controller="Warehouse">
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">ID</span>
+                            </div>
                             <input type="text" class="form-control" readonly asp-for="@Model.ID" placeholder="ID" aria-label="IDOfWareHouse">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Name</span>
+                            </div>
                             <input type="text" class="form-control" asp-for=@Model.Name placeholder="Name" aria-label="NameOfWarehouse">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">City</span>
+                            </div>
                             <select class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example" asp-for="@Model.City" asp-items="@Html.GetEnumSelectList<City>()">
                                 <option selected>Choose City...</option>
@@ -36,52 +45,76 @@
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">District</span>
+                            </div>
                             <input type="text" class="form-control" asp-for="@Model.District" placeholder="District" aria-label="District">
                         </div>
                     </div>
                     <br /><div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Description</span>
+                            </div>
                             <input type="text" class="form-control" asp-for="@Model.Description" placeholder="Description" aria-label="Description">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Created Date</span>
+                            </div>
                             <input type="date" readonly class="form-control" asp-for="@Model.CreatedDate" placeholder="CreatedDate" aria-label="CreatedDate">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Created By</span>
+                            </div>
                             <input type="text" readonly class="form-control" asp-for="@Model.CreatedBy" placeholder="CreatedBy" aria-label="CreatedBy">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
-                            <input type="date" readonly class="form-control" asp-for="@Model.ModifiedDate" placeholder="ModifiedDate" aria-label="ModifiedDate">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Last Modified Date</span>
+                            </div>
+                            <input type="date" class="form-control" asp-for="@Model.ModifiedDate" placeholder="@DateTime.Today.ToString()" aria-label="ModifiedDate" value="@DateTime.Now.ToShortTimeString()">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Last Modified By</span>
+                            </div>
                             <input type="text" readonly class="form-control" asp-for="@Model.ModifiedBy" placeholder="ModifiedBy" aria-label="ModifiedBy">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
-                            <input type="text" readonly class="form-control" asp-for="@Model.Status" placeholder="Status" aria-label="Status" >
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Status</span>
+                            </div>
+                            <select class="form-select" asp-for="@Model.Status" asp-items="@Html.GetEnumSelectList<Status>()">
+                                <option selected style="display:none">@Model.Status</option>
+                            </select>
                         </div>
                     </div>
                     <br />
+
                     <button type="submit" class="btn btn-outline-success m-2">Save Changes</button>
 
-                </form>
-
-            </div>
+            </form>
+            
         </div>
     </div>
+</div>
 </div>
 
 
