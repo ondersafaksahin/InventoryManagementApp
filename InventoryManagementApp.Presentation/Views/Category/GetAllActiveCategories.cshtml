@@ -43,9 +43,18 @@
                             <td>@category.Status</td>
                             <td>@category.Description</td>
                             <td>@category.CreatedBy</td>
-                            <td>@category.CreatedDate</td>
+                            <td>@category.CreatedDate.Value.ToShortDateString()</td>
                             <td>@category.ModifiedBy</td>
-                            <td>@category.ModifiedDate</td>
+                            <td>
+                                @if (category.ModifiedDate is null)
+                                {
+                                    @category.ModifiedDate
+                                }
+                                else
+                                {
+                                    @category.ModifiedDate.Value.ToShortDateString()
+                                }
+                            </td>
                             <td class="text-center">
                                 <a class="btn pt-0" asp-action="UpdateDetails" asp-controller="Category" asp-route-id="@category.ID" type="button" data-toggle="popover" title="Update">
                                     <i class="far fa-edit" style="color:coral;font-size:20px"></i>
