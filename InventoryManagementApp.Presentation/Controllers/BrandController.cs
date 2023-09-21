@@ -26,9 +26,17 @@ namespace InventoryManagementApp.Presentation.Controllers
         }
 
         //Listing all brands
+        [Route("[controller]/List")]
         public async Task<IActionResult> GetAllBrands()
         {
             List<BrandListVM> brandList = _mapper.Map<List<BrandListVM>>(await _brandService.All());
+            return View(brandList);
+        }
+
+        [Route("[controller]/ListActive")]
+        public async Task<IActionResult> GetAllActiveBrands()
+        {
+            List<BrandListVM> brandList = _mapper.Map<List<BrandListVM>>(await _brandService.GetDefaults(x=>x.Status==Domain.Enums.Status.Active));
             return View(brandList);
         }
 
@@ -53,7 +61,7 @@ namespace InventoryManagementApp.Presentation.Controllers
                         brandCreateDto.CreatedBy = User.Identity.Name;
                     }
                     await _brandService.Create(brandCreateDto);
-					return RedirectToAction("GetAllBrands");
+					return RedirectToAction("GetAllActiveBrands");
 				}
 				catch (Exception ex)
 				{
@@ -73,12 +81,12 @@ namespace InventoryManagementApp.Presentation.Controllers
             try
             {
                 await _brandService.Delete(id);
-                return RedirectToAction("GetAllBrands");
+                return RedirectToAction("GetAllActiveBrands");
             }
             catch (Exception ex)
             {
                 TempData["error"] = ex.Message;
-                return RedirectToAction("GetAllBrands");
+                return RedirectToAction("GetAllActiveBrands");
             }
         }
 
@@ -103,7 +111,7 @@ namespace InventoryManagementApp.Presentation.Controllers
         {
             var brandUpdateDto = _mapper.Map<BrandUpdateDTO>(brandUpdateVM);
             await _brandService.Update(brandUpdateDto);
-            return RedirectToAction("GetAllBrands");
+            return RedirectToAction("GetAllActiveBrands");
         }
     }
 }

@@ -293,3 +293,7 @@
     pointer-events: none;
 }
 
+.input-group-text{
+    width:125px;
+}
+

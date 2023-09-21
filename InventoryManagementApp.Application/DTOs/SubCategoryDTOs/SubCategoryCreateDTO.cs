@@ -1,5 +1,6 @@
 ﻿using InventoryManagementApp.Application.DTOs.CategoryDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
+using InventoryManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace InventoryManagementApp.Application.DTOs.SubCategoryDTOs
         public string? Description { get; set; }
         public int CategoryID { get; set; }
         public Category Category { get; set; }
-        
+        public DateTime? CreatedDate { get; set; } = DateTime.Now;
+        public Status Status { get; set; } = Status.Active;
+
     }
 }
