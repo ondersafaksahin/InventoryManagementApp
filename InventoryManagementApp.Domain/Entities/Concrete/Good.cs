@@ -29,7 +29,9 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public float? NetWeight { get; set; }
 
         public Category? Category { get; set; }
+        public int? CategoryID { get; set; }
         public SubCategory? SubCategory { get; set; }
+        public int? SubCategoryID { get; set; }
         public List<Batch>? Batches { get; set; }
         public List<Warehouse>? Warehouses { get; set; }
         public List<Shelf>? Shelves { get; set; }

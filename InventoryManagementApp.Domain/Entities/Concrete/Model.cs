@@ -28,10 +28,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public string? Description { get; set; }
         public string? Code { get; set; }
 
-        
-        //Navigation Properties
 
-        public virtual Good Good { get; set; }
-        public int GoodID { get; set; }
+        
     }
 }

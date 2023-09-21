@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagementApp.Infrastructure.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    [Migration("20230907192927_v2")]
-    partial class v2
+    [Migration("20230921180736_mig2")]
+    partial class mig2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -184,7 +184,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 7, 22, 29, 27, 541, DateTimeKind.Local).AddTicks(4862));
+                        .HasDefaultValue(new DateTime(2023, 9, 21, 21, 7, 35, 868, DateTimeKind.Local).AddTicks(4326));
 
                     b.Property<DateTime?>("ExpireDate")
                         .HasColumnType("datetime2");
@@ -233,7 +233,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 7, 22, 29, 27, 543, DateTimeKind.Local).AddTicks(8510));
+                        .HasDefaultValue(new DateTime(2023, 9, 21, 21, 7, 35, 881, DateTimeKind.Local).AddTicks(8751));
 
                     b.Property<int>("GoodID")
                         .HasColumnType("int");
@@ -511,7 +511,10 @@ namespace InventoryManagementApp.Infrastructure.Migrations
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Good", b =>
                 {
                     b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Barcode")
                         .HasColumnType("nvarchar(max)");
@@ -534,7 +537,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 7, 22, 29, 27, 545, DateTimeKind.Local).AddTicks(3811));
+                        .HasDefaultValue(new DateTime(2023, 9, 21, 21, 7, 35, 885, DateTimeKind.Local).AddTicks(6176));
 
                     b.Property<float?>("GrossWeight")
                         .HasColumnType("real");
@@ -586,13 +589,15 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("BillOfMaterialID")
+                        .IsUnique()
+                        .HasFilter("[BillOfMaterialID] IS NOT NULL");
+
                     b.HasIndex("BrandId");
 
                     b.HasIndex("CategoryID");
 
-                    b.HasIndex("ModelId")
-                        .IsUnique()
-                        .HasFilter("[ModelId] IS NOT NULL");
+                    b.HasIndex("ModelId");
 
                     b.HasIndex("SubCategoryID");
 
@@ -618,9 +623,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("GoodID")
-                        .HasColumnType("int");
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
@@ -1485,7 +1487,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.ProductionOrder", "ProductionOrder")
-                        .WithMany("Consumptions")
+                        .WithMany()
                         .HasForeignKey("ProductionOrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1510,6 +1512,10 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Good", b =>
                 {
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.BillOfMaterial", "BillOfMaterial")
+                        .WithOne("Product")
+                        .HasForeignKey("InventoryManagementApp.Domain.Entities.Concrete.Good", "BillOfMaterialID");
+
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Brand", "Brand")
                         .WithMany("Goods")
                         .HasForeignKey("BrandId");
@@ -1518,15 +1524,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .WithMany("Goods")
                         .HasForeignKey("CategoryID");
 
-                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.BillOfMaterial", "BillOfMaterial")
-                        .WithOne("Product")
-                        .HasForeignKey("InventoryManagementApp.Domain.Entities.Concrete.Good", "ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Model", "Model")
-                        .WithOne("Good")
-                        .HasForeignKey("InventoryManagementApp.Domain.Entities.Concrete.Good", "ModelId");
+                        .WithMany()
+                        .HasForeignKey("ModelId");
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.SubCategory", "SubCategory")
                         .WithMany()
@@ -1878,17 +1878,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Navigation("Reservations");
 
                     b.Navigation("SalesOrderDetails");
-                });
-
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Model", b =>
-                {
-                    b.Navigation("Good")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.ProductionOrder", b =>
-                {
-                    b.Navigation("Consumptions");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.PurchaseOrder", b =>
