@@ -31,6 +31,6 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //Bu üretimin batch numarasını, üretimin productının batch listesine add yapılması gerekiyor
 
-        public List<Consumption>? Consumptions { get; set; }
+        //public List<Consumption>? Consumptions { get; set; }
     }
 }

@@ -40,8 +40,9 @@ namespace InventoryManagementApp.Presentation.Controllers
 			return View(categoryList);
 		}
 
-		//Adding Category
-		[HttpGet]
+        
+        //Adding Category
+        [HttpGet]
 		public IActionResult Create()
 		{
 			CategoryCreateVM categoryCreateVm = new CategoryCreateVM();
