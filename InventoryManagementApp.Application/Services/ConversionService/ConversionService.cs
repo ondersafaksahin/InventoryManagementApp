@@ -14,12 +14,14 @@ namespace InventoryManagementApp.Application.Services.ConversionService
 	public class ConversionService : IConversionService
 	{
 		IConversionRepository _conversionRepository;
+		IGoodRepository _goodRepository;
 		IMapper _mapper;
 
-		public ConversionService(IConversionRepository conversionRepository, IMapper mapper)
+		public ConversionService(IConversionRepository conversionRepository, IMapper mapper, IGoodRepository goodRepository)
 		{
 			_conversionRepository = conversionRepository;
 			_mapper = mapper;
+			_goodRepository = goodRepository;
 		}
 
 
