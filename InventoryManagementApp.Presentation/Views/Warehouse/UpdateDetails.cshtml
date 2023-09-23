@@ -1,10 +1,18 @@
 ﻿@using InventoryManagementApp.Domain.Enums;
+@using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 @{
     ViewData["Title"] = "UpdateDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 @model WarehouseUpdateVM
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <div class="form-floating mb-8 p-4">
     <div class="container-fluid pt-8 px-8">
@@ -16,7 +24,7 @@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">ID</span>
+                                <span class="input-group-text" style="width:150px">ID</span>
                             </div>
                             <input type="text" class="form-control" readonly asp-for="@Model.ID" placeholder="ID" aria-label="IDOfWareHouse">
                         </div>
@@ -25,7 +33,7 @@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Name</span>
+                                <span class="input-group-text" style="width:150px">Name</span>
                             </div>
                             <input type="text" class="form-control" asp-for=@Model.Name placeholder="Name" aria-label="NameOfWarehouse">
                         </div>
@@ -34,7 +42,7 @@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">City</span>
+                                <span class="input-group-text" style="width:150px">City</span>
                             </div>
                             <select class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example" asp-for="@Model.City" asp-items="@Html.GetEnumSelectList<City>()">
@@ -46,7 +54,7 @@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">District</span>
+                                <span class="input-group-text" style="width:150px">District</span>
                             </div>
                             <input type="text" class="form-control" asp-for="@Model.District" placeholder="District" aria-label="District">
                         </div>
@@ -54,7 +62,7 @@
                     <br /><div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Description</span>
+                                <span class="input-group-text" style="width:150px">Description</span>
                             </div>
                             <input type="text" class="form-control" asp-for="@Model.Description" placeholder="Description" aria-label="Description">
                         </div>
@@ -63,34 +71,16 @@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Created Date</span>
+                                <span class="input-group-text" style="width:150px">Last Modified Date</span>
                             </div>
-                            <input type="date" readonly class="form-control" asp-for="@Model.CreatedDate" placeholder="CreatedDate" aria-label="CreatedDate">
+                            <input type="date" readonly class="form-control" asp-for="@Model.ModifiedDate" placeholder="@DateTime.Today.ToString()" aria-label="ModifiedDate" value="@DateTime.Now.ToShortTimeString()">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Created By</span>
-                            </div>
-                            <input type="text" readonly class="form-control" asp-for="@Model.CreatedBy" placeholder="CreatedBy" aria-label="CreatedBy">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Modified Date</span>
-                            </div>
-                            <input type="date" class="form-control" asp-for="@Model.ModifiedDate" placeholder="@DateTime.Today.ToString()" aria-label="ModifiedDate" value="@DateTime.Now.ToShortTimeString()">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Modified By</span>
+                                <span class="input-group-text" style="width:150px">Last Modified By</span>
                             </div>
                             <input type="text" readonly class="form-control" asp-for="@Model.ModifiedBy" placeholder="ModifiedBy" aria-label="ModifiedBy">
                         </div>
@@ -99,7 +89,7 @@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Status</span>
+                                <span class="input-group-text" style="width:150px">Status</span>
                             </div>
                             <select class="form-select" asp-for="@Model.Status" asp-items="@Html.GetEnumSelectList<Status>()">
                                 <option selected style="display:none">@Model.Status</option>
@@ -108,14 +98,188 @@
                     </div>
                     <br />
 
-                    <button type="submit" class="btn btn-outline-success m-2">Save Changes</button>
+                    <button type="submit" class="btn btn-outline-success m-2 float-right">Save Changes</button>
 
-            </form>
-            
+                </form>
+
+                <!--Shelves List of Warehouse -->
+                <br />
+                <br />
+                <div class="col-sm-12 col-xl-12">
+                    <div class="bg-light rounded h-100 p-4">
+                        <h6 class="mb-4">Shelves List</h6>
+
+                        @if (TempData["error"] is not null)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                @TempData["error"]
+                            </div>
+                        }
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary lg" data-toggle="modal" data-target="#exampleModal1">
+                            Add Shelf
+                        </button>
+
+                        <div class="col-12">
+                            <div class="bg-light rounded h-100 p-4">
+                                <div class="d-flex justify-content-between align-items-center" style="margin-bottom:16px">
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table" id="example">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Status</th>
+                                                @*<th scope="col">Created By</th>
+                                                <th scope="col">Created Date</th>
+                                                <th scope="col">Modified By</th>
+                                                <th scope="col">Modified Date</th>*@
+                                                <th scope="col">Description</th>
+                                                <th class="text-center">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var shelf in Model.Shelves)
+                                            {
+                                                <tr>
+                                                    <td id="id">@shelf.ID</td>
+                                                    <td id="name">@shelf.Name</td>
+                                                    <td id="status">@shelf.Status</td>
+                                                    @*<td>@brand.CreatedBy</td>
+                                                <td>@brand.CreatedDate</td>
+                                                <td>@brand.ModifiedBy</td>
+                                                <td>@brand.ModifiedDate</td>*@
+                                                    <td id="description">@shelf.Description</td>
+                                                    <td id="description">@shelf.WarehouseID</td>
+                                                    <td class="text-center">
+                                                        <a class="btn pt-0" asp-action="UpdateShelf" asp-controller="Warehouse" asp-route-id="@shelf.ID" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" title="Update" >
+                                                            <i class="far fa-edit" style="color:coral;font-size:20px"></i>
+                                                        </a>
+                                                        <a class="btn pt-0" asp-action="DeleteShelf" asp-controller="Warehouse" asp-route-id="@shelf.ID" asp-route-warehouseid="@Model.ID" type="button" data-toggle="popover" title="Delete">
+                                                            <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
+                                                        </a>
+
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal hide fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display:none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New Shelf</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <partial name="ShelfCreate" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<!-- Modal For Update Shelf-->
+<div class="modal hide fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true" style="display:none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Update Shelf</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <partial name="_ShelfUpdate" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $('#example').DataTable;
+        });
+    })
+
+    //function openEditModal(id) {
+    //    $.ajax({
+    //        url: '/warehouse/updateshelf/' + id,
+    //        type: 'GET',
+    //        success: function (data) {
+    //            $('#exampleModal2.modal-content').html(data);
+    //            $('#exampleModal2').modal('show');
+    //        }
+    //    });
+    //}
+
+
+    //function EditShelf(id){
+    //    var url= "/Warehouse/UpdateShelf?id="+id;
+    //    $("#exampleModal2").modal();
+    //    $.ajax({
+    //        url:url,
+    //        type:"get",
+    //        success:function(data){
+    //            var obj=JSON.parse(data);
+    //            $("#id").val(obj.ID);
+    //            $("#name").val(obj.Name);
+    //            $("#description").val(obj.Description);
+    //            $("#warehouseid").val(obj.WarehouseID);
+    //            $("#status").val(obj.Status);
+    //        }
+            
+    //    })
+    //}
+
+        //function GetDetails(id) {
+        //    $.ajax({
+        //        url: "/Warehouse/UpdateShelf/" + id,
+        //        typr: "GET",
+        //        contentType: "application/json;charset=UTF-8",
+        //        dataType: "json",
+        //        success: function (response) {
+        //            $('#id').val(response.ID);
+        //            $('#name').val(response.Name);
+        //        $('#description').val(response.Description);
+        //        $('#warehouseid').val(response.WarehouseID);
+        //        $('#status').val(response.Status);
+        //        $('#exampleModal2').modal('show');
+        //        },
+        //        error: function (response) {
+        //            alert(response.responseText);
+        //        }
+        //    });
+        //    return false;
+        //}
+</script>
+
+
 
 
 

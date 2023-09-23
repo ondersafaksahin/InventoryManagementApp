@@ -21,7 +21,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs
         //Navigation Properties
 
         public Warehouse? Warehouse { get; set; }
-        public int? WarehouseID { get; set; }
+        public int WarehouseID { get; set; }
 
         public List<Good>? Goods { get; set; }
     }
