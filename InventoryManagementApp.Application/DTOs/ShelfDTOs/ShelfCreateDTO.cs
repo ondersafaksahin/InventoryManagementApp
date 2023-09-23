@@ -11,8 +11,8 @@ namespace InventoryManagementApp.Application.DTOs.ShelfDTOs
     public class ShelfCreateDTO
     {
         public string? CreatedBy { get; set; }
-        public DateTime? CreatedDate { get; set; } = DateTime.Now;
-        public Status Status { get; set; } = Status.Active;
+        public DateTime? CreatedDate  = DateTime.Now;
+        public Status Status  => Status.Active;
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
 

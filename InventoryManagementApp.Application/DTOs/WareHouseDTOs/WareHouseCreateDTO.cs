@@ -1,4 +1,5 @@
-﻿using InventoryManagementApp.Domain.Entities.Concrete;
+﻿using InventoryManagementApp.Application.DTOs.ShelfDTOs;
+using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -28,10 +29,10 @@ namespace InventoryManagementApp.Application.DTOs.WareHouseDTOs
         public string? Description { get; set; }
         public City? City { get; set; }
         public string? District { get; set; }
-   
+
 
         //Navigation Properties
-
+        public ShelfCreateDTO? ShelfCreateDTO { get; set; }
         public List<Shelf>? Shelves { get; set; }
         public List<Good>? Goods { get; set; }
     }

@@ -1,0 +1,33 @@
+﻿@using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
+@{
+    ViewData["Title"] = "Create";
+}
+
+@model ShelfCreateVM
+
+<h1>Create</h1>
+
+<form method="post" asp-action="ShelfCreate" asp-controller="Warehouse">
+    <div class="form-floating mb-6">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" asp-for=Name placeholder="name" aria-label="Name">
+        </div>
+    </div>
+    <br />
+    <div class="form-floating mb-6">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" asp-for="Description" placeholder="Description" aria-label="Description">
+        </div>
+    </div>
+    <br />
+
+    <br />
+    <div class="form-floating mb-6">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" asp-for=WarehouseID placeholder="District" aria-label="District">
+        </div>
+    </div>
+    <br />
+</form>
+
+
