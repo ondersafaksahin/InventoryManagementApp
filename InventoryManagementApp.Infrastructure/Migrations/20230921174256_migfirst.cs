@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace InventoryManagementApp.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class v1 : Migration
+    public partial class migfirst : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,7 +57,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 9, 7, 9, 48, 52, 16, DateTimeKind.Local).AddTicks(1807)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 9, 21, 20, 42, 56, 366, DateTimeKind.Local).AddTicks(5649)),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
@@ -495,7 +495,8 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 name: "Goods",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StockAmount = table.Column<float>(type: "real", nullable: false),
@@ -513,7 +514,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     CategoryID = table.Column<int>(type: "int", nullable: true),
                     SubCategoryID = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 9, 7, 9, 48, 52, 19, DateTimeKind.Local).AddTicks(2879)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 9, 21, 20, 42, 56, 369, DateTimeKind.Local).AddTicks(7197)),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
@@ -523,11 +524,10 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Goods", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Goods_BillOfMaterials_ID",
-                        column: x => x.ID,
+                        name: "FK_Goods_BillOfMaterials_BillOfMaterialID",
+                        column: x => x.BillOfMaterialID,
                         principalTable: "BillOfMaterials",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Goods_Brands_BrandId",
                         column: x => x.BrandId,
@@ -557,14 +557,14 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 9, 7, 9, 48, 52, 11, DateTimeKind.Local).AddTicks(428)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 9, 21, 20, 42, 56, 361, DateTimeKind.Local).AddTicks(24)),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
                     BatchCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProductionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ExpireDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    GoodID = table.Column<int>(type: "int", nullable: false),
+                    GoodID = table.Column<int>(type: "int", nullable: true),
                     ProductionOrderId = table.Column<int>(type: "int", nullable: true),
                     PurchaseOrderDetailId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -575,8 +575,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         name: "FK_Batches_Goods_GoodID",
                         column: x => x.GoodID,
                         principalTable: "Goods",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -1057,6 +1056,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 name: "IX_Conversions_GoodID",
                 table: "Conversions",
                 column: "GoodID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Goods_BillOfMaterialID",
+                table: "Goods",
+                column: "BillOfMaterialID",
+                unique: true,
+                filter: "[BillOfMaterialID] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Goods_BrandId",

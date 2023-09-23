@@ -40,8 +40,9 @@ namespace InventoryManagementApp.Presentation.Controllers
 			return View(categoryList);
 		}
 
-		//Adding Category
-		[HttpGet]
+        
+        //Adding Category
+        [HttpGet]
 		public IActionResult Create()
 		{
 			CategoryCreateVM categoryCreateVm = new CategoryCreateVM();
@@ -60,7 +61,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 				{
 					var categoryCreateDto = _mapper.Map<CategoryCreateDTO>(categoryCreateVm);
 					await _categoryService.Create(categoryCreateDto);
-					return RedirectToAction("GetAllCategories");
+					return RedirectToAction("GetAllActiveCategories");
 				}
 				catch (Exception ex)
 				{
@@ -76,12 +77,12 @@ namespace InventoryManagementApp.Presentation.Controllers
 			try
 			{
 				await _categoryService.Delete(id);
-				return RedirectToAction("GetAllCategories");
+				return RedirectToAction("GetAllActiveCategories");
 			}
 			catch (Exception ex)
 			{
 				TempData["error"] = ex.Message;
-				return RedirectToAction("GetAllCategories");
+				return RedirectToAction("GetAllActiveCategories");
 			}
 		}
 
