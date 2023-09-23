@@ -16,6 +16,7 @@ namespace InventoryManagementApp.Infrastructure.EntitiyMapping
             base.Configure(builder);
             builder.HasKey(x => x.ID);
             builder.HasOne(x => x.BillOfMaterial).WithOne(x => x.Product).HasForeignKey<Good>(x => x.BillOfMaterialID);
+            builder.HasOne(x => x.Brand).WithMany(x => x.Goods).HasForeignKey(x => x.BrandId);
         }
     }
 

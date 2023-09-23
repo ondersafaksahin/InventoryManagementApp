@@ -13,7 +13,6 @@ namespace InventoryManagementApp.Application.DTOs.ConversionDTOs
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; } = DateTime.Now;
         public Status Status { get; set; } = Status.Active;
-        public virtual Good Good { get; set; }
         public int GoodID { get; set; }
         public float BaseGoodAmount { get; set; }
         public UnitType BaseUnit { get; set; }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagementApp.Infrastructure.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    [Migration("20230921174256_migfirst")]
-    partial class migfirst
+    [Migration("20230923175219_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -184,7 +184,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 21, 20, 42, 56, 361, DateTimeKind.Local).AddTicks(24));
+                        .HasDefaultValue(new DateTime(2023, 9, 23, 20, 52, 19, 211, DateTimeKind.Local).AddTicks(7864));
 
                     b.Property<DateTime?>("ExpireDate")
                         .HasColumnType("datetime2");
@@ -233,7 +233,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 21, 20, 42, 56, 366, DateTimeKind.Local).AddTicks(5649));
+                        .HasDefaultValue(new DateTime(2023, 9, 23, 20, 52, 19, 213, DateTimeKind.Local).AddTicks(1639));
 
                     b.Property<int>("GoodID")
                         .HasColumnType("int");
@@ -537,7 +537,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 21, 20, 42, 56, 369, DateTimeKind.Local).AddTicks(7197));
+                        .HasDefaultValue(new DateTime(2023, 9, 23, 20, 52, 19, 213, DateTimeKind.Local).AddTicks(9665));
 
                     b.Property<float?>("GrossWeight")
                         .HasColumnType("real");
@@ -597,9 +597,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.HasIndex("CategoryID");
 
-                    b.HasIndex("ModelId")
-                        .IsUnique()
-                        .HasFilter("[ModelId] IS NOT NULL");
+                    b.HasIndex("ModelId");
 
                     b.HasIndex("SubCategoryID");
 
@@ -625,9 +623,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("GoodID")
-                        .HasColumnType("int");
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
@@ -1530,8 +1525,8 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .HasForeignKey("CategoryID");
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Model", "Model")
-                        .WithOne("Good")
-                        .HasForeignKey("InventoryManagementApp.Domain.Entities.Concrete.Good", "ModelId");
+                        .WithMany()
+                        .HasForeignKey("ModelId");
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.SubCategory", "SubCategory")
                         .WithMany()
@@ -1883,12 +1878,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Navigation("Reservations");
 
                     b.Navigation("SalesOrderDetails");
-                });
-
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Model", b =>
-                {
-                    b.Navigation("Good")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.PurchaseOrder", b =>
