@@ -154,9 +154,10 @@
                                                     <td id="description">@shelf.Description</td>
                                                     <td id="description">@shelf.WarehouseID</td>
                                                     <td class="text-center">
-                                                        <a class="btn pt-0" asp-action="UpdateShelf" asp-controller="Warehouse" asp-route-id="@shelf.ID" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" title="Update" >
+                                                        <a onclick="showInPopup('@Url.Action("UpdateShelf","Warehouse",new {id=shelf.ID},Context.Request.Scheme)')" class="btn pt-0">
                                                             <i class="far fa-edit" style="color:coral;font-size:20px"></i>
                                                         </a>
+
                                                         <a class="btn pt-0" asp-action="DeleteShelf" asp-controller="Warehouse" asp-route-id="@shelf.ID" asp-route-warehouseid="@Model.ID" type="button" data-toggle="popover" title="Delete">
                                                             <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
                                                         </a>
@@ -226,6 +227,19 @@
             $('#example').DataTable;
         });
     })
+
+    function showInPopup(url){
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function (res) {
+            $("#exampleModal2 .modal-body").html(res);
+            $("#exampleModal2").modal('show');
+        }
+
+    })
+}
+
 
     //function openEditModal(id) {
     //    $.ajax({
