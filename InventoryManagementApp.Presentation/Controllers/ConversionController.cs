@@ -45,8 +45,7 @@ namespace InventoryManagementApp.Presentation.Controllers
         public async Task<IActionResult> Create()
         {
             var conversionCreateVM = new ConversionCreateVM();
-            var selectList = new SelectList(await _goodService.GetDefaults(x => x.Status == Domain.Enums.Status.Active));
-            conversionCreateVM.GoodsList = selectList;
+            conversionCreateVM.GoodsList = await _goodService.GetDefaults(x => x.Status == Domain.Enums.Status.Active);
             return View(conversionCreateVM);
         }
 
@@ -64,15 +63,15 @@ namespace InventoryManagementApp.Presentation.Controllers
                     }
                     await _conversionService.Create(conversion);
                     return RedirectToAction("GetAllActive");
-                }
+            }
                 catch (Exception ex)
                 {
-                    TempData["error"] = ex.Message;
-                }
+                TempData["error"] = ex.Message;
             }
+        }
             else
             {
-                TempData["error"] = ModelState.Values.First().Errors[0].ErrorMessage;
+                TempData["error"] = ModelState.Values.First(x => x.ValidationState == Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Invalid).Errors[0].ErrorMessage;
             }
             return View(conversionCreateVM);
         }

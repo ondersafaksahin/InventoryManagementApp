@@ -1,9 +1,11 @@
+
 ﻿using InventoryManagementApp.Application.DTOs.BrandDTOs;
 using InventoryManagementApp.Application.DTOs.CategoryDTOs;
 using InventoryManagementApp.Application.DTOs.ModelDTOs;
 using InventoryManagementApp.Application.DTOs.SubCategoryDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.Enums;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,7 @@ namespace InventoryManagementApp.Application.DTOs.GoodDTOs
 {
     public class GoodCreateDTO
     {
+
         public string Name { get; set; }
         public string? Picture { get; set; }
         public float StockAmount { get; set; }
@@ -42,6 +45,7 @@ namespace InventoryManagementApp.Application.DTOs.GoodDTOs
         
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
+
         public Status Status { get; set; } = Status.Active;
     }
 }

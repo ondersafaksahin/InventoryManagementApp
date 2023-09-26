@@ -1,0 +1,34 @@
+﻿@model WarehouseUpdateVM
+
+<form method="post" asp-action="ShelfCreate" asp-controller="Warehouse">
+    <div class="form-floating mb-6">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="width:120px">Name</span>
+            </div>
+            <input type="text" class="form-control" asp-for=newShelf.Name placeholder="Name" aria-label="Name">
+        </div>
+    </div>
+   
+    <div class="form-floating mb-6">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="width:120px">Description</span>
+            </div>
+            <input type="text" class="form-control" asp-for="newShelf.Description" placeholder="Description" aria-label="Description">
+        </div>
+    </div>
+    
+    <div class="form-floating mb-6">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="width:120px">Warehouse ID</span>
+            </div>
+            <input type="text" class="form-control" asp-for=newShelf.WarehouseID readonly placeholder="District" aria-label="District" value=@Model.ID>
+        </div>
+    </div>
+   
+
+    <button type="submit" class="btn btn-outline-success m-2 float-right">Add Shelf</button>
+
+</form>

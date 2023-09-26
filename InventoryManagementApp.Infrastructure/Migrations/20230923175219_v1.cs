@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace InventoryManagementApp.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class migfirst : Migration
+    public partial class v1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,7 +57,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 9, 21, 20, 42, 56, 366, DateTimeKind.Local).AddTicks(5649)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 9, 23, 20, 52, 19, 213, DateTimeKind.Local).AddTicks(1639)),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
@@ -142,8 +142,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GoodID = table.Column<int>(type: "int", nullable: false)
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -514,7 +513,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     CategoryID = table.Column<int>(type: "int", nullable: true),
                     SubCategoryID = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 9, 21, 20, 42, 56, 369, DateTimeKind.Local).AddTicks(7197)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 9, 23, 20, 52, 19, 213, DateTimeKind.Local).AddTicks(9665)),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
@@ -557,7 +556,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 9, 21, 20, 42, 56, 361, DateTimeKind.Local).AddTicks(24)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 9, 23, 20, 52, 19, 211, DateTimeKind.Local).AddTicks(7864)),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
@@ -1077,9 +1076,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Goods_ModelId",
                 table: "Goods",
-                column: "ModelId",
-                unique: true,
-                filter: "[ModelId] IS NOT NULL");
+                column: "ModelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Goods_SubCategoryID",

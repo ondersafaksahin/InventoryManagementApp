@@ -1,5 +1,8 @@
-﻿using InventoryManagementApp.Domain.Entities.Concrete;
+
+
 using InventoryManagementApp.Domain.Enums;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace InventoryManagementApp.Presentation.Models.ViewModels.CategoryVMs
 {

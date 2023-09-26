@@ -23,8 +23,15 @@
                 <form method="post" asp-action="Create" asp-controller="Conversion">
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
-                            <select class="form-select" asp-for="@Model.Good" asp-items="@Model.GoodsList" placeholder="Good" aria-label="Good">
-                                <option selected>Choose the good to add conversion...</option>
+                            <select class="form-select" asp-for="@Model.GoodID" placeholder="Good" aria-label="Good">
+                                <option selected value="">Choose the good to add conversion...</option>
+                                @if (Model.GoodsList != null)
+                                {
+                                    @foreach (var item in Model.GoodsList)
+                                    {
+                                        <option value="@item.ID">@item.Name</option>
+                                    }   
+                                }
                             </select>
                         </div>
                     </div>

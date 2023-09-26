@@ -1,0 +1,52 @@
+﻿@using InventoryManagementApp.Domain.Enums;
+@model WarehouseUpdateVM
+
+<form method="post" asp-action="UpdateShelf" asp-controller="Warehouse">
+    <div class="form-floating mb-6">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="width:120px">ID</span>
+            </div>
+            <input type="text" class="form-control" readonly itemid="id" asp-for="updateShelf.ID" placeholder="ID" aria-label="ID" >
+        </div>
+    </div>
+    <div class="form-floating mb-6">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="width:120px">Name</span>
+            </div>
+            <input type="text" id="name" class="form-control" asp-for="updateShelf.Name" placeholder="Name" aria-label="Name">
+        </div>
+    </div>
+    <div class="form-floating mb-6">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="width:120px">Description</span>
+            </div>
+            <input type="text" class="form-control" id="decription" asp-for="updateShelf.Description" placeholder="Description" aria-label="Description">
+        </div>
+    </div>
+    <div class="form-floating mb-6">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="width:120px">Warehouse ID</span>
+            </div>
+            <input type="text" id="warehouseid" class="form-control" asp-for=updateShelf.WarehouseID readonly aria-label="">
+        </div>
+    </div>
+
+    <div class="form-floating mb-6">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="width:120px">Status</span>
+            </div>
+            <select class="form-select" id="status" asp-for="updateShelf.Status" asp-items="@Html.GetEnumSelectList<Status>()">
+                <option selected style="display:none"></option>
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-outline-success m-2 float-right">Update Shelf</button>
+
+</form>
+
+
