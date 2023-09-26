@@ -23,7 +23,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //Additional Properties
 
-        public string Name { get; set; }
+        public string SubCategoryName { get; set; }
         public string? Description { get; set; }
 
 

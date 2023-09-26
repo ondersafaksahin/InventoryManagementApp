@@ -17,7 +17,7 @@ namespace InventoryManagementApp.Application.DTOs.ModelDTOs
         public Status Status { get; set; }
 
         public int ID { get; set; }
-        public string Name { get; set; }
+        public string ModelName { get; set; }
         public string? Description { get; set; }
         public string? Code { get; set; }
         public virtual Good Good { get; set; }

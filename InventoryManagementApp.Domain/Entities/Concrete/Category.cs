@@ -24,7 +24,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //Additional Properties
 
-        public string Name{ get; set; }
+        public string CategoryName{ get; set; }
         public string? Description { get; set; }
 
         //Navigation Properties

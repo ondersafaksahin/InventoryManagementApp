@@ -1,15 +1,22 @@
 ﻿using AutoMapper;
+using InventoryManagementApp.Application.DTOs.BrandDTOs;
 using InventoryManagementApp.Application.DTOs.CategoryDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
+using InventoryManagementApp.Application.DTOs.ModelDTOs;
+using InventoryManagementApp.Application.DTOs.SubCategoryDTOs;
 using InventoryManagementApp.Application.Services.BrandService;
 using InventoryManagementApp.Application.Services.CategoryService;
 using InventoryManagementApp.Application.Services.GoodService;
 using InventoryManagementApp.Application.Services.ModelService;
 using InventoryManagementApp.Application.Services.SubCategoryService;
+using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.CategoryVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.ModelVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.SubCategoryVMs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Data;
 
 namespace InventoryManagementApp.Presentation.Controllers
@@ -42,6 +49,14 @@ namespace InventoryManagementApp.Presentation.Controllers
         {
             return View();
         }
+       
+        public async Task<IActionResult> GetSubcategories(int categoryId)
+        {
+            var dto = await _subCategoryService.GetDefaults(x=>x.CategoryID==categoryId); // Burada, categoryId'ye göre ilgili subcategory verilerini almalısınız.
+       
+            return Json(dto); // Verileri JSON olarak döndürün
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CategoryCreateVM categoryCreateVm)
@@ -51,8 +66,64 @@ namespace InventoryManagementApp.Presentation.Controllers
                 try
                 {
                     var categoryCreateDto = _mapper.Map<CategoryCreateDTO>(categoryCreateVm);
-                    categoryCreateDto.Name = categoryCreateVm.CategoryName;
                     await _categoryService.Create(categoryCreateDto);
+                    return RedirectToAction("Create");
+                }
+                catch (Exception ex)
+                {
+                    TempData["error"] = ex.Message;
+                }
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateModel(ModelCreateVM modelCreateVm)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var modelCreateDto = _mapper.Map<ModelCreateDTO>(modelCreateVm);
+                    await _modelService.Create(modelCreateDto);
+                    return RedirectToAction("Create");
+                }
+                catch (Exception ex)
+                {
+                    TempData["error"] = ex.Message;
+                }
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateBrand(BrandCreateVM brandCreateVm)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var brandCreateDto = _mapper.Map<BrandCreateDTO>(brandCreateVm);
+                    await _brandService.Create(brandCreateDto);
+                    return RedirectToAction("Create");
+                }
+                catch (Exception ex)
+                {
+                    TempData["error"] = ex.Message;
+                }
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateSubCategory(SubCategoryCreateVM subCategoryCreateVm)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var subCategoryCreateDto = _mapper.Map<SubCategoryCreateDTO>(subCategoryCreateVm);
+                    await _subCategoryService.Create(subCategoryCreateDto);
                     return RedirectToAction("Create");
                 }
                 catch (Exception ex)

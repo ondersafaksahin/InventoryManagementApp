@@ -12,6 +12,6 @@ namespace InventoryManagementApp.Application.DTOs.BrandDTOs
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; } = DateTime.Now;
         public Status Status { get; set; } = Status.Active;
-        public string Name { get; set; }
+        public string BrandName { get; set; }
     }
 }

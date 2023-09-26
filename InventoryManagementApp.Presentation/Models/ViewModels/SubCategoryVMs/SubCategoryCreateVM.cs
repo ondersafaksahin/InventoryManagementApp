@@ -6,7 +6,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.SubCategoryVMs
 {
 	public class SubCategoryCreateVM
 	{
-        public string Name { get; set; }
+        public string SubCategoryName { get; set; }
         public string? Description { get; set; }
         public Status Status => Status.Active;
         public int CategoryID { get; set; }

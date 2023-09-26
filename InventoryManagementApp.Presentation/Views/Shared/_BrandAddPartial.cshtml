@@ -1,0 +1,31 @@
+﻿@using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
+
+@model BrandCreateVM
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdropBrand" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Brand</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form class="form fv-plugins-bootstrap5 fv-plugins-framework" method="post">
+                    @* Remove the unnecessary hidden input for ID if not needed *@
+
+                    <div class="mb-2">
+                        <label asp-for="BrandName">Brand Name</label>
+                        <input type="text" asp-for="BrandName" class="form-control" placeholder="Brand Name" />
+                    </div>                 
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" formaction="/Good/CreateBrand">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
