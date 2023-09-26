@@ -2,6 +2,6 @@
 {
     public class BrandCreateVM
     {
-        public string Name { get; set; }
+        public string BrandName { get; set; }
     }
 }

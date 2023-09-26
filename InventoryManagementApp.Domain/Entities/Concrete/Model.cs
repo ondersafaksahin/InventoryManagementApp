@@ -24,7 +24,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //Additional Properties
 
-        public string Name { get; set; }
+        public string ModelName { get; set; }
         public string? Description { get; set; }
         public string? Code { get; set; }
 

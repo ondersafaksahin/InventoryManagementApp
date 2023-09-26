@@ -15,7 +15,7 @@
                 <form method="post" asp-action="Create" asp-controller="SubCategory">
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" asp-for=@Model.Name placeholder="Name" aria-label="NameOfSubCategory">
+                            <input type="text" class="form-control" asp-for=@Model.SubCategoryName placeholder="Name" aria-label="NameOfSubCategory">
                         </div>
                     </div>
                     <br />
@@ -31,7 +31,7 @@
                                 <option selected value="0">Select Category... </option>
                                 @foreach (var item in Model.CategoryList)
                                 {
-                                    <option value="@item.ID">@item.Name</option>
+                                    <option value="@item.ID">@item.CategoryName</option>
                                 }
                             </select>
                         </div>

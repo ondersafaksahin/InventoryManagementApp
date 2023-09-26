@@ -15,6 +15,6 @@ namespace InventoryManagementApp.Application.DTOs.BrandDTOs
         public DateTime? ModifiedDate { get; set; }
         public Status Status { get; set; }
         public int ID { get; set; }
-        public string Name { get; set; }
+        public string BrandName { get; set; }
     }
 }

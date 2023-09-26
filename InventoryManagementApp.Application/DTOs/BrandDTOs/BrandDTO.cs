@@ -23,7 +23,7 @@ namespace InventoryManagementApp.Application.DTOs.BrandDTOs
 
         //Additional Properties
 
-        public string Name { get; set; }
+        public string BrandName { get; set; }
 
         //Navigation Properties
 

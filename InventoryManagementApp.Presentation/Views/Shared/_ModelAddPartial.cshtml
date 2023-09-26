@@ -1,12 +1,13 @@
-﻿@using InventoryManagementApp.Presentation.Models.ViewModels.CategoryVMs;
-@model CategoryCreateVM
+﻿@using InventoryManagementApp.Presentation.Models.ViewModels.ModelVMs;
+
+@model ModelCreateVM
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdropModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Category</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Model</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -15,19 +16,24 @@
                     @* Remove the unnecessary hidden input for ID if not needed *@
 
                     <div class="mb-2">
-                        <label asp-for="CategoryName">Category Name</label>
-                        <input type="text" asp-for="CategoryName" class="form-control" placeholder="Name" />
+                        <label asp-for="ModelName">Model Name</label>
+                        <input type="text" asp-for="ModelName" class="form-control" placeholder="Name" />
                     </div>
                     <div class="mb-2">
                         <label asp-for="Description"></label>
                         <input type="text" asp-for="Description" class="form-control" placeholder="Description" />
                     </div>
+                    <div class="mb-2">
+                        <label asp-for="Code"></label>
+                        <input type="text" asp-for="Code" class="form-control" placeholder="Code" />
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" formaction="/Good/CreateCategory">Create</button>
+                        <button type="submit" class="btn btn-primary" formaction="/Good/CreateModel">Create</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+

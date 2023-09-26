@@ -11,5 +11,8 @@ namespace InventoryManagementApp.Application.DTOs.ModelDTOs
     {
         public DateTime? CreatedDate { get; set; } = DateTime.Now;
         public Status Status { get; set; } = Status.Active;
+        public string ModelName { get; set; }
+        public string? Description { get; set; }
+        public string? Code { get; set; }
     }
 }
