@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagementApp.Infrastructure.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    [Migration("20230922114250_migName")]
-    partial class migName
+    [Migration("20231004102113_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -184,7 +184,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 22, 14, 42, 49, 432, DateTimeKind.Local).AddTicks(7971));
+                        .HasDefaultValue(new DateTime(2023, 10, 4, 13, 21, 12, 925, DateTimeKind.Local).AddTicks(111));
 
                     b.Property<DateTime?>("ExpireDate")
                         .HasColumnType("datetime2");
@@ -233,7 +233,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 22, 14, 42, 49, 444, DateTimeKind.Local).AddTicks(3684));
+                        .HasDefaultValue(new DateTime(2023, 10, 4, 13, 21, 12, 927, DateTimeKind.Local).AddTicks(370));
 
                     b.Property<int>("GoodID")
                         .HasColumnType("int");
@@ -537,7 +537,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 22, 14, 42, 49, 448, DateTimeKind.Local).AddTicks(6135));
+                        .HasDefaultValue(new DateTime(2023, 10, 4, 13, 21, 12, 928, DateTimeKind.Local).AddTicks(6643));
 
                     b.Property<float?>("GrossWeight")
                         .HasColumnType("real");

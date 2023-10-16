@@ -193,7 +193,7 @@
                         <div class="form-floating mb-6">
                             <div class="input-group mb-3" id="design">
                                 <select class="form-select" id="floatingSelect-design" aria-label="Floating label select example" asp-for="@Model.ModelID">
-                                    <option selected value="0">Select Model... </option>
+                                    <option selected value="">Select Model... </option>
                                     @if (Model.CategoryList != null)
                                     {
                                         @foreach (var item in Model.BrandList)
@@ -213,7 +213,7 @@
                         <div class="form-floating mb-6">
                             <div class="input-group mb-3" id="design">
                                 <select class="form-select" id="floatingSelect-design" aria-label="Floating label select example" asp-for="@Model.BrandID">
-                                    <option selected value="0">Select Brand... </option>
+                                    <option selected value="">Select Brand... </option>
                                     @if (Model.CategoryList != null)
                                     {
                                         @foreach (var item in Model.ModelList)
