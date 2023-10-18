@@ -1,4 +1,5 @@
-﻿using InventoryManagementApp.Domain.Entities.Concrete;
+﻿using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
+using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -10,26 +11,12 @@ namespace InventoryManagementApp.Application.DTOs.ShelfDTOs
 {
     public class ShelfCreateDTO
     {
-        public string? CreatedBy { get; set; }
-        public DateTime? CreatedDate  = DateTime.Now;
-        public Status Status  => Status.Active;
-        public string? ModifiedBy { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-
-
-        //IEntity
-        public int ID { get; set; }
-
-        //Additional Properties
-
+        public Status Status => Status.Active;
         public string Name { get; set; }
         public string? Description { get; set; }
 
-        //Navigation Properties
+        public int WarehouseID { get; set; }
 
-        public Warehouse? Warehouse { get; set; }
-        public int? WarehouseID { get; set; }
-
-        public List<Good>? Goods { get; set; }
+        public List<WareHouseListDTO>? WareHouseList { get; set; }
     }
 }

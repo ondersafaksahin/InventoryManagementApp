@@ -29,7 +29,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //Navigation Properties
 
-        public Warehouse? Warehouse { get; set; }
+        virtual public Warehouse? Warehouse { get; set; }
         public int? WarehouseID { get; set; }
 
         public List<Good>? Goods { get; set; }

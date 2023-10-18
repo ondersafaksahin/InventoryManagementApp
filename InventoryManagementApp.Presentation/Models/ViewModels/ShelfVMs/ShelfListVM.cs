@@ -1,5 +1,7 @@
-﻿using InventoryManagementApp.Domain.Entities.Concrete;
+﻿using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
+using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.Enums;
+using InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs;
 
 namespace InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs
 {
@@ -19,7 +21,6 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs
         public string? Description { get; set; }
 
         //Navigation Properties
-
         public Warehouse? Warehouse { get; set; }
         public int? WarehouseID { get; set; }
 
