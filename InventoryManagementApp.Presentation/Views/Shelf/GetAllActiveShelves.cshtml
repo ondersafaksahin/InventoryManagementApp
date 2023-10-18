@@ -37,9 +37,7 @@
                             <td>@shelf.Name</td>
                             <td>@shelf.Status</td>
                             <td>@shelf.Description</td>
-                            <td>@shelf.WarehouseID</td>
-
-@*                            <td>
+                            <td>
                                 @if (shelf.Warehouse != null)
                                 {
                                     @shelf.Warehouse.Name
@@ -48,7 +46,7 @@
                                 {
                                     @TempData["error"]
                                 }
-                            </td>*@
+                            </td>
                             <td class="text-center">
                                 <a class="btn pt-0" asp-action="UpdateDetails" asp-controller="Shelf" asp-route-id="@shelf.ID" type="button" data-toggle="popover" title="Update">
                                     <i class="far fa-edit" style="color:coral;font-size:20px"></i>
