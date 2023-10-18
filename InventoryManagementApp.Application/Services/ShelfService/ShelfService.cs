@@ -27,7 +27,20 @@ namespace InventoryManagementApp.Application.Services.ShelfService
         }
         public async Task<List<ShelfListDTO>> All()
         {
-            return _mapper.Map<List<ShelfListDTO>>(await _shelfRepository.GetAll());
+           var list = _mapper.Map<List<ShelfListDTO>>(await _shelfRepository.GetAll());
+            var warehouse = await _wareHouseRepository.GetAll();
+
+            foreach (var item in list)
+            {
+                foreach (var wh in warehouse)
+                {
+                    if (wh.ID == item.WarehouseID)
+                    {
+                        item.Warehouse = wh;
+                    }
+                }
+            }
+            return list;
         }
 
         public async Task Create(ShelfCreateDTO createDTO)
