@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Proxies;
+using System.Reflection.Emit;
+
 
 namespace InventoryManagementApp.Infrastructure.DataAccess
 {
@@ -51,5 +54,7 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
 			builder.ApplyConfiguration(new GoodMapping());
             base.OnModelCreating(builder);
         }
+
+
     }
 }

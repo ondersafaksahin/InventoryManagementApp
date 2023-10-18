@@ -3,6 +3,7 @@ using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.Services.GoodService;
 using InventoryManagementApp.Application.Services.ShelfService;
+using InventoryManagementApp.Application.Services.WareHouseService;
 using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 using Microsoft.AspNetCore.Mvc;
@@ -17,12 +18,14 @@ namespace InventoryManagementApp.Presentation.Controllers
         private readonly IShelfService _shelfService;
         private readonly IMapper _mapper;
         IWebHostEnvironment _webHostEnvironment;
+        private readonly IWareHouseService _wareHouseService;
 
-        public ShelfController(IShelfService shelfService, IMapper mapper, IWebHostEnvironment webHostEnvironment)
+        public ShelfController(IShelfService shelfService, IMapper mapper, IWebHostEnvironment webHostEnvironment, IWareHouseService wareHouseService)
         {
             _shelfService = shelfService;
             _mapper = mapper;
             _webHostEnvironment = webHostEnvironment;
+            _wareHouseService = wareHouseService;
 
         }
         public IActionResult Index()
@@ -31,17 +34,22 @@ namespace InventoryManagementApp.Presentation.Controllers
         }
 
         //Listing only active shelves
+        [Route("[controller]/ListActive")]
         public async Task<IActionResult> GetAllActiveShelves()
         {
+            
             var shelfListDTO = await _shelfService.GetDefaults(x => x.Status == Domain.Enums.Status.Active);
+
             var shelfListVM = _mapper.Map<List<ShelfListVM>>(shelfListDTO);
+
+                     
 
             return View(shelfListVM);
         }
 
 
         //Listing all shelves
-
+        [Route("[controller]/List")]
         public async Task<IActionResult> GetAllShelves()
         {
             List<ShelfListVM> shelfList = _mapper.Map<List<ShelfListVM>>(await _shelfService.All());
@@ -50,10 +58,10 @@ namespace InventoryManagementApp.Presentation.Controllers
 
         //Adding Shelf
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             ShelfCreateVM shelfCreateVm = new ShelfCreateVM();
-
+            shelfCreateVm.WareHouseList = await _wareHouseService.All();
             return View(shelfCreateVm);
 
         }
@@ -68,7 +76,7 @@ namespace InventoryManagementApp.Presentation.Controllers
                 {
                     var shelfCreateDto = _mapper.Map<ShelfCreateDTO>(shelfCreateVm);
                     await _shelfService.Create(shelfCreateDto);
-                    return RedirectToAction("GetAllShelves");
+                    return RedirectToAction("GetAllActiveShelves");
                 }
                 catch (Exception ex)
                 {
@@ -96,7 +104,7 @@ namespace InventoryManagementApp.Presentation.Controllers
         }
 
 
-
+        [Route("[controller]/Edit/{id}")]
         [HttpGet]
         public async Task<IActionResult> UpdateDetails(int id)
         {
@@ -114,7 +122,7 @@ namespace InventoryManagementApp.Presentation.Controllers
                 return View(shelfUpdateVm);
             }
         }
-
+        [Route("[controller]/Edit/{id}")]
         [HttpPost]
         public async Task<IActionResult> UpdateDetails(ShelfUpdateVM vm)
         {
