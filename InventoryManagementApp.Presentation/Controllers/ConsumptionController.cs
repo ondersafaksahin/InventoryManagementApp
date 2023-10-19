@@ -80,7 +80,7 @@ namespace InventoryManagementApp.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            var consumptionVM = _mapper.Map<ConsumptionUpdateVM>(_consumptionService.GetById(id));
+            var consumptionVM = _mapper.Map<ConsumptionUpdateVM>(await _consumptionService.GetById(id));
             return View(consumptionVM);
         }
 
