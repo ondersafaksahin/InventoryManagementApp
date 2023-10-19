@@ -23,8 +23,9 @@ namespace InventoryManagementApp.Presentation.Controllers
 			return View();
 		}
 
-		//Listing Only Active Categories
-		public async Task<IActionResult> GetAllActiveCategories()
+        //Listing Only Active Categories
+        [Route("[controller]/ListActive")]
+        public async Task<IActionResult> GetAllActiveCategories()
 		{
 			var categoryListDTO = await _categoryService.GetDefaults(x => x.Status == Domain.Enums.Status.Active);
 			var categoryListVM = _mapper.Map<List<CategoryListVM>>(categoryListDTO);
@@ -32,9 +33,9 @@ namespace InventoryManagementApp.Presentation.Controllers
 			return View(categoryListVM);
 		}
 
-		//Listing All Categories
-
-		public async Task<IActionResult> GetAllCategories()
+        //Listing All Categories
+        [Route("[controller]/List")]
+        public async Task<IActionResult> GetAllCategories()
 		{
 			List<CategoryListVM> categoryList = _mapper.Map<List<CategoryListVM>>(await _categoryService.All());
 			return View(categoryList);
