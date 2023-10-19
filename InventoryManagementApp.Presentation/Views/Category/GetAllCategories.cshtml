@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Categories List";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @model List<CategoryListVM>
@@ -25,12 +24,8 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Status</th>
                         <th scope="col">Description</th>
-                        <th scope="col">Created By</th>
-                        <th scope="col">Created Date</th>
-                        <th scope="col">Modified By</th>
-                        <th scope="col">Modified Date</th> 
+                        <th scope="col">Status</th>
                         <th class="text-center" scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -39,22 +34,9 @@
                     {
                         <tr>
                             <th scope="row">@category.ID</th>
-                            <td>@category.Name</td>
-                            <td>@category.Status</td>
+                            <td>@category.CategoryName</td>
                             <td>@category.Description</td>
-                            <td>@category.CreatedBy</td>
-                            <td>@category.CreatedDate.Value.ToShortDateString()</td>
-                            <td>@category.ModifiedBy</td>
-                            <td>
-                                @if (category.ModifiedDate is null)
-                                {
-                                    @category.ModifiedDate
-                                }
-                                else
-                                {
-                                    @category.ModifiedDate.Value.ToShortDateString()
-                                }
-                            </td>
+                            <td>@category.Status</td>
                             <td class="text-center">
                                 <a class="btn pt-0" asp-action="UpdateDetails" asp-controller="Category" asp-route-id="@category.ID" type="button" data-toggle="popover" title="Update">
                                     <i class="far fa-edit" style="color:coral;font-size:20px"></i>
@@ -72,10 +54,10 @@
 </div>
 
 <script>
-$(function() {
-  $(document).ready(function() {
-    $('#example').DataTable;
-  });
-});
+    $(function () {
+        $(document).ready(function () {
+            $('#example').DataTable;
+        });
+    });
 </script>
 

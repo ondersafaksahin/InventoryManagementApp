@@ -10,7 +10,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.CategoryVMs
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public Status Status { get; set; }
-        public string Name { get; set; }
+        public string CategoryName { get; set; }
         public string? Description { get; set; }
     }
 }
