@@ -26,13 +26,19 @@ namespace InventoryManagementApp.Presentation.Controllers
             return View();
         }
 
+        [Route("[controller]/ListActive")]
         public async Task<IActionResult> GetAllActive()
         {
             var conversionList = await _conversionService.GetDefaults(x => x.Status == Domain.Enums.Status.Active);
             var conversionListVM = _mapper.Map<List<ConversionListVM>>(conversionList);
+            foreach (var item in conversionListVM)
+            {
+                item.Good = _goodService.GetById(item.GoodID).Result.Name;
+            }
             return View(conversionListVM); 
         }
 
+        [Route("[controller]/List")]
         public async Task<IActionResult> GetAll()
         {
             var conversionList = await _conversionService.All();
@@ -62,7 +68,7 @@ namespace InventoryManagementApp.Presentation.Controllers
                         conversion.CreatedBy = User.Identity.Name;
                     }
                     await _conversionService.Create(conversion);
-                    return RedirectToAction("GetAllActive");
+                    return RedirectToAction("ListActive");
             }
                 catch (Exception ex)
                 {
@@ -77,7 +83,7 @@ namespace InventoryManagementApp.Presentation.Controllers
         }
         #endregion
 
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id,bool active)
         {
             try
             {
@@ -87,7 +93,11 @@ namespace InventoryManagementApp.Presentation.Controllers
             {
                 TempData["Error"] = ex.Message;
             }
-            return RedirectToAction("GetAllActive");
+            if (active)
+            {
+                return RedirectToAction("GetAllActive");
+            }
+            return RedirectToAction("GetAll");
         }
 
 
@@ -98,7 +108,7 @@ namespace InventoryManagementApp.Presentation.Controllers
             {
                 return NotFound();
             }
-                var conversionVM = _mapper.Map<ConversionUpdateVM>(_conversionService.GetById(id));
+                var conversionVM = _mapper.Map<ConversionUpdateVM>(await _conversionService.GetById(id));
                 return View(conversionVM);
         }
 
