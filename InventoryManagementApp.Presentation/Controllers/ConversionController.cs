@@ -43,6 +43,10 @@ namespace InventoryManagementApp.Presentation.Controllers
         {
             var conversionList = await _conversionService.All();
             var conversionListVM = _mapper.Map<List<ConversionListVM>>(conversionList);
+            foreach (var item in conversionListVM)
+            {
+                item.Good = _goodService.GetById(item.GoodID).Result.Name;
+            }
             return View(conversionListVM);
         }
 
@@ -104,12 +108,10 @@ namespace InventoryManagementApp.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            if (_conversionService.GetById(id) is null)
-            {
-                return NotFound();
-            }
-                var conversionVM = _mapper.Map<ConversionUpdateVM>(await _conversionService.GetById(id));
-                return View(conversionVM);
+            var conversion = await _conversionService.GetById(id);
+            var conversionVM = _mapper.Map<ConversionUpdateVM>(conversion);
+            ViewBag.goodName = (await _goodService.GetById(conversion.GoodID)).Name;
+            return View(conversionVM);
         }
 
         [HttpPost]

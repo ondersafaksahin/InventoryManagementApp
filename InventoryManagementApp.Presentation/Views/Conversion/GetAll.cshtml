@@ -45,10 +45,10 @@
                             <td>@conversion.FinalGoodAmount</td>
                             <td>@conversion.FinalUnit</td>
                             <td class="text-center">
-                                <a class="btn pt-0" asp-action="UpdateDetails" asp-controller="Conversion" asp-route-id="@conversion.ID" type="button" data-toggle="popover" title="Update" asp-route-active=false>
+                                <a class="btn pt-0" asp-action="Update" asp-controller="Conversion" asp-route-id="@conversion.ID" type="button" data-toggle="popover" title="Update">
                                     <i class="far fa-edit" style="color:coral;font-size:20px"></i>
                                 </a>
-                                <a class="btn pt-0" asp-action="Delete" asp-controller="Conversion" asp-route-id="@conversion.ID" type="button" data-toggle="popover" title="Delete">
+                                <a class="btn pt-0" asp-action="Delete" asp-controller="Conversion" asp-route-id="@conversion.ID" type="button" data-toggle="popover" title="Delete" asp-route-active=false>
                                     <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
                                 </a>
                             </td>
