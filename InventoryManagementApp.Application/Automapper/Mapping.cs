@@ -103,9 +103,10 @@ namespace InventoryManagementApp.Application.Automapper
 			CreateMap<Conversion, ConversionUpdateDTO>().ReverseMap();
 			CreateMap<Conversion, ConversionListDTO>().ReverseMap();
 			CreateMap<Conversion, ConversionDTO>().ReverseMap();
+            CreateMap<ConversionUpdateDTO, ConversionDTO>().ReverseMap();
 
-			//Customer
-			CreateMap<Customer, CustomerCreateDTO>().ReverseMap();
+            //Customer
+            CreateMap<Customer, CustomerCreateDTO>().ReverseMap();
             CreateMap<Customer, CustomerUpdateDTO>().ReverseMap();
             CreateMap<Customer, CustomerListDTO>().ReverseMap();
             CreateMap<Customer, CustomerDTO>().ReverseMap();
