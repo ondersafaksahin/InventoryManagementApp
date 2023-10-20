@@ -108,6 +108,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 			{
                 return RedirectToAction("GetAllActiveSuppliers");
             }
+
 			return RedirectToAction("GetAllSuppliers");
 		}
 	}
