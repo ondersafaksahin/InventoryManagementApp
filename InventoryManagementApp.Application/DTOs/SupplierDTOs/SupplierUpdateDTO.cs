@@ -10,10 +10,9 @@ namespace InventoryManagementApp.Application.DTOs.SupplierDTOs
 	public class SupplierUpdateDTO
 	{
         public int ID { get; set; }
-        public string? CreatedBy { get; set; }
-        public DateTime? CreatedDate { get; set; }
+        public Status Status { get; set; }
         public string? ModifiedBy { get; set; }
-        public DateTime? ModifiedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; } = DateTime.Now;
         public string Name { get; set; }
         public string? Contact { get; set; }
         public City? City { get; set; }

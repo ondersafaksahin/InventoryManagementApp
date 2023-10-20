@@ -16,7 +16,12 @@
                 <form method="post" asp-action="UpdateDetails" asp-controller="Supplier">
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" readonly asp-for="@Model.ID" placeholder="ID" aria-label="IDOfSupplier">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Status</span>
+                            </div>
+                            <select class="form-select" asp-for="@Model.Status" asp-items="@Html.GetEnumSelectList<Status>()">
+                                <option selected style="display:none">@Model.Status</option>
+                            </select>
                         </div>
                     </div>
                     <br />
@@ -65,31 +70,6 @@
                         </div>
                     </div>
                     <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" readonly asp-for="@Model.CreatedBy" placeholder="CreatedBy" aria-label="CreatedByOfSupplier">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <input type="date" class="form-control" readonly asp-for="@Model.CreatedDate" placeholder="CreatedDate" aria-label="CreatedDateOfCustomer">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" readonly asp-for="@Model.ModifiedBy" placeholder="ModifiedBy" aria-label="ModifiedByOfSupplier">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <input type="date" class="form-control" readonly asp-for="@Model.ModifiedDate" placeholder="ModifiedDate" aria-label="ModifiedDateOfSupplier">
-                        </div>
-                    </div>
-                    <br />
-
                     <button type="submit" class="btn btn-outline-success m-2">Save Changes</button>
 
                 </form>

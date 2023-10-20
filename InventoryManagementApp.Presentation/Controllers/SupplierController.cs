@@ -70,19 +70,26 @@ namespace InventoryManagementApp.Presentation.Controllers
 		}
 
 		//Delete Supplier
-		public async Task<IActionResult> Delete(int id)
+		public async Task<IActionResult> Delete(int id,bool active)
 		{
 			try
 			{
 				await _supplierService.Delete(id);
-				return RedirectToAction("GetAllSuppliers");
+				if (active)
+				{
+                    return RedirectToAction("GetAllActiveSuppliers");
+                }
 			}
 			catch (Exception ex)
 			{
 				TempData["error"] = ex.Message;
-				return RedirectToAction("GetAllSuppliers");
+                if (active)
+                {
+                    return RedirectToAction("GetAllActiveSuppliers");
+                }  
 			}
-		}
+            return RedirectToAction("GetAllSuppliers");
+        }
 
 		//Update Supplier
 		[HttpGet]
@@ -100,15 +107,10 @@ namespace InventoryManagementApp.Presentation.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> UpdateDetails(SupplierUpdateVM supplierUpdateVm,bool active)
+		public async Task<IActionResult> UpdateDetails(SupplierUpdateVM supplierUpdateVm)
 		{
 			var supplierUpdateDto = _mapper.Map<SupplierUpdateDTO>(supplierUpdateVm);
 			await _supplierService.Update(supplierUpdateDto);
-			if (active)
-			{
-                return RedirectToAction("GetAllActiveSuppliers");
-            }
-
 			return RedirectToAction("GetAllSuppliers");
 		}
 	}

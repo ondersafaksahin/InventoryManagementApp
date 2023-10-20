@@ -206,9 +206,10 @@ namespace InventoryManagementApp.Application.Automapper
 			CreateMap<Supplier, SupplierUpdateDTO>().ReverseMap();
 			CreateMap<Supplier, SupplierListDTO>().ReverseMap();
 			CreateMap<Supplier, SupplierDTO>().ReverseMap();
+            CreateMap<SupplierUpdateDTO, SupplierDTO>().ReverseMap();
 
-			//Warehouse
-			CreateMap<Warehouse, WareHouseCreateDTO>().ReverseMap();
+            //Warehouse
+            CreateMap<Warehouse, WareHouseCreateDTO>().ReverseMap();
             CreateMap<Warehouse, WareHouseUpdateDTO>().ReverseMap();
             CreateMap<Warehouse, WareHouseListDTO>().ReverseMap();
             CreateMap<Warehouse, WareHouseDTO>().ReverseMap();
