@@ -48,7 +48,9 @@ namespace InventoryManagementApp.Application.Services.SupplierService
 
 		public async Task Update(SupplierUpdateDTO updateDTO)
 		{
-			await _supplierRepository.Update(_mapper.Map<Supplier>(updateDTO));
+			var supplier = await GetById(updateDTO.ID);
+			var updatedSupplier = _mapper.Map(updateDTO, supplier);
+			await _supplierRepository.Update(_mapper.Map<Supplier>(updatedSupplier));
 		}
 	}
 }
