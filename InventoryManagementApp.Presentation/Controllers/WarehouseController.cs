@@ -35,6 +35,7 @@ namespace InventoryManagementApp.Presentation.Controllers
         }
 
         //Listing only active warehouses
+        [Route("[controller]/ListActive")]
         public async Task<IActionResult> GetAllActiveWarehouses()
         {
             var warehouseListDTO = await _warehouseService.GetDefaults(x => x.Status == Domain.Enums.Status.Active);
@@ -45,7 +46,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 
 
         //Listing all warehouses
-
+        [Route("[controller]/List")]
         public async Task<IActionResult> GetAllWarehouses()
         {
             List<WarehouseListVM> warehouseList = _mapper.Map<List<WarehouseListVM>>(await _warehouseService.All());

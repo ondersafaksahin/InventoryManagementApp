@@ -24,6 +24,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 		}
 
 		//Listing Only Active Customers
+		[Route("[controller]/ListActive")]
 		public async Task<IActionResult> GetAllActiveCustomers()
 		{
 			var customerListDTO = await _customerService.GetDefaults(x => x.Status == Domain.Enums.Status.Active);
@@ -31,8 +32,9 @@ namespace InventoryManagementApp.Presentation.Controllers
 			return View(customerListVM);
 		}
 
-		//Listing All Customers
-		public async Task<IActionResult> GetAllCustomers()
+        //Listing All Customers
+        [Route("[controller]/List")]
+        public async Task<IActionResult> GetAllCustomers()
 		{
 			List<CustomerListVM> customerList = _mapper.Map<List<CustomerListVM>>(await _customerService.All());
 			return View(customerList);
