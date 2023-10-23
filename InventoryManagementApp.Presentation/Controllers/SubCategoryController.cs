@@ -25,8 +25,9 @@ namespace InventoryManagementApp.Presentation.Controllers
 			return View();
 		}
 
-		//Listing Only Active SubCategories
-		public async Task<IActionResult> GetAllActiveSubCategories()
+        //Listing Only Active SubCategories
+        [Route("[controller]/ListActive")]
+        public async Task<IActionResult> GetAllActiveSubCategories()
 		{
 			var subCategoryListDTO = await _subCategoryService.GetDefaults(x => x.Status == Domain.Enums.Status.Active);
 			var subCategoryListVM = _mapper.Map<List<SubCategoryListVM>>(subCategoryListDTO);
@@ -34,9 +35,9 @@ namespace InventoryManagementApp.Presentation.Controllers
 
 		}
 
-		//Listing All SubCategories
-
-		public async Task<IActionResult> GetAllSubCategories()
+        //Listing All SubCategories
+        [Route("[controller]/List")]
+        public async Task<IActionResult> GetAllSubCategories()
 		{
 			List<SubCategoryListVM> subCategoryListVMs = _mapper.Map<List<SubCategoryListVM>>(await _subCategoryService.All());
 			return View(subCategoryListVMs);
@@ -60,7 +61,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 				{
 					var subCategoryCreateDto = _mapper.Map<SubCategoryCreateDTO>(subCategoryCreateVm);
 					await _subCategoryService.Create(subCategoryCreateDto);
-					return RedirectToAction("GetAllSubCategories");
+					return RedirectToAction("GetAllActiveSubCategories");
 				}
 				catch (Exception ex)
 				{
@@ -76,16 +77,17 @@ namespace InventoryManagementApp.Presentation.Controllers
 			try
 			{
 				await _subCategoryService.Delete(id);
-				return RedirectToAction("GetAllSubCategories");
+				return RedirectToAction("GetAllActiveSubCategories");
 			}
 			catch (Exception ex)
 			{
 				TempData["error"] = ex.Message;
-				return RedirectToAction("GetAllSubCategories");
+				return RedirectToAction("GetAllActiveSubCategories");
 			}
 		}
 
-		[HttpGet]
+        [Route("[controller]/Edit/{id}")]
+        [HttpGet]
 		public async Task<IActionResult> UpdateDetails(int id)
 		{
 			if (await _subCategoryService.GetById(id) == null)
@@ -100,7 +102,8 @@ namespace InventoryManagementApp.Presentation.Controllers
 			}
 		}
 
-		[HttpPost]
+        [Route("[controller]/Edit/{id}")]
+        [HttpPost]
 		public async Task<IActionResult> UpdateDetails(SubCategoryUpdateVM subCategoryUpdateVm)
 		{
 
@@ -108,5 +111,6 @@ namespace InventoryManagementApp.Presentation.Controllers
 			await _subCategoryService.Update(subCategoryUpdateDto);
 			return RedirectToAction("GetAllActiveSubCategories");
 		}
+
 	}
 }

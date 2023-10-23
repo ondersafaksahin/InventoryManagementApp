@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.CategoryDTOs;
-using InventoryManagementApp.Application.DTOs.ShelfDTOs;
-using InventoryManagementApp.Application.Services.BrandService;
+using InventoryManagementApp.Application.DTOs.ModelDTOs;
+using InventoryManagementApp.Application.DTOs.SubCategoryDTOs;
 using InventoryManagementApp.Application.Services.CategoryService;
+using InventoryManagementApp.Application.Services.SubCategoryService;
 using InventoryManagementApp.Presentation.Models.ViewModels.CategoryVMs;
-using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.SubCategoryVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagementApp.Presentation.Controllers
@@ -13,12 +15,14 @@ namespace InventoryManagementApp.Presentation.Controllers
 	{
 		private readonly IMapper _mapper;
 		private readonly ICategoryService _categoryService;
-		public CategoryController(IMapper mapper, ICategoryService categoryService)
-		{
-			_mapper = mapper;
-			_categoryService = categoryService;
-		}
-		public IActionResult Index()
+		private readonly ISubCategoryService _subCategoryService;
+        public CategoryController(IMapper mapper, ICategoryService categoryService, ISubCategoryService subCategoryService)
+        {
+            _mapper = mapper;
+            _categoryService = categoryService;
+            _subCategoryService = subCategoryService;
+        }
+        public IActionResult Index()
 		{
 			return View();
 		}
@@ -87,7 +91,8 @@ namespace InventoryManagementApp.Presentation.Controllers
 			}
 		}
 
-		[HttpGet]
+        [Route("[controller]/Edit/{id}")]
+        [HttpGet]
 		public async Task<IActionResult> UpdateDetails(int id)
 		{
 			if (await _categoryService.GetById(id) == null)
@@ -101,7 +106,8 @@ namespace InventoryManagementApp.Presentation.Controllers
 			}
 		}
 
-		[HttpPost]
+        [Route("[controller]/Edit/{id}")]
+        [HttpPost]
 		public async Task<IActionResult> UpdateDetails(CategoryUpdateVM categoryUpdateVm)
 		{
 
@@ -110,5 +116,25 @@ namespace InventoryManagementApp.Presentation.Controllers
 			return RedirectToAction("GetAllActiveCategories");
 		}
 
-	}
+        [HttpPost]
+        public async Task<IActionResult> CreateSubCategory(CategoryUpdateVM categoryUpdateVM)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var subCategoryCreateDto = _mapper.Map<SubCategoryCreateDTO>(categoryUpdateVM.newSubCategory);
+                    await _subCategoryService.Create(subCategoryCreateDto);
+                    CategoryUpdateVM category = _mapper.Map<CategoryUpdateVM>(await _categoryService.GetById(categoryUpdateVM.newSubCategory.CategoryID));
+                    return RedirectToAction("GetAllActiveCategories");
+                }
+                catch (Exception ex)
+                {
+                    TempData["error"] = ex.Message;
+                }
+            }
+            return View();
+        }
+
+    }
 }

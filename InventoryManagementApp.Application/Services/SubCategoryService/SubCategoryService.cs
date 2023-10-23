@@ -14,16 +14,32 @@ namespace InventoryManagementApp.Application.Services.SubCategoryService
 	public class SubCategoryService : ISubCategoryService
 	{
 		ISubCategoryRepository _subCategoryRepository;
+		ICategoryRepository _categoryRepository;
 		IMapper _mapper;
-		public SubCategoryService(IMapper mapper, ISubCategoryRepository subCategoryRepository)
+        public SubCategoryService(IMapper mapper, ISubCategoryRepository subCategoryRepository, ICategoryRepository categoryRepository)
         {
-			_mapper = mapper;
-			_subCategoryRepository = subCategoryRepository;
-		}
+            _mapper = mapper;
+            _subCategoryRepository = subCategoryRepository;
+            _categoryRepository = categoryRepository;
+        }
         public async Task<List<SubCategoryListDTO>> All()
 		{
-			return _mapper.Map<List<SubCategoryListDTO>>(await _subCategoryRepository.GetAll());
-		}
+            var list = _mapper.Map<List<SubCategoryListDTO>>(await _subCategoryRepository.GetAll());
+            var category = await _categoryRepository.GetAll();
+            foreach (var item in list)
+            {
+                foreach (var ct in category)
+                {
+                    if (ct.ID == item.CategoryID)
+                    {
+                        item.Category = ct;
+                    }
+                }
+            }
+
+            return list;
+
+        }
 
 		public async Task Create(SubCategoryCreateDTO createDTO)
 		{
@@ -42,8 +58,22 @@ namespace InventoryManagementApp.Application.Services.SubCategoryService
 
 		public async Task<List<SubCategoryListDTO>> GetDefaults(Expression<Func<SubCategory, bool>> expression)
 		{
-			return _mapper.Map<List<SubCategoryListDTO>>(await _subCategoryRepository.GetDefaults(expression));
-		}
+            var list = _mapper.Map<List<SubCategoryListDTO>>(await _subCategoryRepository.GetDefaults(expression));
+            var category = await _categoryRepository.GetAll();
+            foreach (var item in list)
+            {
+                foreach (var ct in category)
+                {
+                    if (ct.ID == item.CategoryID)
+                    {
+                        item.Category = ct;
+                    }
+                }
+            }
+
+            return list;
+
+        }
 
 		public async Task Update(SubCategoryUpdateDTO updateDTO)
 		{
