@@ -28,17 +28,18 @@ namespace InventoryManagementApp.Application.Services.ShelfService
         public async Task<List<ShelfListDTO>> All()
         {
            var list = _mapper.Map<List<ShelfListDTO>>(await _shelfRepository.GetAll());
-            var warehouse = await _wareHouseRepository.GetAll();
 
             foreach (var item in list)
             {
-                foreach (var wh in warehouse)
-                {
-                    if (wh.ID == item.WarehouseID)
-                    {
-                        item.Warehouse = wh;
-                    }
-                }
+                var warehouse1 = _wareHouseRepository.GetById(x=>x.ID==item.WarehouseID);
+                item.Warehouse = warehouse1.Result;
+                //foreach (var wh in warehouse)
+                //{
+                //    if (wh.ID == item.WarehouseID)
+                //    {
+                //        item.Warehouse = wh;
+                //    }
+                //}
             }
             return list;
         }
@@ -60,28 +61,27 @@ namespace InventoryManagementApp.Application.Services.ShelfService
         public async Task<ShelfDTO> GetById(int id)
         {
             var shelf = await _shelfRepository.GetById(x => x.ID == id);
-
             return _mapper.Map<ShelfDTO>(shelf);
         }
-
 
 
         public async Task<List<ShelfListDTO>> GetDefaults(Expression<Func<Shelf, bool>> expression)
         { 
             var list = _mapper.Map<List<ShelfListDTO>>(await _shelfRepository.GetDefaults(expression));
-            var warehouse =await _wareHouseRepository.GetAll();
 
             foreach (var item in list)
             {
-                foreach (var wh in warehouse)
-                {
-                    if(wh.ID == item.WarehouseID)
-                    {
-                        item.Warehouse = wh;
-                    }
-                }
+                var warehouse1 = _wareHouseRepository.GetById(x => x.ID == item.WarehouseID);
+                item.Warehouse = warehouse1.Result;
+                //foreach (var wh in warehouse)
+                //{
+                //    if (wh.ID == item.WarehouseID)
+                //    {
+                //        item.Warehouse = wh;
+                //    }
+                //}
             }
-        
+
             return list;
 
         }

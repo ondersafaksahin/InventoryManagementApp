@@ -24,6 +24,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 		}
 
 		//Listing Only Active Suppliers
+		[Route("[controller]/ListActive")]
 		public async Task<IActionResult> GetAllActiveSuppliers()
 		{
 			var supplierListDTO = await _supplierService.GetDefaults(x => x.Status == Domain.Enums.Status.Active);
@@ -31,8 +32,9 @@ namespace InventoryManagementApp.Presentation.Controllers
 			return View(supplierListVM);
 		}
 
-		//Listing All Suppliers
-		public async Task<IActionResult> GetAllSuppliers()
+        //Listing All Suppliers
+        [Route("[controller]/List")]
+        public async Task<IActionResult> GetAllSuppliers()
 		{
 			List<SupplierListVM> supplierList = _mapper.Map<List<SupplierListVM>>(await _supplierService.All());
 			return View(supplierList);
@@ -68,19 +70,26 @@ namespace InventoryManagementApp.Presentation.Controllers
 		}
 
 		//Delete Supplier
-		public async Task<IActionResult> Delete(int id)
+		public async Task<IActionResult> Delete(int id,bool active)
 		{
 			try
 			{
 				await _supplierService.Delete(id);
-				return RedirectToAction("GetAllSuppliers");
+				if (active)
+				{
+                    return RedirectToAction("GetAllActiveSuppliers");
+                }
 			}
 			catch (Exception ex)
 			{
 				TempData["error"] = ex.Message;
-				return RedirectToAction("GetAllSuppliers");
+                if (active)
+                {
+                    return RedirectToAction("GetAllActiveSuppliers");
+                }  
 			}
-		}
+            return RedirectToAction("GetAllSuppliers");
+        }
 
 		//Update Supplier
 		[HttpGet]
@@ -100,10 +109,9 @@ namespace InventoryManagementApp.Presentation.Controllers
 		[HttpPost]
 		public async Task<IActionResult> UpdateDetails(SupplierUpdateVM supplierUpdateVm)
 		{
-
 			var supplierUpdateDto = _mapper.Map<SupplierUpdateDTO>(supplierUpdateVm);
 			await _supplierService.Update(supplierUpdateDto);
-			return RedirectToAction("GetAllActiveSuppliers");
+			return RedirectToAction("GetAllSuppliers");
 		}
 	}
 }
