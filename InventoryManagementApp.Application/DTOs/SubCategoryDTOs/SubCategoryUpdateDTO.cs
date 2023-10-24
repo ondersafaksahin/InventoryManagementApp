@@ -10,6 +10,7 @@ namespace InventoryManagementApp.Application.DTOs.SubCategoryDTOs
 {
 	public class SubCategoryUpdateDTO
 	{
+        public int ID { get; set; }
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; } = DateTime.Now;
         public Status Status { get; set; }

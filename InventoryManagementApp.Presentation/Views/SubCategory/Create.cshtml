@@ -31,7 +31,7 @@
                                 <option selected value="0">Select Category... </option>
                                 @foreach (var item in Model.CategoryList)
                                 {
-                                    <option value="@item.ID">@item.CategoryName</option>
+                                    <option value="@item.Value">@item.Text</option>
                                 }
                             </select>
                         </div>

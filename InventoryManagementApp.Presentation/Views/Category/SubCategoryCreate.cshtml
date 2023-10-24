@@ -1,39 +1,37 @@
-﻿
-
-@model CategoryUpdateVM
+﻿@model CategoryUpdateVM
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdropSubCategory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">SubCategory</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
 
-            <div class="modal-body">
-                <form class="form fv-plugins-bootstrap5 fv-plugins-framework" method="post">
-                    @* Remove the unnecessary hidden input for ID if not needed *@
-
-                    <div class="mb-2">
-                        <label asp-for="newSubCategory.SubCategoryName">SubCategory Name</label>
-                        <input type="text" asp-for="newSubCategory.SubCategoryName" class="form-control" placeholder="Name" />
-                    </div>
-                    <div class="mb-2">
-                        <label asp-for="newSubCategory.Description"></label>
-                        <input type="text" asp-for="newSubCategory.Description" class="form-control" placeholder="Description" />
-                    </div>
-                    <div class="mb-2">
-                        <label asp-for="newSubCategory.CategoryID"></label>
-                        <input type="text" asp-for="newSubCategory.CategoryID" readonly class="form-control" placeholder="Description" value="@Model.ID" />
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" formaction="/Category/CreateSubCategory">Create</button>
-                    </div>
-                </form>
+<form method="post" asp-action="CreateSubCategory" asp-controller="Category">
+    <div class="form-floating mb-6">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="width:120px">Name</span>
             </div>
+            <input type="text" class="form-control" asp-for=newSubCategory.SubCategoryName placeholder="Name" aria-label="Name">
         </div>
     </div>
-</div>
+
+    <div class="form-floating mb-6">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="width:120px">Description</span>
+            </div>
+            <input type="text" class="form-control" asp-for="newSubCategory.Description" placeholder="Description" aria-label="Description">
+        </div>
+    </div>
+
+    <div class="form-floating mb-6">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="width:120px">Category ID</span>
+            </div>
+            <input type="text" class="form-control" asp-for=newSubCategory.CategoryID readonly placeholder="District" aria-label="District" value=@Model.ID>
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-outline-success m-2 float-right">Add SubCategory</button>
+
+</form>
 

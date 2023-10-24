@@ -19,6 +19,6 @@ namespace InventoryManagementApp.Application.DTOs.SubCategoryDTOs
         public string SubCategoryName { get; set; }
         public string? Description { get; set; }
         public int CategoryID { get; set; }
-        public Category? Category { get; set; }
+        public Category Category { get; set; }
     }
 }

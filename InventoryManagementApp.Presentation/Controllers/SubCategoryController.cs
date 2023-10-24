@@ -6,6 +6,7 @@ using InventoryManagementApp.Application.Services.SubCategoryService;
 using InventoryManagementApp.Presentation.Models.ViewModels.CategoryVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.SubCategoryVMs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InventoryManagementApp.Presentation.Controllers
 {
@@ -47,15 +48,22 @@ namespace InventoryManagementApp.Presentation.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Create()
 		{
-			SubCategoryCreateVM subCategoryCreateVM = new SubCategoryCreateVM();
-			subCategoryCreateVM.CategoryList = await _categoryService.All();
+			SubCategoryCreateVM subCategoryCreateVM = new SubCategoryCreateVM()
+			{
+				CategoryList = await GetCategory()
+			};
             return View(subCategoryCreateVM);
 		}
 
 		[HttpPost]
 		public async Task<IActionResult> Create(SubCategoryCreateVM subCategoryCreateVm)
 		{
-			if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+            {
+                subCategoryCreateVm.CategoryList = await GetCategory();
+                return View(subCategoryCreateVm);
+            }
+            if (ModelState.IsValid)
 			{
 				try
 				{
@@ -97,7 +105,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 			else
 			{
 				SubCategoryUpdateVM subCategoryUpdateVm = _mapper.Map<SubCategoryUpdateVM>(await _subCategoryService.GetById(id));
-                subCategoryUpdateVm.CategoryList = await _categoryService.All();
+                subCategoryUpdateVm.CategoryList = await GetCategory();
                 return View(subCategoryUpdateVm);
 			}
 		}
@@ -112,5 +120,16 @@ namespace InventoryManagementApp.Presentation.Controllers
 			return RedirectToAction("GetAllActiveSubCategories");
 		}
 
-	}
+        private async Task<SelectList> GetCategory()
+        {
+			var getCategorys = await _categoryService.All();
+
+            return new SelectList(getCategorys.Select(x => new SelectListItem
+            {
+                Value = x.ID.ToString(),
+                Text = x.CategoryName
+            }), "Value", "Text");
+        }
+
+    }
 }

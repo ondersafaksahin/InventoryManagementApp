@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
+using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.DTOs.SubCategoryDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.IRepositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace InventoryManagementApp.Application.Services.SubCategoryService
 {
@@ -25,18 +22,13 @@ namespace InventoryManagementApp.Application.Services.SubCategoryService
         public async Task<List<SubCategoryListDTO>> All()
 		{
             var list = _mapper.Map<List<SubCategoryListDTO>>(await _subCategoryRepository.GetAll());
-            var category = await _categoryRepository.GetAll();
+
             foreach (var item in list)
             {
-                foreach (var ct in category)
-                {
-                    if (ct.ID == item.CategoryID)
-                    {
-                        item.Category = ct;
-                    }
-                }
+                var category = _categoryRepository.GetById(x => x.ID == item.CategoryID);
+                item.Category = category.Result;
+             
             }
-
             return list;
 
         }
@@ -59,16 +51,11 @@ namespace InventoryManagementApp.Application.Services.SubCategoryService
 		public async Task<List<SubCategoryListDTO>> GetDefaults(Expression<Func<SubCategory, bool>> expression)
 		{
             var list = _mapper.Map<List<SubCategoryListDTO>>(await _subCategoryRepository.GetDefaults(expression));
-            var category = await _categoryRepository.GetAll();
+
             foreach (var item in list)
             {
-                foreach (var ct in category)
-                {
-                    if (ct.ID == item.CategoryID)
-                    {
-                        item.Category = ct;
-                    }
-                }
+                var category1 = _categoryRepository.GetById(x => x.ID == item.CategoryID);
+                item.Category = category1.Result;              
             }
 
             return list;
@@ -79,5 +66,7 @@ namespace InventoryManagementApp.Application.Services.SubCategoryService
 		{
 			await _subCategoryRepository.Update(_mapper.Map<SubCategory>(updateDTO));
 		}
-	}
+
+        
+    }
 }

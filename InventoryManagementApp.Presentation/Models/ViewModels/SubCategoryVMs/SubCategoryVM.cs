@@ -1,5 +1,6 @@
 ﻿using InventoryManagementApp.Application.DTOs.CategoryDTOs;
 using InventoryManagementApp.Domain.Enums;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InventoryManagementApp.Presentation.Models.ViewModels.SubCategoryVMs
 {
@@ -8,6 +9,6 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.SubCategoryVMs
         public string SubCategoryName { get; set; }
         public string? Description { get; set; }
         public int CategoryID { get; set; }
-        public List<CategoryListDTO>? CategoryList { get; set; }
+        public SelectList? CategoryList { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿
+﻿@using InventoryManagementApp.Domain.Enums;
+
 @{
     ViewData["Title"] = "UpdateDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,6 +14,14 @@
             <div class="bg-light rounded h-100 p-4">
                 <h4 class="mb-4">Update SubCategory</h4>
                 <form method="post" asp-action="UpdateDetails" asp-controller="SubCategory">
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="width:150px">ID</span>
+                            </div>
+                            <input type="text" class="form-control" readonly asp-for=@Model.ID placeholder="Name" aria-label="IDOfSubCategory">
+                        </div>
+                    </div>
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -40,13 +49,24 @@
                                 <option selected value="0">Select Category... </option>
                                 @foreach (var item in Model.CategoryList)
                                 {
-                                    <option value="@item.ID">@item.CategoryName</option>
+                                    <option value="@item.Value">@item.Text</option>
                                 }
                             </select>
                         </div>
                     </div>
                     <br />
-                    
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Status</span>
+                            </div>
+                            <select class="form-select" asp-for="@Model.Status" asp-items="@Html.GetEnumSelectList<Status>()">
+                                <option selected style="display:none">@Model.Status</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+
 
                     <button type="submit" class="btn btn-outline-success m-2">Save Changes</button>
 

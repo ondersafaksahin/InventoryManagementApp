@@ -12,5 +12,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.CategoryVMs
 
         //Navigation Properties
         public SubCategoryCreateVM? newSubCategory { get; set; }
+        public SubCategoryUpdateVM? updateSubCategory { get; set; }
+        public List<SubCategoryListVM>? SubCategories { get; set; }
     }
 }
