@@ -47,9 +47,7 @@ namespace InventoryManagementApp.Application.Services.CategoryService
 
 		public async Task Update(CategoryUpdateDTO updateDTO)
 		{
-			var category = await _categoryRepository.GetById(x=>x.ID==updateDTO.ID);
-			var updatedCategory = _mapper.Map(updateDTO, category);
-			await _categoryRepository.Update(_mapper.Map<Category>(updatedCategory));
-		}
+            await _categoryRepository.Update(_mapper.Map<Category>(updateDTO));
+        }
 	}
 }

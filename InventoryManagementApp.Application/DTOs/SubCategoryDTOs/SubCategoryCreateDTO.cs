@@ -15,8 +15,8 @@ namespace InventoryManagementApp.Application.DTOs.SubCategoryDTOs
         public string? Description { get; set; }
         public int CategoryID { get; set; }
         public Category Category { get; set; }
-        public DateTime? CreatedDate { get; set; } = DateTime.Now;
-        public Status Status { get; set; } = Status.Active;
+        public DateTime? CreatedDate => DateTime.Now;
+        public Status Status => Status.Active;
 
     }
 }

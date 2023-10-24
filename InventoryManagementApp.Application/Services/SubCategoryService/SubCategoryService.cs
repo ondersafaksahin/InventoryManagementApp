@@ -1,29 +1,37 @@
 ﻿using AutoMapper;
+using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.DTOs.SubCategoryDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.IRepositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace InventoryManagementApp.Application.Services.SubCategoryService
 {
 	public class SubCategoryService : ISubCategoryService
 	{
 		ISubCategoryRepository _subCategoryRepository;
+		ICategoryRepository _categoryRepository;
 		IMapper _mapper;
-		public SubCategoryService(IMapper mapper, ISubCategoryRepository subCategoryRepository)
+        public SubCategoryService(IMapper mapper, ISubCategoryRepository subCategoryRepository, ICategoryRepository categoryRepository)
         {
-			_mapper = mapper;
-			_subCategoryRepository = subCategoryRepository;
-		}
+            _mapper = mapper;
+            _subCategoryRepository = subCategoryRepository;
+            _categoryRepository = categoryRepository;
+        }
         public async Task<List<SubCategoryListDTO>> All()
 		{
-			return _mapper.Map<List<SubCategoryListDTO>>(await _subCategoryRepository.GetAll());
-		}
+            var list = _mapper.Map<List<SubCategoryListDTO>>(await _subCategoryRepository.GetAll());
+
+            foreach (var item in list)
+            {
+                var category = _categoryRepository.GetById(x => x.ID == item.CategoryID);
+                item.Category = category.Result;
+             
+            }
+            return list;
+
+        }
 
 		public async Task Create(SubCategoryCreateDTO createDTO)
 		{
@@ -42,12 +50,23 @@ namespace InventoryManagementApp.Application.Services.SubCategoryService
 
 		public async Task<List<SubCategoryListDTO>> GetDefaults(Expression<Func<SubCategory, bool>> expression)
 		{
-			return _mapper.Map<List<SubCategoryListDTO>>(await _subCategoryRepository.GetDefaults(expression));
-		}
+            var list = _mapper.Map<List<SubCategoryListDTO>>(await _subCategoryRepository.GetDefaults(expression));
+
+            foreach (var item in list)
+            {
+                var category1 = _categoryRepository.GetById(x => x.ID == item.CategoryID);
+                item.Category = category1.Result;              
+            }
+
+            return list;
+
+        }
 
 		public async Task Update(SubCategoryUpdateDTO updateDTO)
 		{
 			await _subCategoryRepository.Update(_mapper.Map<SubCategory>(updateDTO));
 		}
-	}
+
+        
+    }
 }
