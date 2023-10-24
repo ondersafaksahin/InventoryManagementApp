@@ -1,0 +1,86 @@
+﻿@using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
+@using InventoryManagementApp.Domain.Enums;
+
+@{
+    ViewData["Title"] = "UpdateDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model ShelfUpdateVM
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<div class="form-floating mb-8 p-4">
+    <div class="container-fluid pt-8 px-8">
+
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h4 class="mb-4">Update Shelf</h4>
+                <form method="post" asp-action="UpdateDetails" asp-controller="Shelf">
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="width:150px">ID</span>
+                            </div>
+                            <input type="text" class="form-control" readonly asp-for="@Model.ID" placeholder="ID" aria-label="IDOfWareHouse">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="width:150px">Name</span>
+                            </div>
+                            <input type="text" class="form-control" asp-for=@Model.Name placeholder="Name" aria-label="NameOfWarehouse">
+                        </div>
+                    </div>
+<div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="width:150px">Description</span>
+                            </div>
+                            <input type="text" class="form-control" asp-for="@Model.Description" placeholder="Description" aria-label="Description">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="width:150px">Last Modified Date</span>
+                            </div>
+                            <input type="date" readonly class="form-control" asp-for="@Model.ModifiedDate" placeholder="@DateTime.Today.ToString()" aria-label="ModifiedDate" value="@DateTime.Now.ToShortTimeString()">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="width:150px">Last Modified By</span>
+                            </div>
+                            <input type="text" readonly class="form-control" asp-for="@Model.ModifiedBy" placeholder="ModifiedBy" aria-label="ModifiedBy">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="width:150px">Status</span>
+                            </div>
+                            <select class="form-select" asp-for="@Model.Status" asp-items="@Html.GetEnumSelectList<Status>()">
+                                <option selected style="display:none">@Model.Status</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" readonly hidden class="form-control" asp-for="@Model.WarehouseID">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-outline-success m-2 float-right">Save Changes</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
