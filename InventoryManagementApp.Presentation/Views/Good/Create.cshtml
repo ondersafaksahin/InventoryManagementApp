@@ -1,4 +1,5 @@
 ﻿@using InventoryManagementApp.Domain.Enums;
+@using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
 @using InventoryManagementApp.Presentation.Models.ViewModels.ModelVMs;
 
 @{
@@ -192,9 +193,9 @@
                         <br />
                         <div class="form-floating mb-6">
                             <div class="input-group mb-3" id="design">
-                                <select class="form-select" id="floatingSelect-design" aria-label="Floating label select example" asp-for="@Model.ModelID">
-                                    <option selected value="">Select Model... </option>
-                                    @if (Model.CategoryList != null)
+                                <select class="form-select" id="floatingSelect-design" aria-label="Floating label select example" asp-for="@Model.BrandID">
+                                    <option selected value="">Select Brand... </option>
+                                    @if (Model.BrandList != null)
                                     {
                                         @foreach (var item in Model.BrandList)
                                         {
@@ -212,9 +213,9 @@
                         <br />
                         <div class="form-floating mb-6">
                             <div class="input-group mb-3" id="design">
-                                <select class="form-select" id="floatingSelect-design" aria-label="Floating label select example" asp-for="@Model.BrandID">
-                                    <option selected value="">Select Brand... </option>
-                                    @if (Model.CategoryList != null)
+                                <select class="form-select" id="floatingSelect-design" aria-label="Floating label select example" asp-for="@Model.ModelID">
+                                    <option selected value="">Select Model... </option>
+                                    @if (Model.ModelList != null)
                                     {
                                         @foreach (var item in Model.ModelList)
                                         {
@@ -248,6 +249,8 @@
 </html>
 @Html.Partial("_CategoryAddPartial",new CategoryCreateVM())
 @Html.Partial("_ModelAddPartial",new ModelCreateVM())
+@Html.Partial("_SubCategoryAddPartial",new SubCategoryCreateVM())
+@Html.Partial("_BrandAddPartial",new BrandCreateVM())
 
 
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
