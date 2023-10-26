@@ -1,18 +1,14 @@
 ﻿@using InventoryManagementApp.Domain.Enums;
 @model WarehouseUpdateVM
-<div class="modal-header">
-    <h5 class="modal-title" id="staticBackdropLabel"> Update Shelf</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-</div>
 <form method="post" asp-action="UpdateShelf" asp-controller="Warehouse">
-    <div class="form-floating mb-6">
+@*     <div class="form-floating mb-6">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" style="width:120px">ID</span>
             </div>
             <input type="text" class="form-control" readonly itemid="id" asp-for="updateShelf.ID" placeholder="ID" aria-label="ID" >
         </div>
-    </div>
+    </div> *@
     <div class="form-floating mb-6">
         <div class="input-group mb-3">
             <div class="input-group-prepend">

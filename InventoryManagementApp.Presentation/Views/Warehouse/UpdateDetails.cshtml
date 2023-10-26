@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <br />
-                    <div class="form-floating mb-6">
+                    @* <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" style="width:150px">Last Modified Date</span>
@@ -85,7 +85,7 @@
                             <input type="text" readonly class="form-control" asp-for="@Model.ModifiedBy" placeholder="ModifiedBy" aria-label="ModifiedBy">
                         </div>
                     </div>
-                    <br />
+                    <br /> *@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -182,10 +182,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New Shelf</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="staticBackdropLabel"> New Shelf</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <partial name="ShelfCreate" />
@@ -200,6 +198,10 @@
 <div class="modal hide fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true" style="display:none;">
     <div class="modal-dialog">
         <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"> Update Shelf</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
             <div class="modal-body">
                 <partial name="_ShelfUpdate" />
             </div>

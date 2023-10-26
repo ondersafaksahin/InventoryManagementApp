@@ -15,18 +15,18 @@
                 <form method="post" asp-action="UpdateDetails" asp-controller="Customer">
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" readonly asp-for="@Model.ID" placeholder="ID" aria-label="IDOfCustomer">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Name</span>
+                            </div>
                             <input type="text" class="form-control" asp-for=@Model.Name placeholder="Name" aria-label="NameOfCustomer">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Status</span>
+                            </div>
                             <select class="form-select" asp-for="@Model.Status" asp-items="@Html.GetEnumSelectList<Status>()">
                                 <option selected style="display:none">@Model.Status</option>
                             </select>
@@ -35,12 +35,18 @@
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Contact Name</span>
+                            </div>
                             <input type="text" class="form-control" asp-for="@Model.Contact" placeholder="Contact" aria-label="Contact">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">City</span>
+                            </div>
                             <select class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example" asp-for="@Model.City" asp-items="@Html.GetEnumSelectList<City>()">
                                 <option selected>Choose City...</option>
@@ -50,49 +56,37 @@
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Address</span>
+                            </div>
                             <input type="text" class="form-control" asp-for="@Model.Address" placeholder="Address" aria-label="AddressOfCustomer">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Phone</span>
+                            </div>
                             <input type="text" class="form-control" asp-for="@Model.PhoneNumber" placeholder="PhoneNumber" aria-label="PhoneNumberOfCustomer">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Email</span>
+                            </div>
                             <input type="text" class="form-control" asp-for="@Model.Email" placeholder="Email" aria-label="EmailOfCustomer">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Web page</span>
+                            </div>
                             <input type="text" class="form-control" asp-for="@Model.WebPage" placeholder="WebPage" aria-label="WebPageOfCustomer">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" readonly asp-for="@Model.CreatedBy" placeholder="CreatedBy" aria-label="CreatedByOfCustomer">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <input type="date" class="form-control" readonly asp-for="@Model.CreatedDate" placeholder="CreatedDate" aria-label="CreatedDateOfCustomer">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" readonly asp-for="@Model.ModifiedBy" placeholder="ModifiedBy" aria-label="ModifiedByOfCustomer">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <input type="date" class="form-control" readonly asp-for="@Model.ModifiedDate" placeholder="ModifiedDate" aria-label="ModifiedDateOfCustomer">
                         </div>
                     </div>
                     <br />
