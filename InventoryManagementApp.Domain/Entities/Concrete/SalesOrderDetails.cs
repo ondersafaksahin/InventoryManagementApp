@@ -25,6 +25,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         //Additional Properties
 
         public decimal UnitPrice { get; set; }
+        public CurrencyCodes PriceCurrency { get; set; }
         public float Quantity { get; set; }
         public UnitType? SalesUnit { get; set; }
         public float Discount { get; set; }

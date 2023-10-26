@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagementApp.Infrastructure.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    [Migration("20231026122321_v1")]
+    [Migration("20231026125954_v1")]
     partial class v1
     {
         /// <inheritdoc />
@@ -184,7 +184,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 26, 15, 23, 21, 676, DateTimeKind.Local).AddTicks(2610));
+                        .HasDefaultValue(new DateTime(2023, 10, 26, 15, 59, 53, 973, DateTimeKind.Local).AddTicks(6124));
 
                     b.Property<DateTime?>("ExpireDate")
                         .HasColumnType("datetime2");
@@ -233,7 +233,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 26, 15, 23, 21, 678, DateTimeKind.Local).AddTicks(2684));
+                        .HasDefaultValue(new DateTime(2023, 10, 26, 15, 59, 53, 974, DateTimeKind.Local).AddTicks(8104));
 
                     b.Property<int>("GoodID")
                         .HasColumnType("int");
@@ -542,10 +542,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 26, 15, 23, 21, 679, DateTimeKind.Local).AddTicks(7184));
+                        .HasDefaultValue(new DateTime(2023, 10, 26, 15, 59, 53, 975, DateTimeKind.Local).AddTicks(5293));
 
                     b.Property<float?>("GrossWeight")
                         .HasColumnType("real");
+
+                    b.Property<int?>("ListCurrency")
+                        .HasColumnType("int");
 
                     b.Property<decimal?>("ListPrice")
                         .HasColumnType("decimal(18,2)");
@@ -703,6 +706,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Currency")
+                        .HasColumnType("int");
+
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -759,6 +765,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("PriceCurrency")
+                        .HasColumnType("int");
 
                     b.Property<int>("PurchaseOrderID")
                         .HasColumnType("int");
@@ -848,6 +857,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Currency")
+                        .HasColumnType("int");
+
                     b.Property<int?>("CustomerID")
                         .HasColumnType("int");
 
@@ -907,6 +919,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("PriceCurrency")
+                        .HasColumnType("int");
 
                     b.Property<float>("Quantity")
                         .HasColumnType("real");
