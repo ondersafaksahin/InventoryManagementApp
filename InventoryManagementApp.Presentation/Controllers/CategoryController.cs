@@ -105,7 +105,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 			{
 				CategoryUpdateVM categoryUpdateVm = _mapper.Map<CategoryUpdateVM>(await _categoryService.GetById(id));
 
-                categoryUpdateVm.SubCategories = _mapper.Map<List<SubCategoryListVM>>(await _subCategoryService.GetDefaults(x => x.CategoryID == categoryUpdateVm.ID && x.Status == Status.Active));
+                categoryUpdateVm.SubCategories = _mapper.Map<List<SubCategoryListVM>>(await _subCategoryService.GetDefaults(x => x.CategoryID == id && x.Status == Status.Active));
 
                 return View(categoryUpdateVm);
 			}

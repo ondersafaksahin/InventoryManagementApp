@@ -27,18 +27,27 @@
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Name</span>
+                            </div>
                             <input type="text" class="form-control" asp-for=@Model.Name placeholder="Name" aria-label="NameOfSupplier">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Contact</span>
+                            </div>
                             <input type="text" class="form-control" asp-for="@Model.Contact" placeholder="Contact" aria-label="Contact">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">City</span>
+                            </div>
                             <select class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example" asp-for="@Model.City" asp-items="@Html.GetEnumSelectList<City>()">
                                 <option selected>Choose City...</option>
@@ -48,24 +57,36 @@
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Address</span>
+                            </div>
                             <input type="text" class="form-control" asp-for="@Model.Address" placeholder="Address" aria-label="AddressOfSupplier">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Phone</span>
+                            </div>
                             <input type="text" class="form-control" asp-for="@Model.PhoneNumber" placeholder="PhoneNumber" aria-label="PhoneNumberOfSupplier">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Email</span>
+                            </div>
                             <input type="text" class="form-control" asp-for="@Model.Email" placeholder="Email" aria-label="EmailOfSupplier">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Web page</span>
+                            </div>
                             <input type="text" class="form-control" asp-for="@Model.WebPage" placeholder="WebPage" aria-label="WebPageOfSupplier">
                         </div>
                     </div>

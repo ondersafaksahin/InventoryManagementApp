@@ -6,14 +6,14 @@
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <form method="post" asp-action="UpdateSubCategory" asp-controller="Category">
-    <div class="form-floating mb-6">
+@*     <div class="form-floating mb-6">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" style="width:120px">ID</span>
             </div>
             <input type="text" class="form-control" readonly itemid="id" asp-for="updateSubCategory.ID" placeholder="ID" aria-label="ID">
         </div>
-    </div>
+    </div> *@
     <div class="form-floating mb-6">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -30,14 +30,14 @@
             <input type="text" class="form-control" id="decription" asp-for="updateSubCategory.Description" placeholder="Description" aria-label="Description">
         </div>
     </div>
-    <div class="form-floating mb-6">
+@*     <div class="form-floating mb-6">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" style="width:120px">Category ID</span>
             </div>
             <input type="text" id="warehouseid" class="form-control" asp-for=updateSubCategory.CategoryID readonly aria-label="">
         </div>
-    </div>
+    </div> *@
 
     <div class="form-floating mb-6">
         <div class="input-group mb-3">
