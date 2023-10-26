@@ -26,6 +26,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         public decimal PurchaseOrderTotal { get; set; }
         public decimal TaxTotal { get; set; }
+        public CurrencyCodes Currency { get; set; }
 
         //Navigation Properties
         public virtual List<PurchaseOrderDetails> PurchaseOrderDetails { get; set; }

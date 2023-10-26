@@ -26,6 +26,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         public decimal SalesOrderTotal { get; set; }
         public decimal TaxTotal { get; set; }
+        public CurrencyCodes Currency { get; set; }
         public string? SalesPersonnel { get; set; }
 
         //Navigation Properties

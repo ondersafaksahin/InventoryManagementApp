@@ -25,6 +25,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public float? MinStock { get; set; }
         public byte? TaxPercentage { get; set; }
         public decimal? ListPrice { get; set; }
+        public CurrencyCodes? ListCurrency { get; set; }
         public string? Barcode { get; set; }
         public float? GrossWeight { get; set; }
         public float? NetWeight { get; set; }
