@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagementApp.Infrastructure.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    [Migration("20231004102113_v1")]
+    [Migration("20231026122321_v1")]
     partial class v1
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.10")
+                .HasAnnotation("ProductVersion", "7.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -184,7 +184,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 4, 13, 21, 12, 925, DateTimeKind.Local).AddTicks(111));
+                        .HasDefaultValue(new DateTime(2023, 10, 26, 15, 23, 21, 676, DateTimeKind.Local).AddTicks(2610));
 
                     b.Property<DateTime?>("ExpireDate")
                         .HasColumnType("datetime2");
@@ -233,7 +233,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 4, 13, 21, 12, 927, DateTimeKind.Local).AddTicks(370));
+                        .HasDefaultValue(new DateTime(2023, 10, 26, 15, 23, 21, 678, DateTimeKind.Local).AddTicks(2684));
 
                     b.Property<int>("GoodID")
                         .HasColumnType("int");
@@ -528,6 +528,11 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<int?>("CategoryID")
                         .HasColumnType("int");
 
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
                     b.Property<int?>("ConsumptionUnit")
                         .HasColumnType("int");
 
@@ -537,7 +542,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 4, 13, 21, 12, 928, DateTimeKind.Local).AddTicks(6643));
+                        .HasDefaultValue(new DateTime(2023, 10, 26, 15, 23, 21, 679, DateTimeKind.Local).AddTicks(7184));
 
                     b.Property<float?>("GrossWeight")
                         .HasColumnType("real");
@@ -596,6 +601,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasIndex("BrandId");
 
                     b.HasIndex("CategoryID");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
 
                     b.HasIndex("ModelId");
 

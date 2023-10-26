@@ -4,11 +4,14 @@ using InventoryManagementApp.Application.DTOs.ModelDTOs;
 using InventoryManagementApp.Application.DTOs.SubCategoryDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs
 {
     public class GoodCreateVM
     {
+        [MaxLength(40,ErrorMessage ="Character limit for code is 40")]
+        public string Code { get; set; }
         public string Name { get; set; }
         public string? Picture { get; set; }
         public float StockAmount { get; set; }

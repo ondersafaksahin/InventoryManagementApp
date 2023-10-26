@@ -8,6 +8,7 @@ namespace InventoryManagementApp.Application.DTOs.GoodDTOs
 {
     public class GoodDTO
     {
+        public string Code { get; set; }
         public string Name { get; set; }
     }
 }
