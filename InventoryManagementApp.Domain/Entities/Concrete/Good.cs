@@ -11,6 +11,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
     public class Good:IBaseEntity,IEntity<int>
     {
         public int ID { get; set; }
+        public string Code { get; set; }
         public string Name { get; set; }
         public string? Picture { get; set; }
         public float StockAmount { get; set; }

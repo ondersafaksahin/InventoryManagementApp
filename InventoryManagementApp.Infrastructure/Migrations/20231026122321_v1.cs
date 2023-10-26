@@ -57,7 +57,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 10, 4, 13, 21, 12, 927, DateTimeKind.Local).AddTicks(370)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 10, 26, 15, 23, 21, 678, DateTimeKind.Local).AddTicks(2684)),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
@@ -212,7 +212,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -241,7 +241,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.Id,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -262,7 +262,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -282,7 +282,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -300,13 +300,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -326,7 +326,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -355,7 +355,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.Id,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -384,7 +384,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.Id,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -410,7 +410,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.CategoryID,
                         principalTable: "Categories",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -462,7 +462,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.SupplierID,
                         principalTable: "Suppliers",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -496,6 +496,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StockAmount = table.Column<float>(type: "real", nullable: false),
@@ -513,7 +514,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     CategoryID = table.Column<int>(type: "int", nullable: true),
                     SubCategoryID = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 10, 4, 13, 21, 12, 928, DateTimeKind.Local).AddTicks(6643)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 10, 26, 15, 23, 21, 679, DateTimeKind.Local).AddTicks(7184)),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
@@ -556,7 +557,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 10, 4, 13, 21, 12, 925, DateTimeKind.Local).AddTicks(111)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValue: new DateTime(2023, 10, 26, 15, 23, 21, 676, DateTimeKind.Local).AddTicks(2610)),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
@@ -601,13 +602,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.BillOfMaterialId,
                         principalTable: "BillOfMaterials",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_BillOfMaterialDetails_Goods_GoodID",
                         column: x => x.GoodID,
                         principalTable: "Goods",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -635,7 +636,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.GoodID,
                         principalTable: "Goods",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -653,13 +654,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.GoodsID,
                         principalTable: "Goods",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_GoodShelf_Shelves_ShelvesID",
                         column: x => x.ShelvesID,
                         principalTable: "Shelves",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -677,13 +678,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.MaterialsProducingID,
                         principalTable: "Goods",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_GoodSupplier_Suppliers_SuppliersID",
                         column: x => x.SuppliersID,
                         principalTable: "Suppliers",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -701,13 +702,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.GoodsID,
                         principalTable: "Goods",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_GoodWarehouse_Warehouses_WarehousesID",
                         column: x => x.WarehousesID,
                         principalTable: "Warehouses",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -734,13 +735,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Reservations_Goods_GoodId",
                         column: x => x.GoodId,
                         principalTable: "Goods",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -770,7 +771,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.GoodId,
                         principalTable: "Goods",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_StockTransfers_Shelves_DestinationShelfID",
                         column: x => x.DestinationShelfID,
@@ -816,13 +817,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.ID,
                         principalTable: "Batches",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ProductionOrders_Goods_GoodId",
                         column: x => x.GoodId,
                         principalTable: "Goods",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -853,7 +854,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.ID,
                         principalTable: "Batches",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PurchaseOrderDetails_Conversions_ConversionId",
                         column: x => x.ConversionId,
@@ -864,13 +865,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.GoodID,
                         principalTable: "Goods",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PurchaseOrderDetails_PurchaseOrders_PurchaseOrderID",
                         column: x => x.PurchaseOrderID,
                         principalTable: "PurchaseOrders",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PurchaseOrderDetails_Shelves_DestinationShelfID",
                         column: x => x.DestinationShelfID,
@@ -881,7 +882,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.DestinationWarehouseID,
                         principalTable: "Warehouses",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -924,13 +925,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.GoodID,
                         principalTable: "Goods",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_SalesOrderDetails_SalesOrders_SalesOrderID",
                         column: x => x.SalesOrderID,
                         principalTable: "SalesOrders",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_SalesOrderDetails_Shelves_SourceShelfID",
                         column: x => x.SourceShelfID,
@@ -973,13 +974,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         column: x => x.GoodID,
                         principalTable: "Goods",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Consumptions_ProductionOrders_ProductionOrderId",
                         column: x => x.ProductionOrderId,
                         principalTable: "ProductionOrders",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -1072,6 +1073,12 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                 name: "IX_Goods_CategoryID",
                 table: "Goods",
                 column: "CategoryID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Goods_Code",
+                table: "Goods",
+                column: "Code",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Goods_ModelId",
