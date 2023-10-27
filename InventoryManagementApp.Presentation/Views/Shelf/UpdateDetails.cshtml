@@ -74,7 +74,16 @@
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
-                            <input type="text" readonly hidden class="form-control" asp-for="@Model.WarehouseID">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="width:150px">Warehouse</span>
+                            </div>
+                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" asp-for="@Model.WarehouseID">
+                                <option selected value="0">Select Warehouse... </option>
+                                @foreach (var item in Model.WarehouseList)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-outline-success m-2 float-right">Save Changes</button>

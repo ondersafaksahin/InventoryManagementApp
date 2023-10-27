@@ -10,7 +10,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs
         public string Name { get; set; }
         public string? Description { get; set; }
         public int WarehouseID { get; set; }
-        public List<WareHouseListDTO>? WareHouseList { get; set; }
+        public SelectList? WareHouseList { get; set; }
 
     }
 }
