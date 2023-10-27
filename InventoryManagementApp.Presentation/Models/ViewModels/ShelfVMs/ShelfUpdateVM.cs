@@ -1,5 +1,6 @@
 ﻿using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.Enums;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs
 {
@@ -26,5 +27,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs
         public int WarehouseID { get; set; }
 
         public List<Good>? Goods { get; set; }
+
+        public SelectList? WarehouseList { get; set; }
     }
 }

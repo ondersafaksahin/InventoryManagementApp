@@ -181,7 +181,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 26, 15, 59, 53, 973, DateTimeKind.Local).AddTicks(6124));
+                        .HasDefaultValue(new DateTime(2023, 10, 27, 8, 1, 12, 684, DateTimeKind.Local).AddTicks(9884));
 
                     b.Property<DateTime?>("ExpireDate")
                         .HasColumnType("datetime2");
@@ -230,7 +230,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 26, 15, 59, 53, 974, DateTimeKind.Local).AddTicks(8104));
+                        .HasDefaultValue(new DateTime(2023, 10, 27, 8, 1, 12, 688, DateTimeKind.Local).AddTicks(1118));
 
                     b.Property<int>("GoodID")
                         .HasColumnType("int");
@@ -539,7 +539,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 26, 15, 59, 53, 975, DateTimeKind.Local).AddTicks(5293));
+                        .HasDefaultValue(new DateTime(2023, 10, 27, 8, 1, 12, 689, DateTimeKind.Local).AddTicks(9418));
 
                     b.Property<float?>("GrossWeight")
                         .HasColumnType("real");

@@ -7,6 +7,7 @@ using InventoryManagementApp.Application.Services.WareHouseService;
 using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Update.Internal;
 
 namespace InventoryManagementApp.Presentation.Controllers
@@ -60,8 +61,11 @@ namespace InventoryManagementApp.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            ShelfCreateVM shelfCreateVm = new ShelfCreateVM();
-            shelfCreateVm.WareHouseList = await _wareHouseService.All();
+            ShelfCreateVM shelfCreateVm = new ShelfCreateVM()
+            {
+                WareHouseList = await GetWarehouse()
+            };
+            
             return View(shelfCreateVm);
 
         }
@@ -70,8 +74,15 @@ namespace InventoryManagementApp.Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ShelfCreateVM shelfCreateVm)
         {
+            if (!ModelState.IsValid)
+            {
+                shelfCreateVm.WareHouseList = await GetWarehouse();
+                return View(shelfCreateVm);
+            }
+            
             if (ModelState.IsValid)
             {
+               
                 try
                 {
                     var shelfCreateDto = _mapper.Map<ShelfCreateDTO>(shelfCreateVm);
@@ -115,6 +126,7 @@ namespace InventoryManagementApp.Presentation.Controllers
             else
             {
                 ShelfUpdateVM shelfUpdateVm = _mapper.Map<ShelfUpdateVM>(await _shelfService.GetById(id));
+                shelfUpdateVm.WarehouseList = await GetWarehouse();
                 //burada getById shelfDTO dönüyor.
                 //onun update olarak dönecek şekilde mi değiştirilerim?
                 //shelfDTO ile ShelfUpdateVm mi mapleyelim?
@@ -130,6 +142,17 @@ namespace InventoryManagementApp.Presentation.Controllers
             var shelfUpdateDto = _mapper.Map<ShelfUpdateDTO>(vm);
             await _shelfService.Update(shelfUpdateDto);
             return RedirectToAction("GetAllActiveShelves");
+        }
+
+
+        private async Task<SelectList> GetWarehouse()
+        {
+            var getWarehouses = await _wareHouseService.All();
+            return new SelectList(getWarehouses.Select(x => new SelectListItem
+            {
+                Value = x.ID.ToString(),
+                Text = x.Name
+            }), "Value", "Text");
         }
 
     }
