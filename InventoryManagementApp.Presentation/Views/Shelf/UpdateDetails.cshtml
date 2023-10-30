@@ -17,7 +17,7 @@
             <div class="bg-light rounded h-100 p-4">
                 <h4 class="mb-4">Update Shelf</h4>
                 <form method="post" asp-action="UpdateDetails" asp-controller="Shelf">
-                    <div class="form-floating mb-6">
+                    <div class="form-floating mb-6" style="display:none">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" style="width:150px">ID</span>
@@ -34,7 +34,8 @@
                             <input type="text" class="form-control" asp-for=@Model.Name placeholder="Name" aria-label="NameOfWarehouse">
                         </div>
                     </div>
-<div class="form-floating mb-6">
+                    <br />
+                    <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" style="width:150px">Description</span>
@@ -43,7 +44,7 @@
                         </div>
                     </div>
                     <br />
-                    <div class="form-floating mb-6">
+                    @* <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" style="width:150px">Last Modified Date</span>
@@ -60,7 +61,7 @@
                             <input type="text" readonly class="form-control" asp-for="@Model.ModifiedBy" placeholder="ModifiedBy" aria-label="ModifiedBy">
                         </div>
                     </div>
-                    <br />
+                    <br /> *@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">

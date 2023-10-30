@@ -22,11 +22,11 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col"> Name</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Contact</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone Number</th>
                         <th scope="col">Web Page</th>
-                        <th scope="col">Status</th>
                         <th class="text-center" scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -36,11 +36,11 @@
                         <tr>
                             <th scope="row">@item.ID</th>
                             <td>@item.Name</td>
+                            <td>@item.Status</td>
                             <td>@item.Contact</td>
                             <td>@item.Email</td>
                             <td>@item.PhoneNumber</td>
                             <td>@item.WebPage</td>
-                            <td>@item.Status</td>
                             <td class="text-center">
                                 <a class="btn pt-0" asp-action="UpdateDetails" asp-controller="Customer" asp-route-id="@item.ID" type="button" data-toggle="popover" title="Update">
                                     <i class="far fa-edit" style="color:coral;font-size:20px"></i>
