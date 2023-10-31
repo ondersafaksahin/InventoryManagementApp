@@ -25,9 +25,9 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Category Name</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Category</th>
                         <th class="text-center">Actions</th>
                     </tr>
                 </thead>
@@ -37,6 +37,7 @@
                         <tr>
                             <th scope="row">@subCategory.ID</th>
                             <td>@subCategory.SubCategoryName</td>
+                            <td>@subCategory.Status</td>
                             <td>@subCategory.Description</td>
                             <td>
                                 @if (subCategory.Category != null)
@@ -48,8 +49,6 @@
                                     @TempData["error"]
                                 }
                             </td>
-                            <td>@subCategory.Status</td>
-                           
                             <td class="text-center">
                                 <a class="btn pt-0" asp-action="UpdateDetails" asp-controller="SubCategory" asp-route-id="@subCategory.ID" type="button" data-toggle="popover" title="Update">
                                     <i class="far fa-edit" style="color:coral;font-size:20px"></i>

@@ -136,6 +136,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 
 
         //Listing only active goods
+        [Route("[controller]/ListActive")]
         public async Task<IActionResult> GetAllActiveGoods()
         {
             var goodListDTO = await _goodService.GetDefaults(x => x.Status == Domain.Enums.Status.Active);
@@ -146,7 +147,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 
 
         //Listing all goods
-
+        [Route("[controller]/List")]
         public async Task<IActionResult> GetAllGoods()
         {
             List<GoodListVM> goodList = _mapper.Map<List<GoodListVM>>(await _goodService.All());
