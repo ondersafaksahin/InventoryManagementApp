@@ -1,4 +1,4 @@
-﻿@using InventoryManagementApp.Domain.Enums;
+@using InventoryManagementApp.Domain.Enums;
 @using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
 @using InventoryManagementApp.Presentation.Models.ViewModels.ModelVMs;
 
@@ -102,15 +102,12 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" asp-for=@Model.NetWeight placeholder="Net Weight" aria-label="NetWeight">
                         </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3" id="design">
-                            <select class="form-select" id="floatingSelect-design" aria-label="Floating label select example" asp-for="@Model.CategoryID">
-                                <option selected value="">Select Category... </option>
-                                @if (Model.CategoryList != null)
-                                {
-                                    @foreach (var item in Model.CategoryList)
+                        <br />
+                        <div class="form-floating mb-6">
+                            <div class="input-group mb-3" id="design">
+                                <select class="form-select" id="categoryDropdown" aria-label="Floating label select example" asp-for="@Model.CategoryID" asp-items="ViewBag.CategoryId">
+                                    <option selected value="">Select Category... </option>
+                                    @if (Model.CategoryList != null)
                                     {
                                         <option value="@item.ID">@item.CategoryName</option>
                                     }
@@ -125,26 +122,25 @@
                             </button>
 
                         </div>
-
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3" id="design">
-                            <select class="form-select" id="floatingSelect-design" aria-label="Floating label select example" asp-for="@Model.SubCategoryID">
-                                <option selected value="">Select SubCategory... </option>
-                                @if (Model.SubCategoryList != null)
-                                {
-                                    @foreach (var item in Model.SubCategoryList)
+                        <br />
+                        <div class="form-floating mb-6">
+                            <div class="input-group mb-3" id="design">
+                                <select class="form-select" id="subcategoryDropdown" aria-label="Floating label select example" asp-for="@Model.SubCategoryID">
+                                    <option selected value="">Select SubCategory... </option>
+                                    @*@if (Model.SubCategoryList != null)
                                     {
-                                        <option value="@item.ID">@item.SubCategoryName</option>
-                                    }
-                                }
-                            </select>
-                            <button class="button" style="vertical-align:middle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropSubCategory">
-                                <span>
-                                    Add SubCategory
-                                </span>
-                            </button>
+                                        @foreach (var item in Model.SubCategoryList)
+                                        {
+                                            <option value="@item.ID">@item.SubCategoryName</option>
+                                        }
+                                    }*@
+                                </select>
+                                <button class="button" style="vertical-align:middle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropSubCategory">
+                                    <span>
+                                        Add SubCategory
+                                    </span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <br />
