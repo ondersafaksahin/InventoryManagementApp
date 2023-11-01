@@ -52,67 +52,76 @@
                     <br />
 
 
-                    <button type="submit" class="btn btn-outline-success m-2">Save Changes</button>
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3" id="design">
+                            <a class="btn btn-danger mx-2 form-button" asp-controller="Category" asp-action="ListActive">Cancel</a>
+                            <input type="submit" value="Save" class="btn btn-success mx-2 form-button" />
+                        </div>
+                    </div>
 
                 </form>
-
                 <br />
-                <br />
-                <div class="col-sm-12 col-xl-12">
-                    <div class="bg-light rounded h-100 p-4">
-                        <h6 class="mb-4">SubCategory List</h6>
+                <div class="accordion" id="subcategoryAccordeon">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="true" aria-controls="collapse">
+                                @Model.CategoryName / Sub-Category List
+                            </button>
+                        </h2>
+                        <div id="collapse" class="accordion-collapse collapse" aria-labelledby="heading" data-bs-parent="#subcategoryAccordeon">
+                            <div class="accordion-body">
+                                @if (TempData["error"] is not null)
+                                {
+                                    <div class="alert alert-danger" role="alert">
+                                        @TempData["error"]
+                                    </div>
+                                }
 
-                        @if (TempData["error"] is not null)
-                        {
-                            <div class="alert alert-danger" role="alert">
-                                @TempData["error"]
-                            </div>
-                        }
+                                <button type="button" class="button" data-toggle="modal" data-target="#staticBackdropSubCategory">
+                                    <span>Add SubCategory</span>
+                                </button>
 
-                        <button type="button" class="btn btn-primary lg" data-toggle="modal" data-target="#staticBackdropSubCategory">
-                            Add SubCategory
-                        </button>
+                                <div class="col-12">
+                                    <div class="bg-light rounded h-100 p-4">
+                                        <div class="d-flex justify-content-between align-items-center" style="margin-bottom:16px">
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table" id="example">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Description</th>
+                                                        <th class="text-center">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var sb in Model.SubCategories)
+                                                    {
+                                                        <tr>
+                                                            <td id="id">@sb.ID</td>
+                                                            <td id="name">@sb.SubCategoryName</td>
+                                                            <td id="status">@sb.Status</td>
+                                                            <td id="description">@sb.Description</td>
+                                                            <td class="text-center">
+                                                                <a onclick="showInPopup('@Url.Action("UpdateSubCategory","Category",new {id=sb.ID},Context.Request.Scheme)')" class="btn pt-0">
+                                                                    <i class="far fa-edit" style="color:coral;font-size:20px"></i>
+                                                                </a>
 
-                        <div class="col-12">
-                            <div class="bg-light rounded h-100 p-4">
-                                <div class="d-flex justify-content-between align-items-center" style="margin-bottom:16px">
+                                                                <a class="btn pt-0" asp-action="DeleteSubCategory" asp-controller="Category" asp-route-id="@sb.ID" asp-route-categoryid="@Model.ID" type="button" data-toggle="popover" title="Delete">
+                                                                    <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
+                                                                </a>
+
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="table-responsive">
-                                    <table class="table" id="example">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Description</th>
-                                                <th scope="col">Status</th>
-                                                <th class="text-center">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var sb in Model.SubCategories)
-                                            {
-                                                <tr>
-                                                    <td id="id">@sb.ID</td>
-                                                    <td id="name">@sb.SubCategoryName</td>
-                                                    <td id="status">@sb.Description</td>
-                                                    <td id="description">@sb.Status</td>
-                                                    <td class="text-center">
-                                                        <a onclick="showInPopup('@Url.Action("UpdateSubCategory","Category",new {id=sb.ID},Context.Request.Scheme)')" class="btn pt-0">
-                                                            <i class="far fa-edit" style="color:coral;font-size:20px"></i>
-                                                        </a>
-
-                                                        <a class="btn pt-0" asp-action="DeleteSubCategory" asp-controller="Category" asp-route-id="@sb.ID" asp-route-categoryid="@Model.ID" type="button" data-toggle="popover" title="Delete">
-                                                            <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
-                                                        </a>
-
-                                                    </td>
-                                                </tr>
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -126,23 +135,22 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">New SubCategory</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
                 <partial name="SubCategoryCreate" />
             </div>
-@*             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div> *@
         </div>
     </div>
 </div>
 
 <div class="modal hide fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true" style="display:none;">
     <div class="modal-dialog">
-        <div class="modal-content">          
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"> Update SubCategory</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
             <div class="modal-body">
                 <partial name="SubCategoryUpdate" />
             </div>
