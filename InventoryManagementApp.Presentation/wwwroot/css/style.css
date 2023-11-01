@@ -365,6 +365,14 @@
 }
 
 #floatingSelect-design {
-    margin-right: 20px; /* Ýstenilen boþluðu ayarlayabilirsiniz */
+    margin-right: 20px;
+}
+
+#subcategoryDropdown {
+    margin-right: 20px;
+}
+
+#categoryDropdown {
+    margin-right: 20px;
 }
 

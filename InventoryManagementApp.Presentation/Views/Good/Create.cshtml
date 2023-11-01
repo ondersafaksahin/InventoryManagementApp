@@ -109,7 +109,10 @@
                                     <option selected value="">Select Category... </option>
                                     @if (Model.CategoryList != null)
                                     {
-                                        <option value="@item.ID">@item.CategoryName</option>
+                                        @foreach (var item in Model.CategoryList)
+                                        {
+                                            <option value="@item.ID">@item.CategoryName</option>
+                                        }
                                     }
                                 }
 
