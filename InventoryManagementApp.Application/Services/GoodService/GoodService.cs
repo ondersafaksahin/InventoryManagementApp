@@ -15,17 +15,42 @@ namespace InventoryManagementApp.Application.Services.GoodService
     public class GoodService : IGoodService
     {
         IGoodRepository _goodRepository;
+        ICategoryRepository _categoryRepository;
+        ISubCategoryRepository _subCategoryRepository;
+        IBrandRepository _brandRepository;
+        IModelRepository _modelRepository;
         IMapper _mapper;
 
-        public GoodService(IGoodRepository goodRepository, IMapper mapper)
+        public GoodService(IGoodRepository goodRepository, IMapper mapper, ICategoryRepository categoryRepository, ISubCategoryRepository subCategoryRepository, IBrandRepository brandRepository, IModelRepository modelRepository)
         {
             _goodRepository = goodRepository;
             _mapper = mapper;
+            _categoryRepository = categoryRepository;
+            _subCategoryRepository = subCategoryRepository;
+            _brandRepository = brandRepository;
+            _modelRepository = modelRepository;
         }
 
         public async Task<List<GoodListDTO>> All()
         {
-            return _mapper.Map<List<GoodListDTO>>(await _goodRepository.GetAll());
+            var list = _mapper.Map<List<GoodListDTO>>(await _goodRepository.GetAll());
+
+            foreach (var item in list)
+            {
+                var category = _categoryRepository.GetById(x => x.ID == item.CategoryID);
+                item.Category = category.Result;
+
+                var subcategory = _subCategoryRepository.GetById(x => x.ID == item.SubCategoryID);
+                item.SubCategory = subcategory.Result;
+
+                var brand = _brandRepository.GetById(x => x.ID == item.BrandID);
+                item.Brand = brand.Result;
+
+                var model = _modelRepository.GetById(x => x.ID == item.ModelID);
+                item.Model = model.Result;
+
+            }
+            return list;
         }
 
         public async Task Create(GoodCreateDTO createDTO)
@@ -48,7 +73,26 @@ namespace InventoryManagementApp.Application.Services.GoodService
 
         public async Task<List<GoodListDTO>> GetDefaults(Expression<Func<Good, bool>> expression)
         {
-            return _mapper.Map<List<GoodListDTO>>(await _goodRepository.GetDefaults(expression));
+            var list = _mapper.Map<List<GoodListDTO>>(await _goodRepository.GetDefaults(expression));
+
+
+            foreach (var item in list)
+            {
+                var category = _categoryRepository.GetById(x => x.ID == item.CategoryID);
+                item.Category = category.Result;
+
+                var subcategory = _subCategoryRepository.GetById(x => x.ID == item.SubCategoryID);
+                item.SubCategory = subcategory.Result;
+
+                var brand = _brandRepository.GetById(x => x.ID == item.BrandID);
+                item.Brand = brand.Result;
+
+                var model = _modelRepository.GetById(x => x.ID == item.ModelID);
+                item.Model = model.Result;
+
+            }
+
+            return list;
         }
 
         public async Task Update(GoodUpdateDTO updateDTO)

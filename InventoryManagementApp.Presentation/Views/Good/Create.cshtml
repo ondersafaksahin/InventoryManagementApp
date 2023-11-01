@@ -1,4 +1,4 @@
-﻿@using InventoryManagementApp.Domain.Enums;
+@using InventoryManagementApp.Domain.Enums;
 @using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
 @using InventoryManagementApp.Presentation.Models.ViewModels.ModelVMs;
 
@@ -102,15 +102,12 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" asp-for=@Model.NetWeight placeholder="Net Weight" aria-label="NetWeight">
                         </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3" id="design">
-                            <select class="form-select" id="floatingSelect-design" aria-label="Floating label select example" asp-for="@Model.CategoryID">
-                                <option selected value="">Select Category... </option>
-                                @if (Model.CategoryList != null)
-                                {
-                                    @foreach (var item in Model.CategoryList)
+                        <br />
+                        <div class="form-floating mb-6">
+                            <div class="input-group mb-3" id="design">
+                                <select class="form-select" id="categoryDropdown" aria-label="Floating label select example" asp-for="@Model.CategoryID" asp-items="ViewBag.CategoryId">
+                                    <option selected value="">Select Category... </option>
+                                    @if (Model.CategoryList != null)
                                     {
                                         <option value="@item.ID">@item.CategoryName</option>
                                     }
@@ -125,26 +122,25 @@
                             </button>
 
                         </div>
-
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3" id="design">
-                            <select class="form-select" id="floatingSelect-design" aria-label="Floating label select example" asp-for="@Model.SubCategoryID">
-                                <option selected value="">Select SubCategory... </option>
-                                @if (Model.SubCategoryList != null)
-                                {
-                                    @foreach (var item in Model.SubCategoryList)
+                        <br />
+                        <div class="form-floating mb-6">
+                            <div class="input-group mb-3" id="design">
+                                <select class="form-select" id="subcategoryDropdown" aria-label="Floating label select example" asp-for="@Model.SubCategoryID">
+                                    <option selected value="">Select SubCategory... </option>
+                                    @*@if (Model.SubCategoryList != null)
                                     {
-                                        <option value="@item.ID">@item.SubCategoryName</option>
-                                    }
-                                }
-                            </select>
-                            <button class="button" style="vertical-align:middle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropSubCategory">
-                                <span>
-                                    Add SubCategory
-                                </span>
-                            </button>
+                                        @foreach (var item in Model.SubCategoryList)
+                                        {
+                                            <option value="@item.ID">@item.SubCategoryName</option>
+                                        }
+                                    }*@
+                                </select>
+                                <button class="button" style="vertical-align:middle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropSubCategory">
+                                    <span>
+                                        Add SubCategory
+                                    </span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <br />
@@ -199,7 +195,14 @@
             </div>
         </div>
     </div>
-</div>
+
+    <div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="~/css/jquery.datatables.min.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="~/lib/waypoints/waypoints.min.js"></script>
 
 @Html.Partial("_CategoryAddPartial",new CategoryCreateVM())
 @Html.Partial("_ModelAddPartial",new ModelCreateVM())
@@ -207,67 +210,36 @@
 @Html.Partial("_BrandAddPartial",new BrandCreateVM())
 
 
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
 
 <script>
+
     $(document).ready(function () {
-        // Category seçiminde değişiklik olduğunda
-        $('#floatingSelect-design-category').change(function () {
-            var selectedCategoryID = $(this).val(); // Seçilen kategori ID'si
-
-            // AJAX çağrısı ile subcategory verilerini al
+        $("#categoryDropdown").change(function () {
+            var categoryId = $(this).val();
             $.ajax({
-                url: '/Good/GetSubcategories', // Subcategory verilerini döndüren Action metodunun URL'si
+                url: '/Good/GetSubcategories',
                 type: 'GET',
-                data: { categoryId: selectedCategoryID },
+                data: { categoryId: categoryId },
                 success: function (data) {
-                    // Başarılı bir şekilde veriler alındığında
-                    var subCategorySelect = $('#floatingSelect-design-subCategory');
-                    subCategorySelect.empty(); // Mevcut subcategoryleri temizle
+                    var subcategoryDropdown = $("#subcategoryDropdown");
+                    subcategoryDropdown.empty();
+                    $.each(data, function (i, subcategory) {
+                        subcategoryDropdown.append($('<option/>', {
+                            value: subcategory.id,
+                            text: subcategory.subCategoryName
 
-                    // Yeni subcategory verilerini ekleyin
-                    $.each(data, function (index, item) {
-                        subCategorySelect.append($('<option>', {
-                            value: item.SubCategoryID,
-                            text: item.SubCategoryName
                         }));
                     });
-                },
-                error: function () {
-                    console.error('Subcategory verileri alınamadı.');
                 }
             });
         });
     });
+
 </script>
 
 
-
-<script>
-
-    var inputValues = {};
-
-    $(document).ready(function () {
-        // Modal açıldığında input değerlerini saklayın
-        $('#staticBackdrop').on('show.bs.modal', function () {
-            console.log('Modal show event fired');
-            // Input değerlerini sakla
-            inputValues.goodName = $('#GoodName').val();
-            inputValues.stockAmount = $('#StockAmount').val();
-            // Diğer input alanlarını da aynı şekilde saklayabilirsiniz.
-        });
-
-        // Modal kapatıldığında input değerlerini geri yükleyin
-        $('#staticBackdrop').on('hidden.bs.modal', function () {
-            console.log($('#GoodName').val());
-            // Input değerlerini geri yükle
-            $('#GoodName').val(inputValues.goodName);
-            $('#StockAmount').val(inputValues.stockAmount);
-            // Diğer input alanlarını da aynı şekilde geri yükleyebilirsiniz.
-        });
-    });
-</script>
 
 
 

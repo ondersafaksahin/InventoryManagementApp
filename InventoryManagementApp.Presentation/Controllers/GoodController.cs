@@ -49,14 +49,19 @@ namespace InventoryManagementApp.Presentation.Controllers
         {
             return View();
         }
-       
+
+        [HttpGet]
         public async Task<IActionResult> GetSubcategories(int categoryId)
         {
-            var dto = await _subCategoryService.GetDefaults(x=>x.CategoryID==categoryId); // Burada, categoryId'ye göre ilgili subcategory verilerini almalısınız.
-       
-            return Json(dto); // Verileri JSON olarak döndürün
+            var subcategories = await _subCategoryService.GetDefaults(x => x.CategoryID == categoryId);
+            var subcategoryItems = subcategories.Select(subcategory => new SubCategoryListVM
+            {
+                ID = subcategory.ID,
+                SubCategoryName = subcategory.SubCategoryName
+            }).ToList();
+            return Json(subcategoryItems);
         }
-
+ 
 
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CategoryCreateVM categoryCreateVm)
@@ -203,7 +208,7 @@ namespace InventoryManagementApp.Presentation.Controllers
         }
 
 
-
+        [Route("[controller]/Edit/{id}")]
         [HttpGet]
         public async Task<IActionResult> UpdateDetails(int id)
         {
@@ -218,7 +223,7 @@ namespace InventoryManagementApp.Presentation.Controllers
                 return View(goodUpdateVm);
             }
         }
-
+        [Route("[controller]/Edit/{id}")]
         [HttpPost]
         public async Task<IActionResult> UpdateDetails(GoodUpdateVM vm)
         {
