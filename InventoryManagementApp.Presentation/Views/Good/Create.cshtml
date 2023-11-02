@@ -15,6 +15,7 @@
         @TempData["error"]
     </div>
 }
+
 <div class="form-floating mb-8 p-4">
     <div id="modalPlaceHolder" class="container-fluid pt-8 px-8">
         <div aria-hidden="true"></div>
@@ -114,16 +115,16 @@
                                             <option value="@item.ID">@item.CategoryName</option>
                                         }
                                     }
-                                }
+                                    }
 
-                            </select>
-                            <!-- Button trigger modal -->
-                            <button class="button" style="vertical-align:middle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                <span>
-                                    Add Category
-                                </span>
-                            </button>
-
+                                </select>
+                                <!-- Button trigger modal -->
+                                <button class="button" style="vertical-align:middle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                    <span>
+                                        Add Category
+                                    </span>
+                                </button>
+                            </div>
                         </div>
                         <br />
                         <div class="form-floating mb-6">
@@ -132,10 +133,10 @@
                                     <option selected value="">Select SubCategory... </option>
                                     @*@if (Model.SubCategoryList != null)
                                     {
-                                        @foreach (var item in Model.SubCategoryList)
-                                        {
-                                            <option value="@item.ID">@item.SubCategoryName</option>
-                                        }
+                                    @foreach (var item in Model.SubCategoryList)
+                                    {
+                                    <option value="@item.ID">@item.SubCategoryName</option>
+                                    }
                                     }*@
                                 </select>
                                 <button class="button" style="vertical-align:middle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropSubCategory">
@@ -191,7 +192,7 @@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3" id="design">
                             <a class="btn btn-danger mx-2 form-button" asp-controller="Good" asp-action="ListActive">Cancel</a>
-                            <input type="submit" value="Save" class="btn btn-success mx-2 form-button"/>
+                            <input type="submit" value="Save" class="btn btn-success mx-2 form-button" />
                         </div>
                     </div>
                 </form>
@@ -199,16 +200,15 @@
         </div>
     </div>
 </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <script src="~/lib/waypoints/waypoints.min.js"></script>
+
+
+
 @Html.Partial("_CategoryAddPartial",new CategoryCreateVM())
 @Html.Partial("_ModelAddPartial",new ModelCreateVM())
 @Html.Partial("_SubCategoryAddPartial",new SubCategoryCreateVM())
 @Html.Partial("_BrandAddPartial",new BrandCreateVM())
 
-
-
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
 
