@@ -180,15 +180,20 @@ namespace InventoryManagementApp.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-              
-                  var goodCreateDto = _mapper.Map<GoodCreateDTO>(goodCreateVm);
+                try
+                {
+                    var goodCreateDto = _mapper.Map<GoodCreateDTO>(goodCreateVm);
                     await _goodService.Create(goodCreateDto);
                     return RedirectToAction("GetAllGoods");
-                
-                //catch (Exception ex)
-                //{
-                //    TempData["error"] = ex.Message;
-                //}
+                }
+                catch (Exception ex)
+                {
+                    TempData["error"] = ex.Message;
+                }
+            }
+            else
+            {
+                TempData["error"] = ModelState.Values.First().Errors[0].ErrorMessage;
             }
             return View(goodCreateVm);
         }
