@@ -9,6 +9,7 @@ using InventoryManagementApp.Presentation.Models.ViewModels.CategoryVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.SubCategoryVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 
 namespace InventoryManagementApp.Presentation.Controllers
@@ -79,19 +80,22 @@ namespace InventoryManagementApp.Presentation.Controllers
 		}
 
 		//Delete Category
-		public async Task<IActionResult> Delete(int id)
+		public async Task<IActionResult> Delete(int id,bool active)
 		{
 			try
 			{
 				await _categoryService.Delete(id);
-				return RedirectToAction("GetAllActiveCategories");
 			}
 			catch (Exception ex)
 			{
 				TempData["error"] = ex.Message;
-				return RedirectToAction("GetAllActiveCategories");
 			}
-		}
+            if (active)
+            {
+                return RedirectToAction("GetAllActiveCategories");
+            }
+            return RedirectToAction("GetAllCategories");
+        }
 
         [Route("[controller]/Edit/{id}")]
         [HttpGet]

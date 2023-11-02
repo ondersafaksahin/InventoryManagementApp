@@ -9,6 +9,7 @@ using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace InventoryManagementApp.Presentation.Controllers
 {
@@ -86,18 +87,21 @@ namespace InventoryManagementApp.Presentation.Controllers
 
 
         //Delete
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, bool active)
         {
             try
             {
                 await _warehouseService.Delete(id);
-                return RedirectToAction("GetAllActiveWarehouses");
             }
             catch (Exception ex)
             {
                 TempData["error"] = ex.Message;
+            }
+            if (active)
+            {
                 return RedirectToAction("GetAllActiveWarehouses");
             }
+            return RedirectToAction("GetAllWarehouses");
         }
 
 

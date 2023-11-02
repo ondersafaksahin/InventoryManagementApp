@@ -9,6 +9,7 @@ using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Update.Internal;
+using System;
 
 namespace InventoryManagementApp.Presentation.Controllers
 {
@@ -100,18 +101,21 @@ namespace InventoryManagementApp.Presentation.Controllers
 
 
         //Delete
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, bool active)
         {
             try
             {
                 await _shelfService.Delete(id);
-                return RedirectToAction("GetAllShelves");
             }
             catch (Exception ex)
             {
                 TempData["error"] = ex.Message;
-                return RedirectToAction("GetAllShelves");
             }
+            if (active)
+            {
+                return RedirectToAction("GetAllActiveShelves");
+            }
+            return RedirectToAction("GetAllShelves");
         }
 
 

@@ -6,6 +6,7 @@ using InventoryManagementApp.Application.Services.ShelfService;
 using InventoryManagementApp.Presentation.Models.ViewModels.CustomerVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ModelVMs;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace InventoryManagementApp.Presentation.Controllers
 {
@@ -70,19 +71,22 @@ namespace InventoryManagementApp.Presentation.Controllers
 		}
 
 		//Delete Customer
-		public async Task<IActionResult> Delete(int id)
+		public async Task<IActionResult> Delete(int id,bool active)
 		{
 			try
 			{
 				await _customerService.Delete(id);
-				return RedirectToAction("GetAllActiveCustomers");
 			}
 			catch (Exception ex)
 			{
 				TempData["error"] = ex.Message;
-				return RedirectToAction("GetAllActiveCustomers");
 			}
-		}
+            if (active)
+            {
+                return RedirectToAction("GetAllActiveCustomers");
+            }
+            return RedirectToAction("GetAllCustomers");
+        }
 
 		//Update Model
 		[HttpGet]
