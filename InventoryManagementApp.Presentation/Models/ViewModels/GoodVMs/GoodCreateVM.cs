@@ -14,7 +14,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs
         public string Code { get; set; }
         public string Name { get; set; }
         public string? Picture { get; set; }
-        public float StockAmount { get; set; }
+        public float? StockAmount { get; set; }
         public float? ReservedStock { get; set; }
         public UnitType? StockingUnit { get; set; }
         public UnitType? ConsumptionUnit { get; set; }
