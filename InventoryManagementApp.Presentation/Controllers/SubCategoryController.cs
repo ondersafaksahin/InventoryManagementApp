@@ -7,6 +7,7 @@ using InventoryManagementApp.Presentation.Models.ViewModels.CategoryVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.SubCategoryVMs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Routing;
 
 namespace InventoryManagementApp.Presentation.Controllers
 {
@@ -80,19 +81,23 @@ namespace InventoryManagementApp.Presentation.Controllers
 		}
 
 		//Delete SubCategory
-		public async Task<IActionResult> Delete(int id)
+		public async Task<IActionResult> Delete(int id, bool active)
 		{
 			try
 			{
 				await _subCategoryService.Delete(id);
-				return RedirectToAction("GetAllActiveSubCategories");
 			}
 			catch (Exception ex)
 			{
 				TempData["error"] = ex.Message;
-				return RedirectToAction("GetAllActiveSubCategories");
 			}
-		}
+            if (active)
+            {
+                return RedirectToAction("GetAllActiveSubCategories");
+            }
+            return RedirectToAction("GetAllSubCategories");
+
+        }
 
         [Route("[controller]/Edit/{id}")]
         [HttpGet]

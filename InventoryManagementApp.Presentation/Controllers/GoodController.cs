@@ -16,6 +16,7 @@ using InventoryManagementApp.Presentation.Models.ViewModels.ModelVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.SubCategoryVMs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -193,18 +194,21 @@ namespace InventoryManagementApp.Presentation.Controllers
         }
 
         //Delete
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, bool active)
         {
             try
             {
                 await _goodService.Delete(id);
-                return RedirectToAction("GetAllGoods");
             }
             catch (Exception ex)
             {
                 TempData["error"] = ex.Message;
-                return RedirectToAction("GetAllGoods");
             }
+            if (active)
+            {
+                return RedirectToAction("GetAllActiveGoods");
+            }
+            return RedirectToAction("GetAllGoods");
         }
 
 
@@ -253,6 +257,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 
             var goodUpdateDto = _mapper.Map<GoodUpdateDTO>(vm);
             await _goodService.Update(goodUpdateDto);
+
             return RedirectToAction("GetAllActiveGoods");
         }
 

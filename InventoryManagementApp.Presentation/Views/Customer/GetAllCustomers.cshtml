@@ -45,7 +45,7 @@
                                 <a class="btn pt-0" asp-action="UpdateDetails" asp-controller="Customer" asp-route-id="@item.ID" type="button" data-toggle="popover" title="Update">
                                     <i class="far fa-edit" style="color:coral;font-size:20px"></i>
                                 </a>
-                                <a class="btn pt-0" asp-action="Delete" asp-controller="Customer" asp-route-id="@item.ID" type="button" data-toggle="popover" title="Delete">
+                                <a class="btn pt-0" asp-action="Delete" asp-controller="Customer" asp-route-id="@item.ID" asp-route-active=false type="button" data-toggle="popover" title="Delete">
                                     <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
                                 </a>
                             </td>

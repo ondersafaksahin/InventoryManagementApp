@@ -8,6 +8,7 @@ using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace InventoryManagementApp.Presentation.Controllers
 {
@@ -76,18 +77,21 @@ namespace InventoryManagementApp.Presentation.Controllers
 		}
 
         //Delete Brand
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id,bool active)
         {
             try
             {
                 await _brandService.Delete(id);
-                return RedirectToAction("GetAllActiveBrands");
             }
             catch (Exception ex)
             {
                 TempData["error"] = ex.Message;
+            }
+            if (active)
+            {
                 return RedirectToAction("GetAllActiveBrands");
             }
+            return RedirectToAction("GetAllBrands");
         }
 
         //Update Brand
