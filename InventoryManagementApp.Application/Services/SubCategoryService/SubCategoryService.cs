@@ -64,7 +64,9 @@ namespace InventoryManagementApp.Application.Services.SubCategoryService
 
 		public async Task Update(SubCategoryUpdateDTO updateDTO)
 		{
-			await _subCategoryRepository.Update(_mapper.Map<SubCategory>(updateDTO));
+            var subCategory = await GetById(updateDTO.ID);
+            var updatedSubCategory = _mapper.Map(updateDTO, subCategory);
+			await _subCategoryRepository.Update(_mapper.Map<SubCategory>(updatedSubCategory));
 		}
 
         

@@ -199,10 +199,11 @@ namespace InventoryManagementApp.Application.Automapper
 			CreateMap<SubCategory, SubCategoryUpdateDTO>().ReverseMap();
 			CreateMap<SubCategory, SubCategoryListDTO>().ReverseMap();
 			CreateMap<SubCategory, SubCategoryDTO>().ReverseMap();
+            CreateMap<SubCategoryDTO, SubCategoryUpdateDTO>().ReverseMap();
 
 
-			//Supplier
-			CreateMap<Supplier, SupplierCreateDTO>().ReverseMap();
+            //Supplier
+            CreateMap<Supplier, SupplierCreateDTO>().ReverseMap();
 			CreateMap<Supplier, SupplierUpdateDTO>().ReverseMap();
 			CreateMap<Supplier, SupplierListDTO>().ReverseMap();
 			CreateMap<Supplier, SupplierDTO>().ReverseMap();

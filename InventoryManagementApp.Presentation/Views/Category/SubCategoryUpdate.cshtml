@@ -2,7 +2,15 @@
 @model CategoryUpdateVM
 
 <form method="post" asp-action="UpdateSubCategory" asp-controller="Category">
-    <div class="form-floating mb-6 d-none">
+    <div class="form-floating mb-6">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="width:120px">ID</span>
+            </div>
+            <input type="text" class="form-control" readonly itemid="id" asp-for="@Model.updateSubCategory.CategoryID" placeholder="ID" aria-label="ID">
+        </div>
+    </div>
+    <div class="form-floating mb-6">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" style="width:120px">ID</span>
