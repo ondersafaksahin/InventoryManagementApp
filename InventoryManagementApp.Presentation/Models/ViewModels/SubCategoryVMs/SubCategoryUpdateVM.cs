@@ -11,7 +11,6 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.SubCategoryVMs
         public Status Status { get; set; }
         public string SubCategoryName { get; set; }
         public string? Description { get; set; }
-        public Category Category { get; set; }
         public int CategoryID { get; set; }
         public SelectList? CategoryList { get; set; }
     }

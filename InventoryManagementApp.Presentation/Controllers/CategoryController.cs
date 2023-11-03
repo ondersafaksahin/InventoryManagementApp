@@ -164,10 +164,11 @@ namespace InventoryManagementApp.Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateSubCategory(CategoryUpdateVM vm)
         {
+            vm.ID = vm.updateSubCategory.CategoryID;
             var sbUpdateDto = _mapper.Map<SubCategoryUpdateDTO>(vm.updateSubCategory);
             await _subCategoryService.Update(sbUpdateDto);
-            CategoryUpdateVM category = _mapper.Map<CategoryUpdateVM>(await _categoryService.GetById(sbUpdateDto.CategoryID));
-            return RedirectToAction("UpdateDetails", category);
+            CategoryUpdateVM category = _mapper.Map<CategoryUpdateVM>(await _categoryService.GetById(vm.ID));
+            return RedirectToAction("UpdateDetails",category);
         }
 
         //DeleteSubCategory
