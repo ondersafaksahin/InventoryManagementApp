@@ -117,5 +117,19 @@ namespace InventoryManagementApp.Presentation.Controllers
             await _brandService.Update(brandUpdateDto);
             return RedirectToAction("GetAllActiveBrands");
         }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            if (await _brandService.GetById(id) == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                BrandVM brandVM = _mapper.Map<BrandVM>(await _brandService.GetById(id));
+
+                return View(brandVM);
+            }
+        }
     }
 }
