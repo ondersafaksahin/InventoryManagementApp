@@ -48,6 +48,9 @@
                                 <a class="btn pt-0" asp-action="Delete" asp-controller="Customer" asp-route-id="@item.ID" asp-route-active=true type="button" data-toggle="popover" title="Delete">
                                     <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
                                 </a>
+                                <a class="btn pt-0" asp-action="Details" asp-controller="Customer" asp-route-id="@item.ID" asp-route-active=true type="button" data-toggle="popover" title="Details">
+                                    <i class="fas fa-search" style="color: dodgerblue; font-size: 20px;"></i>
+                                </a>
                             </td>
                         </tr>
                     }

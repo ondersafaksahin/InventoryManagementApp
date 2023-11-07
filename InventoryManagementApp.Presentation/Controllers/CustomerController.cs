@@ -3,6 +3,7 @@ using InventoryManagementApp.Application.DTOs.CustomerDTOs;
 using InventoryManagementApp.Application.DTOs.ModelDTOs;
 using InventoryManagementApp.Application.Services.CustomerService;
 using InventoryManagementApp.Application.Services.ShelfService;
+using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.CustomerVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ModelVMs;
 using Microsoft.AspNetCore.Mvc;
@@ -60,7 +61,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 				{
 					var customerCreateDto = _mapper.Map<CustomerCreateDTO>(customerCreateVm);
 					await _customerService.Create(customerCreateDto);
-					return RedirectToAction("GetAllActiveCustomers");
+					return RedirectToAction("GetAllCustomers");
 				}
 				catch (Exception ex)
 				{
@@ -111,5 +112,19 @@ namespace InventoryManagementApp.Presentation.Controllers
 			await _customerService.Update(customerUpdateDto);
 			return RedirectToAction("GetAllActiveCustomers");
 		}
-	}
+
+        public async Task<IActionResult> Details(int id)
+        {
+            if (await _customerService.GetById(id) == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                CustomerVM customerVM = _mapper.Map<CustomerVM>(await _customerService.GetById(id));
+
+                return View(customerVM);
+            }
+        }
+    }
 }
