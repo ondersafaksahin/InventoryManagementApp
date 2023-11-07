@@ -3,6 +3,7 @@ using InventoryManagementApp.Application.DTOs.ModelDTOs;
 using InventoryManagementApp.Application.DTOs.SupplierDTOs;
 using InventoryManagementApp.Application.Services.ModelService;
 using InventoryManagementApp.Application.Services.SupplierService;
+using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ModelVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.SupplierVMs;
 using Microsoft.AspNetCore.Mvc;
@@ -113,5 +114,19 @@ namespace InventoryManagementApp.Presentation.Controllers
 			await _supplierService.Update(supplierUpdateDto);
 			return RedirectToAction("GetAllSuppliers");
 		}
-	}
+
+        public async Task<IActionResult> Details(int id)
+        {
+            if (await _supplierService.GetById(id) == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                SupplierVM supplierVM = _mapper.Map<SupplierVM>(await _supplierService.GetById(id));
+
+                return View(supplierVM);
+            }
+        }
+    }
 }
