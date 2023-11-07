@@ -15,11 +15,8 @@ namespace InventoryManagementApp.Application.DTOs.SupplierDTOs
         public DateTime? ModifiedDate { get; set; }
         public Status Status { get; set; }
 
-        //IEntity
+
         public int ID { get; set; }
-
-        //ITrader
-
         public string Name { get; set; }
         public string? Contact { get; set; }
         public City? City { get; set; }
