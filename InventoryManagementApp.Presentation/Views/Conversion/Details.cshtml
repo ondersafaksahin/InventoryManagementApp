@@ -1,42 +1,37 @@
-﻿
+﻿@using InventoryManagementApp.Presentation.Models.ViewModels.ConversionVMs;
+
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model CustomerVM
+@model ConversionVM
 
 <div class="col-sm-12 col-xl-6">
     <div class="bg-light rounded h-100 p-4">
-        <h6 class="mb-4">Customer Details</h6>
+        <h6 class="mb-4">Conversion Details</h6>
         <dl class="row mb-0">
 
             <dt class="col-sm-4">ID</dt>
             <dd class="col-sm-8">@Model.ID</dd>
 
-            <dt class="col-sm-4">Customer Name</dt>
-            <dd class="col-sm-8">@Model.Name</dd>
+            <dt class="col-sm-4">Good Name</dt>
+            <dd class="col-sm-8">@ViewBag.goodName</dd>
 
             <dt class="col-sm-4">Status</dt>
             <dd class="col-sm-8">@Model.Status</dd>
 
-            <dt class="col-sm-4 text-truncate">Contact</dt>
-            <dd class="col-sm-8">@Model.Contact</dd>
+            <dt class="col-sm-4 text-truncate">Base Good Amount</dt>
+            <dd class="col-sm-8">@Model.BaseGoodAmount</dd>
 
-            <dt class="col-sm-4 text-truncate">City</dt>
-            <dd class="col-sm-8">@Model.City</dd>
+            <dt class="col-sm-4 text-truncate">Base Unit</dt>
+            <dd class="col-sm-8">@Model.BaseUnit</dd>
 
-            <dt class="col-sm-4 text-truncate">Address</dt>
-            <dd class="col-sm-8">@Model.Address</dd>
+            <dt class="col-sm-4 text-truncate">Final Good Amount</dt>
+            <dd class="col-sm-8">@Model.FinalGoodAmount</dd>
 
-            <dt class="col-sm-4 text-truncate">Phone Number</dt>
-            <dd class="col-sm-8">@Model.PhoneNumber</dd>
-
-            <dt class="col-sm-4 text-truncate">Email</dt>
-            <dd class="col-sm-8">@Model.Email</dd>
-
-            <dt class="col-sm-4 text-truncate">WebPage</dt>
-            <dd class="col-sm-8">@Model.WebPage</dd>
+            <dt class="col-sm-4 text-truncate">Final Unit</dt>
+            <dd class="col-sm-8">@Model.FinalUnit</dd>    
 
             <dt class="col-sm-4 text-truncate">Created By</dt>
             <dd class="col-sm-8">@Model.CreatedBy</dd>

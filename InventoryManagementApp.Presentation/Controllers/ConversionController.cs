@@ -2,6 +2,7 @@
 using InventoryManagementApp.Application.DTOs.ConversionDTOs;
 using InventoryManagementApp.Application.Services.ConversionService;
 using InventoryManagementApp.Application.Services.GoodService;
+using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ConversionVMs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -130,6 +131,21 @@ namespace InventoryManagementApp.Presentation.Controllers
                 }
             }
             return View(conversionUpdateVM);
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            if (await _conversionService.GetById(id) == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                ConversionVM conversionVM = _mapper.Map<ConversionVM>(await _conversionService.GetById(id));
+                ViewBag.goodName = (await _goodService.GetById(conversionVM.GoodID)).Name;
+
+                return View(conversionVM);
+            }
         }
     }
 }
