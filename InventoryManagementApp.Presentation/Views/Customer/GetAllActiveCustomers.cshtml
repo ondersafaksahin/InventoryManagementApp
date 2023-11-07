@@ -31,24 +31,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var customer in Model)
                     {
                         <tr>
-                            <th scope="row">@item.ID</th>
-                            <td>@item.Name</td>
-                            <td>@item.Status</td>
-                            <td>@item.Contact</td>
-                            <td>@item.PhoneNumber</td>
-                            <td>@item.Email</td>
-                            <td>@item.WebPage</td>
+                            <th scope="row">@customer.ID</th>
+                            <td>@customer.Name</td>
+                            <td>@customer.Status</td>
+                            <td>@customer.Contact</td>
+                            <td>@customer.PhoneNumber</td>
+                            <td>@customer.Email</td>
+                            <td>@customer.WebPage</td>
                             <td class="text-center">
-                                <a class="btn pt-0" asp-action="UpdateDetails" asp-controller="Customer" asp-route-id="@item.ID" type="button" data-toggle="popover" title="Update">
+                                <a class="btn pt-0" asp-action="UpdateDetails" asp-controller="Customer" asp-route-id="@customer.ID" type="button" data-toggle="popover" title="Update">
                                     <i class="far fa-edit" style="color:coral;font-size:20px"></i>
                                 </a>
-                                <a class="btn pt-0" asp-action="Delete" asp-controller="Customer" asp-route-id="@item.ID" asp-route-active=true type="button" data-toggle="popover" title="Delete">
+                                <a class="btn pt-0" asp-action="Delete" asp-controller="Customer" asp-route-id="@customer.ID" asp-route-active=true type="button" data-toggle="popover" title="Delete">
                                     <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
                                 </a>
-                                <a class="btn pt-0" asp-action="Details" asp-controller="Customer" asp-route-id="@item.ID" asp-route-active=true type="button" data-toggle="popover" title="Details">
+                                <a class="btn pt-0" asp-action="Details" asp-controller="Customer" asp-route-id="@customer.ID" asp-route-active=true type="button" data-toggle="popover" title="Details">
                                     <i class="fas fa-search" style="color: dodgerblue; font-size: 20px;"></i>
                                 </a>
                             </td>
