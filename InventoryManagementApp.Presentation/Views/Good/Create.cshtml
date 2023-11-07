@@ -203,10 +203,10 @@
 
 
 
-@Html.Partial("_CategoryAddPartial",new CategoryCreateVM())
-@Html.Partial("_ModelAddPartial",new ModelCreateVM())
-@Html.Partial("_SubCategoryAddPartial",new SubCategoryCreateVM())
-@Html.Partial("_BrandAddPartial",new BrandCreateVM())
+@await Html.PartialAsync("_CategoryAddPartial",new CategoryCreateVM())
+@await Html.PartialAsync("_ModelAddPartial",new ModelCreateVM())
+@await Html.PartialAsync("_SubCategoryAddPartial",new SubCategoryCreateVM())
+@await Html.PartialAsync("_BrandAddPartial",new BrandCreateVM())
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

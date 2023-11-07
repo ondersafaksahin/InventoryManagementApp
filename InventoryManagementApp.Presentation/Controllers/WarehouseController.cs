@@ -133,20 +133,6 @@ namespace InventoryManagementApp.Presentation.Controllers
         }
 
 
-        //Adding Shelf to Warehouse
-        //[HttpGet]
-        //public IActionResult ShelfCreate()
-        //{
-        //    WarehouseUpdateVM warehouseUpdateVm = new WarehouseUpdateVM()
-        //    {
-        //        newShelf = new ShelfCreateVM()
-        //    };
-
-
-        //    return PartialView("ShelfCreate", warehouseUpdateVm);
-
-        //}
-
 
         [HttpPost]
         public async Task<IActionResult> ShelfCreate(WarehouseUpdateVM vm)
