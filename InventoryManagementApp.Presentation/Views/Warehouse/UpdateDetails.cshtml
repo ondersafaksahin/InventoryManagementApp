@@ -108,7 +108,7 @@
                                 }
 
                                 <!-- Button trigger modal -->
-                                <button type="button" class="button" data-toggle="modal" data-target="#staticBackdropShelf">
+                                <button type="button" class="button" data-toggle="modal" data-target="#staticBackdropShelf" asp-route-id="@Model.ID">
                                     <span>Add Shelf</span>
                                 </button>
 
@@ -200,70 +200,26 @@
         $(document).ready(function () {
             $('#example').DataTable;
         });
-    })
+    });
 
-    function showInPopup(url){
-    $.ajax({
-        type: "GET",
-        url: url,
-        success: function (res) {
-            $("#exampleModal2 .modal-body").html(res);
-            $("#exampleModal2").modal('show');
-        }
-    })
-}
+    function showInPopup(url) {
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (res) {
+                $("#exampleModal2 .modal-body").html(res);
+                $("#exampleModal2").modal('show');
+            }
+        })
+    };
 
+    var warehouseId = @Model.ID;
+    console.log(warehouseId);
 
-    //function openEditModal(id) {
-    //    $.ajax({
-    //        url: '/warehouse/updateshelf/' + id,
-    //        type: 'GET',
-    //        success: function (data) {
-    //            $('#exampleModal2.modal-content').html(data);
-    //            $('#exampleModal2').modal('show');
-    //        }
-    //    });
-    //}
+    $(document).on("click", "#createShelfSubmit", function () {
+        $(".modal-body #warehouseId").val(warehouseId);
+    });
 
-
-    //function EditShelf(id){
-    //    var url= "/Warehouse/UpdateShelf?id="+id;
-    //    $("#exampleModal2").modal();
-    //    $.ajax({
-    //        url:url,
-    //        type:"get",
-    //        success:function(data){
-    //            var obj=JSON.parse(data);
-    //            $("#id").val(obj.ID);
-    //            $("#name").val(obj.Name);
-    //            $("#description").val(obj.Description);
-    //            $("#warehouseid").val(obj.WarehouseID);
-    //            $("#status").val(obj.Status);
-    //        }
-            
-    //    })
-    //}
-
-        //function GetDetails(id) {
-        //    $.ajax({
-        //        url: "/Warehouse/UpdateShelf/" + id,
-        //        typr: "GET",
-        //        contentType: "application/json;charset=UTF-8",
-        //        dataType: "json",
-        //        success: function (response) {
-        //            $('#id').val(response.ID);
-        //            $('#name').val(response.Name);
-        //        $('#description').val(response.Description);
-        //        $('#warehouseid').val(response.WarehouseID);
-        //        $('#status').val(response.Status);
-        //        $('#exampleModal2').modal('show');
-        //        },
-        //        error: function (response) {
-        //            alert(response.responseText);
-        //        }
-        //    });
-        //    return false;
-        //}
 </script>
 
 

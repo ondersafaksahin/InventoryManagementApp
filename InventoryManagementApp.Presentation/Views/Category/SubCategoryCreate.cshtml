@@ -21,19 +21,19 @@
         </div>
     </div>
 
-    <div class="form-floating mb-6" style="display:none">
+    <div class="form-floating mb-6 d-none">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" style="width:120px">Category ID</span>
             </div>
-            <input type="text" class="form-control" asp-for=newSubCategory.CategoryID readonly placeholder="District" aria-label="District" value=@Model.ID>
+            <input type="text" id="categoryId" class="form-control" asp-for=newSubCategory.CategoryID readonly placeholder="Category ID" aria-label="Category ID" value="">
         </div>
     </div>
     <br />
     <div class="form-floating mb-6">
         <div class="input-group mb-3" id="design">
             <a class="btn btn-danger mx-2 form-button" data-dismiss="modal">Cancel</a>
-            <input type="submit" value="Save" class="btn btn-success mx-2 form-button" />
+            <input id="createSubCategorySubmit" type="submit" value="Save" class="btn btn-success mx-2 form-button" />
         </div>
     </div>
 

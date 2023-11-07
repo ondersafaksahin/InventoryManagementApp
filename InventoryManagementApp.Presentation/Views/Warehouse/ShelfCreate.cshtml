@@ -13,17 +13,17 @@
         </div>
     </div>
     
-    <div class="form-floating mb-6" style="display:none">
+    <div class="form-floating mb-6 d-none">
         <div class="input-group mb-3">
-            <input type="text" class="form-control" asp-for=newShelf.WarehouseID readonly placeholder="District" aria-label="District" value=@Model.ID>
+            <input type="text" id="warehouseId" class="form-control" asp-for=newShelf.WarehouseID readonly placeholder="Warehouse ID" aria-label="Warehouse ID">
         </div>
     </div>
 
     <br />
     <div class="form-floating mb-6">
         <div class="input-group mb-3" id="design">
-            <a class="btn btn-danger mx-2 form-button" data-dismiss="modal">Cancel</a>
-            <input type="submit" value="Save" class="btn btn-success mx-2 form-button" />
+            <a class="btn btn-danger mx-2 form-button" data-bs-dismiss="modal">Cancel</a>
+            <input id="createShelfSubmit" type="submit" value="Save" class="btn btn-success mx-2 form-button" />
         </div>
     </div>
 
