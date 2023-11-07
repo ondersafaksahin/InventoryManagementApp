@@ -1,0 +1,41 @@
+﻿@using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model BrandVM
+
+<div class="col-sm-12 col-xl-6">
+    <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">Brand Details</h6>
+        <dl class="row mb-0">
+           
+            <dt class="col-sm-4">ID</dt>
+            <dd class="col-sm-8">@Model.ID</dd>
+
+            <dt class="col-sm-4">Brand Name</dt>
+            <dd class="col-sm-8">@Model.BrandName</dd>
+
+            <dt class="col-sm-4">Status</dt>
+            <dd class="col-sm-8">@Model.Status</dd>
+
+            <dt class="col-sm-4 text-truncate">Created By</dt>
+            <dd class="col-sm-8">@Model.CreatedBy</dd>
+
+            <dt class="col-sm-4 text-truncate">Created Date</dt>
+            <dd class="col-sm-8">@Model.CreatedDate</dd>
+
+            @if(Model.ModifiedBy!=null)
+            {
+                <dt class="col-sm-4 text-truncate">Modified By</dt>
+                <dd class="col-sm-8">@Model.ModifiedBy</dd>
+                <dt class="col-sm-4 text-truncate">Modified Date</dt>
+                <dd class="col-sm-8">@Model.ModifiedDate</dd>
+            }
+   
+        </dl>
+    </div>
+</div>
+
