@@ -1,0 +1,267 @@
+﻿@using InventoryManagementApp.Domain.Enums;
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model GoodUpdateVM
+
+<div class="form-floating mb-8 p-4">
+    <div class="container-fluid pt-8 px-8">
+
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h4 class="mb-4">Update Good</h4>
+                <form method="post" asp-action="Update" asp-controller="Good">
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="width:150px">ID</span>
+                            </div>
+                            <input type="text" class="form-control" readonly asp-for=@Model.ID placeholder="Name" aria-label="IDOfGood">
+                        </div>
+                    </div>
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Status</span>
+                            </div>
+                            <select class="form-select" asp-for="@Model.Status" asp-items="@Html.GetEnumSelectList<Status>()">
+                                <option selected style="display:none">@Model.Status</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Name</span>
+                            </div>
+                            <input type="text" class="form-control" asp-for=@Model.Name placeholder="Name" aria-label="NameOfGood">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Code</span>
+                            </div>
+                            <input type="text" class="form-control" asp-for="@Model.Code" placeholder="Code" aria-label="Code">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Stock Amount</span>
+                            </div>
+                            <input type="text" class="form-control" asp-for="@Model.StockAmount" placeholder="StockAmount" aria-label="StockAmount">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Reserved Stock</span>
+                            </div>
+                            <input type="text" class="form-control" asp-for="@Model.ReservedStock" placeholder="ReservedStock" aria-label="ReservedStock">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Stocking Unit</span>
+                            </div>
+                            <select class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example" asp-for="@Model.StockingUnit" asp-items="@Html.GetEnumSelectList<UnitType>()">
+                                <option selected>Choose Stocking Unit...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Consumption Unit</span>
+                            </div>
+                            <select class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example" asp-for="@Model.ConsumptionUnit" asp-items="@Html.GetEnumSelectList<UnitType>()">
+                                <option selected>Choose Stocking Unit...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Minimum Stock</span>
+                            </div>
+                            <input type="text" class="form-control" asp-for="@Model.MinStock" placeholder="MinStock" aria-label="MinStock">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Tax Percentage</span>
+                            </div>
+                            <input type="text" class="form-control" asp-for="@Model.TaxPercentage" placeholder="TaxPercentage" aria-label="TaxPercentage">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">List Price</span>
+                            </div>
+                            <input type="text" class="form-control" asp-for="@Model.ListPrice" placeholder="ListPrice" aria-label="ListPrice">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">List Currency</span>
+                            </div>
+                            <input type="text" class="form-control" asp-for="@Model.ListCurrency" placeholder="ListCurrency" aria-label="ListCurrency">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Barcode</span>
+                            </div>
+                            <input type="text" class="form-control" asp-for="@Model.Barcode" placeholder="Barcode" aria-label="Barcode">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Gross Weight</span>
+                            </div>
+                            <input type="text" class="form-control" asp-for="@Model.GrossWeight" placeholder="GrossWeight" aria-label="GrossWeight">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Net Weight</span>
+                            </div>
+                            <input type="text" class="form-control" asp-for="@Model.NetWeight" placeholder="NetWeight" aria-label="NetWeight">
+                        </div>
+                    </div>                   
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="width:150px">Category</span>
+                            </div>
+                            <select class="form-select" id="categoryDropdown" aria-label="Floating label select example" asp-for="@Model.CategoryID">
+                                <option selected value="0">Select Category... </option>
+                                @foreach (var item in Model.CategoryList)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="width:150px">SubCategory</span>
+                            </div>
+                            <select class="form-select" id="subcategoryDropdown" aria-label="Floating label select example" asp-for="@Model.SubCategoryID">
+                                <option selected value="0">Select SubCategory... </option>
+                                @foreach (var item in Model.SubCategoryList)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="width:150px">Brand</span>
+                            </div>
+                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" asp-for="@Model.BrandID">
+                                <option selected value="0">Select Brand... </option>
+                                @foreach (var item in Model.BrandList)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="width:150px">Model</span>
+                            </div>
+                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" asp-for="@Model.ModelID">
+                                <option selected value="0">Select Model... </option>
+                                @foreach (var item in Model.ModelList)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+
+
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3" id="design">
+                            <a class="btn btn-danger mx-2 form-button" asp-controller="Good" asp-action="ListActive">Cancel</a>
+                            <input type="submit" value="Save" class="btn btn-success mx-2 form-button" />
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Sayfa yüklendiğinde alt kategorileri yükle
+        loadSubcategories();
+
+        // Kategori değiştiğinde alt kategorileri güncelle
+        $("#categoryDropdown").change(function () {
+            loadSubcategories();
+        });
+
+        function loadSubcategories() {
+            $.ajax({
+                url: '/Good/GetSubcategories',
+                type: 'GET',
+                data: { categoryId: $("#categoryDropdown").val() },
+                success: function (data) {
+                    var subcategoryDropdown = $("#subcategoryDropdown");
+                    subcategoryDropdown.empty();
+                    $.each(data, function (i, subcategory) {
+                        subcategoryDropdown.append($('<option/>', {
+                            value: subcategory.id,
+                            text: subcategory.subCategoryName
+                        }));
+                    });
+                }
+            });
+        }
+    });
+</script>
+
+
