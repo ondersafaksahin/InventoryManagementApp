@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model GoodVM
+
+<div class="col-sm-12 col-xl-6">
+    <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">Good Details</h6>
+        <dl class="row mb-0">
+
+            <dt class="col-sm-4">ID</dt>
+            <dd class="col-sm-8">@Model.ID</dd>
+
+            <dt class="col-sm-4">Good Code</dt>
+            <dd class="col-sm-8">@Model.Code</dd>
+
+            <dt class="col-sm-4">Good Name</dt>
+            <dd class="col-sm-8">@Model.Name</dd>
+
+            <dt class="col-sm-4">Status</dt>
+            <dd class="col-sm-8">@Model.Status</dd>
+
+            <dt class="col-sm-4 text-truncate">Picture</dt>
+            <dd class="col-sm-8">@Model.Picture</dd>
+
+            <dt class="col-sm-4 text-truncate">Stock Amount</dt>
+            <dd class="col-sm-8">@Model.StockAmount</dd>
+
+            <dt class="col-sm-4 text-truncate">Reserved Stock</dt>
+            <dd class="col-sm-8">@Model.ReservedStock</dd>
+
+            <dt class="col-sm-4 text-truncate">Stocking Unit</dt>
+            <dd class="col-sm-8">@Model.StockingUnit</dd>
+
+            <dt class="col-sm-4 text-truncate">Consumption Unit</dt>
+            <dd class="col-sm-8">@Model.ConsumptionUnit</dd>
+
+            <dt class="col-sm-4 text-truncate">Minimum Stock</dt>
+            <dd class="col-sm-8">@Model.MinStock</dd>
+
+            <dt class="col-sm-4 text-truncate">Tax Percentage</dt>
+            <dd class="col-sm-8">@Model.TaxPercentage</dd>
+
+            <dt class="col-sm-4 text-truncate">List Price</dt>
+            <dd class="col-sm-8">@Model.ListPrice</dd>
+
+            <dt class="col-sm-4 text-truncate">List Currency</dt>
+            <dd class="col-sm-8">@Model.ListCurrency</dd>
+
+            <dt class="col-sm-4 text-truncate">Barcode</dt>
+            <dd class="col-sm-8">@Model.Barcode</dd>
+
+            <dt class="col-sm-4 text-truncate">Gross Weight</dt>
+            <dd class="col-sm-8">@Model.GrossWeight</dd>
+
+            <dt class="col-sm-4 text-truncate">Net Weight</dt>
+            <dd class="col-sm-8">@Model.NetWeight</dd>
+
+            <dt class="col-sm-4 text-truncate">Category Name</dt>
+            <dd class="col-sm-8">@ViewBag.categoryName</dd>
+
+            @if (ViewBag.subCategoryName!=null)
+            {
+                <dt class="col-sm-4 text-truncate">SubCategory Name</dt>
+                <dd class="col-sm-8">@ViewBag.subCategoryName</dd>
+            }
+            
+            @if (ViewBag.modelName != null)
+            {
+                <dt class="col-sm-4 text-truncate">Model Name</dt>
+                <dd class="col-sm-8">@ViewBag.modelName</dd>
+            }
+
+            @if (ViewBag.brandName != null)
+            {
+                <dt class="col-sm-4 text-truncate">Brand Name</dt>
+                <dd class="col-sm-8">@ViewBag.brandName</dd>
+            }
+
+            
+            <dt class="col-sm-4 text-truncate">Created By</dt>
+            <dd class="col-sm-8">@Model.CreatedBy</dd>
+
+            <dt class="col-sm-4 text-truncate">Created Date</dt>
+            <dd class="col-sm-8">@Model.CreatedDate</dd>
+
+            @if (Model.ModifiedBy != null)
+            {
+                <dt class="col-sm-4 text-truncate">Modified By</dt>
+                <dd class="col-sm-8">@Model.ModifiedBy</dd>
+                <dt class="col-sm-4 text-truncate">Modified Date</dt>
+                <dd class="col-sm-8">@Model.ModifiedDate</dd>
+            }
+
+        </dl>
+    </div>
+</div>
+

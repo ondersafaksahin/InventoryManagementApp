@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
+using InventoryManagementApp.Application.DTOs.ModelDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.IRepositories;
 using System;
@@ -33,24 +34,30 @@ namespace InventoryManagementApp.Application.Services.GoodService
 
         public async Task<List<GoodListDTO>> All()
         {
-            var list = _mapper.Map<List<GoodListDTO>>(await _goodRepository.GetAll());
 
-            foreach (var item in list)
-            {
-                var category = _categoryRepository.GetById(x => x.ID == item.CategoryID);
-                item.Category = category.Result;
+            return _mapper.Map<List<GoodListDTO>>(await _goodRepository.GetAll());
+            //var list = _mapper.Map<List<GoodListDTO>>(await _goodRepository.GetAll());
 
-                var subcategory = _subCategoryRepository.GetById(x => x.ID == item.SubCategoryID);
-                item.SubCategory = subcategory.Result;
+            //foreach (var item in list)
+            //{
+            //    var category = _categoryRepository.GetById(x => x.ID == item.CategoryID);
+            //    item.Category = category.Result;
 
-                var brand = _brandRepository.GetById(x => x.ID == item.BrandID);
-                item.Brand = brand.Result;
+            //    var subcategory = _subCategoryRepository.GetById(x => x.ID == item.SubCategoryID);
+            //    item.SubCategory = subcategory.Result;
 
-                var model = _modelRepository.GetById(x => x.ID == item.ModelID);
-                item.Model = model.Result;
+            //    var brand = _brandRepository.GetById(x => x.ID == item.BrandID);
+            //    item.Brand = brand.Result;
 
-            }
-            return list;
+            //    if (item.ModelID != null)
+            //    {
+            //        var model = _modelRepository.GetById(x => x.ID == item.ModelID);
+            //        item.Model = model.Result;
+            //    }
+
+
+            //}
+            //return list;
         }
 
         public async Task Create(GoodCreateDTO createDTO)
@@ -76,21 +83,21 @@ namespace InventoryManagementApp.Application.Services.GoodService
             var list = _mapper.Map<List<GoodListDTO>>(await _goodRepository.GetDefaults(expression));
 
 
-            foreach (var item in list)
-            {
-                var category = _categoryRepository.GetById(x => x.ID == item.CategoryID);
-                item.Category = category.Result;
+            //foreach (var item in list)
+            //{
+            //    var category = _categoryRepository.GetById(x => x.ID == item.CategoryID);
+            //    item.Category = category.Result;
 
-                var subcategory = _subCategoryRepository.GetById(x => x.ID == item.SubCategoryID);
-                item.SubCategory = subcategory.Result;
+            //    var subcategory = _subCategoryRepository.GetById(x => x.ID == item.SubCategoryID);
+            //    item.SubCategory = subcategory.Result;
 
-                var brand = _brandRepository.GetById(x => x.ID == item.BrandID);
-                item.Brand = brand.Result;
+            //    var brand = _brandRepository.GetById(x => x.ID == item.BrandID);
+            //    item.Brand = brand.Result;
 
-                var model = _modelRepository.GetById(x => x.ID == item.ModelID);
-                item.Model = model.Result;
+            //    var model = _modelRepository.GetById(x => x.ID == item.ModelID);
+            //    item.Model = model.Result;
 
-            }
+            //}
 
             return list;
         }
