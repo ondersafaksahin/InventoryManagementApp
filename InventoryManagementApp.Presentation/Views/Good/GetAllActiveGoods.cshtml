@@ -18,7 +18,7 @@
             <a class="btn btn-success" asp-action="Create" asp-controller="Good">Add Good</a>
         </div>
         <div class="table-responsive">
-            <table class="table" id="example">
+            <table id="example" class="table pt-3" style="width:100%">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -116,6 +116,9 @@
                                 </a>
                                 <a class="btn pt-0" asp-action="Delete" asp-controller="Good" asp-route-id="@good.ID" asp-route-active=true type="button" data-toggle="popover" title="Delete">
                                     <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
+                                </a>
+                                <a class="btn pt-0" asp-action="Details" asp-controller="Good" asp-route-id="@good.ID" asp-route-active=true type="button" data-toggle="popover" title="Details">
+                                    <i class="fas fa-search" style="color: dodgerblue; font-size: 20px;"></i>
                                 </a>
                             </td>
                         </tr>

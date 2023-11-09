@@ -35,7 +35,7 @@ namespace InventoryManagementApp.Application.DTOs.GoodDTOs
         public int? SubCategoryID { get; set; }
         public SubCategory? SubCategory { get; set; }
         public int? ModelID { get; set; }
-        public ModelListDTO? ModelList { get; set; }
+        public Model? Model { get; set; }
         public int? BrandID { get; set; }
         public Brand? Brand { get; set; }
         public BillOfMaterial? BillOfMaterial { get; set; }
@@ -44,9 +44,6 @@ namespace InventoryManagementApp.Application.DTOs.GoodDTOs
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; } = DateTime.Now;
         
-        public string? ModifiedBy { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-
         public Status Status { get; set; } = Status.Active;
     }
 }

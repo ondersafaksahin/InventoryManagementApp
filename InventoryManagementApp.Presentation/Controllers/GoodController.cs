@@ -11,9 +11,11 @@ using InventoryManagementApp.Application.Services.ModelService;
 using InventoryManagementApp.Application.Services.SubCategoryService;
 using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.CategoryVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.ConversionVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ModelVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.SubCategoryVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.SupplierVMs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,7 +25,7 @@ using System.Data;
 namespace InventoryManagementApp.Presentation.Controllers
 {
     //[Authorize(Roles = "Admin", "Manager", "Employee")]
-   
+
     public class GoodController : Controller
     {
 
@@ -62,7 +64,7 @@ namespace InventoryManagementApp.Presentation.Controllers
             }).ToList();
             return Json(subcategoryItems);
         }
- 
+
 
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CategoryCreateVM categoryCreateVm)
@@ -264,6 +266,38 @@ namespace InventoryManagementApp.Presentation.Controllers
             await _goodService.Update(goodUpdateDto);
 
             return RedirectToAction("GetAllActiveGoods");
+        }
+
+
+        public async Task<IActionResult> Details(int id)
+        {
+            if (await _goodService.GetById(id) == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                GoodVM goodVM = _mapper.Map<GoodVM>(await _goodService.GetById(id));
+                ViewBag.categoryName = (await _categoryService.GetById(goodVM.CategoryID.Value)).CategoryName;
+
+
+                if(goodVM.SubCategoryID != null)
+                {
+                    ViewBag.subCategoryName = (await _subCategoryService.GetById(goodVM.SubCategoryID.Value)).SubCategoryName;
+                }
+                
+                if(goodVM.ModelID != null)
+                {
+                    ViewBag.modelName = (await _modelService.GetById(goodVM.ModelID.Value)).ModelName;
+                }
+
+                if (goodVM.BrandID != null)
+                {
+                    ViewBag.brandName = (await _brandService.GetById(goodVM.BrandID.Value)).BrandName;
+                   
+                }
+                 return View(goodVM);
+            }
         }
 
     }
