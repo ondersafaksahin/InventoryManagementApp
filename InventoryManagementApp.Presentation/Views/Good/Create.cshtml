@@ -112,9 +112,8 @@
                                     {
                                         @foreach (var item in Model.CategoryList)
                                         {
-                                            <option value="@item.ID">@item.CategoryName</option>
+                                            <option value="@item.Value">@item.Text</option>
                                         }
-                                    }
                                     }
 
                                 </select>
@@ -156,7 +155,7 @@
                                 {
                                     @foreach (var item in Model.BrandList)
                                     {
-                                        <option value="@item.ID">@item.BrandName</option>
+                                        <option value="@item.Value">@item.Text</option>
                                     }
                                 }
                             </select>
@@ -176,7 +175,7 @@
                                 {
                                     @foreach (var item in Model.ModelList)
                                     {
-                                        <option value="@item.ID">@item.ModelName</option>
+                                        <option value="@item.Value">@item.Text</option>
                                     }
                                 }
                             </select>

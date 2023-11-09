@@ -125,7 +125,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 			return RedirectToAction("GetAllActiveSubCategories");
 		}
 
-        private async Task<SelectList> GetCategory()
+        public async Task<SelectList> GetCategory()
         {
 			var getCategorys = await _categoryService.All();
 

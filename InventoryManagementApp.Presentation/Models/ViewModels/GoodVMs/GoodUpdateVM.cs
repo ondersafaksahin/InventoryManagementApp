@@ -1,6 +1,7 @@
 ﻿using InventoryManagementApp.Application.DTOs.ModelDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.Enums;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs
 {
@@ -22,18 +23,15 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs
         public float? GrossWeight { get; set; }
         public float? NetWeight { get; set; }
         public int? CategoryID { get; set; }
-        public Category? Category { get; set; }
+        public SelectList? CategoryList { get; set; }
         public int? SubCategoryID { get; set; }
-        public SubCategory? SubCategory { get; set; }
+        public SelectList? SubCategoryList { get; set; }
         public int? ModelID { get; set; }
-        public ModelListDTO? ModelList { get; set; }
+        public SelectList? ModelList { get; set; }
         public int? BrandID { get; set; }
-        public Brand? Brand { get; set; }
+        public SelectList? BrandList { get; set; }
         public BillOfMaterial? BillOfMaterial { get; set; }
         public int? BillOfMaterialID { get; set; }
-
-        public string? ModifiedBy { get; set; }
-        public DateTime? ModifiedDate { get; set; } = DateTime.Now;
         public Status Status { get; set; }
     }
 }

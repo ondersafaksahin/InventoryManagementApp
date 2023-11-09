@@ -18,6 +18,7 @@ using InventoryManagementApp.Presentation.Models.ViewModels.SubCategoryVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.SupplierVMs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -167,10 +168,10 @@ namespace InventoryManagementApp.Presentation.Controllers
         public async Task<IActionResult> Create()
         {
             GoodCreateVM goodCreateVm = new GoodCreateVM();
-            goodCreateVm.CategoryList = await _categoryService.All();
-            goodCreateVm.SubCategoryList = await _subCategoryService.All();
-            goodCreateVm.ModelList = await _modelService.All();
-            goodCreateVm.BrandList = await _brandService.All();
+            goodCreateVm.CategoryList = await GetCategory();
+            goodCreateVm.SubCategoryList = await GetSubCategory();
+            goodCreateVm.ModelList = await GetModel();
+            goodCreateVm.BrandList = await GetBrand();
 
             return View(goodCreateVm);
 
@@ -221,7 +222,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 
         [Route("[controller]/Edit/{id}")]
         [HttpGet]
-        public async Task<IActionResult> UpdateDetails(int id)
+        public async Task<IActionResult> Update(int id)
         {
             if (await _goodService.GetById(id) == null)
             {
@@ -230,13 +231,17 @@ namespace InventoryManagementApp.Presentation.Controllers
             else
             {
                 GoodUpdateVM goodUpdateVm = _mapper.Map<GoodUpdateVM>(await _goodService.GetById(id));
-
+                goodUpdateVm.CategoryList = await GetCategory();
+                goodUpdateVm.SubCategoryList = await GetSubCategory();
+                goodUpdateVm.BrandList = await GetBrand();
+                goodUpdateVm.ModelList = await GetModel();
                 return View(goodUpdateVm);
             }
         }
+
         [Route("[controller]/Edit/{id}")]
         [HttpPost]
-        public async Task<IActionResult> UpdateDetails(GoodUpdateVM vm)
+        public async Task<IActionResult> Update(GoodUpdateVM vm)
         {
 
             if (Request.Form.Files.Count > 0)
@@ -298,6 +303,50 @@ namespace InventoryManagementApp.Presentation.Controllers
                 }
                  return View(goodVM);
             }
+        }
+
+        private async Task<SelectList> GetCategory()
+        {
+            var getCategorys = await _categoryService.All();
+
+            return new SelectList(getCategorys.Select(x => new SelectListItem
+            {
+                Value = x.ID.ToString(),
+                Text = x.CategoryName
+            }), "Value", "Text");
+        }
+
+        private async Task<SelectList> GetSubCategory()
+        {
+            var getSubCategorys = await _subCategoryService.All();
+
+            return new SelectList(getSubCategorys.Select(x => new SelectListItem
+            {
+                Value = x.ID.ToString(),
+                Text = x.SubCategoryName
+            }), "Value", "Text");
+        }
+
+        private async Task<SelectList> GetBrand()
+        {
+            var getBrands = await _brandService.All();
+
+            return new SelectList(getBrands.Select(x => new SelectListItem
+            {
+                Value = x.ID.ToString(),
+                Text = x.BrandName
+            }), "Value", "Text");
+        }
+
+        private async Task<SelectList> GetModel()
+        {
+            var getModels = await _modelService.All();
+
+            return new SelectList(getModels.Select(x => new SelectListItem
+            {
+                Value = x.ID.ToString(),
+                Text = x.ModelName
+            }), "Value", "Text");
         }
 
     }
