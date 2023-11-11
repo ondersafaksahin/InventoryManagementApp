@@ -1,6 +1,5 @@
 @using InventoryManagementApp.Domain.Enums;
 @using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
-@using InventoryManagementApp.Presentation.Models.ViewModels.ModelVMs;
 
 @{
     ViewData["Title"] = "Create";
@@ -26,6 +25,12 @@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" asp-for=@Model.Code placeholder="Unique Good Code" aria-label="Good Code">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for=@Model.ModelCode placeholder="Supplier Model Code" aria-label="Supplier Model Code">
                         </div>
                     </div>
                     <br />
@@ -169,27 +174,6 @@
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3" id="design">
-                            <select class="form-select" id="floatingSelect-design" aria-label="Floating label select example" asp-for="@Model.ModelID">
-                                <option selected value="">Select Model... </option>
-                                @if (Model.ModelList != null)
-                                {
-                                    @foreach (var item in Model.ModelList)
-                                    {
-                                        <option value="@item.Value">@item.Text</option>
-                                    }
-                                }
-                            </select>
-                            <button class="button" style="vertical-align:middle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropModel">
-                                <span>
-                                    Add Model
-                                </span>
-                            </button>
-
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3" id="design">
                             <a class="btn btn-danger mx-2 form-button" asp-controller="Good" asp-action="ListActive">Cancel</a>
                             <input type="submit" value="Save" class="btn btn-success mx-2 form-button" />
                         </div>
@@ -203,7 +187,6 @@
 
 
 @await Html.PartialAsync("_CategoryAddPartial",new CategoryCreateVM())
-@await Html.PartialAsync("_ModelAddPartial",new ModelCreateVM())
 @await Html.PartialAsync("_SubCategoryAddPartial",new SubCategoryCreateVM())
 @await Html.PartialAsync("_BrandAddPartial",new BrandCreateVM())
 

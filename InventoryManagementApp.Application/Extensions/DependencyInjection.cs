@@ -12,7 +12,6 @@ using InventoryManagementApp.Application.Services.CustomerService;
 using InventoryManagementApp.Application.Services.EmployeeService;
 using InventoryManagementApp.Application.Services.GoodService;
 using InventoryManagementApp.Application.Services.ManagerService;
-using InventoryManagementApp.Application.Services.ModelService;
 using InventoryManagementApp.Application.Services.ProductionOrderService;
 using InventoryManagementApp.Application.Services.PurchaseOrderDetailService;
 using InventoryManagementApp.Application.Services.PurchaseOrderService;
@@ -64,7 +63,6 @@ namespace InventoryManagementApp.Application.Extensions
             //
             //Hatice
             services.AddScoped<IBrandService, BrandService>();
-            services.AddScoped<IModelService, ModelService>();
             services.AddScoped<ICustomerService, CustomerService>();
 			services.AddScoped<ISupplierService, SupplierService>();
 			services.AddScoped<ICategoryService, CategoryService>();

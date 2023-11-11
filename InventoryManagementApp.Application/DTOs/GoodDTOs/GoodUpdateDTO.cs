@@ -1,5 +1,4 @@
-﻿using InventoryManagementApp.Application.DTOs.ModelDTOs;
-using InventoryManagementApp.Domain.Entities.Concrete;
+﻿using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -13,6 +12,7 @@ namespace InventoryManagementApp.Application.DTOs.GoodDTOs
     {
         public int ID { get; set; }
         public string Code { get; set; }
+        public string? ModelCode { get; set; }
         public string Name { get; set; }
         public string? Picture { get; set; }
         public float StockAmount { get; set; }
@@ -30,8 +30,6 @@ namespace InventoryManagementApp.Application.DTOs.GoodDTOs
         public Category? Category { get; set; }
         public int? SubCategoryID { get; set; }
         public SubCategory? SubCategory { get; set; }
-        public int? ModelID { get; set; }
-        public ModelListDTO? ModelList { get; set; }
         public int? BrandID { get; set; }
         public Brand? Brand { get; set; }
         public BillOfMaterial? BillOfMaterial { get; set; }

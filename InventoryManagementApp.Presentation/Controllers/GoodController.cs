@@ -2,20 +2,15 @@
 using InventoryManagementApp.Application.DTOs.BrandDTOs;
 using InventoryManagementApp.Application.DTOs.CategoryDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
-using InventoryManagementApp.Application.DTOs.ModelDTOs;
 using InventoryManagementApp.Application.DTOs.SubCategoryDTOs;
 using InventoryManagementApp.Application.Services.BrandService;
 using InventoryManagementApp.Application.Services.CategoryService;
 using InventoryManagementApp.Application.Services.GoodService;
-using InventoryManagementApp.Application.Services.ModelService;
 using InventoryManagementApp.Application.Services.SubCategoryService;
 using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.CategoryVMs;
-using InventoryManagementApp.Presentation.Models.ViewModels.ConversionVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
-using InventoryManagementApp.Presentation.Models.ViewModels.ModelVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.SubCategoryVMs;
-using InventoryManagementApp.Presentation.Models.ViewModels.SupplierVMs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -33,19 +28,17 @@ namespace InventoryManagementApp.Presentation.Controllers
         private readonly IGoodService _goodService;
         private readonly ICategoryService _categoryService;
         private readonly ISubCategoryService _subCategoryService;
-        private readonly IModelService _modelService;
         private readonly IBrandService _brandService;
         private readonly IMapper _mapper;
         IWebHostEnvironment _webHostEnvironment;
 
-        public GoodController(IGoodService goodService, IMapper mapper, IWebHostEnvironment webHostEnvironment, ICategoryService categoryService, ISubCategoryService subCategoryService, IModelService modelService, IBrandService brandService)
+        public GoodController(IGoodService goodService, IMapper mapper, IWebHostEnvironment webHostEnvironment, ICategoryService categoryService, ISubCategoryService subCategoryService, IBrandService brandService)
         {
             _goodService = goodService;
             _mapper = mapper;
             _webHostEnvironment = webHostEnvironment;
             _categoryService = categoryService;
             _subCategoryService = subCategoryService;
-            _modelService = modelService;
             _brandService = brandService;
         }
 
@@ -76,25 +69,6 @@ namespace InventoryManagementApp.Presentation.Controllers
                 {
                     var categoryCreateDto = _mapper.Map<CategoryCreateDTO>(categoryCreateVm);
                     await _categoryService.Create(categoryCreateDto);
-                    return RedirectToAction("Create");
-                }
-                catch (Exception ex)
-                {
-                    TempData["error"] = ex.Message;
-                }
-            }
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateModel(ModelCreateVM modelCreateVm)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var modelCreateDto = _mapper.Map<ModelCreateDTO>(modelCreateVm);
-                    await _modelService.Create(modelCreateDto);
                     return RedirectToAction("Create");
                 }
                 catch (Exception ex)
@@ -170,7 +144,6 @@ namespace InventoryManagementApp.Presentation.Controllers
             GoodCreateVM goodCreateVm = new GoodCreateVM();
             goodCreateVm.CategoryList = await GetCategory();
             goodCreateVm.SubCategoryList = await GetSubCategory();
-            goodCreateVm.ModelList = await GetModel();
             goodCreateVm.BrandList = await GetBrand();
 
             return View(goodCreateVm);
@@ -234,7 +207,6 @@ namespace InventoryManagementApp.Presentation.Controllers
                 goodUpdateVm.CategoryList = await GetCategory();
                 goodUpdateVm.SubCategoryList = await GetSubCategory();
                 goodUpdateVm.BrandList = await GetBrand();
-                goodUpdateVm.ModelList = await GetModel();
                 return View(goodUpdateVm);
             }
         }
@@ -290,11 +262,6 @@ namespace InventoryManagementApp.Presentation.Controllers
                 {
                     ViewBag.subCategoryName = (await _subCategoryService.GetById(goodVM.SubCategoryID.Value)).SubCategoryName;
                 }
-                
-                if(goodVM.ModelID != null)
-                {
-                    ViewBag.modelName = (await _modelService.GetById(goodVM.ModelID.Value)).ModelName;
-                }
 
                 if (goodVM.BrandID != null)
                 {
@@ -337,17 +304,5 @@ namespace InventoryManagementApp.Presentation.Controllers
                 Text = x.BrandName
             }), "Value", "Text");
         }
-
-        private async Task<SelectList> GetModel()
-        {
-            var getModels = await _modelService.All();
-
-            return new SelectList(getModels.Select(x => new SelectListItem
-            {
-                Value = x.ID.ToString(),
-                Text = x.ModelName
-            }), "Value", "Text");
-        }
-
     }
 }

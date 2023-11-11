@@ -54,6 +54,15 @@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
+                                <span class="input-group-text">Supplier Code</span>
+                            </div>
+                            <input type="text" class="form-control" asp-for="@Model.ModelCode" placeholder="ModelCode" aria-label="ModelCode">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text">Stock Amount</span>
                             </div>
                             <input type="text" class="form-control" asp-for="@Model.StockAmount" placeholder="StockAmount" aria-label="StockAmount">

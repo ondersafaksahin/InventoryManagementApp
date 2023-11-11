@@ -1,7 +1,6 @@
 
 ﻿using InventoryManagementApp.Application.DTOs.BrandDTOs;
 using InventoryManagementApp.Application.DTOs.CategoryDTOs;
-using InventoryManagementApp.Application.DTOs.ModelDTOs;
 using InventoryManagementApp.Application.DTOs.SubCategoryDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.Enums;
@@ -17,6 +16,7 @@ namespace InventoryManagementApp.Application.DTOs.GoodDTOs
     public class GoodCreateDTO
     {
         public string Code { get; set; }
+        public string? ModelCode { get; set; }
         public string Name { get; set; }
         public string? Picture { get; set; }
         public float StockAmount { get; set; }
@@ -34,8 +34,6 @@ namespace InventoryManagementApp.Application.DTOs.GoodDTOs
         public Category? Category { get; set; }
         public int? SubCategoryID { get; set; }
         public SubCategory? SubCategory { get; set; }
-        public int? ModelID { get; set; }
-        public Model? Model { get; set; }
         public int? BrandID { get; set; }
         public Brand? Brand { get; set; }
         public BillOfMaterial? BillOfMaterial { get; set; }

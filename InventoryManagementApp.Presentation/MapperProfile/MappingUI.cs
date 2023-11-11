@@ -10,7 +10,6 @@ using InventoryManagementApp.Application.DTOs.CustomerDTOs;
 using InventoryManagementApp.Application.DTOs.EmployeeDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Application.DTOs.ManagerDTOs;
-using InventoryManagementApp.Application.DTOs.ModelDTOs;
 using InventoryManagementApp.Application.DTOs.ProductionOrderDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDetailDTOs;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDTOs;
@@ -32,7 +31,6 @@ using InventoryManagementApp.Presentation.Models.ViewModels.CustomerVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.EmployeeVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ManagerVMs;
-using InventoryManagementApp.Presentation.Models.ViewModels.ModelVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.ProductionOrderVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderDetailVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderVMs;
@@ -153,13 +151,6 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             CreateMap<ManagerListDTO, ManagerListVM>().ReverseMap();
             CreateMap<ManagerDTO, ManagerVM>().ReverseMap();
             CreateMap<ManagerDTO, ManagerUpdateVM>().ReverseMap();
-            //Model
-            CreateMap<ModelCreateDTO, ModelCreateVM>().ReverseMap();
-            CreateMap<ModelUpdateDTO, ModelUpdateVM>().ReverseMap();
-            CreateMap<ModelListDTO, ModelListVM>().ReverseMap();
-            CreateMap<ModelDTO, ModelVM>().ReverseMap();
-            CreateMap<ModelDTO, ModelUpdateVM>().ReverseMap();
-            //
             //
             //ProductionOrder
             CreateMap<ProductionOrderCreateDTO, ProductionOrderCreateVM>().ReverseMap();

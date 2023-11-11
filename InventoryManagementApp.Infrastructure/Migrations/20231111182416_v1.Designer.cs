@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagementApp.Infrastructure.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    [Migration("20231026125954_v1")]
+    [Migration("20231111182416_v1")]
     partial class v1
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.12")
+                .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -184,7 +184,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 26, 15, 59, 53, 973, DateTimeKind.Local).AddTicks(6124));
+                        .HasDefaultValue(new DateTime(2023, 11, 11, 21, 24, 16, 577, DateTimeKind.Local).AddTicks(9977));
 
                     b.Property<DateTime?>("ExpireDate")
                         .HasColumnType("datetime2");
@@ -233,7 +233,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 26, 15, 59, 53, 974, DateTimeKind.Local).AddTicks(8104));
+                        .HasDefaultValue(new DateTime(2023, 11, 11, 21, 24, 16, 579, DateTimeKind.Local).AddTicks(4271));
 
                     b.Property<int>("GoodID")
                         .HasColumnType("int");
@@ -542,7 +542,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 26, 15, 59, 53, 975, DateTimeKind.Local).AddTicks(5293));
+                        .HasDefaultValue(new DateTime(2023, 11, 11, 21, 24, 16, 580, DateTimeKind.Local).AddTicks(1651));
 
                     b.Property<float?>("GrossWeight")
                         .HasColumnType("real");
@@ -556,8 +556,8 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<float?>("MinStock")
                         .HasColumnType("real");
 
-                    b.Property<int?>("ModelId")
-                        .HasColumnType("int");
+                    b.Property<string>("ModelCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
@@ -608,49 +608,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasIndex("Code")
                         .IsUnique();
 
-                    b.HasIndex("ModelId");
-
                     b.HasIndex("SubCategoryID");
 
                     b.ToTable("Goods");
-                });
-
-            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Model", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModelName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Models");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.ProductionOrder", b =>
@@ -1429,13 +1389,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", null)
                         .WithMany()
                         .HasForeignKey("GoodsID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Shelf", null)
                         .WithMany()
                         .HasForeignKey("ShelvesID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -1444,13 +1404,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", null)
                         .WithMany()
                         .HasForeignKey("MaterialsProducingID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Supplier", null)
                         .WithMany()
                         .HasForeignKey("SuppliersID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -1459,13 +1419,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", null)
                         .WithMany()
                         .HasForeignKey("GoodsID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Warehouse", null)
                         .WithMany()
                         .HasForeignKey("WarehousesID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -1483,13 +1443,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.BillOfMaterial", "BillOfMaterial")
                         .WithMany("BillOfMaterialDetails")
                         .HasForeignKey("BillOfMaterialId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "MaterialUsed")
                         .WithMany()
                         .HasForeignKey("GoodID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("BillOfMaterial");
@@ -1506,13 +1466,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "UsedMaterial")
                         .WithMany()
                         .HasForeignKey("GoodID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.ProductionOrder", "ProductionOrder")
                         .WithMany()
                         .HasForeignKey("ProductionOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Conversion");
@@ -1527,7 +1487,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "Good")
                         .WithMany()
                         .HasForeignKey("GoodID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Good");
@@ -1547,10 +1507,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .WithMany("Goods")
                         .HasForeignKey("CategoryID");
 
-                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Model", "Model")
-                        .WithMany()
-                        .HasForeignKey("ModelId");
-
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.SubCategory", "SubCategory")
                         .WithMany()
                         .HasForeignKey("SubCategoryID");
@@ -1561,8 +1517,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.Navigation("Category");
 
-                    b.Navigation("Model");
-
                     b.Navigation("SubCategory");
                 });
 
@@ -1571,13 +1525,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "Product")
                         .WithMany("ProductionOrders")
                         .HasForeignKey("GoodId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Batch", "Batch")
                         .WithOne("ProductionOrder")
                         .HasForeignKey("InventoryManagementApp.Domain.Entities.Concrete.ProductionOrder", "ID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Batch");
@@ -1590,7 +1544,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Supplier", "Supplier")
                         .WithMany("PurchaseOrders")
                         .HasForeignKey("SupplierID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Supplier");
@@ -1609,25 +1563,25 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Warehouse", "DestinationWarehouse")
                         .WithMany()
                         .HasForeignKey("DestinationWarehouseID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "Good")
                         .WithMany("PurchaseOrderDetails")
                         .HasForeignKey("GoodID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Batch", "Batch")
                         .WithOne("PurchaseOrderDetail")
                         .HasForeignKey("InventoryManagementApp.Domain.Entities.Concrete.PurchaseOrderDetails", "ID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.PurchaseOrder", "PurchaseOrder")
                         .WithMany("PurchaseOrderDetails")
                         .HasForeignKey("PurchaseOrderID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Batch");
@@ -1648,13 +1602,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Customer", "Customer")
                         .WithMany("Reservations")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "Good")
                         .WithMany("Reservations")
                         .HasForeignKey("GoodId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -1684,13 +1638,13 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "Good")
                         .WithMany("SalesOrderDetails")
                         .HasForeignKey("GoodID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.SalesOrder", "SalesOrder")
                         .WithMany("SalesOrderDetails")
                         .HasForeignKey("SalesOrderID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Shelf", "SourceShelf")
@@ -1736,7 +1690,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "Good")
                         .WithMany()
                         .HasForeignKey("GoodId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Shelf", "SourceShelf")
@@ -1763,7 +1717,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Category", "Category")
                         .WithMany("SubCategories")
                         .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Category");

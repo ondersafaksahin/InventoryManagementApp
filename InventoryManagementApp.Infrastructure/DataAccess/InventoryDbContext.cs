@@ -27,7 +27,6 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
         public DbSet<Conversion> Conversions { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Good> Goods { get; set; }		 
-		public DbSet<Model> Models { get; set; }
         public DbSet<ProductionOrder> ProductionOrders { get; set; }
         public DbSet<PurchaseOrder> PurchaseOrders { get; set; }		 
 		public DbSet<PurchaseOrderDetails> PurchaseOrderDetails { get; set; }		 
@@ -52,6 +51,15 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
 			builder.ApplyConfiguration(new BatchMapping());
 			builder.ApplyConfiguration(new BillOfMaterialMapping());
 			builder.ApplyConfiguration(new GoodMapping());
+
+            var cascadeFKs = builder.Model.GetEntityTypes()
+        .SelectMany(t => t.GetForeignKeys())
+        .Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade);
+
+            foreach (var fk in cascadeFKs)
+                fk.DeleteBehavior = DeleteBehavior.Restrict;
+
+
             base.OnModelCreating(builder);
         }
 

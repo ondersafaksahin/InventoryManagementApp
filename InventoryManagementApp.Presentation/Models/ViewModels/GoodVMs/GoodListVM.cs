@@ -1,5 +1,4 @@
-﻿using InventoryManagementApp.Application.DTOs.ModelDTOs;
-using InventoryManagementApp.Domain.Entities.Concrete;
+﻿using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.Enums;
 
 namespace InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs
@@ -8,6 +7,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs
     {
         public int ID { get; set; }
         public string Code { get; set; }
+        public string? ModelCode { get; set; }
         public string Name { get; set; }
         public float StockAmount { get; set; }
         public float? ReservedStock { get; set; }
