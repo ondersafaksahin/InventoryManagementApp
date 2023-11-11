@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using InventoryManagementApp.Application.DTOs.BillOfMaterialsDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
-using InventoryManagementApp.Application.DTOs.ModelDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.IRepositories;
 using System;
@@ -19,17 +17,15 @@ namespace InventoryManagementApp.Application.Services.GoodService
         ICategoryRepository _categoryRepository;
         ISubCategoryRepository _subCategoryRepository;
         IBrandRepository _brandRepository;
-        IModelRepository _modelRepository;
         IMapper _mapper;
 
-        public GoodService(IGoodRepository goodRepository, IMapper mapper, ICategoryRepository categoryRepository, ISubCategoryRepository subCategoryRepository, IBrandRepository brandRepository, IModelRepository modelRepository)
+        public GoodService(IGoodRepository goodRepository, IMapper mapper, ICategoryRepository categoryRepository, ISubCategoryRepository subCategoryRepository, IBrandRepository brandRepository)
         {
             _goodRepository = goodRepository;
             _mapper = mapper;
             _categoryRepository = categoryRepository;
             _subCategoryRepository = subCategoryRepository;
             _brandRepository = brandRepository;
-            _modelRepository = modelRepository;
         }
 
         public async Task<List<GoodListDTO>> All()

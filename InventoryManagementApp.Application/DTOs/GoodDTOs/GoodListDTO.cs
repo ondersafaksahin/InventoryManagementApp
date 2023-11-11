@@ -1,5 +1,4 @@
-﻿using InventoryManagementApp.Application.DTOs.ModelDTOs;
-using InventoryManagementApp.Domain.Entities.Concrete;
+﻿using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -13,6 +12,7 @@ namespace InventoryManagementApp.Application.DTOs.GoodDTOs
     {
         public int ID { get; set; }
         public string Code { get; set; }
+        public string? ModelCode { get; set; }
         public string Name { get; set; }
         public float StockAmount { get; set; }
         public float? ReservedStock { get; set; }

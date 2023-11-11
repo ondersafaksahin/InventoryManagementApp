@@ -7,6 +7,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs
     {
         public int ID { get; set; }
         public string Code { get; set; }
+        public string? ModelCode { get; set; }
         public string Name { get; set; }
         public string? Picture { get; set; }
         public float StockAmount { get; set; }

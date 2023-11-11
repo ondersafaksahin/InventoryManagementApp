@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
-using InventoryManagementApp.Application.DTOs.ModelDTOs;
 using InventoryManagementApp.Application.DTOs.SupplierDTOs;
-using InventoryManagementApp.Application.Services.ModelService;
 using InventoryManagementApp.Application.Services.SupplierService;
 using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
-using InventoryManagementApp.Presentation.Models.ViewModels.ModelVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.SupplierVMs;
 using Microsoft.AspNetCore.Mvc;
 
