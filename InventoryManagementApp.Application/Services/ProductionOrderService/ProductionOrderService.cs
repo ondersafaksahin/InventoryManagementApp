@@ -51,7 +51,9 @@ namespace InventoryManagementApp.Application.Services.ProductionOrderService
 
 		public async Task Update(ProductionOrderUpdateDTO updateDTO)
 		{
-			await _productionOrderRepository.Update(_mapper.Map<ProductionOrder>(updateDTO));
-		}
+            var prodOrder = await GetById(updateDTO.ID);
+            var updatedprodOrder = _mapper.Map(updateDTO, prodOrder);
+            await _productionOrderRepository.Update(_mapper.Map<ProductionOrder>(updatedprodOrder));
+        }
 	}
 }

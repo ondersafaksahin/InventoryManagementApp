@@ -25,9 +25,6 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs
 
         public Warehouse? Warehouse { get; set; }
         public int WarehouseID { get; set; }
-
-        public List<Good>? Goods { get; set; }
-
         public SelectList? WarehouseList { get; set; }
     }
 }

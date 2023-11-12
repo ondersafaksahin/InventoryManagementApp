@@ -29,6 +29,5 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs
         public ShelfCreateVM? newShelf { get; set; }
         public ShelfUpdateVM? updateShelf { get; set; }
         public List<ShelfListVM>? Shelves { get; set; }
-        public List<Good>? Goods { get; set; }
     }
 }

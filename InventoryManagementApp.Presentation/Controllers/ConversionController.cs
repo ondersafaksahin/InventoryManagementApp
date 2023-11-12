@@ -56,7 +56,7 @@ namespace InventoryManagementApp.Presentation.Controllers
         public async Task<IActionResult> Create()
         {
             var conversionCreateVM = new ConversionCreateVM();
-            conversionCreateVM.GoodsList = await _goodService.GetDefaults(x => x.Status == Domain.Enums.Status.Active);
+            conversionCreateVM.GoodsList = await GetGoods();
             return View(conversionCreateVM);
         }
 
@@ -146,6 +146,15 @@ namespace InventoryManagementApp.Presentation.Controllers
 
                 return View(conversionVM);
             }
+        }
+
+        private async Task<SelectList> GetGoods() {
+            var goods = await _goodService.All();
+            return new SelectList(goods.Select(x => new SelectListItem
+            {
+                Value = x.ID.ToString(),
+                Text = x.Name
+            }), "Value", "Text");
         }
     }
 }

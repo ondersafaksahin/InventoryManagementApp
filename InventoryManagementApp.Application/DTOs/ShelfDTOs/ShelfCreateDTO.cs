@@ -16,7 +16,6 @@ namespace InventoryManagementApp.Application.DTOs.ShelfDTOs
         public string? Description { get; set; }
 
         public int WarehouseID { get; set; }
-
         public Warehouse Warehouse { get; set; }
     }
 }

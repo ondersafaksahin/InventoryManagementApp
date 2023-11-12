@@ -27,8 +27,6 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs
         public SelectList? CategoryList { get; set; }
         public int? SubCategoryID { get; set; }
         public SelectList? SubCategoryList { get; set; }
-        public int? ModelID { get; set; }
-        public SelectList? ModelList { get; set; }
         public int? BrandID { get; set; }
         public SelectList? BrandList { get; set; }
         public BillOfMaterial? BillOfMaterial { get; set; }

@@ -7,7 +7,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.ConversionVMs
 {
     public class ConversionCreateVM
     {
-        public List<GoodListDTO>? GoodsList { get; set; }
+        public SelectList? GoodsList { get; set; }
         public int GoodID { get; set; }
         public float BaseGoodAmount { get; set; }
         public UnitType BaseUnit { get; set; }
