@@ -15,11 +15,8 @@ namespace InventoryManagementApp.Application.DTOs.GoodDTOs
         public string? ModelCode { get; set; }
         public string Name { get; set; }
         public string? Picture { get; set; }
-        public float StockAmount { get; set; }
-        public float? ReservedStock { get; set; }
         public UnitType? StockingUnit { get; set; }
         public UnitType? ConsumptionUnit { get; set; }
-        public float? MinStock { get; set; }
         public byte? TaxPercentage { get; set; }
         public decimal? ListPrice { get; set; }
         public CurrencyCodes? ListCurrency { get; set; }

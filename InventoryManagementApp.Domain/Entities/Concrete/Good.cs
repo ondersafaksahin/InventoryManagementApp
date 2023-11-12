@@ -15,19 +15,14 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public string? ModelCode { get; set; }
         public string Name { get; set; }
         public string? Picture { get; set; }
-        public float StockAmount { get; set; }
-        public float? ReservedStock { get; set; }
 		public UnitType? StockingUnit { get; set; }
         public UnitType? ConsumptionUnit { get; set; }
-        
-        public float? MinStock { get; set; }
         public byte? TaxPercentage { get; set; }
         public decimal? ListPrice { get; set; }
         public CurrencyCodes? ListCurrency { get; set; }
         public string? Barcode { get; set; }
         public float? GrossWeight { get; set; }
         public float? NetWeight { get; set; }
-        
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? ModifiedBy { get; set; }

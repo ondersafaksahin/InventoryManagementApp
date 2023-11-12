@@ -63,24 +63,6 @@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Stock Amount</span>
-                            </div>
-                            <input type="text" class="form-control" asp-for="@Model.StockAmount" placeholder="StockAmount" aria-label="StockAmount">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Reserved Stock</span>
-                            </div>
-                            <input type="text" class="form-control" asp-for="@Model.ReservedStock" placeholder="ReservedStock" aria-label="ReservedStock">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
                                 <span class="input-group-text">Stocking Unit</span>
                             </div>
                             <select class="form-select" id="floatingSelect"
@@ -99,15 +81,6 @@
                                     aria-label="Floating label select example" asp-for="@Model.ConsumptionUnit" asp-items="@Html.GetEnumSelectList<UnitType>()">
                                 <option selected>Choose Stocking Unit...</option>
                             </select>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Minimum Stock</span>
-                            </div>
-                            <input type="text" class="form-control" asp-for="@Model.MinStock" placeholder="MinStock" aria-label="MinStock">
                         </div>
                     </div>
                     <br />

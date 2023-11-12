@@ -42,28 +42,11 @@
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" asp-for=@Model.StockAmount placeholder="Stock Amount" aria-label="StockAmount">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" asp-for=@Model.ReservedStock placeholder="Reserved Stock" aria-label="ReservedStock">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
                             <select class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example" asp-for="@Model.StockingUnit" asp-items="@Html.GetEnumSelectList<UnitType>()">
                                 <option selected>Choose Stocking Unit...</option>
                             </select>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <select class="form-select" id="floatingSelect"
+                            <select class="form-select" id="floatingSelect" style="margin-left:1rem"
                                     aria-label="Floating label select example" asp-for="@Model.ConsumptionUnit" asp-items="@Html.GetEnumSelectList<UnitType>()">
                                 <option selected>Choose Consumption Unit...</option>
                             </select>
@@ -72,23 +55,8 @@
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" asp-for=@Model.MinStock placeholder="Minimum  Stock" aria-label="MinStock">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" asp-for=@Model.TaxPercentage placeholder="Tax Percentage" aria-label="TaxPercentage">
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" asp-for=@Model.ListPrice placeholder="List Price" aria-label="ListPrice">
-                            <select class="form-select" id="floatingSelect" style="max-width:fit-content"
-                                    aria-label="Floating label select example" asp-for="@Model.ListCurrency" asp-items="@Html.GetEnumSelectList<CurrencyCodes>()">
-                                <option selected>@CurrencyCodes.TRY</option>
-                            </select>
+                            <input type="text" class="form-control" asp-for=@Model.GrossWeight placeholder="Gross Weight" aria-label="GrossWeight">
+                            <input type="text" style="margin-left:1rem" class="form-control" asp-for=@Model.NetWeight placeholder="Net Weight" aria-label="NetWeight">
                         </div>
                     </div>
                     <br />
@@ -100,55 +68,54 @@
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" asp-for=@Model.GrossWeight placeholder="Gross Weight" aria-label="GrossWeight">
+                            <input type="text" class="form-control" asp-for=@Model.ListPrice placeholder="List Price" aria-label="ListPrice">
+                            <select class="form-select" id="floatingSelect" style="max-width:fit-content"
+                                    aria-label="Floating label select example" asp-for="@Model.ListCurrency" asp-items="@Html.GetEnumSelectList<CurrencyCodes>()">
+                                <option selected>@CurrencyCodes.TRY</option>
+                            </select>
+                            <input type="text" class="form-control" style="margin-left:1rem;max-width:165px" asp-for=@Model.TaxPercentage placeholder="Tax Percentage" aria-label="TaxPercentage">
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" asp-for=@Model.NetWeight placeholder="Net Weight" aria-label="NetWeight">
-                        </div>
-                        <br />
-                        <div class="form-floating mb-6">
-                            <div class="input-group mb-3" id="design">
-                                <select class="form-select" id="categoryDropdown" aria-label="Floating label select example" asp-for="@Model.CategoryID" asp-items="ViewBag.CategoryId">
-                                    <option selected value="">Select Category... </option>
-                                    @if (Model.CategoryList != null)
+                        <div class="input-group mb-3" id="design">
+                            <select class="form-select" id="categoryDropdown" aria-label="Floating label select example" asp-for="@Model.CategoryID" asp-items="ViewBag.CategoryId">
+                                <option selected value="">Select Category... </option>
+                                @if (Model.CategoryList != null)
+                                {
+                                    @foreach (var item in Model.CategoryList)
                                     {
-                                        @foreach (var item in Model.CategoryList)
-                                        {
-                                            <option value="@item.Value">@item.Text</option>
-                                        }
+                                        <option value="@item.Value">@item.Text</option>
                                     }
+                                }
 
-                                </select>
-                                <!-- Button trigger modal -->
-                                <button class="button" style="vertical-align:middle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <span>
-                                        Add Category
-                                    </span>
-                                </button>
-                            </div>
+                            </select>
+                            <!-- Button trigger modal -->
+                            <button class="button" style="vertical-align:middle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <span>
+                                    Add Category
+                                </span>
+                            </button>
                         </div>
-                        <br />
-                        <div class="form-floating mb-6">
-                            <div class="input-group mb-3" id="design">
-                                <select class="form-select" id="subcategoryDropdown" aria-label="Floating label select example" asp-for="@Model.SubCategoryID">
-                                    <option selected value="">Select SubCategory... </option>
-                                    @*@if (Model.SubCategoryList != null)
-                                    {
-                                    @foreach (var item in Model.SubCategoryList)
-                                    {
-                                    <option value="@item.ID">@item.SubCategoryName</option>
-                                    }
-                                    }*@
-                                </select>
-                                <button class="button" style="vertical-align:middle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropSubCategory">
-                                    <span>
-                                        Add SubCategory
-                                    </span>
-                                </button>
-                            </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3" id="design">
+                            <select class="form-select" id="subcategoryDropdown" aria-label="Floating label select example" asp-for="@Model.SubCategoryID">
+                                <option selected value="">Select SubCategory... </option>
+                                @*@if (Model.SubCategoryList != null)
+                                {
+                                @foreach (var item in Model.SubCategoryList)
+                                {
+                                <option value="@item.ID">@item.SubCategoryName</option>
+                                }
+                                }*@
+                            </select>
+                            <button class="button" style="vertical-align:middle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropSubCategory">
+                                <span>
+                                    Add SubCategory
+                                </span>
+                            </button>
                         </div>
                     </div>
                     <br />
