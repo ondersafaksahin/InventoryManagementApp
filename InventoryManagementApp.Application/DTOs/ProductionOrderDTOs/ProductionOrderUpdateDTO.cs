@@ -8,5 +8,6 @@ namespace InventoryManagementApp.Application.DTOs.ProductionOrderDTOs
 {
 	public class ProductionOrderUpdateDTO
 	{
-	}
+        public int ID { get; set; }
+    }
 }

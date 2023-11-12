@@ -27,6 +27,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public float Amount { get; set; }
         public Customer Customer { get; set; }
         public int CustomerId { get; set; }
+        public List<Inventory> Inventories { get; set; }
 
     }
 }

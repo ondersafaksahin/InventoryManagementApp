@@ -28,6 +28,5 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs
         //Navigation Properties
 
         public List<Shelf>? Shelves { get; set; }
-        public List<Good>? Goods { get; set; }
     }
 }

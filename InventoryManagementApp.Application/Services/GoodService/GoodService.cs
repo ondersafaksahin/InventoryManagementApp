@@ -100,7 +100,9 @@ namespace InventoryManagementApp.Application.Services.GoodService
 
         public async Task Update(GoodUpdateDTO updateDTO)
         {
-            await _goodRepository.Update(_mapper.Map<Good>(updateDTO));
+            var good = await GetById(updateDTO.ID);
+            var updatedGood = _mapper.Map(updateDTO, good);
+            await _goodRepository.Update(_mapper.Map<Good>(updatedGood));
         }
     }
 }

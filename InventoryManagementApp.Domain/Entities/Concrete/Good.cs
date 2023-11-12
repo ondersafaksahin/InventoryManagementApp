@@ -37,10 +37,8 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public int? CategoryID { get; set; }
         public SubCategory? SubCategory { get; set; }
         public int? SubCategoryID { get; set; }
-        public List<Batch>? Batches { get; set; }
-        public List<Warehouse>? Warehouses { get; set; }
-        public List<Shelf>? Shelves { get; set; }
         public List<Supplier>? Suppliers { get; set; }
+        public List<Inventory>? Inventories { get; set; }
 
 
         //Product Part

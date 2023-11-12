@@ -2,15 +2,17 @@
 using InventoryManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.Entities.Concrete
 {
-    public class Batch:IBaseEntity,IEntity<int>
+    public class Inventory : IEntity<int>, IBaseEntity
     {
+        //IEntity
+        public int ID { get; set; }
+
         //IBaseEntity
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
@@ -18,25 +20,20 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public DateTime? ModifiedDate { get; set; }
         public Status Status { get; set; }
 
-        //IEntity
-        public int ID { get; set; }
-
         //Additional Properties
-
-        public string BatchCode { get; set; }
-        public DateTime? ProductionDate { get; set; }
-        public DateTime? ExpireDate { get; set; }
+        public float Amount { get; set; }
+        public float ReorderLevel { get; set; }
 
         //Navigation Properties
-
-
-        public List<Inventory>? Inventories { get; set; }
-        public ProductionOrder? ProductionOrder { get; set; }
-        public int? ProductionOrderId { get; set; }
-        public PurchaseOrderDetails? PurchaseOrderDetail { get; set; }
-        public int? PurchaseOrderDetailId { get; set; }
-
-
+        public virtual Good Good { get; set; }
+        public int GoodId { get; set; }
+        public virtual Warehouse? Warehouse { get; set; }
+        public int? WarehouseId { get; set; }
+        public virtual Shelf? Shelf { get; set; }
+        public int? ShelfId { get; set; }
+        public Batch? Batch { get; set; }
+        public int? BatchId { get; set; }
+        public List<Reservation>? Reservations { get; set; }
 
     }
 }

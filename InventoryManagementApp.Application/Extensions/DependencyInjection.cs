@@ -11,6 +11,7 @@ using InventoryManagementApp.Application.Services.ConversionService;
 using InventoryManagementApp.Application.Services.CustomerService;
 using InventoryManagementApp.Application.Services.EmployeeService;
 using InventoryManagementApp.Application.Services.GoodService;
+using InventoryManagementApp.Application.Services.InventoryService;
 using InventoryManagementApp.Application.Services.ManagerService;
 using InventoryManagementApp.Application.Services.ProductionOrderService;
 using InventoryManagementApp.Application.Services.PurchaseOrderDetailService;
@@ -43,6 +44,7 @@ namespace InventoryManagementApp.Application.Extensions
 			services.AddScoped<IConversionService, ConversionService>();
 			services.AddScoped<IConsumptionService, ConsumptionService>();
             services.AddScoped<IReservationService, ReservationService>();
+            services.AddScoped<IInventoryService, InventoryService>();
 			//Pelin
 			services.AddScoped<IGoodService, GoodService>();
             services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();

@@ -35,6 +35,5 @@ namespace InventoryManagementApp.Application.DTOs.WareHouseDTOs
         //Navigation Properties
 
         public List<Shelf>? Shelves { get; set; }
-        public List<Good>? Goods { get; set; }
     }
 }

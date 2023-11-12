@@ -41,9 +41,10 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
         public DbSet<Manager> Managers { get; set; }
         public DbSet<Admin> Admins { get; set; }
 		public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
 
 
-		protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Manager>().ToTable("Managers");
 			builder.Entity<Admin>().ToTable("Admins");
