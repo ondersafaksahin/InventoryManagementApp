@@ -184,23 +184,6 @@
                     </div>
                     <br />
                     <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" style="width:150px">Model</span>
-                            </div>
-                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" asp-for="@Model.ModelID">
-                                <option selected value="0">Select Model... </option>
-                                @foreach (var item in Model.ModelList)
-                                {
-                                    <option value="@item.Value">@item.Text</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
-                    <br />
-
-
-                    <div class="form-floating mb-6">
                         <div class="input-group mb-3" id="design">
                             <a class="btn btn-danger mx-2 form-button" asp-controller="Good" asp-action="ListActive">Cancel</a>
                             <input type="submit" value="Save" class="btn btn-success mx-2 form-button" />

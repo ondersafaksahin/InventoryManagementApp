@@ -22,8 +22,6 @@ namespace InventoryManagementApp.Application.DTOs.InventoryDTOs
         //Navigation Properties
         public virtual Warehouse? Warehouse { get; set; }
         public int? WarehouseId { get; set; }
-        public virtual Shelf? Shelf { get; set; }
-        public int? ShelfId { get; set; }
         public Batch? Batch { get; set; }
         public int? BatchId { get; set; }
         public List<Reservation>? Reservations { get; set; }

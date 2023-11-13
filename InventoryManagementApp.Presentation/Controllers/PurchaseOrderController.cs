@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDTOs;
-using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.Services.PurchaseOrderService;
-using InventoryManagementApp.Application.Services.ShelfService;
 using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderVMs;
-using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagementApp.Presentation.Controllers
@@ -67,7 +64,7 @@ namespace InventoryManagementApp.Presentation.Controllers
                 {
                     var purchaseOrderCreateDto = _mapper.Map<PurchaseOrderCreateDTO>(purchaseOrderCreateVm);
                     await _purchaseOrderService.Create(purchaseOrderCreateDto);
-                    return RedirectToAction("GetAllShelves");
+                    return RedirectToAction("GetAllPurchaseOrders");
                 }
                 catch (Exception ex)
                 {
@@ -106,10 +103,6 @@ namespace InventoryManagementApp.Presentation.Controllers
             else
             {
                 PurchaseOrderUpdateVM purchaseOrderUpdateVm = _mapper.Map<PurchaseOrderUpdateVM>(await _purchaseOrderService.GetById(id));
-                //burada getById shelfDTO dönüyor.
-                //onun update olarak dönecek şekilde mi değiştirilerim?
-                //shelfDTO ile ShelfUpdateVm mi mapleyelim?
-
                 return View(purchaseOrderUpdateVm);
             }
         }

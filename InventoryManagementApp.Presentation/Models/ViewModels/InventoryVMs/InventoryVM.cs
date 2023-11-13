@@ -24,8 +24,6 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs
         public int GoodId { get; set; }
         public virtual Warehouse? Warehouse { get; set; }
         public int? WarehouseId { get; set; }
-        public virtual Shelf? Shelf { get; set; }
-        public int? ShelfId { get; set; }
         public Batch? Batch { get; set; }
         public int? BatchId { get; set; }
         public List<Reservation>? Reservations { get; set; }

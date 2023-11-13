@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.BrandDTOs;
-using InventoryManagementApp.Application.DTOs.GoodDTOs;
-using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.Services.BrandService;
 using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
-using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;

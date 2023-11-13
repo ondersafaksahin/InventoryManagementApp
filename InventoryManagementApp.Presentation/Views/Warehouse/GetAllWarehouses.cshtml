@@ -58,9 +58,6 @@
                                 <a class="btn pt-0" asp-action="Delete" asp-controller="Warehouse" asp-route-id="@warehouse.ID" asp-route-active=false type="button" data-toggle="popover" title="Delete">
                                     <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
                                 </a>
-                                <a class="btn pt-0" id="addShelf" data-id="@warehouse.ID" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropShelf" title="Add Shelf">
-                                    <i class="fas fa-layer-group" style="color: saddlebrown;font-size:20px"></i>
-                                </a>
                             </td>
                         </tr>
                     }
@@ -70,20 +67,6 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdropShelf" tabindex="-1" role="dialog" aria-labelledby="shelfCreate" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"> New Shelf</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                @await Html.PartialAsync("ShelfCreate",new WarehouseUpdateVM())
-            </div>
-        </div>
-    </div>
-</div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
@@ -93,11 +76,4 @@
         });
     });
 
-    var warehouseId;
-    $(document).on("click", "#addShelf", function () {
-        warehouseId = $(this).data('id');
-    });
-    $(document).on("click", "#createShelfSubmit", function () {
-        $(".modal-body #warehouseId").val(warehouseId);
-    });
 </script>
