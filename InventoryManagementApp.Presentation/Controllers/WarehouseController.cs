@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
-using InventoryManagementApp.Application.Services.ShelfService;
 using InventoryManagementApp.Application.Services.WareHouseService;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.Enums;
-using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,17 +15,14 @@ namespace InventoryManagementApp.Presentation.Controllers
     public class WarehouseController : Controller
     {
         private readonly IWareHouseService _warehouseService;
-        private readonly IShelfService _shelfService;
         private readonly IMapper _mapper;
         IWebHostEnvironment _webHostEnvironment;
 
-        public WarehouseController(IWareHouseService warehouseService, IMapper mapper, IWebHostEnvironment webHostEnvironment, IShelfService shelfService)
+        public WarehouseController(IWareHouseService warehouseService, IMapper mapper, IWebHostEnvironment webHostEnvironment)
         {
             _warehouseService = warehouseService;
             _mapper = mapper;
             _webHostEnvironment = webHostEnvironment;
-            _shelfService = shelfService;
-
         }
         public IActionResult Index()
         {
@@ -116,9 +110,6 @@ namespace InventoryManagementApp.Presentation.Controllers
             else
             {
                 WarehouseUpdateVM warehouseUpdateVm = _mapper.Map<WarehouseUpdateVM>(await _warehouseService.GetById(id));
-
-                warehouseUpdateVm.Shelves = _mapper.Map<List<ShelfListVM>>(await _shelfService.GetDefaults(x => x.WarehouseID == warehouseUpdateVm.ID && x.Status == Status.Active));
-
                 return View(warehouseUpdateVm);
             }
         }
@@ -130,74 +121,6 @@ namespace InventoryManagementApp.Presentation.Controllers
             var warehouseUpdateDto = _mapper.Map<WareHouseUpdateDTO>(vm);
             await _warehouseService.Update(warehouseUpdateDto);
             return RedirectToAction("GetAllActiveWarehouses");
-        }
-
-
-
-        [HttpPost]
-        public async Task<IActionResult> ShelfCreate(WarehouseUpdateVM vm)
-        {
-
-            //if (ModelState.IsValid)
-            //{
-            try
-            {
-                var shelfCreateDto = _mapper.Map<ShelfCreateDTO>(vm.newShelf);
-                await _shelfService.Create(shelfCreateDto);
-                WarehouseUpdateVM warehouse = _mapper.Map<WarehouseUpdateVM>(await _warehouseService.GetById(vm.newShelf.WarehouseID));
-                return RedirectToAction("UpdateDetails", warehouse);
-            }
-            catch (Exception ex)
-            {
-                TempData["error"] = ex.Message;
-            }
-
-            return View(vm);
-        }
-
-
-        //DeleteShelf
-        public async Task<IActionResult> DeleteShelf(int id, int warehouseid)
-        {
-            try
-            {
-                await _shelfService.Delete(id);
-                WarehouseUpdateVM warehouse = _mapper.Map<WarehouseUpdateVM>(await _warehouseService.GetById(warehouseid));
-                return RedirectToAction("UpdateDetails", warehouse);
-            }
-            catch (Exception ex)
-            {
-                TempData["error"] = ex.Message;
-                WarehouseUpdateVM warehouse = _mapper.Map<WarehouseUpdateVM>(await _warehouseService.GetById(warehouseid));
-                return RedirectToAction("UpdateDetails", warehouse);
-            }
-        }
-
-        //UpdateShelf
-        [HttpGet]
-        public async Task<IActionResult> UpdateShelf(int id)
-        {
-            if (await _shelfService.GetById(id) == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                ShelfUpdateVM shelfUpdateVM = _mapper.Map<ShelfUpdateVM>(await _shelfService.GetById(id));
-                WarehouseUpdateVM warehouse = _mapper.Map<WarehouseUpdateVM>(await _warehouseService.GetById(shelfUpdateVM.WarehouseID));
-                warehouse.updateShelf = shelfUpdateVM;
-                return PartialView("_ShelfUpdate", warehouse);
-            }
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> UpdateShelf(WarehouseUpdateVM vm)
-        {
-
-            var shelfUpdateDto = _mapper.Map<ShelfUpdateDTO>(vm.updateShelf);
-            await _shelfService.Update(shelfUpdateDto);
-            WarehouseUpdateVM warehouse = _mapper.Map<WarehouseUpdateVM>(await _warehouseService.GetById(shelfUpdateDto.WarehouseID));
-            return RedirectToAction("UpdateDetails", warehouse);
         }
     }
 }

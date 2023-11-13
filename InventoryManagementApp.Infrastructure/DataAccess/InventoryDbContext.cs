@@ -31,8 +31,7 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
         public DbSet<PurchaseOrder> PurchaseOrders { get; set; }		 
 		public DbSet<PurchaseOrderDetails> PurchaseOrderDetails { get; set; }		 
 		public DbSet<SalesOrder> SalesOrders { get; set; }		 
-		public DbSet<SalesOrderDetails> SalesOrderDetails { get; set; }		 
-		public DbSet<Shelf> Shelves { get; set; }		 
+		public DbSet<SalesOrderDetails> SalesOrderDetails { get; set; }		 	 
 		public DbSet<StockTransfer> StockTransfers { get; set; }		 
 		public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
@@ -59,7 +58,6 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
 
             foreach (var fk in cascadeFKs)
                 fk.DeleteBehavior = DeleteBehavior.Restrict;
-
 
             base.OnModelCreating(builder);
         }

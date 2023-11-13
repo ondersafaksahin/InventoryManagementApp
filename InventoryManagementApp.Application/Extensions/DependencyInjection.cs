@@ -19,7 +19,6 @@ using InventoryManagementApp.Application.Services.PurchaseOrderService;
 using InventoryManagementApp.Application.Services.ReservationService;
 using InventoryManagementApp.Application.Services.SalesOrdersDetailsService;
 using InventoryManagementApp.Application.Services.SalesOrderService;
-using InventoryManagementApp.Application.Services.ShelfService;
 using InventoryManagementApp.Application.Services.StockTransferService;
 using InventoryManagementApp.Application.Services.SubCategoryService;
 using InventoryManagementApp.Application.Services.SupplierService;
@@ -50,7 +49,6 @@ namespace InventoryManagementApp.Application.Extensions
             services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
             services.AddScoped<IWareHouseService, WareHouseService>();
             services.AddScoped<IPurchaseOrderDetailService, PurchaseOrderDetailService>();
-            services.AddScoped<IShelfService, ShelfService>();
             //
             //
             //

@@ -1,6 +1,5 @@
 ﻿using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.Enums;
-using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 
 namespace InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs
 {
@@ -25,9 +24,5 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs
         public City? City { get; set; }
         public string? District { get; set; }
 
-        //Navigation Properties
-        public ShelfCreateVM? newShelf { get; set; }
-        public ShelfUpdateVM? updateShelf { get; set; }
-        public List<ShelfListVM>? Shelves { get; set; }
     }
 }

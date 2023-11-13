@@ -29,9 +29,5 @@ namespace InventoryManagementApp.Application.DTOs.WareHouseDTOs
         public City? City { get; set; }
         public string? District { get; set; }
 
-
-        //Navigation Properties
-        public Shelf? newShelf { get; set; }
-        public List<Shelf>? Shelves { get; set; }
     }
 }

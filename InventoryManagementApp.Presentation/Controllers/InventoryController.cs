@@ -2,7 +2,6 @@
 using InventoryManagementApp.Application.DTOs.InventoryDTOs;
 using InventoryManagementApp.Application.Services.GoodService;
 using InventoryManagementApp.Application.Services.InventoryService;
-using InventoryManagementApp.Application.Services.ShelfService;
 using InventoryManagementApp.Application.Services.WareHouseService;
 using InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs;
 using Microsoft.AspNetCore.Mvc;
@@ -16,15 +15,13 @@ namespace InventoryManagementApp.Presentation.Controllers
         private readonly IInventoryService _inventoryService;
         private readonly IGoodService _goodService;
         private readonly IWareHouseService _wareHouseService;
-        private readonly IShelfService _shelfService;
         private readonly IMapper _mapper;
 
-        public InventoryController(IInventoryService inventoryService, IMapper mapper,IGoodService goodService, IWareHouseService wareHouseService, IShelfService shelfService)
+        public InventoryController(IInventoryService inventoryService, IMapper mapper,IGoodService goodService, IWareHouseService wareHouseService)
         {
             _inventoryService = inventoryService;
             _goodService = goodService;
             _wareHouseService = wareHouseService;
-            _shelfService = shelfService;
             _mapper = mapper;
         }
 
@@ -38,7 +35,6 @@ namespace InventoryManagementApp.Presentation.Controllers
         {
             ViewBag.Goods = await GetGoods();
             ViewBag.Warehouses = await GetWarehouse();
-            ViewBag.Shelves = await GetShelves();
             return View();
         }
 
@@ -78,17 +74,6 @@ namespace InventoryManagementApp.Presentation.Controllers
         {
             var getWarehouses = await _wareHouseService.All();
             return new SelectList(getWarehouses.Select(x => new SelectListItem
-            {
-                Value = x.ID.ToString(),
-                Text = x.Name
-            }), "Value", "Text");
-        }
-
-        private async Task<SelectList> GetShelves()
-        {
-            var getShelves = await _shelfService.All();
-
-            return new SelectList(getShelves.Select(x => new SelectListItem
             {
                 Value = x.ID.ToString(),
                 Text = x.Name

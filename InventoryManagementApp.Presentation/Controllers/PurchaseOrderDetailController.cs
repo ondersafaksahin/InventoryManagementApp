@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.PurchaseOrderDetailDTOs;
-using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.Services.PurchaseOrderDetailService;
-using InventoryManagementApp.Application.Services.ShelfService;
 using InventoryManagementApp.Presentation.Models.ViewModels.PurchaseOrderDetailVMs;
-using InventoryManagementApp.Presentation.Models.ViewModels.ShelfVMs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagementApp.Presentation.Controllers
@@ -107,9 +104,6 @@ namespace InventoryManagementApp.Presentation.Controllers
                 else
                 {
                     PurchaseOrderDetailUpdateVM purchaseOrderDetailUpdateVm = _mapper.Map<PurchaseOrderDetailUpdateVM>(await _purchaseOrderDetailService.GetById(id));
-                    //burada getById shelfDTO dönüyor.
-                    //onun update olarak dönecek şekilde mi değiştirilerim?
-                    //shelfDTO ile ShelfUpdateVm mi mapleyelim?
 
                     return View(purchaseOrderDetailUpdateVm);
                 }

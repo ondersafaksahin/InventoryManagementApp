@@ -20,7 +20,6 @@ using InventoryManagementApp.Application.DTOs.PurchaseOrderDTOs;
 using InventoryManagementApp.Application.DTOs.ReservationDTOs;
 using InventoryManagementApp.Application.DTOs.SalesOrdesDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.SalesOrdesDTOs;
-using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.DTOs.StockTransferDTOs;
 using InventoryManagementApp.Application.DTOs.SubCategoryDTOs;
 using InventoryManagementApp.Application.DTOs.SupplierDTOs;
@@ -176,14 +175,6 @@ namespace InventoryManagementApp.Application.Automapper
             CreateMap<SalesOrderDetails, SalesOrdersDetailsUpdateDTO>().ReverseMap();
             CreateMap<SalesOrderDetails, SalesOrdersDetailsListDTO>().ReverseMap();
             CreateMap<SalesOrderDetails, SalesOrdersDetailsDTO>().ReverseMap();
-
-
-
-            //Shelf
-            CreateMap<Shelf, ShelfCreateDTO>().ReverseMap();
-            CreateMap<Shelf, ShelfUpdateDTO>().ReverseMap();
-            CreateMap<Shelf, ShelfListDTO>().ReverseMap();
-            CreateMap<Shelf, ShelfDTO>().ReverseMap();
 
 
             //StockTransfer

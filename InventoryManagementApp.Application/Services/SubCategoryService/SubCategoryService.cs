@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using InventoryManagementApp.Application.DTOs.ShelfDTOs;
 using InventoryManagementApp.Application.DTOs.SubCategoryDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.IRepositories;

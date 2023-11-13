@@ -31,11 +31,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public int GoodId { get; set; }
         public Warehouse? SourceWarehouse { get; set; }
         public int? SourceWarehouseID { get; set; }
-        public Shelf? SourceShelf { get; set; }
-        public int? SourceShelfID { get; set; }
         public Warehouse? DestinationWarehouse { get; set; }
         public int? DestinationWarehouseID { get; set; }
-        public Shelf? DestinationShelf { get; set; }
-        public int? DestinationShelfID { get; set; }
     }
 }

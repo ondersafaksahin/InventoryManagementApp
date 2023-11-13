@@ -24,10 +24,5 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs
         public string? Description { get; set; }
         public City? City { get; set; }
         public string? District { get; set; }
-
-
-        //Navigation Properties
-
-        public List<Shelf>? Shelves { get; set; }
     }
 }

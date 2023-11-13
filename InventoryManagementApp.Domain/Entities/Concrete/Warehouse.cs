@@ -32,7 +32,6 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //Navigation Properties
 
-        public virtual List<Shelf>? Shelves { get; set; }
         public virtual List<Inventory>? Inventories { get; set; }
     }
 }
