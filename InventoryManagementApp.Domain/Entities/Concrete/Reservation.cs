@@ -20,9 +20,6 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
 		//IEntity
 		public int ID { get; set; }
-
-        public Good Good { get; set; }
-        public int GoodId { get; set; }
         public DateTime? EndDate { get; set; }
         public float Amount { get; set; }
         public Customer Customer { get; set; }

@@ -7,6 +7,5 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs
     {
         public Status Status { get; set; }
         public float Amount { get; set; }
-        public float ReorderLevel { get; set; }
     }
 }

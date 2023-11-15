@@ -21,7 +21,6 @@ namespace InventoryManagementApp.Application.DTOs.InventoryDTOs
 
         //Additional Properties
         public float Amount { get; set; }
-        public float ReorderLevel { get; set; }
 
         //Navigation Properties
         public virtual Good Good { get; set; }

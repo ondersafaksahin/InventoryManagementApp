@@ -1,4 +1,4 @@
-﻿using InventoryManagementApp.Domain.Entities.Abstract.Interfaces;
+﻿    using InventoryManagementApp.Domain.Entities.Abstract.Interfaces;
 using InventoryManagementApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,6 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
 
         //Additional Properties
         public float Amount { get; set; }
-        public float ReorderLevel { get; set; }
 
         //Navigation Properties
         public virtual Good Good { get; set; }

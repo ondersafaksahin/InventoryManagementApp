@@ -38,15 +38,14 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public SubCategory? SubCategory { get; set; }
         public int? SubCategoryID { get; set; }
         public List<Supplier>? Suppliers { get; set; }
-        public List<Inventory>? Inventories { get; set; }
-
+        
 
         //Product Part
         public BillOfMaterial? BillOfMaterial { get; set; }
         public int? BillOfMaterialID { get; set; }
         public List<ProductionOrder>? ProductionOrders { get; set; }
         public List<SalesOrderDetails>? SalesOrderDetails { get; set; }
-        public List<Reservation>? Reservations { get; set; }
+        public List<Inventory>? Inventories { get; set; }
 
 
         //Material Part
