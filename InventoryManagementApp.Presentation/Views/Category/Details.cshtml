@@ -12,7 +12,6 @@
     }
 
         #checklist li {
-            
             display: flex;
             align-items: center;
             margin-bottom: 10px;
@@ -24,15 +23,14 @@
                 color: #4F29F0; /* Çizgi rengi */
             }
 
-          
 </style>
 
 
 
 
-<div class="col-sm-12 col-xl-6">
+<div class="col-sm-12 col-xl-12">
     <div class="bg-light rounded h-100 p-4">
-        <h6 class="mb-4">Category Details</h6>
+        <h4 class="mb-4">Category Details</h4>
         <dl class="row mb-0">
 
             <dt class="col-sm-4">ID</dt>
@@ -55,13 +53,12 @@
             <dt class="col-sm-4 text-truncate">Created Date</dt>
             <dd class="col-sm-8">@Model.CreatedDate</dd>
 
-            @if (Model.ModifiedBy != null)
-            {
-                <dt class="col-sm-4 text-truncate">Modified By</dt>
-                <dd class="col-sm-8">@Model.ModifiedBy</dd>
-                <dt class="col-sm-4 text-truncate">Modified Date</dt>
-                <dd class="col-sm-8">@Model.ModifiedDate</dd>
-            }
+            <dt class="col-sm-4 text-truncate">Modified By</dt>
+            <dd class="col-sm-8">@Model.ModifiedBy</dd>
+
+            <dt class="col-sm-4 text-truncate">Modified Date</dt>
+            <dd class="col-sm-8">@Model.ModifiedDate</dd>
+
 
             @if (Model.SubCategoryList.Count() > 0)
             {

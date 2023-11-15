@@ -10,20 +10,9 @@ namespace InventoryManagementApp.Application.DTOs.WareHouseDTOs
 {
     public class WareHouseCreateDTO
     {
-
-        //IBaseEntity
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; } = DateTime.Now;
         public Status Status { get; set; } = Status.Active;
-        public string? ModifiedBy { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-
-        //IEntity
-        public int ID { get; set; }
-
-
-        //Additional Properties
-
         public string Name { get; set; }
         public string? Description { get; set; }
         public City? City { get; set; }
