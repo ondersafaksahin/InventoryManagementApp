@@ -11,7 +11,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs
         public string Name { get; set; }
         public decimal? ListPrice { get; set; }
         public string? Barcode { get; set; }
-        
+        public UnitType StockingUnit { get; set; }
 
         public Status Status { get; set; }
     }
