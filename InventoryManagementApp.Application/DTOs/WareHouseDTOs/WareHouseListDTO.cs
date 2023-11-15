@@ -10,22 +10,8 @@ namespace InventoryManagementApp.Application.DTOs.WareHouseDTOs
 {
     public class WareHouseListDTO
     {
-
-
-        //IBaseEntity
-        public string? CreatedBy { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public string? ModifiedBy { get; set; }
-        public DateTime? ModifiedDate { get; set; }
         public Status Status { get; set; }
-
-
-        //IEntity
         public int ID { get; set; }
-
-
-        //Additional Properties
-
         public string Name { get; set; }
         public string? Description { get; set; }
         public City? City { get; set; }

@@ -1,22 +1,29 @@
-﻿@using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
-
-@{
+﻿@{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model BrandVM
+@model WarehouseVM
 
 <div class="col-sm-12 col-xl-12">
     <div class="bg-light rounded h-100 p-4">
-        <h4 class="mb-4">Brand Details</h4>
+        <h4 class="mb-4">Warehouse Details</h4>
         <dl class="row mb-0">
 
             <dt class="col-sm-4">ID</dt>
             <dd class="col-sm-8">@Model.ID</dd>
 
-            <dt class="col-sm-4">Brand Name</dt>
-            <dd class="col-sm-8">@Model.BrandName</dd>
+            <dt class="col-sm-4">Warehouse Name</dt>
+            <dd class="col-sm-8">@Model.Name</dd>
+
+            <dt class="col-sm-4">Description</dt>
+            <dd class="col-sm-8">@Model.Description</dd>
+
+            <dt class="col-sm-4">City</dt>
+            <dd class="col-sm-8">@Model.City</dd>
+
+            <dt class="col-sm-4">District</dt>
+            <dd class="col-sm-8">@Model.District</dd>
 
             <dt class="col-sm-4">Status</dt>
             <dd class="col-sm-8">@Model.Status</dd>

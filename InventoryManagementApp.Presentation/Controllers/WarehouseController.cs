@@ -3,6 +3,7 @@ using InventoryManagementApp.Application.DTOs.WareHouseDTOs;
 using InventoryManagementApp.Application.Services.WareHouseService;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.Enums;
+using InventoryManagementApp.Presentation.Models.ViewModels.CategoryVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.WarehouseVMs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -121,6 +122,20 @@ namespace InventoryManagementApp.Presentation.Controllers
             var warehouseUpdateDto = _mapper.Map<WareHouseUpdateDTO>(vm);
             await _warehouseService.Update(warehouseUpdateDto);
             return RedirectToAction("GetAllActiveWarehouses");
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            if (await _warehouseService.GetById(id) == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                WarehouseVM wareHouseVM = _mapper.Map<WarehouseVM>(await _warehouseService.GetById(id));
+
+                return View(wareHouseVM);
+            }
         }
     }
 }
