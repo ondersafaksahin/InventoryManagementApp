@@ -101,19 +101,26 @@ namespace InventoryManagementApp.Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSubCategory(SubCategoryCreateVM subCategoryCreateVm)
         {
-            if (ModelState.IsValid)
+            try
             {
-                try
+
+                var subCategoryCreateDto = _mapper.Map<SubCategoryCreateDTO>(subCategoryCreateVm);
+                if (subCategoryCreateDto.CategoryID == 0)
                 {
-                    var subCategoryCreateDto = _mapper.Map<SubCategoryCreateDTO>(subCategoryCreateVm);
+                    TempData["error"] = ModelState.Values.First().Errors[0].ErrorMessage;
+                }
+                else
+                {
                     await _subCategoryService.Create(subCategoryCreateDto);
                     return RedirectToAction("Create");
                 }
-                catch (Exception ex)
-                {
-                    TempData["error"] = ex.Message;
-                }
+                
             }
+            catch (Exception ex)
+            {
+                TempData["error"] = ex.Message;
+            }
+
             return View();
         }
 
@@ -258,7 +265,7 @@ namespace InventoryManagementApp.Presentation.Controllers
                 ViewBag.categoryName = (await _categoryService.GetById(goodVM.CategoryID.Value)).CategoryName;
 
 
-                if(goodVM.SubCategoryID != null)
+                if (goodVM.SubCategoryID != null)
                 {
                     ViewBag.subCategoryName = (await _subCategoryService.GetById(goodVM.SubCategoryID.Value)).SubCategoryName;
                 }
@@ -266,9 +273,9 @@ namespace InventoryManagementApp.Presentation.Controllers
                 if (goodVM.BrandID != null)
                 {
                     ViewBag.brandName = (await _brandService.GetById(goodVM.BrandID.Value)).BrandName;
-                   
+
                 }
-                 return View(goodVM);
+                return View(goodVM);
             }
         }
 

@@ -111,7 +111,7 @@
                                 }
                                 }*@
                             </select>
-                            <button class="button" style="vertical-align:middle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropSubCategory">
+                            <button class="button" id="addSubCategoryBtn" style="vertical-align:middle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropSubCategory">
                                 <span>
                                     Add SubCategory
                                 </span>
@@ -160,10 +160,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-
+    var categoryId;
     $(document).ready(function () {
         $("#categoryDropdown").change(function () {
-            var categoryId = $(this).val();
+             categoryId = $(this).val();
             $.ajax({
                 url: '/Good/GetSubcategories',
                 type: 'GET',
@@ -182,6 +182,12 @@
             });
         });
     });
+
+   
+
+    $(document).on("click", "#createSubCategorySubmit", function () {
+        $(".modal-body #categoryId").val(categoryId);
+    })
 
 </script>
 

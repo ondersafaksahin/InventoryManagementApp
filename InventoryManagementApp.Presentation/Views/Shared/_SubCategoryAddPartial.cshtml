@@ -22,9 +22,18 @@
                         <label asp-for="Description"></label>
                         <input type="text" asp-for="Description" class="form-control" placeholder="Description" />
                     </div>
+                    <div class="form-floating mb-6 d-none">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="width:120px">Category ID</span>
+                            </div>
+                            <input type="text" id="categoryId" class="form-control" asp-for=CategoryID readonly placeholder="Category ID" aria-label="Category ID" value="">
+                        </div>
+                    </div>
+                    <br />
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" formaction="/Good/CreateSubCategory">Create</button>
+                        <button type="submit" class="btn btn-primary" id="createSubCategorySubmit" formaction="/Good/CreateSubCategory">Create</button>
                     </div>
                 </form>
             </div>
