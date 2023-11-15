@@ -16,7 +16,7 @@ namespace InventoryManagementApp.Application.DTOs.GoodDTOs
         public string Name { get; set; }
         public decimal? ListPrice { get; set; }
         public string? Barcode { get; set; }
-       
+        public UnitType StockingUnit { get; set; }
 
         public Status Status { get; set; }
     }

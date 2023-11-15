@@ -31,6 +31,19 @@ namespace InventoryManagementApp.Presentation.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetGoodUnit(int goodId)
+        {
+            var unit = await _goodService.GetDefaults(x => x.ID == goodId);
+
+            if(unit == null)
+            {
+                return null;
+            }
+            var unitType = unit.FirstOrDefault().StockingUnit.ToString();
+            return Json(unitType);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             ViewBag.Goods = await GetGoods();

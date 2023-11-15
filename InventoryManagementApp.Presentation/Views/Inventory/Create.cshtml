@@ -24,7 +24,7 @@
                 <form method="post" asp-action="Create" asp-controller="Inventory">
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3" id="design">
-                            <select class="form-select" id="categoryDropdown" aria-label="Good Name" asp-for="@Model.GoodId">
+                            <select class="form-select" id="goodDropdown" aria-label="Good Name" asp-for="@Model.GoodId">
                                 <option selected value="">Select Good... </option>
                                 @if (ViewBag.Goods != null)
                                 {
@@ -40,13 +40,13 @@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" asp-for=@Model.Amount placeholder="Enter Amount" aria-label="Supplier Model Code">
-                            <input type="text" class="form-control" placeholder="Unit" value="" style="max-width:fit-content">
+                            <input type="text" id="unitInput" class="form-control"  placeholder="Unit" aria-label="Unit" readonly>
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3" id="design">
-                            <select class="form-select" id="categoryDropdown" aria-label="Warehouse" asp-for="@Model.WarehouseId" asp-items="ViewBag.Warehouses">
+                            <select class="form-select" id="warehouseDropdown" aria-label="Warehouse" asp-for="@Model.WarehouseId" asp-items="ViewBag.Warehouses">
                                 <option selected value="">Select Warehouse... </option>
                                 @if (ViewBag.Warehouses != null)
                                 {
@@ -71,7 +71,30 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script>
+    document.getElementById('goodDropdown').addEventListener('change', function () {
+        var selectedGood = this.value;
+        getGoodUnit(selectedGood);
+    });
 
+    function getGoodUnit(goodId) {    
+        $.ajax({
+            url: '/Inventory/GetGoodUnit', // Bu, server tarafındaki ilgili endpoint olmalı
+            type: 'GET',
+            data: { goodId: goodId },
+            success: function (response) {
+              
+                document.getElementById('unitInput').value = response;
+                
+            },
+            error: function (error) {
+                console.error('Ürün birim bilgisini alma hatası:', error);
+            }
+        });
+    }
+
+</script>
 
 
