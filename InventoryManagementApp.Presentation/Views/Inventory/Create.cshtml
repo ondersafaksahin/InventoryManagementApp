@@ -48,13 +48,6 @@
                         <div class="input-group mb-3" id="design">
                             <select class="form-select" id="warehouseDropdown" aria-label="Warehouse" asp-for="@Model.WarehouseId" asp-items="ViewBag.Warehouses">
                                 <option selected value="">Select Warehouse... </option>
-                                @if (ViewBag.Warehouses != null)
-                                {
-                                    @foreach (var item in ViewBag.Warehouses)
-                                    {
-                                        <option value="@item.Value">@item.Text</option>
-                                    }
-                                }
                             </select>
                         </div>
                     </div>
@@ -76,6 +69,7 @@
 <script>
     document.getElementById('goodDropdown').addEventListener('change', function () {
         var selectedGood = this.value;
+        console.log(selectedGood);
         getGoodUnit(selectedGood);
     });
 
@@ -87,7 +81,6 @@
             success: function (response) {
               
                 document.getElementById('unitInput').value = response;
-                
             },
             error: function (error) {
                 console.error('Ürün birim bilgisini alma hatası:', error);
