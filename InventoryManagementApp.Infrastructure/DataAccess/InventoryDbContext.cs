@@ -41,6 +41,8 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
         public DbSet<Admin> Admins { get; set; }
 		public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<Delivery> Deliveries { get; set; }
+        public DbSet<DeliveryDetail> DeliveryDetails { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

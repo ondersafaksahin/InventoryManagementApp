@@ -3,6 +3,9 @@ using InventoryManagementApp.Application.DTOs.InventoryDTOs;
 using InventoryManagementApp.Application.Services.GoodService;
 using InventoryManagementApp.Application.Services.InventoryService;
 using InventoryManagementApp.Application.Services.WareHouseService;
+using InventoryManagementApp.Domain.Entities.Concrete;
+using InventoryManagementApp.Presentation.Models.ViewModels.CategoryVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -60,7 +63,7 @@ namespace InventoryManagementApp.Presentation.Controllers
                 try
                 {
                     await _inventoryService.Create(inventoryCreateDto);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("GetAllInventories");
                 }
                 catch (Exception ex)
                 {
@@ -74,13 +77,68 @@ namespace InventoryManagementApp.Presentation.Controllers
             return View(inventoryCreateVM);
         }
 
-        private async Task<SelectList> GetGoods() {
+
+        //Listing all inventory
+        [Route("[controller]/List")]
+        public async Task<IActionResult> GetAllInventories()
+        {
+            List<InventoryListVM> inventoryList = _mapper.Map<List<InventoryListVM>>(await _inventoryService.All());
+            return View(inventoryList);
+        }
+
+        public async Task<IActionResult> InventoriesOfGood()
+        {
+            List<InventoryListVM> inventoryList = _mapper.Map<List<InventoryListVM>>(await _inventoryService.All());
+
             var goodsList = await _goodService.All();
-            return new SelectList(goodsList.Select(x => new SelectListItem
+
+            var groupedInventoryByGoodId = inventoryList
+                .GroupBy(i => i.GoodId)
+                .Select(group => new
+                {
+                    GoodId = group.Key,
+                    GoodName = goodsList.FirstOrDefault(x => x.ID == group.Key)?.Name,
+                    TotalAmount = group.Sum(i => i.Amount),
+                    Items = group.ToList()
+                })
+                .OrderBy(result => result.GoodId)
+                .ToList();
+
+            ViewBag.GroupedInventoryByGoodId = groupedInventoryByGoodId;
+            return PartialView("_InventoryPartial", inventoryList);
+        }
+
+        public async Task<IActionResult> InventoriesOfWarehouse()
+        {
+            List<InventoryListVM> inventoryList = _mapper.Map<List<InventoryListVM>>(await _inventoryService.All());
+
+            var warehouseList = await _wareHouseService.All();
+            var groupedInventoryByWarehouseId = inventoryList
+                .GroupBy(i => i.WarehouseId)
+                .Select(group => new
+                {
+                    WarehouseId = group.Key,
+                    WarehouseName = warehouseList.FirstOrDefault(x => x.ID == group.Key)?.Name,
+                    TotalAmount = group.Sum(i => i.Amount),
+                    Items = group.ToList()
+                })
+                .OrderBy(result => result.WarehouseId)
+                .ToList();
+
+            ViewBag.GroupedInventoryByWarehouseId = groupedInventoryByWarehouseId;
+            return PartialView("_InventoryWarehouse", inventoryList);
+        }
+
+
+        private async Task<SelectList> GetGoods(int? goodId = null) {
+            var goodsList = await _goodService.All();
+            var goodItems = goodsList.Where(x => x.ID == goodId).Select(x => new SelectListItem
             {
                 Value = x.ID.ToString(),
                 Text = x.Name
-            }),"Value","Text");
+            }).ToList();
+
+            return new SelectList(goodItems, "Value", "Text");
         }
 
         private async Task<SelectList> GetWarehouse()
@@ -92,5 +150,6 @@ namespace InventoryManagementApp.Presentation.Controllers
                 Text = x.Name
             }), "Value", "Text");
         }
+
     }
 }

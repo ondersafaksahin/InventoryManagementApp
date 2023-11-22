@@ -5,6 +5,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs
 {
     public class InventoryUpdateVM
     {
+        public int ID { get; set; }
         public Status Status { get; set; }
         public float Amount { get; set; }
     }

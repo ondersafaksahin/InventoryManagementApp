@@ -5,10 +5,8 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs
 {
     public class InventoryListVM
     {
-        //Additional Properties
+        public int ID { get; set; }
         public float Amount { get; set; }
-
-        //Navigation Properties
         public virtual Good Good { get; set; }
         public int GoodId { get; set; }
         public virtual Warehouse? Warehouse { get; set; }

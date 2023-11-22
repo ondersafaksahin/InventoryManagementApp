@@ -10,6 +10,8 @@ using InventoryManagementApp.Application.DTOs.CategoryDTOs;
 using InventoryManagementApp.Application.DTOs.ConsumptionDTOs;
 using InventoryManagementApp.Application.DTOs.ConversionDTOs;
 using InventoryManagementApp.Application.DTOs.CustomerDTOs;
+using InventoryManagementApp.Application.DTOs.DeliveryDetailDTOs;
+using InventoryManagementApp.Application.DTOs.DeliveryDTOs;
 using InventoryManagementApp.Application.DTOs.EmployeeDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Application.DTOs.InventoryDTOs;
@@ -205,6 +207,19 @@ namespace InventoryManagementApp.Application.Automapper
             CreateMap<Warehouse, WareHouseUpdateDTO>().ReverseMap();
             CreateMap<Warehouse, WareHouseListDTO>().ReverseMap();
             CreateMap<Warehouse, WareHouseDTO>().ReverseMap();
+
+            //Delivery
+            CreateMap<Delivery, DeliveryCreateDTO>().ReverseMap();
+            CreateMap<Delivery, DeliveryUpdateDTO>().ReverseMap();
+            CreateMap<Delivery, DeliveryListDTO>().ReverseMap();
+            CreateMap<Delivery, DeliveryDTO>().ReverseMap();
+
+            //DeliveryDetail
+            CreateMap<DeliveryDetail, DeliveryDetailCreateDTO>().ReverseMap();
+            CreateMap<DeliveryDetail, DeliveryDetailUpdateDTO>().ReverseMap();
+            CreateMap<DeliveryDetail, DeliveryDetailListDTO>().ReverseMap();
+            CreateMap<DeliveryDetail, DeliveryDetailDTO>().ReverseMap();
+
         }
     }
 }

@@ -1,0 +1,29 @@
+﻿@using InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs;
+
+@model List<InventoryListVM>
+
+
+<table class="table" id="example">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Warehouse Name</th>
+            <th scope="col">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var group in ViewBag.GroupedInventoryByWarehouseId)
+        {
+            @if (group.WarehouseId!=null)
+            {
+                <tr>
+                    <th scope="row"></th>
+                    <td>@group.WarehouseName</td>
+                    <td>@group.TotalAmount</td>
+
+                </tr>
+            }
+            
+        }
+    </tbody>
+</table>
