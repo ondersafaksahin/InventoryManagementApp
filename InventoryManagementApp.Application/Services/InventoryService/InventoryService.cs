@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.InventoryDTOs;
+using InventoryManagementApp.Application.DTOs.SubCategoryDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.IRepositories;
 using System;
@@ -14,16 +15,41 @@ namespace InventoryManagementApp.Application.Services.InventoryService
     public class InventoryService : IInventoryService
     {
         IInventoryRepository _inventoryRepository;
+        IGoodRepository _goodRepository;
+        IWareHouseRepository _wareHouseRepository;
         IMapper _mapper;
-        public InventoryService(IInventoryRepository inventoryRepository, IMapper mapper)
+        public InventoryService(IInventoryRepository inventoryRepository, IMapper mapper, IGoodRepository goodRepository, IWareHouseRepository wareHouseRepository)
         {
             _inventoryRepository = inventoryRepository;
             _mapper = mapper;
+            _goodRepository = goodRepository;
+            _wareHouseRepository = wareHouseRepository;
         }
 
         public async Task<List<InventoryListDTO>> All()
         {
-            return _mapper.Map<List<InventoryListDTO>>(await _inventoryRepository.GetAll());
+            var list = _mapper.Map<List<InventoryListDTO>>(await _inventoryRepository.GetAll());
+
+            foreach (var item in list)
+            {
+                var good = _goodRepository.GetById(x => x.ID == item.GoodId);
+                item.Good = good.Result;
+                
+            }
+            foreach (var item in list)
+            {
+                if (item.WarehouseId != null)
+                {
+                    var warehouse = _wareHouseRepository.GetById(x => x.ID == item.WarehouseId);
+                    item.Warehouse = warehouse.Result;
+                }
+                else
+                {
+                    item.Warehouse = null;
+                }
+            }
+           
+            return list;
         }
 
         public async Task Create(InventoryCreateDTO createDTO)
@@ -45,7 +71,29 @@ namespace InventoryManagementApp.Application.Services.InventoryService
 
         public async Task<List<InventoryListDTO>> GetDefaults(Expression<Func<Inventory, bool>> expression)
         {
-            return _mapper.Map<List<InventoryListDTO>>( await _inventoryRepository.GetDefaults(expression));
+            var list = _mapper.Map<List<InventoryListDTO>>(await _inventoryRepository.GetDefaults(expression));
+
+            foreach (var item in list)
+            {
+                var good = _goodRepository.GetById(x => x.ID == item.GoodId);
+                item.Good = good.Result;
+
+            }
+            foreach (var item in list)
+            {
+                if (item.WarehouseId != null)
+                {
+                    var warehouse = _wareHouseRepository.GetById(x => x.ID == item.WarehouseId);
+                    item.Warehouse = warehouse.Result;
+                }
+                else
+                {
+                    item.Warehouse = null;
+                }
+            }
+
+
+            return list;
         }
 
         public async Task Update(InventoryUpdateDTO updateDTO)

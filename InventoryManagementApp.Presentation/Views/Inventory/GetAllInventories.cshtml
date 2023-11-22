@@ -1,0 +1,127 @@
+﻿@using InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs;
+
+@{
+    ViewData["Title"] = "GetAllInventories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<InventoryListVM>
+
+@if (TempData["error"] is not null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"]
+    </div>
+}
+
+<div class="col-12">
+    <div class="bg-light rounded h-100 p-4">
+        <div class="d-flex justify-content-between align-items-center" style="margin-bottom:16px">
+            <a class="btn btn-success" asp-action="Create" asp-controller="Inventory">Add Inventory</a>
+            <button id="btnGoodId" type="submit" class="btn btn-success mx-2 form-button">List by Good</button>
+            <button id="btnWarehouseId" type="submit" class="btn btn-success mx-2 form-button">List by Warehouse</button>
+        </div>
+        <div id="inventoryList" class="table-responsive">
+            <table class="table" id="example">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Good Name</th>
+                        <th scope="col">Warehouse Name</th>
+                        <th scope="col">Batch</th>
+                        <th class="text-center" scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var inventory in Model)
+                    {
+                        <tr>
+                            <th scope="row">@inventory.ID</th>
+                            <td>@inventory.Amount</td>
+                            <td>@inventory.Good.Name</td>
+                            @if (inventory.Warehouse != null)
+                            {
+                                <td>@inventory.Warehouse.Name</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+
+                            <td>@inventory.BatchId</td>                        
+                            <td class="text-center">
+                                <a class="btn pt-0" asp-action="Edit" asp-controller="Inventory" asp-route-id="@inventory.ID" type="button" data-toggle="popover" title="Update">
+                                    <i class="far fa-edit" style="color:coral;font-size:20px"></i>
+                                </a>
+                                <a class="btn pt-0" asp-action="Details" asp-controller="Inventory" asp-route-id="@inventory.ID" asp-route-active=true type="button" data-toggle="popover" title="Details">
+                                    <i class="fas fa-search" style="color: dodgerblue; font-size: 20px;"></i>
+                                </a>
+                                <a class="btn pt-0" asp-action="Delete" asp-controller="Inventory" asp-route-id="@inventory.ID" asp-route-active=false type="button" data-toggle="popover" title="Delete">
+                                    <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
+                                </a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@*<div id="inventoryList">
+    <!-- Default olarak Good ID'ye göre listeleme -->
+    @Html.Partial("_InventoryPartial", new List<InventoryListVM>());
+</div>*@
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#btnGoodId").click(function () {
+            $.ajax({
+                url: '/Inventory/InventoriesOfGood',
+                type: 'GET',
+                dataType: 'html',
+                success: function (data) {
+                    $("#inventoryList").html(data);
+                },
+                error: function () {
+                    console.log('Error loading partial view');
+                }
+            });
+        });
+
+        $("#btnWarehouseId").click(function () {
+            $.ajax({
+                url: '/Inventory/InventoriesOfWarehouse',
+                type: 'GET',
+                dataType: 'html',
+                success: function (data) {
+                    $("#inventoryList").html(data);
+                },
+                error: function () {
+                    console.log('Error loading partial view');
+                }
+            });
+        });
+    });
+</script>
+
+
+
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $('#example').DataTable;
+        });
+    });
+</script>
+
