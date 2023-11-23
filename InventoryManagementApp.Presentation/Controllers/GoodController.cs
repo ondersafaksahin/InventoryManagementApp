@@ -61,67 +61,60 @@ namespace InventoryManagementApp.Presentation.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateCategory(CategoryCreateVM categoryCreateVm)
+        public async Task<IActionResult> CreateCategory(string categoryName)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var categoryCreateDto = _mapper.Map<CategoryCreateDTO>(categoryCreateVm);
-                    await _categoryService.Create(categoryCreateDto);
-                    return RedirectToAction("Create");
+                    var categoryCreateDto = new CategoryCreateDTO() { CategoryName = categoryName };
+                    var categoryId = await _categoryService.CreateModal(categoryCreateDto);
+                    return Json(new { value = categoryId, text = categoryName });
                 }
                 catch (Exception ex)
                 {
                     TempData["error"] = ex.Message;
                 }
             }
-            return View();
+            return BadRequest("Invalid Data");
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBrand(BrandCreateVM brandCreateVm)
+        public async Task<IActionResult> CreateBrand(string brandName)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var brandCreateDto = _mapper.Map<BrandCreateDTO>(brandCreateVm);
-                    await _brandService.Create(brandCreateDto);
-                    return RedirectToAction("Create");
+                    var brandCreateDto = new BrandCreateDTO() { BrandName = brandName };
+                    var brandId = await _brandService.CreateModal(brandCreateDto);
+                    return Json(new { Value = brandId, Text = brandName });
                 }
                 catch (Exception ex)
                 {
                     TempData["error"] = ex.Message;
                 }
             }
-            return View();
+            return BadRequest("Invalid Data");
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateSubCategory(SubCategoryCreateVM subCategoryCreateVm)
+        public async Task<IActionResult> CreateSubCategory(string subCategoryName,int categoryId)
         {
-            try
+            if (ModelState.IsValid)
             {
-
-                var subCategoryCreateDto = _mapper.Map<SubCategoryCreateDTO>(subCategoryCreateVm);
-                if (subCategoryCreateDto.CategoryID == 0)
+                try
                 {
-                    TempData["error"] = ModelState.Values.First().Errors[0].ErrorMessage;
+                    var subCategoryCreateDto = new SubCategoryCreateDTO() { SubCategoryName = subCategoryName, CategoryID = categoryId };
+                    var subcategoryId = await _subCategoryService.CreateModal(subCategoryCreateDto);
+                    return Json(new { value = subcategoryId, text = subCategoryName, catid=categoryId });
                 }
-                else
+                catch (Exception ex)
                 {
-                    await _subCategoryService.Create(subCategoryCreateDto);
-                    return RedirectToAction("Create");
-                }
-                
+                    TempData["error"] = ex.Message;
+                } 
             }
-            catch (Exception ex)
-            {
-                TempData["error"] = ex.Message;
-            }
-
-            return View();
+            return BadRequest("Invalid Data");
         }
 
 
@@ -176,7 +169,7 @@ namespace InventoryManagementApp.Presentation.Controllers
             }
             else
             {
-                TempData["error"] = ModelState.Values.First().Errors[0].ErrorMessage;
+                TempData["error"] = ModelState.Values.First(x => x.ValidationState == Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Invalid).Errors[0].ErrorMessage;
             }
             return View(goodCreateVm);
         }

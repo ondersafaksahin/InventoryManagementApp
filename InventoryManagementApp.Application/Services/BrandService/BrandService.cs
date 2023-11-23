@@ -31,6 +31,13 @@ namespace InventoryManagementApp.Application.Services.BrandService
             await _brandRepository.Add(brand);
         }
 
+        public async Task<int> CreateModal(BrandCreateDTO createDTO)
+        {
+            var brand = _mapper.Map<Brand>(createDTO);
+            await _brandRepository.Add(brand);
+            return brand.ID;
+        }
+
         public async Task Delete(int id)
         {
             await _brandRepository.Delete(await _brandRepository.GetById(x => x.ID == id));

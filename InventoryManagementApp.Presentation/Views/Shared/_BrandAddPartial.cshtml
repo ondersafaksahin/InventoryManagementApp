@@ -17,15 +17,35 @@
 
                     <div class="mb-2">
                         <label asp-for="BrandName">Brand Name</label>
-                        <input type="text" asp-for="BrandName" class="form-control" placeholder="Brand Name" />
+                        <input id="brandName" type="text" asp-for="BrandName" class="form-control" placeholder="Brand Name" />
                     </div>                 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" formaction="/Good/CreateBrand">Create</button>
+                        <button id="btnAddBrand" type="submit" class="btn btn-primary">Create</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).on('click', "#btnAddBrand", function (event) {
+        event.preventDefault();
+        var brandName = $("#brandName").val()
+        $.ajax({
+            url: '/Good/CreateBrand', // Modal form verilerini göndermek için URL
+            type: 'POST',
+            data: {
+                "brandName": brandName
+            },
+                success: function (response) {
+                $('#staticBackdropBrand').modal('hide');
+                $("#floatingSelect-design").append(`<option value = "${response.value}" > ${response.text} </option>`);
+                    $("#floatingSelect-design").val(response.value);
+            },
+        });
+    });
+</script>
 

@@ -77,6 +77,10 @@ namespace InventoryManagementApp.Presentation.Controllers
                     TempData["error"] = ex.Message;
                 }
             }
+            else
+            {
+                TempData["error"] = ModelState.Values.First(x => x.ValidationState == Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Invalid).Errors[0].ErrorMessage;
+            }
             return View(categoryCreateVm);
         }
 

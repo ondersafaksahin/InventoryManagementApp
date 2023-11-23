@@ -16,7 +16,7 @@
 
                     <div class="mb-2">
                         <label asp-for="CategoryName">Category Name</label>
-                        <input type="text" asp-for="CategoryName" class="form-control" placeholder="Name" />
+                        <input id="categoryName" type="text" asp-for="CategoryName" class="form-control" placeholder="Name" />
                     </div>
                     <div class="mb-2">
                         <label asp-for="Description"></label>
@@ -24,10 +24,29 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" formaction="/Good/CreateCategory">Create</button>
+                        <button id="btnAddCategory" type="submit" class="btn btn-primary">Create</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).on("click", "#btnAddCategory", function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: "/Good/CreateCategory",
+            type: 'POST',
+            data: {
+                "categoryName": $("#categoryName").val()
+            },
+            success: function (response) {
+                $('#staticBackdrop').modal('hide');
+                $("#categoryDropdown").append(`<option value="${response.value}">${response.text}</option>`);
+                $("#categoryDropdown").val(response.value);
+            },
+        });
+    });
+</script>

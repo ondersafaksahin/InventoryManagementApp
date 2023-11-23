@@ -10,5 +10,6 @@ namespace InventoryManagementApp.Application.Services.SubCategoryService
 {
 	public interface ISubCategoryService:IBaseService<SubCategoryCreateDTO,SubCategoryUpdateDTO,SubCategoryListDTO,SubCategoryDTO,SubCategory,int>
 	{
+		public Task<int> CreateModal(SubCategoryCreateDTO createDTO);
 	}
 }
