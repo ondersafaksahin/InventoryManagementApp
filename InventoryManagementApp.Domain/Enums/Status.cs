@@ -10,6 +10,10 @@ namespace InventoryManagementApp.Domain.Enums
     {
         Active=1,
         Passive=2,
-        Deleted=4
+        Deleted=4,
+        Created,
+        Approved, 
+        Partially_Completed, 
+        Completed
     }
 }
