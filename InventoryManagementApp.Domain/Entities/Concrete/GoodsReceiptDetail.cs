@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApp.Domain.Entities.Concrete
 {
-    public class SalesOrderDetails:IEntity<int>,IBaseEntity
+    public class GoodsReceiptDetail : IBaseEntity, IEntity<int>
     {
         //IBaseEntity
         public string? CreatedBy { get; set; }
@@ -21,27 +21,18 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         //IEntity
         public int ID { get; set; }
 
-
         //Additional Properties
-
-        public decimal UnitPrice { get; set; }
-        public CurrencyCodes PriceCurrency { get; set; }
-        public float Quantity { get; set; }
-        public UnitType? SalesUnit { get; set; }
-        public float Discount { get; set; }
+        public int Amount { get; set; }
 
         //Navigation Properties
 
-        public SalesOrder SalesOrder { get; set; }
-        public int SalesOrderID { get; set; }
+        public GoodsReceipt GoodsReceipt { get; set; }
+        public int GoodsReceiptID { get; set; }
         public Good Good { get; set; }
         public int GoodID { get; set; }
-        public Warehouse? SourceWarehouse { get; set; }
-        public int? SourceWarehouseID { get; set; }
-        public Batch? Batch { get; set; }
-        public int? BatchID { get; set; }
-        public Conversion? Conversion { get; set; }
-        public int? ConversionId { get; set; }
-        public List<DeliveryDetail>? DeliveryDetails { get; set; }
+        public Batch Batch { get; set; }
+        public int BatchID { get; set; }
+        public PurchaseOrderDetails PurchaseOrderDetails { get; set; }
+        public int PurchaseOrderDetailsID { get; set; }
     }
 }

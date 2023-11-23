@@ -46,10 +46,12 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public List<ProductionOrder>? ProductionOrders { get; set; }
         public List<SalesOrderDetails>? SalesOrderDetails { get; set; }
         public List<Inventory>? Inventories { get; set; }
+        public List<DeliveryDetail>? DeliveryDetails { get; set; }
 
 
         //Material Part
         public List<PurchaseOrderDetails>? PurchaseOrderDetails { get; set; }
+        public List<GoodsReceiptDetail>? GoodsReceiptDetails { get; set; }
 
     }
 }

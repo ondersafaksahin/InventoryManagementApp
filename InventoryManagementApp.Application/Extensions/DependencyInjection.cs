@@ -13,6 +13,8 @@ using InventoryManagementApp.Application.Services.DeliveryDetailService;
 using InventoryManagementApp.Application.Services.DeliveryService;
 using InventoryManagementApp.Application.Services.EmployeeService;
 using InventoryManagementApp.Application.Services.GoodService;
+using InventoryManagementApp.Application.Services.GoodsReceiptDetailService;
+using InventoryManagementApp.Application.Services.GoodsReceiptService;
 using InventoryManagementApp.Application.Services.InventoryService;
 using InventoryManagementApp.Application.Services.ManagerService;
 using InventoryManagementApp.Application.Services.ProductionOrderService;
@@ -71,6 +73,8 @@ namespace InventoryManagementApp.Application.Extensions
 			services.AddScoped<ISubCategoryService, SubCategoryService>();
 			services.AddScoped<IDeliveryService, DeliveryService>();
 			services.AddScoped<IDeliveryDetailService, DeliveryDetailService>();
+			services.AddScoped<IGoodsReceiptService, GoodsReceiptService>();
+			services.AddScoped<IGoodsReceiptDetailService, GoodsReceiptDetailService>();
 			//
 			//Tolga
 			services.AddScoped<IAdminService, AdminService>();
