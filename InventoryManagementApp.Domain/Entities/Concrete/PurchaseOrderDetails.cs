@@ -42,5 +42,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public Conversion? Conversion { get; set; }
         public int? ConversionId { get; set; }
 
+        public List<GoodsReceiptDetail>? GoodsReceiptDetails { get; set; }
+
     }
 }

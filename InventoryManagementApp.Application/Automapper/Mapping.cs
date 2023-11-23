@@ -14,6 +14,8 @@ using InventoryManagementApp.Application.DTOs.DeliveryDetailDTOs;
 using InventoryManagementApp.Application.DTOs.DeliveryDTOs;
 using InventoryManagementApp.Application.DTOs.EmployeeDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
+using InventoryManagementApp.Application.DTOs.GoodsReceiptDetailDTOs;
+using InventoryManagementApp.Application.DTOs.GoodsReceiptDTOs;
 using InventoryManagementApp.Application.DTOs.InventoryDTOs;
 using InventoryManagementApp.Application.DTOs.ManagerDTOs;
 using InventoryManagementApp.Application.DTOs.ProductionOrderDTOs;
@@ -219,6 +221,18 @@ namespace InventoryManagementApp.Application.Automapper
             CreateMap<DeliveryDetail, DeliveryDetailUpdateDTO>().ReverseMap();
             CreateMap<DeliveryDetail, DeliveryDetailListDTO>().ReverseMap();
             CreateMap<DeliveryDetail, DeliveryDetailDTO>().ReverseMap();
+
+            //GoodsReceipt
+            CreateMap<GoodsReceipt, GoodsReceiptCreateDTO>().ReverseMap();
+            CreateMap<GoodsReceipt, GoodsReceiptUpdateDTO>().ReverseMap();
+            CreateMap<GoodsReceipt, GoodsReceiptListDTO>().ReverseMap();
+            CreateMap<GoodsReceipt, GoodsReceiptDTO>().ReverseMap();
+
+            //GoodsReceiptDetail
+            CreateMap<GoodsReceiptDetail, GoodsReceiptDetailCreateDTO>().ReverseMap();
+            CreateMap<GoodsReceiptDetail, GoodsReceiptDetailUpdateDTO>().ReverseMap();
+            CreateMap<GoodsReceiptDetail, GoodsReceiptDetailListDTO>().ReverseMap();
+            CreateMap<GoodsReceiptDetail, GoodsReceiptDetailDTO>().ReverseMap();
 
         }
     }

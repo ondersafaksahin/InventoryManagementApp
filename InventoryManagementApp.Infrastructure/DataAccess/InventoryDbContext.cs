@@ -43,6 +43,8 @@ namespace InventoryManagementApp.Infrastructure.DataAccess
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<DeliveryDetail> DeliveryDetails { get; set; }
+        public DbSet<GoodsReceipt> GoodsReceipts { get; set; }
+        public DbSet<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
