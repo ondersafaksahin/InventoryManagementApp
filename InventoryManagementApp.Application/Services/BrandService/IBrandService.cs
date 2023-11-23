@@ -10,5 +10,6 @@ namespace InventoryManagementApp.Application.Services.BrandService
 {
     public interface IBrandService:IBaseService<BrandCreateDTO,BrandUpdateDTO,BrandListDTO,BrandDTO,Brand,int>
     {
+        public Task<int> CreateModal(BrandCreateDTO createDTO);
     }
 }

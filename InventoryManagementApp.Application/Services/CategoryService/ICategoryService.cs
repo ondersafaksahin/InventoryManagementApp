@@ -10,5 +10,6 @@ namespace InventoryManagementApp.Application.Services.CategoryService
 {
 	public interface ICategoryService:IBaseService<CategoryCreateDTO,CategoryUpdateDTO,CategoryListDTO,CategoryDTO,Category,int>
 	{
+		public Task<int> CreateModal(CategoryCreateDTO createDTO);
 	}
 }

@@ -102,7 +102,7 @@
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3" id="design">
                             <select class="form-select" id="subcategoryDropdown" aria-label="Floating label select example" asp-for="@Model.SubCategoryID">
-                                <option selected value="">Select SubCategory... </option>
+                                <option selected value="">Select SubCategory...</option>
                                 @*@if (Model.SubCategoryList != null)
                                 {
                                 @foreach (var item in Model.SubCategoryList)
@@ -111,7 +111,7 @@
                                 }
                                 }*@
                             </select>
-                            <button class="button" id="addSubCategoryBtn" style="vertical-align:middle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropSubCategory">
+                            <button class="button" id="addSubCategoryBtn" style="vertical-align:middle" type="button" @* data-bs-toggle="modal" data-bs-target="#staticBackdropSubCategory" *@>
                                 <span>
                                     Add SubCategory
                                 </span>
@@ -184,8 +184,14 @@
     });
 
 
-    $(document).on("click", "#createSubCategorySubmit", function () {
-        $(".modal-body #categoryId").val(categoryId);
+    $(document).on("click", "#addSubCategoryBtn", function () {
+        subcatadd: if ($("#categoryDropdown").val() == "") {
+            alert("Please select category first");
+        }
+        else {
+            $('#staticBackdropSubCategory').modal('show');
+            $(".modal-body #categoryId").val(categoryId);
+        }
     })
 
 </script>

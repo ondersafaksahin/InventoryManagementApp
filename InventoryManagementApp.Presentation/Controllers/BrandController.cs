@@ -68,7 +68,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 			}
             else
             {
-                TempData["error"] = ModelState.Values.First().Errors[0].ErrorMessage;
+                TempData["error"] = ModelState.Values.First(x => x.ValidationState == Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Invalid).Errors[0].ErrorMessage;
             }
 			return View(brandCreateVM);
 		}

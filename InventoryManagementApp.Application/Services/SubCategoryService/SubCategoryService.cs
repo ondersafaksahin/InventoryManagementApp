@@ -37,7 +37,14 @@ namespace InventoryManagementApp.Application.Services.SubCategoryService
 			await _subCategoryRepository.Add(_mapper.Map<SubCategory>(createDTO));
 		}
 
-		public async Task Delete(int id)
+        public async Task<int> CreateModal(SubCategoryCreateDTO createDTO)
+        {
+            var subcategory = _mapper.Map<SubCategory>(createDTO);
+            await _subCategoryRepository.Add(subcategory);
+            return subcategory.ID;
+        }
+
+        public async Task Delete(int id)
 		{
 			await _subCategoryRepository.Delete(await _subCategoryRepository.GetById(x=>x.ID==id));
 		}

@@ -16,7 +16,7 @@
 
                     <div class="mb-2">
                         <label asp-for="SubCategoryName">SubCategory Name</label>
-                        <input type="text" asp-for="SubCategoryName" class="form-control" placeholder="SubCategoryName" />
+                        <input id="subCategoryName" type="text" asp-for="SubCategoryName" class="form-control" placeholder="SubCategoryName" />
                     </div>
                     <div class="mb-2">
                         <label asp-for="Description"></label>
@@ -33,10 +33,27 @@
                     <br />
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" id="createSubCategorySubmit" formaction="/Good/CreateSubCategory">Create</button>
+                        <button id="btnSubCategoryAdd" type="submit" class="btn btn-primary" id="createSubCategorySubmit">Create</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).on("click", "#btnSubCategoryAdd", function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: "/Good/CreateSubCategory",
+            type: "POST",
+            data: { "subCategoryName": $("#subCategoryName").val(), "categoryId": $("#categoryId").val() },
+            success: function (response) {
+                $("#staticBackdropSubCategory").modal("hide");
+                $("#subcategoryDropdown").append(`<option value="${response.value}">${response.text}</option>`);
+                $("#subcategoryDropdown").val(response.value)
+            },
+        });
+    });
+</script>
