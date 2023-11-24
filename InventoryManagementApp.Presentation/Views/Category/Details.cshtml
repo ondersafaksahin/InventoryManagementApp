@@ -64,18 +64,14 @@
             {
                 <dt class="col-sm-4 mb-2">SubCategory</dt>
                 <dd class="col-sm-8">
-                    @foreach (var item in Model.SubCategoryList)
-                    {
-                        if (item==Model.SubCategoryList.ElementAt(0))
+                    <div class="row">
+                        @foreach (var item in Model.SubCategoryList)
                         {
-                            <span>@item.Text</span>
+                            <div class="col-3">
+                                <span>@item.Text</span>
+                            </div>
                         }
-                        else
-                        {
-                            <span> - </span>
-                            <span>@item.Text</span>
-                        } 
-                    }
+                    </div>
                 </dd>
             }
         </dl>

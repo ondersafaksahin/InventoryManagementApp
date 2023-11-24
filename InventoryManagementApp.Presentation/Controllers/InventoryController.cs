@@ -130,9 +130,9 @@ namespace InventoryManagementApp.Presentation.Controllers
         }
 
 
-        private async Task<SelectList> GetGoods(int? goodId = null) {
+        private async Task<SelectList> GetGoods() {
             var goodsList = await _goodService.All();
-            var goodItems = goodsList.Where(x => x.ID == goodId).Select(x => new SelectListItem
+            var goodItems = goodsList.Select(x => new SelectListItem
             {
                 Value = x.ID.ToString(),
                 Text = x.Name
