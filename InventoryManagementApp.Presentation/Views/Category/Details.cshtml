@@ -33,50 +33,52 @@
         <h4 class="mb-4">Category Details</h4>
         <dl class="row mb-0">
 
-            <dt class="col-sm-4">ID</dt>
+            <dt class="col-sm-4 mb-2">ID</dt>
             <dd class="col-sm-8">@Model.ID</dd>
 
-            <dt class="col-sm-4">Category Name</dt>
+            <dt class="col-sm-4 mb-2">Category Name</dt>
             <dd class="col-sm-8">@Model.CategoryName</dd>
 
-            <dt class="col-sm-4">Status</dt>
+            <dt class="col-sm-4 mb-2">Status</dt>
             <dd class="col-sm-8">@Model.Status</dd>
 
-            <dt class="col-sm-4 text-truncate">Description</dt>
+            <dt class="col-sm-4 mb-2">Description</dt>
             <dd class="col-sm-8">@Model.Description</dd>
 
 
 
-            <dt class="col-sm-4 text-truncate">Created By</dt>
+            <dt class="col-sm-4  mb-2">Created By</dt>
             <dd class="col-sm-8">@Model.CreatedBy</dd>
 
-            <dt class="col-sm-4 text-truncate">Created Date</dt>
+            <dt class="col-sm-4 mb-2">Created Date</dt>
             <dd class="col-sm-8">@Model.CreatedDate</dd>
 
-            <dt class="col-sm-4 text-truncate">Modified By</dt>
+            <dt class="col-sm-4 mb-2">Modified By</dt>
             <dd class="col-sm-8">@Model.ModifiedBy</dd>
 
-            <dt class="col-sm-4 text-truncate">Modified Date</dt>
+            <dt class="col-sm-4 mb-2">Modified Date</dt>
             <dd class="col-sm-8">@Model.ModifiedDate</dd>
 
 
             @if (Model.SubCategoryList.Count() > 0)
             {
-                <dt class="col-sm-4 text-truncate">SubCategory</dt>
+                <dt class="col-sm-4 mb-2">SubCategory</dt>
                 <dd class="col-sm-8">
-                    <ul id="checklist">
-                        @foreach (var item in Model.SubCategoryList)
+                    @foreach (var item in Model.SubCategoryList)
+                    {
+                        if (item==Model.SubCategoryList.ElementAt(0))
                         {
-                            <li>
-                                <span>@item.Text</span>
-                            </li>
+                            <span>@item.Text</span>
                         }
-                    </ul>
+                        else
+                        {
+                            <span> - </span>
+                            <span>@item.Text</span>
+                        } 
+                    }
                 </dd>
             }
-
         </dl>
-
     </div>
 </div>
 
