@@ -151,7 +151,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 15, 12, 9, 55, 596, DateTimeKind.Local).AddTicks(3572));
+                        .HasDefaultValue(new DateTime(2023, 11, 24, 13, 31, 31, 409, DateTimeKind.Local).AddTicks(7758));
 
                     b.Property<DateTime?>("ExpireDate")
                         .HasColumnType("datetime2");
@@ -195,7 +195,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 15, 12, 9, 55, 597, DateTimeKind.Local).AddTicks(6241));
+                        .HasDefaultValue(new DateTime(2023, 11, 24, 13, 31, 31, 411, DateTimeKind.Local).AddTicks(41));
 
                     b.Property<int>("GoodID")
                         .HasColumnType("int");
@@ -470,6 +470,84 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Delivery", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DocumentNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Deliveries");
+                });
+
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.DeliveryDetail", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DeliveryID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GoodID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SalesOrderDetailsID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("DeliveryID");
+
+                    b.HasIndex("GoodID");
+
+                    b.HasIndex("SalesOrderDetailsID");
+
+                    b.ToTable("DeliveryDetails");
+                });
+
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Good", b =>
                 {
                     b.Property<int>("ID")
@@ -504,7 +582,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 15, 12, 9, 55, 598, DateTimeKind.Local).AddTicks(3763));
+                        .HasDefaultValue(new DateTime(2023, 11, 24, 13, 31, 31, 411, DateTimeKind.Local).AddTicks(7659));
 
                     b.Property<float?>("GrossWeight")
                         .HasColumnType("real");
@@ -564,6 +642,89 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.HasIndex("SubCategoryID");
 
                     b.ToTable("Goods");
+                });
+
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.GoodsReceipt", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DocumentNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("GoodsReceipts");
+                });
+
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.GoodsReceiptDetail", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BatchID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GoodID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GoodsReceiptID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PurchaseOrderDetailsID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("BatchID");
+
+                    b.HasIndex("GoodID");
+
+                    b.HasIndex("GoodsReceiptID");
+
+                    b.HasIndex("PurchaseOrderDetailsID");
+
+                    b.ToTable("GoodsReceiptDetails");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Inventory", b =>
@@ -1403,6 +1564,33 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Navigation("Good");
                 });
 
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.DeliveryDetail", b =>
+                {
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Delivery", "Delivery")
+                        .WithMany("DeliveryDetail")
+                        .HasForeignKey("DeliveryID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "Good")
+                        .WithMany("DeliveryDetails")
+                        .HasForeignKey("GoodID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.SalesOrderDetails", "SalesOrderDetails")
+                        .WithMany("DeliveryDetails")
+                        .HasForeignKey("SalesOrderDetailsID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Delivery");
+
+                    b.Navigation("Good");
+
+                    b.Navigation("SalesOrderDetails");
+                });
+
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Good", b =>
                 {
                     b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.BillOfMaterial", "BillOfMaterial")
@@ -1428,6 +1616,41 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("SubCategory");
+                });
+
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.GoodsReceiptDetail", b =>
+                {
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Batch", "Batch")
+                        .WithMany()
+                        .HasForeignKey("BatchID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.Good", "Good")
+                        .WithMany("GoodsReceiptDetails")
+                        .HasForeignKey("GoodID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.GoodsReceipt", "GoodsReceipt")
+                        .WithMany("GoodsReceiptDetail")
+                        .HasForeignKey("GoodsReceiptID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("InventoryManagementApp.Domain.Entities.Concrete.PurchaseOrderDetails", "PurchaseOrderDetails")
+                        .WithMany("GoodsReceiptDetails")
+                        .HasForeignKey("PurchaseOrderDetailsID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Batch");
+
+                    b.Navigation("Good");
+
+                    b.Navigation("GoodsReceipt");
+
+                    b.Navigation("PurchaseOrderDetails");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Inventory", b =>
@@ -1753,8 +1976,17 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Navigation("SalesOrders");
                 });
 
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Delivery", b =>
+                {
+                    b.Navigation("DeliveryDetail");
+                });
+
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Good", b =>
                 {
+                    b.Navigation("DeliveryDetails");
+
+                    b.Navigation("GoodsReceiptDetails");
+
                     b.Navigation("Inventories");
 
                     b.Navigation("ProductionOrders");
@@ -1764,14 +1996,29 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Navigation("SalesOrderDetails");
                 });
 
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.GoodsReceipt", b =>
+                {
+                    b.Navigation("GoodsReceiptDetail");
+                });
+
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.PurchaseOrder", b =>
                 {
                     b.Navigation("PurchaseOrderDetails");
                 });
 
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.PurchaseOrderDetails", b =>
+                {
+                    b.Navigation("GoodsReceiptDetails");
+                });
+
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.SalesOrder", b =>
                 {
                     b.Navigation("SalesOrderDetails");
+                });
+
+            modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.SalesOrderDetails", b =>
+                {
+                    b.Navigation("DeliveryDetails");
                 });
 
             modelBuilder.Entity("InventoryManagementApp.Domain.Entities.Concrete.Supplier", b =>
