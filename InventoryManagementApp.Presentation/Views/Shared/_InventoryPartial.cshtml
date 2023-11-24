@@ -6,7 +6,7 @@
 <table class="table" id="example">
     <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">Code</th>
             <th scope="col">Good Name</th>
             <th scope="col">Amount</th>
 
@@ -16,7 +16,7 @@
         @foreach (var group in ViewBag.GroupedInventoryByGoodId)
         {
             <tr>
-                <th scope="row"></th>
+                <td>@group.GoodCode</td>
                 <td>@group.GoodName</td>
                 <td>@group.TotalAmount</td>
 

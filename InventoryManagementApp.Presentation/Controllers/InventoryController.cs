@@ -97,6 +97,7 @@ namespace InventoryManagementApp.Presentation.Controllers
                 .Select(group => new
                 {
                     GoodId = group.Key,
+                    GoodCode=goodsList.FirstOrDefault(x=>x.ID==group.Key)?.Code,
                     GoodName = goodsList.FirstOrDefault(x => x.ID == group.Key)?.Name,
                     TotalAmount = group.Sum(i => i.Amount),
                     Items = group.ToList()
