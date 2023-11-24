@@ -124,7 +124,6 @@ namespace InventoryManagementApp.Presentation.Controllers
             else
             {
                 BrandVM brandVM = _mapper.Map<BrandVM>(await _brandService.GetById(id));
-
                 return View(brandVM);
             }
         }
