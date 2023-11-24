@@ -128,6 +128,7 @@ namespace InventoryManagementApp.Application.Automapper
             CreateMap<Good, GoodListDTO>().ReverseMap();
             CreateMap<Good, GoodUpdateDTO>().ReverseMap();
             CreateMap<Good, GoodDTO>().ReverseMap();
+            CreateMap<GoodDTO, GoodUpdateDTO>().ReverseMap();
 
             //Inventory
             CreateMap<Inventory, InventoryCreateDTO>().ReverseMap();
