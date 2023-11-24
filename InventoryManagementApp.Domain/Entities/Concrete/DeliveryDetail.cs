@@ -31,6 +31,8 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public int GoodID { get; set; }
         public SalesOrderDetails SalesOrderDetails { get; set; }
         public int SalesOrderDetailsID { get; set; }
+        public Batch? Batch { get; set; }
+        public int? BatchID { get; set; }
 
     }
 }
