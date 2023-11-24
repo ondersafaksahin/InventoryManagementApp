@@ -30,9 +30,9 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public int GoodsReceiptID { get; set; }
         public Good Good { get; set; }
         public int GoodID { get; set; }
-        public Batch Batch { get; set; }
-        public int BatchID { get; set; }
-        public PurchaseOrderDetails PurchaseOrderDetails { get; set; }
+        public Batch? Batch { get; set; }
+        public int? BatchID { get; set; }
+        public virtual PurchaseOrderDetails PurchaseOrderDetails { get; set; }
         public int PurchaseOrderDetailsID { get; set; }
     }
 }
