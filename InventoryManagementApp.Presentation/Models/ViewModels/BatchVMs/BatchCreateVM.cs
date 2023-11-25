@@ -5,7 +5,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.BatchVMs
 {
     public class BatchCreateVM
     {
-        public string BatchCode { get; set; }
+        public string? BatchCode { get; set; }
         public DateTime? ProductionDate { get; set; }
         public DateTime? ExpireDate { get; set; }
 
