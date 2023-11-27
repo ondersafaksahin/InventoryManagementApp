@@ -52,10 +52,22 @@ namespace InventoryManagementApp.Application.Services.InventoryService
             return list;
         }
 
-        public async Task Create(InventoryCreateDTO createDTO)
+        public async Task<int> Create(InventoryCreateDTO createDTO)
         {
-            var inventory = _mapper.Map<Inventory>(createDTO);
-            await _inventoryRepository.Add(inventory);
+            var inventory = await FindExistingInventory(createDTO);
+            if (inventory is null)
+            {
+                var newInventory = _mapper.Map<Inventory>(createDTO);
+                await _inventoryRepository.Add(newInventory);
+                return newInventory.ID;
+            }
+            else
+            {
+                inventory.Amount += createDTO.Amount;
+                var invupdateDTO = _mapper.Map<InventoryUpdateDTO>(inventory);
+                await Update(invupdateDTO);
+                return inventory.ID;
+            }
         }
 
         public async Task Delete(int id)
@@ -98,9 +110,15 @@ namespace InventoryManagementApp.Application.Services.InventoryService
 
         public async Task Update(InventoryUpdateDTO updateDTO)
         {
-            var inventory = GetById(updateDTO.ID);
+            var inventory = await GetById(updateDTO.ID);
             var updatedInventory = _mapper.Map(updateDTO, inventory);
             await _inventoryRepository.Update(_mapper.Map<Inventory>(updatedInventory));
+        }
+
+        private async Task<Inventory?> FindExistingInventory(InventoryCreateDTO inventoryCreateDTO)
+        {
+            var inventory = (await _inventoryRepository.GetAll()).FirstOrDefault(x => x.WarehouseId == inventoryCreateDTO.WarehouseId && x.GoodId == inventoryCreateDTO.GoodId && x.BatchId == inventoryCreateDTO.BatchId);
+            return inventory;
         }
     }
 }

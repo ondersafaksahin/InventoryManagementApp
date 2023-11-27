@@ -26,10 +26,11 @@ namespace InventoryManagementApp.Application.Services.GoodsReceiptService
             return _mapper.Map<List<GoodsReceiptListDTO>>(await _goodsReceiptRepository.GetAll());
         }
 
-        public async Task Create(GoodsReceiptCreateDTO createDTO)
+        public async Task<int> Create(GoodsReceiptCreateDTO createDTO)
         {
             var goodsReceipt = _mapper.Map<GoodsReceipt>(createDTO);
             await _goodsReceiptRepository.Add(goodsReceipt);
+            return goodsReceipt.ID;
         }
 
         public async Task Delete(int id)

@@ -18,7 +18,7 @@ namespace InventoryManagementApp.Application.Services
     /// <typeparam name="I">ID type of the entity</typeparam>
     public interface IBaseService<C,U,L,T,B,I>
     {
-        Task Create(C createDTO);
+        Task<I> Create(C createDTO);
         Task Update(U updateDTO);
         Task Delete(I id);
         Task<List<L>> GetDefaults(Expression<Func<B, bool>> expression);

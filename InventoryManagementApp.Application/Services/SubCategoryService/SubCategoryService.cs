@@ -32,9 +32,11 @@ namespace InventoryManagementApp.Application.Services.SubCategoryService
 
         }
 
-		public async Task Create(SubCategoryCreateDTO createDTO)
+		public async Task<int> Create(SubCategoryCreateDTO createDTO)
 		{
-			await _subCategoryRepository.Add(_mapper.Map<SubCategory>(createDTO));
+            var subcategory = _mapper.Map<SubCategory>(createDTO);
+            await _subCategoryRepository.Add(subcategory);
+            return subcategory.ID;
 		}
 
         public async Task<int> CreateModal(SubCategoryCreateDTO createDTO)

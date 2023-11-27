@@ -27,10 +27,11 @@ namespace InventoryManagementApp.Application.Services.EmployeeService
             return _mapper.Map<List<EmployeeListDTO>>(await _employeeRepository.GetAll());
         }
 
-        public async Task Create(EmployeeCreateDTO createDTO)
+        public async Task<Guid> Create(EmployeeCreateDTO createDTO)
         {
             var employee = _mapper.Map<Employee>(createDTO);
             await _employeeRepository.Add(employee);
+            return employee.Id;
         }
 
         public async Task Delete(Guid id)

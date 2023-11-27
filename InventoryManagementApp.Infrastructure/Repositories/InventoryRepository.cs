@@ -11,6 +11,16 @@ namespace InventoryManagementApp.Infrastructure.Repositories
 {
     public class InventoryRepository:BaseRepository<Inventory>,IInventoryRepository
     {
-        public InventoryRepository(InventoryDbContext dbContext) : base(dbContext) { }
+        private readonly InventoryDbContext _dbContext;
+        public InventoryRepository(InventoryDbContext dbContext) : base(dbContext) {
+            _dbContext = dbContext;
+        }
+
+        public override async Task<int> Delete(Inventory item)
+        {
+            _table.Remove(item);
+            await _dbContext.SaveChangesAsync();
+            return item.ID;
+        }
     }
 }

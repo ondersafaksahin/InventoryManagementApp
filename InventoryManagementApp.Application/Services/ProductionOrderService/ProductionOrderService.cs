@@ -28,9 +28,11 @@ namespace InventoryManagementApp.Application.Services.ProductionOrderService
 			return _mapper.Map<List<ProductionOrderListDTO>>(await _productionOrderRepository.GetAll());
 		}
 
-		public async Task Create(ProductionOrderCreateDTO createDTO)
+		public async Task<int> Create(ProductionOrderCreateDTO createDTO)
 		{
-			await _productionOrderRepository.Add(_mapper.Map<ProductionOrder>(createDTO));
+			var productionOrder = _mapper.Map<ProductionOrder>(createDTO);
+            await _productionOrderRepository.Add(productionOrder);
+			return productionOrder.ID;
 		}
 
 		public async Task Delete(int id)

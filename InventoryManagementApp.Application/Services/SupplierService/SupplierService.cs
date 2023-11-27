@@ -26,9 +26,11 @@ namespace InventoryManagementApp.Application.Services.SupplierService
 			return _mapper.Map<List<SupplierListDTO>>(await _supplierRepository.GetAll());
 		}
 
-		public async Task Create(SupplierCreateDTO createDTO)
+		public async Task<int> Create(SupplierCreateDTO createDTO)
 		{
-			await _supplierRepository.Add(_mapper.Map<Supplier>(createDTO));
+			var supplier = _mapper.Map<Supplier>(createDTO);
+            await _supplierRepository.Add(supplier);
+			return supplier.ID;
 		}
 
 		public async Task Delete(int id)

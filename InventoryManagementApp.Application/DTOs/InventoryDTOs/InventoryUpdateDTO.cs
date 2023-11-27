@@ -17,12 +17,7 @@ namespace InventoryManagementApp.Application.DTOs.InventoryDTOs
 
         //Additional Properties
         public float Amount { get; set; }
-
-        //Navigation Properties
-        public virtual Warehouse? Warehouse { get; set; }
         public int? WarehouseId { get; set; }
-        public Batch? Batch { get; set; }
         public int? BatchId { get; set; }
-        public List<Reservation>? Reservations { get; set; }
     }
 }

@@ -25,16 +25,11 @@ namespace InventoryManagementApp.Application.Services.CategoryService
 			return _mapper.Map<List<CategoryListDTO>>(await _categoryRepository.GetAll());
 		}
 
-		public async Task Create(CategoryCreateDTO createDTO)
+		public async Task<int> Create(CategoryCreateDTO createDTO)
 		{
-			await _categoryRepository.Add(_mapper.Map<Category>(createDTO));
-		}
-
-        public async Task<int> CreateModal(CategoryCreateDTO createDTO)
-        {
-			var category = _mapper.Map<Category>(createDTO);
+            var category = _mapper.Map<Category>(createDTO);
             await _categoryRepository.Add(category);
-			return category.ID;
+            return category.ID;
         }
 
         public async Task Delete(int id)

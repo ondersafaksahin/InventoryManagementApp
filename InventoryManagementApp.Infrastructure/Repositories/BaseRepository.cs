@@ -36,7 +36,7 @@ namespace InventoryManagementApp.Infrastructure.Repositories
             return await _table.AnyAsync(expression);
         }
 
-        public async Task Delete(T item)
+        public virtual async Task Delete(T item)
         {
             item.Status = Status.Deleted; //Change status to deleted
             item.ModifiedDate = DateTime.Now;
@@ -45,7 +45,7 @@ namespace InventoryManagementApp.Infrastructure.Repositories
 
         public async Task<List<T>> GetAll()
         {
-            return await _table.ToListAsync();
+            return await _table.AsNoTracking().ToListAsync();
         }
 
         public async Task<T> GetById(Expression<Func<T, bool>> expression)
@@ -55,7 +55,7 @@ namespace InventoryManagementApp.Infrastructure.Repositories
 
         public async Task<List<T>> GetDefaults(Expression<Func<T, bool>> expression)
         {
-            return await _table.Where(expression).ToListAsync();
+            return await _table.Where(expression).AsNoTracking().ToListAsync();
         }
 
         public async Task Update(T item)

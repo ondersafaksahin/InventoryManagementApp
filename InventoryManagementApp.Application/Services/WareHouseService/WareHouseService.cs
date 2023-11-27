@@ -27,10 +27,11 @@ namespace InventoryManagementApp.Application.Services.WareHouseService
             return _mapper.Map<List<WareHouseListDTO>>(await _wareHouseRepository.GetAll());
         }
 
-        public async Task Create(WareHouseCreateDTO createDTO)
+        public async Task<int> Create(WareHouseCreateDTO createDTO)
         {
             var wareHouse = _mapper.Map<Warehouse>(createDTO);
             await _wareHouseRepository.Add(wareHouse);
+            return wareHouse.ID;
         }
 
         public async Task Delete(int id)

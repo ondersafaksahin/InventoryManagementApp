@@ -2,16 +2,16 @@
 @using InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs;
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model InventoryCreateVM;
+@model InventoryUpdateVM;
 
 @if (TempData["error"] is not null)
 {
     <div class="alert alert-danger" role="alert">
-        @TempData["error"]
+        @TempData["Error"]
     </div>
 }
 
@@ -20,50 +20,24 @@
         <div aria-hidden="true"></div>
         <div class="col-sm-12 col-xl-12">
             <div class="bg-light rounded h-100 p-4">
-                <h4 class="mb-4">Add Inventory</h4>
-                <form method="post" asp-action="Create" asp-controller="Inventory">
+                <h4 class="mb-4">Update Inventory</h4>
+                <form method="post" asp-action="Edit" asp-controller="Inventory">
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3" id="design">
-                            <select class="form-select" id="goodDropdown" aria-label="Good Name" asp-for="@Model.GoodId">
-                                <option selected value="">Select Good... </option>
-                                @if (ViewBag.Goods != null)
-                                {
-                                    @foreach (var item in ViewBag.Goods)
-                                    {
-                                        <option value="@item.Value">@item.Text</option>
-                                    }
-                                }
-                            </select>
+                            <input type="text" class="form-control" asp-for="@Model.GoodName" readonly>
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" asp-for=@Model.Amount placeholder="Enter Amount" aria-label="Supplier Model Code">
-                            <input type="text" id="unitInput" class="form-control" style="margin-left:1rem" placeholder="Unit" aria-label="Unit" readonly>
+                            <input type="text" id="unitInput" class="form-control" style="margin-left:1rem" aria-label="Unit" asp-for="@Model.Unit" readonly>
                         </div>
                     </div>
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3" id="design">
-                            <select class="form-select" id="warehouseDropdown" aria-label="Warehouse" asp-for="@Model.WarehouseId" asp-items="ViewBag.Warehouses">
-                                <option selected value="">Select Warehouse... </option>
-                            </select>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control col-6" asp-for=@Model.BatchCode aria-label="Batch Code" placeholder="Batch Code">   
-                        </div>
-                    </div>
-                    <br />
-                    <div class="form-floating mb-6">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Expire Date</span>
-                            </div>
-                            <input type="date" class="form-control" style="border-radius: 0.25rem" asp-for=@Model.BatchExpireDate placeholder="Expire Date" aria-label="Expire Date">
+                            <select class="form-select" id="warehouseDropdown" aria-label="Warehouse" asp-for="@Model.WarehouseId" asp-items="ViewBag.Warehouses"></select>
                         </div>
                     </div>
                     <br />
@@ -88,13 +62,13 @@
         getGoodUnit(selectedGood);
     });
 
-    function getGoodUnit(goodId) {    
+    function getGoodUnit(goodId) {
         $.ajax({
             url: '/Inventory/GetGoodUnit', // Bu, server tarafındaki ilgili endpoint olmalı
             type: 'GET',
             data: { goodId: goodId },
             success: function (response) {
-              
+
                 document.getElementById('unitInput').value = response;
             },
             error: function (error) {

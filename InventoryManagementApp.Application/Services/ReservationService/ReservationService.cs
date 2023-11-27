@@ -25,9 +25,11 @@ namespace InventoryManagementApp.Application.Services.ReservationService
 			return _mapper.Map<List<ReservationListDTO>>(await _reservationRepostitory.GetAll());
 		}
 
-		public async Task Create(ReservationCreateDTO createDTO)
+		public async Task<int> Create(ReservationCreateDTO createDTO)
 		{
-			await _reservationRepostitory.Add(_mapper.Map<Reservation>(createDTO));
+			var reservation = _mapper.Map<Reservation>(createDTO);
+            await _reservationRepostitory.Add(reservation);
+			return reservation.ID;
 		}
 
 		public async Task Delete(int id)
