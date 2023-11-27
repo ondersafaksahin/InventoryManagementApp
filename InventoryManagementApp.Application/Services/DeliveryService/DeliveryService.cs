@@ -26,10 +26,11 @@ namespace InventoryManagementApp.Application.Services.DeliveryService
             return _mapper.Map<List<DeliveryListDTO>>(await _deliveryRepository.GetAll());
         }
 
-        public async Task Create(DeliveryCreateDTO createDTO)
+        public async Task<int> Create(DeliveryCreateDTO createDTO)
         {
             var delivery = _mapper.Map<Delivery>(createDTO);
             await _deliveryRepository.Add(delivery);
+            return delivery.ID;
         }
 
         public async Task Delete(int id)

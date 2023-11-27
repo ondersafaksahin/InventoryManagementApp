@@ -27,11 +27,11 @@ namespace InventoryManagementApp.Application.Services.AdminService
             return _mapper.Map<List<AdminListDTO>>(await _adminRepository.GetAll());
         }
 
-        public async Task Create(AdminCreateDTO createDTO)
+        public async Task<Guid> Create(AdminCreateDTO createDTO)
         {
             var admin = _mapper.Map<Admin>(createDTO);
             await _adminRepository.Add(admin);
-
+            return admin.Id;
         }
 
         public async Task Delete(Guid id)

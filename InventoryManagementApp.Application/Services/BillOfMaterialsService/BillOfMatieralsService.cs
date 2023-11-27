@@ -28,10 +28,11 @@ namespace InventoryManagementApp.Application.Services.BillOfMaterialsService
             return _mapper.Map<List<BOMListDTO>>(await _billOfMaterialRepository.GetAll());
         }
 
-        public async Task Create(BOMCreateDTO itemDTO)
+        public async Task<int> Create(BOMCreateDTO itemDTO)
         {
             var bom = _mapper.Map<BillOfMaterial>(itemDTO);
             await _billOfMaterialRepository.Add(bom);
+            return bom.ID;
         }
 
         public async Task Delete(int id)

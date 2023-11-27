@@ -30,9 +30,11 @@ namespace InventoryManagementApp.Application.Services.ConversionService
 			return _mapper.Map<List<ConversionListDTO>>(await _conversionRepository.GetAll());
 		}
 
-		public async Task Create(ConversionCreateDTO createDTO)
+		public async Task<int> Create(ConversionCreateDTO createDTO)
 		{
-			await _conversionRepository.Add(_mapper.Map<Conversion>(createDTO));
+			var conversion = _mapper.Map<Conversion>(createDTO);
+            await _conversionRepository.Add(conversion);
+			return conversion.ID;
 		}
 
 		public async Task Delete(int id)

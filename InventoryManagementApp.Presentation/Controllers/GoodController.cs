@@ -68,7 +68,7 @@ namespace InventoryManagementApp.Presentation.Controllers
                 try
                 {
                     var categoryCreateDto = new CategoryCreateDTO() { CategoryName = categoryName };
-                    var categoryId = await _categoryService.CreateModal(categoryCreateDto);
+                    var categoryId = await _categoryService.Create(categoryCreateDto);
                     return Json(new { value = categoryId, text = categoryName });
                 }
                 catch (Exception ex)
@@ -87,7 +87,7 @@ namespace InventoryManagementApp.Presentation.Controllers
                 try
                 {
                     var brandCreateDto = new BrandCreateDTO() { BrandName = brandName };
-                    var brandId = await _brandService.CreateModal(brandCreateDto);
+                    var brandId = await _brandService.Create(brandCreateDto);
                     return Json(new { Value = brandId, Text = brandName });
                 }
                 catch (Exception ex)

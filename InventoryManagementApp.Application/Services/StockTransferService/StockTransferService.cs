@@ -26,10 +26,11 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
             return _mapper.Map<List<StockTransferListDTO>>(await _stockTransferRepository.GetAll());
         }
 
-        public async Task Create(StockTransferCreateDTO createDTO)
+        public async Task<int> Create(StockTransferCreateDTO createDTO)
         {
             var stockTransfer = _mapper.Map<StockTransfer>(createDTO);
             await _stockTransferRepository.Add(stockTransfer);
+            return stockTransfer.ID;
         }
 
         public async Task Delete(int id)

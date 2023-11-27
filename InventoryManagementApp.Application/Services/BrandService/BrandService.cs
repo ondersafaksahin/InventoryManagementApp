@@ -25,13 +25,7 @@ namespace InventoryManagementApp.Application.Services.BrandService
             return _mapper.Map<List<BrandListDTO>>(await _brandRepository.GetAll());
         }
 
-        public async Task Create(BrandCreateDTO createDTO)
-        {
-            var brand = _mapper.Map<Brand>(createDTO);
-            await _brandRepository.Add(brand);
-        }
-
-        public async Task<int> CreateModal(BrandCreateDTO createDTO)
+        public async Task<int> Create(BrandCreateDTO createDTO)
         {
             var brand = _mapper.Map<Brand>(createDTO);
             await _brandRepository.Add(brand);

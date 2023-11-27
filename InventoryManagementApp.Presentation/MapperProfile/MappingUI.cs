@@ -79,6 +79,7 @@ namespace InventoryManagementApp.Presentation.MapperProfile
             CreateMap<BatchListDTO, BatchListVM>().ReverseMap();
             CreateMap<BatchDTO, BatchVM>().ReverseMap();
             CreateMap<BatchDTO, BatchUpdateVM>().ReverseMap();
+            CreateMap<BatchCreateDTO, InventoryCreateVM>().ForMember(x=>x.BatchExpireDate,y=>y.MapFrom(z=>z.ExpireDate)).ReverseMap();
             //
 
             //BillofMaterial

@@ -56,11 +56,11 @@ namespace InventoryManagementApp.Application.Services.GoodService
             //return list;
         }
 
-        public async Task Create(GoodCreateDTO createDTO)
+        public async Task<int> Create(GoodCreateDTO createDTO)
         {
-  
             var good = _mapper.Map<Good>(createDTO);
             await _goodRepository.Add(good);
+            return good.ID;
         }
 
         public async Task Delete(int id)

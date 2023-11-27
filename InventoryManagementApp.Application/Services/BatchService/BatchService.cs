@@ -25,10 +25,11 @@ namespace InventoryManagementApp.Application.Services.BatchService
             return _mapper.Map<List<BatchListDTO>>(await _batchRepository.GetAll());
         }
 
-        public async Task Create(BatchCreateDTO createDTO)
+        public async Task<int> Create(BatchCreateDTO createDTO)
         {
             var batch = _mapper.Map<Batch>(createDTO);
             await _batchRepository.Add(batch);
+            return batch.ID;
         }
 
         public async Task Delete(int id)

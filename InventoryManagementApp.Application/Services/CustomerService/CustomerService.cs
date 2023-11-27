@@ -25,9 +25,11 @@ namespace InventoryManagementApp.Application.Services.CustomerService
             return _mapper.Map<List<CustomerListDTO>>(await _customerRepository.GetAll());
         }
 
-        public async Task Create(CustomerCreateDTO createDTO)
+        public async Task<int> Create(CustomerCreateDTO createDTO)
         {
-            await _customerRepository.Add(_mapper.Map<Customer>(createDTO));
+            var customer = _mapper.Map<Customer>(createDTO);
+            await _customerRepository.Add(customer);
+            return customer.ID;
         }
 
         public async Task Delete(int id)

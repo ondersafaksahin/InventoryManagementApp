@@ -13,6 +13,5 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs
         public int? WarehouseId { get; set; }
         public Batch? Batch { get; set; }
         public int? BatchId { get; set; }
-        public List<Reservation>? Reservations { get; set; }
     }
 }

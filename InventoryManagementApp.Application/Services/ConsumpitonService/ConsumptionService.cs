@@ -29,9 +29,11 @@ namespace InventoryManagementApp.Application.Services.ConsumpitonService
 			return _mapper.Map<List<ConsumptionListDTO>>(await _consumptionRepository.GetAll());
 		}
 
-		public async Task Create(ConsumptionCreateDTO createDTO)
+		public async Task<int> Create(ConsumptionCreateDTO createDTO)
 		{
-			await _consumptionRepository.Add(_mapper.Map<Consumption>(createDTO));
+			var consumption = _mapper.Map<Consumption>(createDTO);
+            await _consumptionRepository.Add(consumption);
+			return consumption.ID;
 		}
 
 		public async Task Delete(int id)

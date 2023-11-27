@@ -29,10 +29,11 @@ namespace InventoryManagementApp.Application.Services.PurchaseOrderService
             return _mapper.Map<List<PurchaseOrderListDTO>>(await _purchaseOrderRepository.GetAll());
         }
 
-        public async Task Create(PurchaseOrderCreateDTO createDTO)
+        public async Task<int> Create(PurchaseOrderCreateDTO createDTO)
         {
            var purchaseOrder= _mapper.Map<PurchaseOrder>(createDTO);
            await _purchaseOrderRepository.Add(purchaseOrder);
+            return purchaseOrder.ID;
 
         }
 
