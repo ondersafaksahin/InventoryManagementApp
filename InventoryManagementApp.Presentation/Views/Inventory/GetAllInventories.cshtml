@@ -60,7 +60,9 @@
                                 <a class="btn pt-0" asp-action="Delete" asp-controller="Inventory" asp-route-id="@inventory.ID" asp-route-active=false type="button" data-toggle="popover" title="Delete">
                                     <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
                                 </a>
-
+                                <a class="btn pt-0" asp-action="Create" asp-controller="StockTransfer" asp-route-id="@inventory.ID" asp-route-active=false type="button" data-toggle="popover" title="Transfer">
+                                    <i class="fas fa-exchange-alt" style="color:#4caf50;font-size:20px"></i>
+                                </a>
                             </td>
                         </tr>
                     }
@@ -69,17 +71,6 @@
         </div>
     </div>
 </div>
-
-
-@*<div id="inventoryList">
-    <!-- Default olarak Good ID'ye göre listeleme -->
-    @Html.Partial("_InventoryPartial", new List<InventoryListVM>());
-</div>*@
-
-
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
