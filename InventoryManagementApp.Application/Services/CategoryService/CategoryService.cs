@@ -47,7 +47,12 @@ namespace InventoryManagementApp.Application.Services.CategoryService
 			return _mapper.Map<List<CategoryListDTO>>(await _categoryRepository.GetDefaults(expression));
 		}
 
-		public async Task Update(CategoryUpdateDTO updateDTO)
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task Update(CategoryUpdateDTO updateDTO)
 		{
             await _categoryRepository.Update(_mapper.Map<Category>(updateDTO));
         }

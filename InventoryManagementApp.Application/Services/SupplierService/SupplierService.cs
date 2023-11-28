@@ -48,7 +48,12 @@ namespace InventoryManagementApp.Application.Services.SupplierService
 			return _mapper.Map<List<SupplierListDTO>>(await _supplierRepository.GetDefaults(expression));
 		}
 
-		public async Task Update(SupplierUpdateDTO updateDTO)
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task Update(SupplierUpdateDTO updateDTO)
 		{
 			var supplier = await GetById(updateDTO.ID);
 			var updatedSupplier = _mapper.Map(updateDTO, supplier);

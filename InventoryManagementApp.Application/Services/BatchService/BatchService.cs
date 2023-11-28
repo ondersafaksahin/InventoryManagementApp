@@ -47,6 +47,12 @@ namespace InventoryManagementApp.Application.Services.BatchService
             return _mapper.Map<List<BatchListDTO>>(await _batchRepository.GetDefaults(expression));
         }
 
+        public async Task<string?> GetNameById(int? Id)
+        {
+            var batch = await _batchRepository.GetById(x => x.ID == Id);
+            return batch?.BatchCode;
+        }
+
         public async Task Update(BatchUpdateDTO updateDTO)
         {
             await _batchRepository.Update(_mapper.Map<Batch>(updateDTO));

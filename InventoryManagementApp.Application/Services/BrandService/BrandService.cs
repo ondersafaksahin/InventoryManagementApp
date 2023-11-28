@@ -48,6 +48,11 @@ namespace InventoryManagementApp.Application.Services.BrandService
             return _mapper.Map<List<BrandListDTO>>(await _brandRepository.GetDefaults(expression));
         }
 
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task Update(BrandUpdateDTO updateDTO)
         {
             var brand = await GetById(updateDTO.ID);

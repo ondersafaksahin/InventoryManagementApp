@@ -3,7 +3,12 @@
 @model List<InventoryListVM>
 
 
-<table class="table" id="example">
+
+
+
+<table class="table dataTable no-footer" id="example" aria-describedby="example_info">
+
+
     <thead>
         <tr>
             <th scope="col">Code</th>
@@ -23,7 +28,20 @@
             </tr>
         }
     </tbody>
+
+
 </table>
+
+
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $('#example').DataTable;
+        });
+    });
+</script>
+
+
 
 
 

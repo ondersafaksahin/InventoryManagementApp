@@ -51,6 +51,11 @@ namespace InventoryManagementApp.Application.Services.BillOfMaterialsService
             return _mapper.Map<List<BOMListDTO>>(await _billOfMaterialRepository.GetDefaults(expression));
         }
 
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task Update(BOMUpdateDTO itemDTO)
         {
             await _billOfMaterialRepository.Update(_mapper.Map<BillOfMaterial>(itemDTO));

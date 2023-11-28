@@ -50,6 +50,11 @@ namespace InventoryManagementApp.Application.Services.DeliveryDetailService
             return _mapper.Map<List<DeliveryDetailListDTO>>(await _deliveryDetailRepository.GetDefaults(expression));
         }
 
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task Update(DeliveryDetailUpdateDTO updateDTO)
         {
             await _deliveryDetailRepository.Update(_mapper.Map<DeliveryDetail>(updateDTO));

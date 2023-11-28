@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using InventoryManagementApp.Application.DTOs.SalesOrdesDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.StockTransferDTOs;
+using InventoryManagementApp.Application.Services.GoodService;
 using InventoryManagementApp.Application.Services.SalesOrdersDetailsService;
 using InventoryManagementApp.Application.Services.StockTransferService;
+using InventoryManagementApp.Application.Services.WareHouseService;
 using InventoryManagementApp.Presentation.Models.ViewModels.SalesOrderDetailsVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.StockTransferVMs;
 using Microsoft.AspNetCore.Mvc;
@@ -12,15 +14,18 @@ namespace InventoryManagementApp.Presentation.Controllers
     public class StockTransferController : Controller
     {
         private readonly IStockTransferService _stockTransferService;
+        private readonly IWareHouseService _wareHouseService;
+        private readonly IGoodService _goodService;
         private readonly IMapper _mapper;
         IWebHostEnvironment _webHostEnvironment;
 
-        public StockTransferController(IStockTransferService stockTransferService, IMapper mapper, IWebHostEnvironment webHostEnvironment)
+        public StockTransferController(IStockTransferService stockTransferService, IMapper mapper, IWebHostEnvironment webHostEnvironment, IWareHouseService wareHouseService, IGoodService goodService)
         {
             _stockTransferService = stockTransferService;
             _mapper = mapper;
             _webHostEnvironment = webHostEnvironment;
-
+            _wareHouseService = wareHouseService;
+            _goodService = goodService;
         }
         public IActionResult Index()
         {
@@ -42,6 +47,23 @@ namespace InventoryManagementApp.Presentation.Controllers
         public async Task<IActionResult> GetAllStockTransfer()
         {
             List<StockTransferListVM> stockTransferList = _mapper.Map<List<StockTransferListVM>>(await _stockTransferService.All());
+            foreach (var transfer in stockTransferList)
+            {
+                transfer.GoodName = await _goodService.GetNameById(transfer.GoodId);
+                if (transfer.SourceWarehouseID != null)
+                {
+                    transfer.SourceWarehouseName = await _wareHouseService.GetNameById(transfer.SourceWarehouseID);
+                }
+                else
+                    transfer.SourceWarehouseName = null;
+
+                if (transfer.DestinationWarehouseID != null)
+                {
+                    transfer.DestinationWarehouseName = await _wareHouseService.GetNameById(transfer.DestinationWarehouseID);
+                }
+                else
+                    transfer.DestinationWarehouseName = null;
+            }
             return View(stockTransferList);
         }
 

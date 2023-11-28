@@ -49,6 +49,11 @@ namespace InventoryManagementApp.Application.Services.SalesOrderService
             return _mapper.Map<List<SalesOrderListDTO>>(await _salesOrderRepository.GetDefaults(expression));
         }
 
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task Update(SalesOrderUpdateDTO updateDTO)
         {
             await _salesOrderRepository.Update(_mapper.Map<SalesOrder>(updateDTO));

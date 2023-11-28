@@ -53,7 +53,12 @@ namespace InventoryManagementApp.Application.Services.ConversionService
 			return _mapper.Map<List<ConversionListDTO>>(await _conversionRepository.GetDefaults(expression));
 		}
 
-		public async Task Update(ConversionUpdateDTO updateDTO)
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task Update(ConversionUpdateDTO updateDTO)
 		{
 			var conversion = await GetById(updateDTO.ID);
 			var updatedConversion = _mapper.Map(updateDTO, conversion);

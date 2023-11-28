@@ -52,7 +52,12 @@ namespace InventoryManagementApp.Application.Services.BillOfMaterialsDetailsServ
 			return _mapper.Map<List<BillOfMaterialsDetailsListDTO>>(await _bomDetailsRepository.GetDefaults(expression));
 		}
 
-		public async Task Update(BillOfMaterialsDetailsUpdateDTO updateDTO)
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task Update(BillOfMaterialsDetailsUpdateDTO updateDTO)
 		{
 			await _bomDetailsRepository.Update(_mapper.Map<BillOfMaterialDetails>(updateDTO));
 		}

@@ -47,6 +47,11 @@ namespace InventoryManagementApp.Application.Services.CustomerService
             return _mapper.Map<List<CustomerListDTO>>(await _customerRepository.GetDefaults(expression));
         }
 
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task Update(CustomerUpdateDTO updateDTO)
         {
             await _customerRepository.Update(_mapper.Map<Customer>(updateDTO));

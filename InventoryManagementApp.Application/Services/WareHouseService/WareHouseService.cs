@@ -54,5 +54,11 @@ namespace InventoryManagementApp.Application.Services.WareHouseService
         {
             await _wareHouseRepository.Update(_mapper.Map<Warehouse>(updateDTO));
         }
+
+        public async Task<string?> GetNameById(int? Id)
+        {
+            var warehouse = await _wareHouseRepository.GetById(x => x.ID == Id);
+            return warehouse?.Name;
+        }
     }
 }
