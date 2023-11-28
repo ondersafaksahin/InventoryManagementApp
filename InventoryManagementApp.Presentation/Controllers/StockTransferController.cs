@@ -38,7 +38,7 @@ namespace InventoryManagementApp.Presentation.Controllers
 
 
         //Listing all stock transfer
-
+        [Route("[controller]/List")]
         public async Task<IActionResult> GetAllStockTransfer()
         {
             List<StockTransferListVM> stockTransferList = _mapper.Map<List<StockTransferListVM>>(await _stockTransferService.All());

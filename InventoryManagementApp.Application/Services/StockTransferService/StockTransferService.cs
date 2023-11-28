@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InventoryManagementApp.Application.DTOs.InventoryDTOs;
 using InventoryManagementApp.Application.DTOs.StockTransferDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.IRepositories;
@@ -14,16 +15,53 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
     public class StockTransferService:IStockTransferService
     {
         IStockTransferRepository _stockTransferRepository;
+        IGoodRepository _goodRepository;
+        IWareHouseRepository _wareHouseRepository;
         IMapper _mapper;
 
-        public StockTransferService(IStockTransferRepository stockTransferRepository, IMapper mapper)
+        public StockTransferService(IStockTransferRepository stockTransferRepository, IMapper mapper, IGoodRepository goodRepository, IWareHouseRepository wareHouseRepository)
         {
             _stockTransferRepository = stockTransferRepository;
             _mapper = mapper;
+            _goodRepository = goodRepository;
+            _wareHouseRepository = wareHouseRepository;
         }
         public async Task<List<StockTransferListDTO>> All()
         {
-            return _mapper.Map<List<StockTransferListDTO>>(await _stockTransferRepository.GetAll());
+            var list = _mapper.Map<List<StockTransferListDTO>>(await _stockTransferRepository.GetAll());
+            foreach (var item in list)
+            {
+                var good = _goodRepository.GetById(x => x.ID == item.GoodId);
+                item.Good = good.Result;
+
+            }
+            foreach (var item in list)
+            {
+                if (item.DestinationWarehouseID != null)
+                {
+                    var warehouse = _wareHouseRepository.GetById(x => x.ID == item.DestinationWarehouseID);
+                    item.DestinationWarehouse = warehouse.Result;
+                }
+                else
+                {
+                    item.DestinationWarehouse = null;
+                }
+            }
+
+            foreach (var item in list)
+            {
+                if (item.SourceWarehouseID != null)
+                {
+                    var warehouse = _wareHouseRepository.GetById(x => x.ID == item.SourceWarehouseID);
+                    item.SourceWarehouse = warehouse.Result;
+                }
+                else
+                {
+                    item.DestinationWarehouse = null;
+                }
+            }
+
+            return list;
         }
 
         public async Task<int> Create(StockTransferCreateDTO createDTO)
@@ -46,7 +84,39 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
 
         public async Task<List<StockTransferListDTO>> GetDefaults(Expression<Func<StockTransfer, bool>> expression)
         {
-            return _mapper.Map<List<StockTransferListDTO>>(await _stockTransferRepository.GetDefaults(expression));
+            var list = _mapper.Map<List<StockTransferListDTO>>(await _stockTransferRepository.GetDefaults(expression));
+            foreach (var item in list)
+            {
+                var good = _goodRepository.GetById(x => x.ID == item.GoodId);
+                item.Good = good.Result;
+
+            }
+            foreach (var item in list)
+            {
+                if (item.DestinationWarehouseID != null)
+                {
+                    var warehouse = _wareHouseRepository.GetById(x => x.ID == item.DestinationWarehouseID);
+                    item.DestinationWarehouse = warehouse.Result;
+                }
+                else
+                {
+                    item.DestinationWarehouse = null;
+                }
+            }
+
+            foreach (var item in list)
+            {
+                if (item.SourceWarehouseID != null)
+                {
+                    var warehouse = _wareHouseRepository.GetById(x => x.ID == item.SourceWarehouseID);
+                    item.SourceWarehouse = warehouse.Result;
+                }
+                else
+                {
+                    item.DestinationWarehouse = null;
+                }
+            }
+            return list;
         }
 
         public async Task Update(StockTransferUpdateDTO updateDTO)

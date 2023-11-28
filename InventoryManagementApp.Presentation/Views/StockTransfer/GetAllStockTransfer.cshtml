@@ -1,8 +1,79 @@
-﻿
+﻿@using InventoryManagementApp.Presentation.Models.ViewModels.StockTransferVMs;
+
 @{
     ViewData["Title"] = "GetAllStockTransfer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>GetAllStockTransfer</h1>
+@model List<StockTransferListVM>
+
+@if (TempData["error"] is not null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"]
+    </div>
+}
+
+<div class="col-12">
+    <div class="bg-light rounded h-100 p-4">
+        <div class="d-flex justify-content-between align-items-center" style="margin-bottom:16px">
+            <a class="btn btn-success" asp-action="Create" asp-controller="Inventory">Add Stock Transfer</a>       
+        </div>
+        <div class="table-responsive">
+            <table class="table" id="example">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Good Name</th>
+                        <th scope="col">Source Warehouse</th>
+                        <th scope="col">Destination Warehouse</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var transfer in Model)
+                    {
+                        <tr>
+                            <th scope="row">@transfer.ID</th>
+                            <td>@transfer.Amount</td>
+                            <td>@transfer.Description</td>
+                            <td>@transfer.Good.Name</td>
+                            @if (transfer.SourceWarehouse != null)
+                            {
+                                <td>@transfer.SourceWarehouse.Name</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                            @if (transfer.DestinationWarehouse != null)
+                            {
+                                <td>@transfer.DestinationWarehouse.Name</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                            @*
+                            <td class="text-center">
+                                <a class="btn pt-0" asp-action="Edit" asp-controller="Inventory" asp-route-id="@transfer.ID" type="button" data-toggle="popover" title="Update">
+                                    <i class="far fa-edit" style="color:coral;font-size:20px"></i>
+                                </a>
+                                <a class="btn pt-0" asp-action="Details" asp-controller="Inventory" asp-route-id="@transfer.ID" asp-route-active=true type="button" data-toggle="popover" title="Details">
+                                    <i class="fas fa-search" style="color: dodgerblue; font-size: 20px;"></i>
+                                </a>
+                                <a class="btn pt-0" asp-action="Delete" asp-controller="Inventory" asp-route-id="@transfer.ID" asp-route-active=false type="button" data-toggle="popover" title="Delete">
+                                    <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
+                                </a>
+
+                            </td>*@
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
