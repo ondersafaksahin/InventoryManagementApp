@@ -50,7 +50,7 @@ namespace InventoryManagementApp.Infrastructure.Repositories
 
         public async Task<T> GetById(Expression<Func<T, bool>> expression)
         {
-            return await _table.Where(expression).AsNoTracking().FirstAsync();
+            return await _table.Where(expression).AsNoTracking().FirstOrDefaultAsync();
         }
 
         public async Task<List<T>> GetDefaults(Expression<Func<T, bool>> expression)

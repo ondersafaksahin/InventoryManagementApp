@@ -49,6 +49,11 @@ namespace InventoryManagementApp.Application.Services.AdminService
             return _mapper.Map<List<AdminListDTO>>(await _adminRepository.GetDefaults(expression));
         }
 
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task Update(AdminUpdateDTO updateDTO)
         {
             await _adminRepository.Update(_mapper.Map<Admin>(updateDTO));

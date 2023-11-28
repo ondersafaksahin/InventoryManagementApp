@@ -52,7 +52,12 @@ namespace InventoryManagementApp.Application.Services.ConsumpitonService
 			return _mapper.Map<List<ConsumptionListDTO>>(await _consumptionRepository.GetDefaults(expression));
 		}
 
-		public async Task Update(ConsumptionUpdateDTO updateDTO)
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task Update(ConsumptionUpdateDTO updateDTO)
 		{
 			await _consumptionRepository.Update(_mapper.Map<Consumption>(updateDTO));
 		}

@@ -47,7 +47,12 @@ namespace InventoryManagementApp.Application.Services.ReservationService
 			return _mapper.Map<List<ReservationListDTO>>(await _reservationRepostitory.GetDefaults(expression));
 		}
 
-		public async Task Update(ReservationUpdateDTO updateDTO)
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task Update(ReservationUpdateDTO updateDTO)
 		{
 			await _reservationRepostitory.Update(_mapper.Map<Reservation>(updateDTO));
 		}

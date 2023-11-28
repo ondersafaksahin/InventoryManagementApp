@@ -70,7 +70,12 @@ namespace InventoryManagementApp.Application.Services.SubCategoryService
 
         }
 
-		public async Task Update(SubCategoryUpdateDTO updateDTO)
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task Update(SubCategoryUpdateDTO updateDTO)
 		{
             var subCategory = await GetById(updateDTO.ID);
             var updatedSubCategory = _mapper.Map(updateDTO, subCategory);

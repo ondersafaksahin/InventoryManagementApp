@@ -3,6 +3,7 @@ using InventoryManagementApp.Application.DTOs.InventoryDTOs;
 using InventoryManagementApp.Application.DTOs.StockTransferDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.IRepositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,39 +29,7 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
         }
         public async Task<List<StockTransferListDTO>> All()
         {
-            var list = _mapper.Map<List<StockTransferListDTO>>(await _stockTransferRepository.GetAll());
-            foreach (var item in list)
-            {
-                var good = _goodRepository.GetById(x => x.ID == item.GoodId);
-                item.Good = good.Result;
-
-            }
-            foreach (var item in list)
-            {
-                if (item.DestinationWarehouseID != null)
-                {
-                    var warehouse = _wareHouseRepository.GetById(x => x.ID == item.DestinationWarehouseID);
-                    item.DestinationWarehouse = warehouse.Result;
-                }
-                else
-                {
-                    item.DestinationWarehouse = null;
-                }
-            }
-
-            foreach (var item in list)
-            {
-                if (item.SourceWarehouseID != null)
-                {
-                    var warehouse = _wareHouseRepository.GetById(x => x.ID == item.SourceWarehouseID);
-                    item.SourceWarehouse = warehouse.Result;
-                }
-                else
-                {
-                    item.DestinationWarehouse = null;
-                }
-            }
-
+            var list = _mapper.Map<List<StockTransferListDTO>>(await _stockTransferRepository.GetAll());           
             return list;
         }
 
@@ -85,43 +54,18 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
         public async Task<List<StockTransferListDTO>> GetDefaults(Expression<Func<StockTransfer, bool>> expression)
         {
             var list = _mapper.Map<List<StockTransferListDTO>>(await _stockTransferRepository.GetDefaults(expression));
-            foreach (var item in list)
-            {
-                var good = _goodRepository.GetById(x => x.ID == item.GoodId);
-                item.Good = good.Result;
-
-            }
-            foreach (var item in list)
-            {
-                if (item.DestinationWarehouseID != null)
-                {
-                    var warehouse = _wareHouseRepository.GetById(x => x.ID == item.DestinationWarehouseID);
-                    item.DestinationWarehouse = warehouse.Result;
-                }
-                else
-                {
-                    item.DestinationWarehouse = null;
-                }
-            }
-
-            foreach (var item in list)
-            {
-                if (item.SourceWarehouseID != null)
-                {
-                    var warehouse = _wareHouseRepository.GetById(x => x.ID == item.SourceWarehouseID);
-                    item.SourceWarehouse = warehouse.Result;
-                }
-                else
-                {
-                    item.DestinationWarehouse = null;
-                }
-            }
             return list;
+        }
+
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task Update(StockTransferUpdateDTO updateDTO)
         {
             await _stockTransferRepository.Update(_mapper.Map<StockTransfer>(updateDTO));
         }
+
     }
 }

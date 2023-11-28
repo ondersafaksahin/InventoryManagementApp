@@ -24,6 +24,7 @@ namespace InventoryManagementApp.Application.Services
         Task<List<L>> GetDefaults(Expression<Func<B, bool>> expression);
         Task<List<L>> All();
         Task<T> GetById(I id);
+        Task<string?> GetNameById(int? Id);
 
     }
 }

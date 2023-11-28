@@ -7,11 +7,11 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs
     {
         public int ID { get; set; }
         public float Amount { get; set; }
-        public virtual Good Good { get; set; }
+        public string GoodName { get; set; }
         public int GoodId { get; set; }
-        public virtual Warehouse? Warehouse { get; set; }
+        public string? WarehouseName { get; set; }
         public int? WarehouseId { get; set; }
-        public Batch? Batch { get; set; }
+        public string? BatchCode { get; set; }
         public int? BatchId { get; set; }
     }
 }

@@ -98,6 +98,12 @@ namespace InventoryManagementApp.Application.Services.GoodService
             return list;
         }
 
+        public async Task<string?> GetNameById(int? Id)
+        {
+            var good = await _goodRepository.GetById(x => x.ID == Id);
+            return good?.Name;
+        }
+
         public async Task Update(GoodUpdateDTO updateDTO)
         {
             var good = await GetById(updateDTO.ID);

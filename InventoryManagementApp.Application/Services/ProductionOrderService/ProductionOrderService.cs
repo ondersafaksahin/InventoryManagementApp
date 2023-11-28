@@ -51,7 +51,12 @@ namespace InventoryManagementApp.Application.Services.ProductionOrderService
 			return _mapper.Map<List<ProductionOrderListDTO>>(await _productionOrderRepository.GetDefaults(expression));
 		}
 
-		public async Task Update(ProductionOrderUpdateDTO updateDTO)
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task Update(ProductionOrderUpdateDTO updateDTO)
 		{
             var prodOrder = await GetById(updateDTO.ID);
             var updatedprodOrder = _mapper.Map(updateDTO, prodOrder);

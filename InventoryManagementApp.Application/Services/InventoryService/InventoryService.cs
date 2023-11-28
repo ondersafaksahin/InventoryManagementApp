@@ -17,38 +17,20 @@ namespace InventoryManagementApp.Application.Services.InventoryService
         IInventoryRepository _inventoryRepository;
         IGoodRepository _goodRepository;
         IWareHouseRepository _wareHouseRepository;
+        IBatchRepository _batchRepository;
         IMapper _mapper;
-        public InventoryService(IInventoryRepository inventoryRepository, IMapper mapper, IGoodRepository goodRepository, IWareHouseRepository wareHouseRepository)
+        public InventoryService(IInventoryRepository inventoryRepository, IMapper mapper, IGoodRepository goodRepository, IWareHouseRepository wareHouseRepository, IBatchRepository batchRepository)
         {
             _inventoryRepository = inventoryRepository;
             _mapper = mapper;
             _goodRepository = goodRepository;
             _wareHouseRepository = wareHouseRepository;
+            _batchRepository = batchRepository;
         }
 
         public async Task<List<InventoryListDTO>> All()
         {
             var list = _mapper.Map<List<InventoryListDTO>>(await _inventoryRepository.GetAll());
-
-            foreach (var item in list)
-            {
-                var good = _goodRepository.GetById(x => x.ID == item.GoodId);
-                item.Good = good.Result;
-                
-            }
-            foreach (var item in list)
-            {
-                if (item.WarehouseId != null)
-                {
-                    var warehouse = _wareHouseRepository.GetById(x => x.ID == item.WarehouseId);
-                    item.Warehouse = warehouse.Result;
-                }
-                else
-                {
-                    item.Warehouse = null;
-                }
-            }
-           
             return list;
         }
 
@@ -84,28 +66,12 @@ namespace InventoryManagementApp.Application.Services.InventoryService
         public async Task<List<InventoryListDTO>> GetDefaults(Expression<Func<Inventory, bool>> expression)
         {
             var list = _mapper.Map<List<InventoryListDTO>>(await _inventoryRepository.GetDefaults(expression));
-
-            foreach (var item in list)
-            {
-                var good = _goodRepository.GetById(x => x.ID == item.GoodId);
-                item.Good = good.Result;
-
-            }
-            foreach (var item in list)
-            {
-                if (item.WarehouseId != null)
-                {
-                    var warehouse = _wareHouseRepository.GetById(x => x.ID == item.WarehouseId);
-                    item.Warehouse = warehouse.Result;
-                }
-                else
-                {
-                    item.Warehouse = null;
-                }
-            }
-
-
             return list;
+        }
+
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task Update(InventoryUpdateDTO updateDTO)

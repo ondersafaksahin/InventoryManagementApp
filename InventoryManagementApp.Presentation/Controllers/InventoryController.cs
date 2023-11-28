@@ -13,6 +13,7 @@ using InventoryManagementApp.Presentation.Models.ViewModels.GoodVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Cryptography.Xml;
 
 namespace InventoryManagementApp.Presentation.Controllers
 {
@@ -102,7 +103,47 @@ namespace InventoryManagementApp.Presentation.Controllers
         public async Task<IActionResult> GetAllInventories()
         {
             List<InventoryListVM> inventoryList = _mapper.Map<List<InventoryListVM>>(await _inventoryService.All());
+            foreach (var inventory in inventoryList)
+            {
+                inventory.GoodName = await _goodService.GetNameById(inventory.GoodId);
+                if (inventory.WarehouseId != null)
+                {
+                    inventory.WarehouseName = await _wareHouseService.GetNameById(inventory.WarehouseId);
+                }
+                else
+                    inventory.WarehouseName = null;
+
+                if (inventory.BatchId != null)
+                {
+                    inventory.BatchCode = await _batchService.GetNameById(inventory.BatchId);
+                }
+                else
+                    inventory.BatchCode = null;
+            }
             return View(inventoryList);
+        }
+
+        public async Task<IActionResult> GetAllInventoriesWithoutBatch()
+        {
+            List<InventoryListVM> inventoryList = _mapper.Map<List<InventoryListVM>>(await _inventoryService.All());
+            foreach (var inventory in inventoryList)
+            {
+                inventory.GoodName = await _goodService.GetNameById(inventory.GoodId);
+                if (inventory.WarehouseId != null)
+                {
+                    inventory.WarehouseName = await _wareHouseService.GetNameById(inventory.WarehouseId);
+                }
+                else
+                    inventory.WarehouseName = null;
+
+                if (inventory.BatchId != null)
+                {
+                    inventory.BatchCode = await _batchService.GetNameById(inventory.BatchId);
+                }
+                else
+                    inventory.BatchCode = null;
+            }
+            return PartialView("_ListInventoriesWithoutBatch", inventoryList);
         }
 
         public async Task<IActionResult> InventoriesOfGood()

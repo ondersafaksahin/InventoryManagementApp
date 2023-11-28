@@ -50,6 +50,11 @@ namespace InventoryManagementApp.Application.Services.GoodsReceiptDetailService
             return _mapper.Map<List<GoodsReceiptDetailListDTO>>(await _goodsReceiptDetailRepository.GetDefaults(expression));
         }
 
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task Update(GoodsReceiptDetailUpdateDTO updateDTO)
         {
             await _goodsReceiptDetailRepository.Update(_mapper.Map<GoodsReceiptDetail>(updateDTO));

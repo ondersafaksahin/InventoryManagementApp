@@ -49,6 +49,11 @@ namespace InventoryManagementApp.Application.Services.EmployeeService
             return _mapper.Map<List<EmployeeListDTO>>(await _employeeRepository.GetDefaults(expression));
         }
 
+        public Task<string?> GetNameById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task Update(EmployeeUpdateDTO updateDTO)
         {
             await _employeeRepository.Update(_mapper.Map<Employee>(updateDTO));
