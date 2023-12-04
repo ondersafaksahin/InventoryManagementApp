@@ -100,12 +100,15 @@ namespace InventoryManagementApp.Presentation.Controllers
 
         //Listing all inventory
         [Route("[controller]/List")]
-        public async Task<IActionResult> GetAllInventories()
+        public async Task<IActionResult> GetAllInventories(string searcing)
         {
+            ViewBag.Goods = await GetGoods();
             List<InventoryListVM> inventoryList = _mapper.Map<List<InventoryListVM>>(await _inventoryService.All());
+            
             foreach (var inventory in inventoryList)
             {
                 inventory.GoodName = await _goodService.GetNameById(inventory.GoodId);
+                
                 if (inventory.WarehouseId != null)
                 {
                     inventory.WarehouseName = await _wareHouseService.GetNameById(inventory.WarehouseId);
@@ -120,6 +123,11 @@ namespace InventoryManagementApp.Presentation.Controllers
                 else
                     inventory.BatchCode = null;
             }
+            if(searcing != null)
+            {
+                inventoryList = inventoryList.Where(x => x.GoodName.Contains(searcing)).ToList();
+            }
+            
             return View(inventoryList);
         }
 

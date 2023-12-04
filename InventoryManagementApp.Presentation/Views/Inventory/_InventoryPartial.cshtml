@@ -3,12 +3,7 @@
 @model List<InventoryListVM>
 
 
-
-
-
-<table class="table dataTable no-footer" id="example" aria-describedby="example_info">
-
-
+<table class="table" id="example">
     <thead>
         <tr>
             <th scope="col">Code</th>
@@ -28,18 +23,17 @@
             </tr>
         }
     </tbody>
-
-
 </table>
 
 
+
 <script>
-    $(function () {
-        $(document).ready(function () {
-            $('#example').DataTable;
-        });
+    // DataTable'ı başlatma işlemi
+    $(document).ready(function () {
+        $('#example').DataTable();
     });
 </script>
+
 
 
 

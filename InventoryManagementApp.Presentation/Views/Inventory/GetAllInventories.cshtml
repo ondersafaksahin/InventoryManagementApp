@@ -13,6 +13,12 @@
         @TempData["error"]
     </div>
 }
+@using (Html.BeginForm("GetAllInventories","Inventory",FormMethod.Get))
+{
+    @Html.DropDownList("searcing", ViewBag.Goods as SelectList, "Search Good...", new { @class = "form-select" })
+    <input type="submit" value="search"/>
+    
+}
 
 <div class="col-12">
     <div class="bg-light rounded h-100 p-4">
@@ -40,7 +46,7 @@
                         <tr>
                             <th scope="row">@inventory.ID</th>
                             <td>@inventory.Amount</td>
-                            <td>@inventory.GoodName</td>
+                            <td>@Html.DisplayFor(modelItem=>inventory.GoodName)</td>
                             <td>@inventory.WarehouseName</td>
                             <td>@inventory.BatchCode</td>
 
@@ -98,6 +104,7 @@
             });
         });
     });
+
 </script>
 
 

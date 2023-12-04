@@ -1,6 +1,18 @@
 ﻿@using InventoryManagementApp.Presentation.Models.ViewModels.BrandVMs;
 @using InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs;
 
+
+<head>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Select2'yi ekleyin -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
+
+</head>
+
+
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,6 +27,7 @@
     </div>
 }
 
+ 
 <div class="form-floating mb-8 p-4">
     <div id="modalPlaceHolder" class="container-fluid pt-8 px-8">
         <div aria-hidden="true"></div>
@@ -24,7 +37,7 @@
                 <form method="post" asp-action="Create" asp-controller="Inventory">
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3" id="design">
-                            <select class="form-select" id="goodDropdown" aria-label="Good Name" asp-for="@Model.GoodId">
+                            <select class="form-select" style="height:6rem" id="goodDropdown" aria-label="Good Name" asp-for="@Model.GoodId">
                                 <option selected value="">Select Good... </option>
                                 @if (ViewBag.Goods != null)
                                 {
@@ -33,7 +46,8 @@
                                         <option value="@item.Value">@item.Text</option>
                                     }
                                 }
-                            </select>
+                            </select>                       
+
                         </div>
                     </div>
                     <br />
@@ -54,10 +68,14 @@
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control col-6" asp-for=@Model.BatchCode aria-label="Batch Code" placeholder="Batch Code">   
+                            <input type="text" class="form-control col-6" asp-for=@Model.BatchCode aria-label="Batch Code" placeholder="Batch Code">
+                            
+                                <span style="margin-left:1rem"  class="input-group-text">Expire Date</span>
+                            
+                            <input type="date" class="form-control" asp-for=@Model.BatchExpireDate placeholder="Expire Date" aria-label="Expire Date">
                         </div>
                     </div>
-                    <br />
+                  @*  <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -65,7 +83,7 @@
                             </div>
                             <input type="date" class="form-control" style="border-radius: 0.25rem" asp-for=@Model.BatchExpireDate placeholder="Expire Date" aria-label="Expire Date">
                         </div>
-                    </div>
+                    </div>*@
                     <br />
                     <div class="form-floating mb-6">
                         <div class="input-group mb-3" id="design">
@@ -79,29 +97,36 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 
 <script>
-    document.getElementById('goodDropdown').addEventListener('change', function () {
-        var selectedGood = this.value;
-        console.log(selectedGood);
-        getGoodUnit(selectedGood);
+    $(document).ready(function () {
+        $('#goodDropdown').select2();
+        $('#warehouseDropdown').select2();
+
+        var $eventSelect = $('#goodDropdown');
+
+        $eventSelect.on("change", function (e) {
+            var selectedGood = this.value;
+            getGoodUnit(selectedGood);
+        });
+
+        function getGoodUnit(goodId) {
+            $.ajax({
+                url: '/Inventory/GetGoodUnit', 
+                type: 'GET',
+                data: { goodId: goodId },
+                success: function (response) {
+                    document.getElementById('unitInput').value = response;
+                },
+                error: function (error) {
+                    console.error('Ürün birim bilgisini alma hatası:', error);
+                }
+            });
+        }
     });
 
-    function getGoodUnit(goodId) {    
-        $.ajax({
-            url: '/Inventory/GetGoodUnit', // Bu, server tarafındaki ilgili endpoint olmalı
-            type: 'GET',
-            data: { goodId: goodId },
-            success: function (response) {
-              
-                document.getElementById('unitInput').value = response;
-            },
-            error: function (error) {
-                console.error('Ürün birim bilgisini alma hatası:', error);
-            }
-        });
-    }
 
 </script>
 
