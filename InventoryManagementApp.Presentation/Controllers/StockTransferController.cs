@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
+using InventoryManagementApp.Application.DTOs.InventoryDTOs;
 using InventoryManagementApp.Application.DTOs.SalesOrdesDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.StockTransferDTOs;
 using InventoryManagementApp.Application.Services.GoodService;
+using InventoryManagementApp.Application.Services.InventoryService;
 using InventoryManagementApp.Application.Services.SalesOrdersDetailsService;
 using InventoryManagementApp.Application.Services.StockTransferService;
 using InventoryManagementApp.Application.Services.WareHouseService;
+using InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.SalesOrderDetailsVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.StockTransferVMs;
 using Microsoft.AspNetCore.Mvc;
@@ -16,16 +19,18 @@ namespace InventoryManagementApp.Presentation.Controllers
         private readonly IStockTransferService _stockTransferService;
         private readonly IWareHouseService _wareHouseService;
         private readonly IGoodService _goodService;
+        private readonly IInventoryService _inventoryService;
         private readonly IMapper _mapper;
         IWebHostEnvironment _webHostEnvironment;
 
-        public StockTransferController(IStockTransferService stockTransferService, IMapper mapper, IWebHostEnvironment webHostEnvironment, IWareHouseService wareHouseService, IGoodService goodService)
+        public StockTransferController(IStockTransferService stockTransferService, IMapper mapper, IWebHostEnvironment webHostEnvironment, IWareHouseService wareHouseService, IGoodService goodService, IInventoryService inventoryService)
         {
             _stockTransferService = stockTransferService;
             _mapper = mapper;
             _webHostEnvironment = webHostEnvironment;
             _wareHouseService = wareHouseService;
             _goodService = goodService;
+            _inventoryService = inventoryService;
         }
         public IActionResult Index()
         {
@@ -71,7 +76,7 @@ namespace InventoryManagementApp.Presentation.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            StockTransferCreateVM stockTransferCreateVM  = new ();
+            StockTransferCreateVM stockTransferCreateVM = new();
 
             return View(stockTransferCreateVM);
 
@@ -139,5 +144,50 @@ namespace InventoryManagementApp.Presentation.Controllers
             await _stockTransferService.Update(stockTransferUpdateDto);
             return RedirectToAction("GetAllActiveStockTransfer");
         }
+
+
+        public async Task<IActionResult> Reversed(int id)
+        {
+            if (await _stockTransferService.GetById(id) == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                StockTransferUpdateVM stockTransferUpdateVM = _mapper.Map<StockTransferUpdateVM>(await _stockTransferService.GetById(id));
+
+                var inventoryList = _mapper.Map<List<InventoryListVM>>(await _inventoryService.GetDefaults(x => x.WarehouseId == stockTransferUpdateVM.SourceWarehouseID && x.GoodId == stockTransferUpdateVM.GoodId));
+
+                var inventoryList2 = _mapper.Map<List<InventoryListVM>>(await _inventoryService.GetDefaults(x => x.WarehouseId == stockTransferUpdateVM.DestinationWarehouseID && x.GoodId == stockTransferUpdateVM.GoodId));
+
+                foreach (var inventory in inventoryList)
+                {
+                    
+                    InventoryUpdateVM inventoryUpdateVM = _mapper.Map<InventoryUpdateVM>(await _inventoryService.GetById(inventory.ID));
+                    inventoryUpdateVM.Amount += stockTransferUpdateVM.Amount;
+                    var inventoryUpdateDto = _mapper.Map<InventoryUpdateDTO>(inventoryUpdateVM);
+                    await _inventoryService.Update(inventoryUpdateDto);
+
+                }
+
+                foreach (var inventory in inventoryList2)
+                {
+
+                    InventoryUpdateVM inventoryUpdateVM = _mapper.Map<InventoryUpdateVM>(await _inventoryService.GetById(inventory.ID));
+                    inventoryUpdateVM.Amount -= stockTransferUpdateVM.Amount;
+                    var inventoryUpdateDto = _mapper.Map<InventoryUpdateDTO>(inventoryUpdateVM);
+                    await _inventoryService.Update(inventoryUpdateDto);
+
+                }
+
+
+                await _stockTransferService.Delete(id);
+
+                return RedirectToAction("GetAllStockTransfer");
+            }
+        }
+
+
+
     }
 }
