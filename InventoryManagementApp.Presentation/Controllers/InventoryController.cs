@@ -143,13 +143,6 @@ namespace InventoryManagementApp.Presentation.Controllers
                 }
                 else
                     inventory.WarehouseName = null;
-
-                if (inventory.BatchId != null)
-                {
-                    inventory.BatchCode = await _batchService.GetNameById(inventory.BatchId);
-                }
-                else
-                    inventory.BatchCode = null;
             }
             return PartialView("_ListInventoriesWithoutBatch", inventoryList);
         }
