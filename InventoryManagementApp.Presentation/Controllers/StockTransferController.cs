@@ -24,7 +24,7 @@ namespace InventoryManagementApp.Presentation.Controllers
         private readonly IInventoryService _inventoryService;
         private readonly IMapper _mapper;
 
-        public StockTransferController(IStockTransferService stockTransferService, IMapper mapper, IWareHouseService wareHouseService, IGoodService goodService)
+        public StockTransferController(IStockTransferService stockTransferService, IMapper mapper, IWareHouseService wareHouseService, IGoodService goodService, IInventoryService inventoryService)
         {
             _stockTransferService = stockTransferService;
             _mapper = mapper;
