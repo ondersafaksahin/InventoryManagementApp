@@ -13,5 +13,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.StockTransferVMs
         public int? SourceWarehouseID { get; set; }
         public string? DestinationWarehouseName { get; set; }
         public int? DestinationWarehouseID { get; set; }
+        public string? BatchCode { get; set; }
+        public int? BatchId { get; set; }
     }
 }
