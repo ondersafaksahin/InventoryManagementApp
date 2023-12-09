@@ -190,45 +190,17 @@ namespace InventoryManagementApp.Presentation.Controllers
         }
 
 
-        public async Task<IActionResult> Reversed(int id)
+        public async Task<IActionResult> Reversed(int stockTransferId)
         {
-            if (await _stockTransferService.GetById(id) == null)
+            try
             {
-                return NotFound();
+                //await _stockTransferService.ReverseStockTransfer(stockTransferId);
             }
-            else
+            catch (Exception ex)
             {
-                StockTransferUpdateVM stockTransferUpdateVM = _mapper.Map<StockTransferUpdateVM>(await _stockTransferService.GetById(id));
-
-                var inventoryList = _mapper.Map<List<InventoryListVM>>(await _inventoryService.GetDefaults(x => x.WarehouseId == stockTransferUpdateVM.SourceWarehouseID && x.GoodId == stockTransferUpdateVM.GoodId));
-
-                var inventoryList2 = _mapper.Map<List<InventoryListVM>>(await _inventoryService.GetDefaults(x => x.WarehouseId == stockTransferUpdateVM.DestinationWarehouseID && x.GoodId == stockTransferUpdateVM.GoodId));
-
-                foreach (var inventory in inventoryList)
-                {
-                    
-                    InventoryUpdateVM inventoryUpdateVM = _mapper.Map<InventoryUpdateVM>(await _inventoryService.GetById(inventory.ID));
-                    inventoryUpdateVM.Amount += stockTransferUpdateVM.Amount;
-                    var inventoryUpdateDto = _mapper.Map<InventoryUpdateDTO>(inventoryUpdateVM);
-                    await _inventoryService.Update(inventoryUpdateDto);
-
-                }
-
-                foreach (var inventory in inventoryList2)
-                {
-
-                    InventoryUpdateVM inventoryUpdateVM = _mapper.Map<InventoryUpdateVM>(await _inventoryService.GetById(inventory.ID));
-                    inventoryUpdateVM.Amount -= stockTransferUpdateVM.Amount;
-                    var inventoryUpdateDto = _mapper.Map<InventoryUpdateDTO>(inventoryUpdateVM);
-                    await _inventoryService.Update(inventoryUpdateDto);
-
-                }
-
-
-                await _stockTransferService.Delete(id);
-
-                return RedirectToAction("GetAllStockTransfer");
+                TempData["error"] = ex.Message;
             }
+            return RedirectToAction("GetAllStockTransfer");
         }
 
 

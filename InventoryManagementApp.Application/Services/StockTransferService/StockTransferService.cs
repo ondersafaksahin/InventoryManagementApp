@@ -70,6 +70,35 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
             await _stockTransferRepository.Update(stockTransfer);
         }
 
+        public async Task ReverseStockTransfer(int stockTransferId)
+        {
+            var stockTransfer = await _stockTransferRepository.GetById(x => x.ID == stockTransferId);
+            var sourceInventory = await _inventoryRepository.FindMatchingInventory(stockTransfer.GoodId, stockTransfer.SourceWarehouseID, stockTransfer.BatchId);
+            var destinationInventory = await _inventoryRepository.FindMatchingInventory(stockTransfer.GoodId, stockTransfer.DestinationWarehouseID, stockTransfer.BatchId);
+
+            if(sourceInventory != null)
+            {
+                sourceInventory.Amount += stockTransfer.Amount;
+                await _inventoryRepository.Update(sourceInventory);
+                await Update(stockTransfer);
+            }
+            else
+            {
+                throw new Exception("There is no inventory with specified attributes or amount");
+            }
+
+            if (destinationInventory != null)
+            {
+                destinationInventory.Amount -= stockTransfer.Amount;
+                await _inventoryRepository.Update(destinationInventory);
+                await Update(stockTransfer);
+            }
+            else
+            {
+                throw new Exception("There is no inventory with specified attributes or amount");
+            }
+
+        }
         public async Task CompleteStockTransfer(int stockTransferId)
         {
             var stockTransfer = await _stockTransferRepository.GetById(x => x.ID == stockTransferId);
