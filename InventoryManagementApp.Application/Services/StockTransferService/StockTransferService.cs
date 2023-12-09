@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InventoryManagementApp.Application.DTOs.BatchDTOs;
 using InventoryManagementApp.Application.DTOs.InventoryDTOs;
 using InventoryManagementApp.Application.DTOs.StockTransferDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
@@ -16,16 +17,14 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
     public class StockTransferService:IStockTransferService
     {
         IStockTransferRepository _stockTransferRepository;
-        IGoodRepository _goodRepository;
-        IWareHouseRepository _wareHouseRepository;
+        IInventoryRepository _inventoryRepository;
         IMapper _mapper;
 
-        public StockTransferService(IStockTransferRepository stockTransferRepository, IMapper mapper, IGoodRepository goodRepository, IWareHouseRepository wareHouseRepository)
+        public StockTransferService(IStockTransferRepository stockTransferRepository, IMapper mapper, IGoodRepository goodRepository, IWareHouseRepository wareHouseRepository, IInventoryRepository inventoryRepository)
         {
             _stockTransferRepository = stockTransferRepository;
             _mapper = mapper;
-            _goodRepository = goodRepository;
-            _wareHouseRepository = wareHouseRepository;
+            _inventoryRepository = inventoryRepository;
         }
         public async Task<List<StockTransferListDTO>> All()
         {
@@ -65,6 +64,76 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
         public async Task Update(StockTransferUpdateDTO updateDTO)
         {
             await _stockTransferRepository.Update(_mapper.Map<StockTransfer>(updateDTO));
+        }
+        public async Task Update(StockTransfer stockTransfer)
+        {
+            await _stockTransferRepository.Update(stockTransfer);
+        }
+
+        public async Task CompleteStockTransfer(int stockTransferId)
+        {
+            var stockTransfer = await _stockTransferRepository.GetById(x => x.ID == stockTransferId);
+            var sourceInventory = await _inventoryRepository.FindMatchingInventory(stockTransfer.GoodId, stockTransfer.SourceWarehouseID, stockTransfer.BatchId);
+            var destinationInventory = await _inventoryRepository.FindMatchingInventory(stockTransfer.GoodId, stockTransfer.DestinationWarehouseID, stockTransfer.BatchId);
+
+            if (destinationInventory is null)
+            {
+                if (stockTransfer.Amount==sourceInventory.Amount)
+                {
+                    sourceInventory.WarehouseId = stockTransfer.DestinationWarehouseID;
+                    stockTransfer.TransactionStatus = Domain.Enums.TransactionStatus.Completed;
+                    await _inventoryRepository.Update(sourceInventory);
+                    await Update(stockTransfer);
+                }
+                else if (stockTransfer.Amount < sourceInventory.Amount)
+                {
+                    await _inventoryRepository.Add(new Inventory()
+                    {
+                        Amount = stockTransfer.Amount,
+                        BatchId = stockTransfer.BatchId,
+                        GoodId = stockTransfer.GoodId,
+                        WarehouseId = stockTransfer.DestinationWarehouseID
+                    });
+                    sourceInventory.Amount -= stockTransfer.Amount;
+                    stockTransfer.TransactionStatus = Domain.Enums.TransactionStatus.Completed;
+                    await _inventoryRepository.Update(sourceInventory);
+                    await Update(stockTransfer);
+                }
+                else
+                {
+                    throw new Exception("There is no inventory with specified attributes or amount");
+                }
+            }
+            else
+            {
+                if (sourceInventory is null)
+                {
+                    throw new Exception("There is no inventory with specified attributes or amount");
+                }
+                else
+                {
+                    if (stockTransfer.Amount == sourceInventory.Amount)
+                    {
+                        destinationInventory.Amount += stockTransfer.Amount;
+                        await _inventoryRepository.Delete(sourceInventory);
+                        stockTransfer.TransactionStatus = Domain.Enums.TransactionStatus.Completed;
+                        await Update(stockTransfer);
+                    }
+                    else if (stockTransfer.Amount < sourceInventory.Amount)
+                    {
+                        destinationInventory.Amount += stockTransfer.Amount;
+                        sourceInventory.Amount -= stockTransfer.Amount;
+                        await _inventoryRepository.Update(sourceInventory);
+                        await _inventoryRepository.Update(destinationInventory);
+                        stockTransfer.TransactionStatus = Domain.Enums.TransactionStatus.Completed;
+                        await Update(stockTransfer);
+                    }
+                    else
+                    {
+                        throw new Exception("There is no inventory with specified attributes or amount");
+                    }
+                }  
+            }
         }
 
     }

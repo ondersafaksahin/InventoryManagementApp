@@ -17,7 +17,7 @@
 <div class="col-12">
     <div class="bg-light rounded h-100 p-4">
         <div class="d-flex justify-content-between align-items-center" style="margin-bottom:16px">
-            <a class="btn btn-success" asp-action="Create" asp-controller="Inventory">Add Stock Transfer</a>
+            <a class="btn btn-success" asp-action="Create" asp-controller="StockTransfer">Add Stock Transfer</a>
         </div>
         <div class="table-responsive">
             <table class="table" id="example">
@@ -29,7 +29,7 @@
                         <th scope="col">Good Name</th>
                         <th scope="col">Source Warehouse</th>
                         <th scope="col">Destination Warehouse</th>
-
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,7 +42,12 @@
                             <td>@transfer.GoodName</td>
                             <td>@transfer.SourceWarehouseName</td>
                             <td>@transfer.DestinationWarehouseName</td>
+                            <td class="text-center">
+                                <a class="btn pt-0" asp-action="CompleteTransfer" asp-controller="StockTransfer" asp-route-stockTransferId="@transfer.ID" type="button" data-toggle="popover" title="Complete">
+                                    <i class="far fa-edit" style="color:coral;font-size:20px"></i>
+                                </a>
 
+                            </td>
                         </tr>
                     }
                 </tbody>

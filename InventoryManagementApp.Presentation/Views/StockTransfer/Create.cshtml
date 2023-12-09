@@ -1,8 +1,145 @@
-﻿
+﻿@using InventoryManagementApp.Domain.Enums;
+@using InventoryManagementApp.Presentation.Models.ViewModels.ConversionVMs;
+@using InventoryManagementApp.Presentation.Models.ViewModels.StockTransferVMs
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+@model StockTransferCreateVM
 
+@if (TempData["error"] is not null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"]
+    </div>
+}
+
+<div class="form-floating mb-8 p-4">
+    <div class="container-fluid pt-8 px-8">
+
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h4 class="mb-4">Add Stock Transfer</h4>
+                <form method="post" asp-action="Create" asp-controller="StockTransfer">
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <select class="form-select" id="goodDropdown" asp-for="@Model.GoodId" placeholder="Good" aria-label="Good">
+                                <option selected value="">Select good to transfer...</option>
+                                @if (Model.GoodsList != null)
+                                {
+                                    @foreach (var item in Model.GoodsList)
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <select class="form-select" id="batchDropdown" asp-for="@Model.BatchId" placeholder="Batch" aria-label="Batch">
+                                <option selected value="">Select the batch if there is one...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for=@Model.Amount placeholder="Enter Amount" aria-label="Supplier Model Code">
+                            <input type="text" id="unitInput" class="form-control" style="margin-left:1rem" placeholder="Unit" aria-label="Unit" readonly>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="form-floating mb-6 col-md-5">
+                            <div class="input-group mb-3">
+                                <select class="form-select" asp-for="@Model.SourceWarehouseID" placeholder="SourceWarehouse" aria-label="SourceWarehouse">
+                                    <option selected value="">Select the source warehouse...</option>
+                                    @if (Model.WarehouseList != null)
+                                    {
+                                        @foreach (var item in Model.WarehouseList)
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2 text-center pt-2">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <div class="form-floating mb-6 col-md-5">
+                            <div class="input-group mb-3">
+                                <select class="form-select" asp-for="@Model.DestinationWarehouseID" placeholder="DestinationWarehouse" aria-label="DestinationWarehouse">
+                                    <option selected value="">Select the destination warehouse...</option>
+                                    @if (Model.WarehouseList != null)
+                                    {
+                                        @foreach (var item in Model.WarehouseList)
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-floating mb-6">
+                        <div class="input-group mb-3" id="design">
+                            <a class="btn btn-danger mx-2 form-button" asp-controller="StockTransfer" asp-action="List">Cancel</a>
+                            <input type="submit" value="Save" class="btn btn-success mx-2 form-button" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var $eventSelect = $('#goodDropdown');
+
+    $eventSelect.on("change", function (e) {
+        var selectedGood = this.value;
+        getGoodUnit(selectedGood);
+        getGoodBatches(selectedGood);
+    });
+
+    function getGoodUnit(goodId) {
+        $.ajax({
+            url: '/Inventory/GetGoodUnit',
+            type: 'GET',
+            data: { goodId: goodId },
+            success: function (response) {
+                document.getElementById('unitInput').value = response;
+            },
+            error: function (error) {
+                console.error('Ürün birim bilgisini alma hatası:', error);
+            }
+        });
+    }
+
+    function getGoodBatches(goodId) {
+        $.ajax({
+            url:'/StockTransfer/GetBatches',
+            type:'GET',
+            data: {goodId:goodId},
+            success: function (response) {
+                var batchDropdown = $("#batchDropdown");
+                batchDropdown.empty();
+                batchDropdown.append($('<option/>', {
+                    value: "",
+                    text: "Select the batch if there is one..."
+                }));
+                $.each(response, function (i, batch) {
+                    batchDropdown.append($('<option/>', {
+                        value: batch.value,
+                        text: batch.text
+                    }));
+                });
+            }
+        })
+    }
+</script>

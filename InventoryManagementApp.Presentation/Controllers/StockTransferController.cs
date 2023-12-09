@@ -2,12 +2,16 @@
 using InventoryManagementApp.Application.DTOs.SalesOrdesDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.StockTransferDTOs;
 using InventoryManagementApp.Application.Services.GoodService;
+using InventoryManagementApp.Application.Services.InventoryService;
 using InventoryManagementApp.Application.Services.SalesOrdersDetailsService;
 using InventoryManagementApp.Application.Services.StockTransferService;
 using InventoryManagementApp.Application.Services.WareHouseService;
+using InventoryManagementApp.Domain.Entities.Concrete;
+using InventoryManagementApp.Presentation.Models.ViewModels.BatchVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.SalesOrderDetailsVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.StockTransferVMs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InventoryManagementApp.Presentation.Controllers
 {
@@ -17,13 +21,11 @@ namespace InventoryManagementApp.Presentation.Controllers
         private readonly IWareHouseService _wareHouseService;
         private readonly IGoodService _goodService;
         private readonly IMapper _mapper;
-        IWebHostEnvironment _webHostEnvironment;
 
-        public StockTransferController(IStockTransferService stockTransferService, IMapper mapper, IWebHostEnvironment webHostEnvironment, IWareHouseService wareHouseService, IGoodService goodService)
+        public StockTransferController(IStockTransferService stockTransferService, IMapper mapper, IWareHouseService wareHouseService, IGoodService goodService)
         {
             _stockTransferService = stockTransferService;
             _mapper = mapper;
-            _webHostEnvironment = webHostEnvironment;
             _wareHouseService = wareHouseService;
             _goodService = goodService;
         }
@@ -69,10 +71,13 @@ namespace InventoryManagementApp.Presentation.Controllers
 
         //Adding stock transfer
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            StockTransferCreateVM stockTransferCreateVM  = new ();
-
+            StockTransferCreateVM stockTransferCreateVM = new()
+            {
+                GoodsList = await GetGoods(),
+                WarehouseList = await GetWarehouses()
+            };
             return View(stockTransferCreateVM);
 
         }
@@ -138,6 +143,46 @@ namespace InventoryManagementApp.Presentation.Controllers
             var stockTransferUpdateDto = _mapper.Map<StockTransferUpdateDTO>(vm);
             await _stockTransferService.Update(stockTransferUpdateDto);
             return RedirectToAction("GetAllActiveStockTransfer");
+        }
+
+        public async Task<SelectList> GetGoods()
+        {
+            var goods = await _goodService.All();
+            return new SelectList(goods.Select(x => new SelectListItem()
+            {
+                Value = x.ID.ToString(),
+                Text = x.Name
+            }),"Value","Text");
+        }
+
+        public async Task<SelectList> GetWarehouses()
+        {
+            var warehouses = await _wareHouseService.All();
+            return new SelectList(warehouses.Select(x => new SelectListItem()
+            {
+                Value = x.ID.ToString(),
+                Text = x.Name
+            }), "Value", "Text");
+        }
+
+        public async Task<IActionResult> GetBatches(int goodId)
+        {
+            var goodBatches = await _goodService.GetGoodBatches(goodId);
+            var batches = goodBatches.Select(x => new SelectListItem { Value = x.Key.ToString(), Text = x.Value });
+            return Json(batches);
+        }
+
+        public async Task<IActionResult> CompleteTransfer(int stockTransferId)
+        {
+            try
+            {
+                await _stockTransferService.CompleteStockTransfer(stockTransferId);
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = ex.Message;
+            }
+            return RedirectToAction("GetAllStockTransfer");
         }
     }
 }

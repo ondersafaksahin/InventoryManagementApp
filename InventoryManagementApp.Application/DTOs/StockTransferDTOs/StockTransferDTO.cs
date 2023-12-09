@@ -18,5 +18,7 @@ namespace InventoryManagementApp.Application.DTOs.StockTransferDTOs
         public int? SourceWarehouseID { get; set; }
         public Warehouse? DestinationWarehouse { get; set; }
         public int? DestinationWarehouseID { get; set; }
+        public Batch? Batch { get; set; }
+        public int? BatchId { get; set; }
     }
 }

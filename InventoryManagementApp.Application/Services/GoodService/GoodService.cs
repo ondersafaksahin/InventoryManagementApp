@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InventoryManagementApp.Application.DTOs.BatchDTOs;
 using InventoryManagementApp.Application.DTOs.GoodDTOs;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.IRepositories;
@@ -13,47 +14,22 @@ namespace InventoryManagementApp.Application.Services.GoodService
 {
     public class GoodService : IGoodService
     {
-        IGoodRepository _goodRepository;
-        ICategoryRepository _categoryRepository;
-        ISubCategoryRepository _subCategoryRepository;
-        IBrandRepository _brandRepository;
-        IMapper _mapper;
+        private readonly IGoodRepository _goodRepository;
+        private readonly IInventoryRepository _inventoryRepository;
+        private readonly IBatchRepository _batchRepository;
+        private readonly IMapper _mapper;
 
-        public GoodService(IGoodRepository goodRepository, IMapper mapper, ICategoryRepository categoryRepository, ISubCategoryRepository subCategoryRepository, IBrandRepository brandRepository)
+        public GoodService(IGoodRepository goodRepository, IMapper mapper, IInventoryRepository inventoryRepository, IBatchRepository batchRepository)
         {
             _goodRepository = goodRepository;
             _mapper = mapper;
-            _categoryRepository = categoryRepository;
-            _subCategoryRepository = subCategoryRepository;
-            _brandRepository = brandRepository;
+            _inventoryRepository = inventoryRepository;
+            _batchRepository = batchRepository;
         }
 
         public async Task<List<GoodListDTO>> All()
         {
-
             return _mapper.Map<List<GoodListDTO>>(await _goodRepository.GetAll());
-            //var list = _mapper.Map<List<GoodListDTO>>(await _goodRepository.GetAll());
-
-            //foreach (var item in list)
-            //{
-            //    var category = _categoryRepository.GetById(x => x.ID == item.CategoryID);
-            //    item.Category = category.Result;
-
-            //    var subcategory = _subCategoryRepository.GetById(x => x.ID == item.SubCategoryID);
-            //    item.SubCategory = subcategory.Result;
-
-            //    var brand = _brandRepository.GetById(x => x.ID == item.BrandID);
-            //    item.Brand = brand.Result;
-
-            //    if (item.ModelID != null)
-            //    {
-            //        var model = _modelRepository.GetById(x => x.ID == item.ModelID);
-            //        item.Model = model.Result;
-            //    }
-
-
-            //}
-            //return list;
         }
 
         public async Task<int> Create(GoodCreateDTO createDTO)
@@ -77,24 +53,6 @@ namespace InventoryManagementApp.Application.Services.GoodService
         public async Task<List<GoodListDTO>> GetDefaults(Expression<Func<Good, bool>> expression)
         {
             var list = _mapper.Map<List<GoodListDTO>>(await _goodRepository.GetDefaults(expression));
-
-
-            //foreach (var item in list)
-            //{
-            //    var category = _categoryRepository.GetById(x => x.ID == item.CategoryID);
-            //    item.Category = category.Result;
-
-            //    var subcategory = _subCategoryRepository.GetById(x => x.ID == item.SubCategoryID);
-            //    item.SubCategory = subcategory.Result;
-
-            //    var brand = _brandRepository.GetById(x => x.ID == item.BrandID);
-            //    item.Brand = brand.Result;
-
-            //    var model = _modelRepository.GetById(x => x.ID == item.ModelID);
-            //    item.Model = model.Result;
-
-            //}
-
             return list;
         }
 
@@ -109,6 +67,20 @@ namespace InventoryManagementApp.Application.Services.GoodService
             var good = await GetById(updateDTO.ID);
             var updatedGood = _mapper.Map(updateDTO, good);
             await _goodRepository.Update(_mapper.Map<Good>(updatedGood));
+        }
+
+        public async Task<Dictionary<int,string>> GetGoodBatches(int goodId)
+        {
+            var inventories = await _inventoryRepository.GetDefaults(x => x.GoodId == goodId);
+            var batches = new Dictionary<int, string>();
+            foreach (var item in inventories)
+            {
+                if (item.BatchId is not null)
+                {
+                    batches.Add((int)item.BatchId, (await _batchRepository.GetById(x => x.ID == item.BatchId)).BatchCode);
+                }
+            }
+            return batches;
         }
     }
 }
