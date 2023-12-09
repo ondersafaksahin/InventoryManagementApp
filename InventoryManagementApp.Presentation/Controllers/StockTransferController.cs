@@ -194,7 +194,6 @@ namespace InventoryManagementApp.Presentation.Controllers
         {
             try
             {
-                _stockTransferService.
                 //await _stockTransferService.ReverseStockTransfer(stockTransferId);
             }
             catch (Exception ex)
