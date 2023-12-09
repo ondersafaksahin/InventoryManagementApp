@@ -9,6 +9,7 @@ using InventoryManagementApp.Application.Services.StockTransferService;
 using InventoryManagementApp.Application.Services.WareHouseService;
 using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Presentation.Models.ViewModels.BatchVMs;
+using InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.SalesOrderDetailsVMs;
 using InventoryManagementApp.Presentation.Models.ViewModels.StockTransferVMs;
 using Microsoft.AspNetCore.Mvc;
