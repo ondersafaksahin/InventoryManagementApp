@@ -49,7 +49,7 @@ namespace InventoryManagementApp.Presentation.Controllers
             {
                 return null;
             }
-            var unitType = unit.FirstOrDefault().StockingUnit.ToString();
+            var unitType = unit.First().StockingUnit.ToString();
             return Json(unitType);
         }
 

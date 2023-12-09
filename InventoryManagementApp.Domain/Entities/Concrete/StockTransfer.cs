@@ -16,7 +16,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public Status Status { get; set; }
-
+        public TransactionStatus TransactionStatus { get; set; }
 
         //IEntity
         public int ID { get; set; }
@@ -33,5 +33,7 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public int? SourceWarehouseID { get; set; }
         public Warehouse? DestinationWarehouse { get; set; }
         public int? DestinationWarehouseID { get; set; }
+        public Batch? Batch { get; set; }
+        public int? BatchId { get; set; }
     }
 }

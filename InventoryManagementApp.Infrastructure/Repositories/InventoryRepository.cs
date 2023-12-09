@@ -1,6 +1,7 @@
 ﻿using InventoryManagementApp.Domain.Entities.Concrete;
 using InventoryManagementApp.Domain.IRepositories;
 using InventoryManagementApp.Infrastructure.DataAccess;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,12 @@ namespace InventoryManagementApp.Infrastructure.Repositories
             _table.Remove(item);
             await _dbContext.SaveChangesAsync();
             return item.ID;
+        }
+
+        public async Task<Inventory> FindMatchingInventory(int goodId, int? warehouseId=null,int? batchId=null)
+        {
+            var inventory = await _table.FirstOrDefaultAsync(x => x.GoodId == goodId && x.WarehouseId == warehouseId && x.BatchId == batchId);
+            return inventory;
         }
     }
 }
