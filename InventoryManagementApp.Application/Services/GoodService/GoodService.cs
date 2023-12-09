@@ -71,7 +71,7 @@ namespace InventoryManagementApp.Application.Services.GoodService
 
         public async Task<Dictionary<int,string>> GetGoodBatches(int goodId)
         {
-            var inventories = await _inventoryRepository.GetDefaults(x => x.GoodId == goodId);
+            var inventories = (await _inventoryRepository.GetDefaults(x => x.GoodId == goodId)).DistinctBy(x => x.BatchId); 
             var batches = new Dictionary<int, string>();
             foreach (var item in inventories)
             {
