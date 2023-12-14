@@ -11,6 +11,7 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
     public interface IStockTransferService:IBaseService<StockTransferCreateDTO, StockTransferUpdateDTO, StockTransferListDTO, StockTransferDTO, StockTransfer, int>
     {
         public Task CompleteStockTransfer(int stockTransferId);
+        public Task ReverseStockTransfer(int stockTransferId);
         public Task Update(StockTransfer stockTransfer);
     }
 }

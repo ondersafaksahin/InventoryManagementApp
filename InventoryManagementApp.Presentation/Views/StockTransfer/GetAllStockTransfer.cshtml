@@ -27,6 +27,7 @@
                         <th scope="col">Amount</th>
                         <th scope="col">Description</th>
                         <th scope="col">Good Name</th>
+                        <th scope="col">Batch Code</th>
                         <th scope="col">Source Warehouse</th>
                         <th scope="col">Destination Warehouse</th>
                         <th class="text-center" scope="col">Actions</th>
@@ -41,20 +42,15 @@
                             <td>@transfer.Amount</td>
                             <td>@transfer.Description</td>
                             <td>@transfer.GoodName</td>
+                            <td>@transfer.BatchCode</td>
                             <td>@transfer.SourceWarehouseName</td>
                             <td>@transfer.DestinationWarehouseName</td>
                             <td class="text-center">
-                                <a class="btn pt-0" asp-action="Edit" asp-controller="StockTransfer" asp-route-id="@transfer.ID" type="button" data-toggle="popover" title="Update">
-                                    <i class="far fa-edit" style="color:coral;font-size:20px"></i>
-                                </a>
                                 <a class="btn pt-0" asp-action="Details" asp-controller="StockTransfer" asp-route-id="@transfer.ID" asp-route-active=true type="button" data-toggle="popover" title="Details">
                                     <i class="fas fa-search" style="color: dodgerblue; font-size: 20px;"></i>
                                 </a>
-                                <a class="btn pt-0" asp-action="Reversed" asp-controller="StockTransfer" asp-route-id="@transfer.ID" asp-route-active=false type="button" data-toggle="popover" title="Reverse">
+                                <a class="btn pt-0" asp-action="Reversed" asp-controller="StockTransfer" asp-route-stockTransferId="@transfer.ID" asp-route-active=false type="button" data-toggle="popover" title="Reverse">
                                     <i class="fas fa-undo" style="color:#ffd700;font-size:20px"></i>
-                                </a>
-                                <a class="btn pt-0" asp-action="Delete" asp-controller="StockTransfer" asp-route-id="@transfer.ID" asp-route-active=false type="button" data-toggle="popover" title="Delete">
-                                    <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
                                 </a>
                                 <a class="btn pt-0" asp-action="CompleteTransfer" asp-controller="StockTransfer" asp-route-stockTransferId="@transfer.ID" type="button" data-toggle="popover" title="Complete">
                                     <i class="far fa-edit" style="color:coral;font-size:20px"></i>

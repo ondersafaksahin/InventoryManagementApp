@@ -76,11 +76,11 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
             var sourceInventory = await _inventoryRepository.FindMatchingInventory(stockTransfer.GoodId, stockTransfer.SourceWarehouseID, stockTransfer.BatchId);
             var destinationInventory = await _inventoryRepository.FindMatchingInventory(stockTransfer.GoodId, stockTransfer.DestinationWarehouseID, stockTransfer.BatchId);
 
-            if(sourceInventory != null)
+            if (sourceInventory != null)
             {
                 sourceInventory.Amount += stockTransfer.Amount;
                 await _inventoryRepository.Update(sourceInventory);
-                await Update(stockTransfer);
+                
             }
             else
             {
@@ -91,13 +91,15 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
             {
                 destinationInventory.Amount -= stockTransfer.Amount;
                 await _inventoryRepository.Update(destinationInventory);
-                await Update(stockTransfer);
+               
             }
             else
             {
                 throw new Exception("There is no inventory with specified attributes or amount");
             }
 
+            stockTransfer.TransactionStatus = Domain.Enums.TransactionStatus.Created;
+            await Update(stockTransfer);
         }
         public async Task CompleteStockTransfer(int stockTransferId)
         {
