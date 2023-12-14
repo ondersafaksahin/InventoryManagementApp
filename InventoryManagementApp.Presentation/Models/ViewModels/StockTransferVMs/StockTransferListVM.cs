@@ -1,4 +1,5 @@
 ﻿using InventoryManagementApp.Domain.Entities.Concrete;
+using InventoryManagementApp.Domain.Enums;
 
 namespace InventoryManagementApp.Presentation.Models.ViewModels.StockTransferVMs
 {
@@ -15,5 +16,7 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.StockTransferVMs
         public int? DestinationWarehouseID { get; set; }
         public string? BatchCode { get; set; }
         public int? BatchId { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public TransactionStatus TransactionStatus { get; set; }
     }
 }

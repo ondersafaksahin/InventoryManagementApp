@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using InventoryManagementApp.Domain.Enums;
 
 namespace InventoryManagementApp.Application.DTOs.StockTransferDTOs
 {
@@ -20,5 +21,7 @@ namespace InventoryManagementApp.Application.DTOs.StockTransferDTOs
         public int? DestinationWarehouseID { get; set; }
         public Batch? Batch { get; set; }
         public int? BatchId { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public TransactionStatus TransactionStatus { get; set; }
     }
 }

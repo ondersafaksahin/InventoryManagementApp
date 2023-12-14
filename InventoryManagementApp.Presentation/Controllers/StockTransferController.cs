@@ -2,6 +2,7 @@
 using InventoryManagementApp.Application.DTOs.InventoryDTOs;
 using InventoryManagementApp.Application.DTOs.SalesOrdesDetailsDTOs;
 using InventoryManagementApp.Application.DTOs.StockTransferDTOs;
+using InventoryManagementApp.Application.Services.BatchService;
 using InventoryManagementApp.Application.Services.GoodService;
 using InventoryManagementApp.Application.Services.InventoryService;
 using InventoryManagementApp.Application.Services.SalesOrdersDetailsService;
@@ -21,17 +22,19 @@ namespace InventoryManagementApp.Presentation.Controllers
     {
         private readonly IStockTransferService _stockTransferService;
         private readonly IWareHouseService _wareHouseService;
+        private readonly IBatchService _batchService;
         private readonly IGoodService _goodService;
         private readonly IInventoryService _inventoryService;
         private readonly IMapper _mapper;
 
-        public StockTransferController(IStockTransferService stockTransferService, IMapper mapper, IWareHouseService wareHouseService, IGoodService goodService, IInventoryService inventoryService)
+        public StockTransferController(IStockTransferService stockTransferService, IMapper mapper, IWareHouseService wareHouseService, IGoodService goodService, IInventoryService inventoryService, IBatchService batchService)
         {
             _stockTransferService = stockTransferService;
             _mapper = mapper;
             _wareHouseService = wareHouseService;
             _goodService = goodService;
             _inventoryService = inventoryService;
+            _batchService = batchService;
         }
         public IActionResult Index()
         {
@@ -39,23 +42,28 @@ namespace InventoryManagementApp.Presentation.Controllers
         }
 
         //Listing only active stock transfer
+        [Route("[controller]/ActiveList")]
         public async Task<IActionResult> GetAllActiveStockTransfer()
         {
-            var stockTransferListDTO = await _stockTransferService.GetDefaults(x => x.Status == Domain.Enums.Status.Active);
-            var stockTransferListVM = _mapper.Map<List<StockTransferListVM>>(stockTransferListDTO);
+            var stockTransferDTOs = await _stockTransferService.GetDefaults(x =>x.TransactionStatus == Domain.Enums.TransactionStatus.Created);
+            var stockTransferVMs = _mapper.Map<List<StockTransferListVM>>(stockTransferDTOs);
+            await PopulateTransferDetails(stockTransferVMs);
 
-            return View(stockTransferListVM);
+            return View(stockTransferVMs);
         }
 
-
-        //Listing all stock transfer
-        [Route("[controller]/List")]
-        public async Task<IActionResult> GetAllStockTransfer()
+        private async Task PopulateTransferDetails(List<StockTransferListVM> transfers)
         {
-            List<StockTransferListVM> stockTransferList = _mapper.Map<List<StockTransferListVM>>(await _stockTransferService.All());
-            foreach (var transfer in stockTransferList)
+            foreach (var transfer in transfers)
             {
                 transfer.GoodName = await _goodService.GetNameById(transfer.GoodId);
+                if (transfer.BatchId != 0)
+                {
+                    transfer.BatchCode = await _batchService.GetNameById(transfer.BatchId);
+                }
+                else
+                    transfer.BatchCode = null;
+
                 if (transfer.SourceWarehouseID != null)
                 {
                     transfer.SourceWarehouseName = await _wareHouseService.GetNameById(transfer.SourceWarehouseID);
@@ -70,6 +78,16 @@ namespace InventoryManagementApp.Presentation.Controllers
                 else
                     transfer.DestinationWarehouseName = null;
             }
+        }
+
+
+
+        //Listing all stock transfer
+        [Route("[controller]/List")]
+        public async Task<IActionResult> GetAllStockTransfer()
+        {
+            List<StockTransferListVM> stockTransferList = _mapper.Map<List<StockTransferListVM>>(await _stockTransferService.All());
+            await PopulateTransferDetails(stockTransferList);
             return View(stockTransferList);
         }
 
@@ -186,7 +204,7 @@ namespace InventoryManagementApp.Presentation.Controllers
             {
                 TempData["error"] = ex.Message;
             }
-            return RedirectToAction("GetAllStockTransfer");
+            return RedirectToAction("GetAllActiveStockTransfer");
         }
 
 
@@ -194,13 +212,13 @@ namespace InventoryManagementApp.Presentation.Controllers
         {
             try
             {
-                //await _stockTransferService.ReverseStockTransfer(stockTransferId);
+                await _stockTransferService.ReverseStockTransfer(stockTransferId);
             }
             catch (Exception ex)
             {
                 TempData["error"] = ex.Message;
             }
-            return RedirectToAction("GetAllStockTransfer");
+            return RedirectToAction("GetAllActiveStockTransfer");
         }
 
 
