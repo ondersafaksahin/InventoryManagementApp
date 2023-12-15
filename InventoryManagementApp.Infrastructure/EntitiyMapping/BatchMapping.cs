@@ -16,6 +16,7 @@ namespace InventoryManagementApp.Infrastructure.EntitiyMapping
             builder.HasOne(x => x.ProductionOrder).WithOne(x => x.Batch).HasForeignKey<ProductionOrder>(x => x.ID);
             builder.HasOne(x => x.GoodsReceiptDetail).WithOne(x => x.Batch).HasForeignKey<GoodsReceiptDetail>(x => x.ID);
             builder.HasKey(x => x.ID);
+			builder.HasIndex(x => x.BatchCode).IsUnique();
 		}
 	}
 }

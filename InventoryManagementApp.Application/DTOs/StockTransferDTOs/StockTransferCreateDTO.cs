@@ -12,7 +12,6 @@ namespace InventoryManagementApp.Application.DTOs.StockTransferDTOs
     {
         public DateTime? CreatedDate { get; set; } = DateTime.Now;
         public Status Status { get; set; } = Status.Active;
-        public TransactionStatus TransactionStatus { get; set; } = TransactionStatus.Created;
         public float Amount { get; set; }
         public string? Description { get; set; }
         public int GoodId { get; set; }

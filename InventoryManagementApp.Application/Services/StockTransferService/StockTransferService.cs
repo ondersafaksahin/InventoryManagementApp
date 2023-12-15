@@ -97,8 +97,6 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
             {
                 throw new Exception("There is no inventory with specified attributes or amount");
             }
-
-            stockTransfer.TransactionStatus = Domain.Enums.TransactionStatus.Created;
             await Update(stockTransfer);
         }
         public async Task CompleteStockTransfer(int stockTransferId)
@@ -112,7 +110,6 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
                 if (stockTransfer.Amount==sourceInventory.Amount)
                 {
                     sourceInventory.WarehouseId = stockTransfer.DestinationWarehouseID;
-                    stockTransfer.TransactionStatus = Domain.Enums.TransactionStatus.Completed;
                     await _inventoryRepository.Update(sourceInventory);
                     await Update(stockTransfer);
                 }
@@ -126,7 +123,6 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
                         WarehouseId = stockTransfer.DestinationWarehouseID
                     });
                     sourceInventory.Amount -= stockTransfer.Amount;
-                    stockTransfer.TransactionStatus = Domain.Enums.TransactionStatus.Completed;
                     await _inventoryRepository.Update(sourceInventory);
                     await Update(stockTransfer);
                 }
@@ -147,7 +143,6 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
                     {
                         destinationInventory.Amount += stockTransfer.Amount;
                         await _inventoryRepository.Delete(sourceInventory);
-                        stockTransfer.TransactionStatus = Domain.Enums.TransactionStatus.Completed;
                         await Update(stockTransfer);
                     }
                     else if (stockTransfer.Amount < sourceInventory.Amount)
@@ -156,7 +151,6 @@ namespace InventoryManagementApp.Application.Services.StockTransferService
                         sourceInventory.Amount -= stockTransfer.Amount;
                         await _inventoryRepository.Update(sourceInventory);
                         await _inventoryRepository.Update(destinationInventory);
-                        stockTransfer.TransactionStatus = Domain.Enums.TransactionStatus.Completed;
                         await Update(stockTransfer);
                     }
                     else

@@ -12,5 +12,6 @@ namespace InventoryManagementApp.Application.Services.GoodService
     public interface IGoodService:IBaseService<GoodCreateDTO,GoodUpdateDTO, GoodListDTO, GoodDTO, Good, int>
     {
         public Task<Dictionary<int, string>> GetGoodBatches(int goodId);
+        public Task<string?> GetCodeById(int? Id);
     }
 }
