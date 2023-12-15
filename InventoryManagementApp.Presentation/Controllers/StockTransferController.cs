@@ -41,22 +41,12 @@ namespace InventoryManagementApp.Presentation.Controllers
             return View();
         }
 
-        //Listing only active stock transfer
-        [Route("[controller]/ActiveList")]
-        public async Task<IActionResult> GetAllActiveStockTransfer()
-        {
-            var stockTransferDTOs = await _stockTransferService.GetDefaults(x =>x.TransactionStatus == Domain.Enums.TransactionStatus.Created);
-            var stockTransferVMs = _mapper.Map<List<StockTransferListVM>>(stockTransferDTOs);
-            await PopulateTransferDetails(stockTransferVMs);
-
-            return View(stockTransferVMs);
-        }
-
         private async Task PopulateTransferDetails(List<StockTransferListVM> transfers)
         {
             foreach (var transfer in transfers)
             {
                 transfer.GoodName = await _goodService.GetNameById(transfer.GoodId);
+                transfer.GoodCode = await _goodService.GetCodeById(transfer.GoodId);
                 if (transfer.BatchId != 0)
                 {
                     transfer.BatchCode = await _batchService.GetNameById(transfer.BatchId);
@@ -204,7 +194,7 @@ namespace InventoryManagementApp.Presentation.Controllers
             {
                 TempData["error"] = ex.Message;
             }
-            return RedirectToAction("GetAllActiveStockTransfer");
+            return RedirectToAction("GetAllStockTransfer");
         }
 
 
@@ -218,7 +208,7 @@ namespace InventoryManagementApp.Presentation.Controllers
             {
                 TempData["error"] = ex.Message;
             }
-            return RedirectToAction("GetAllActiveStockTransfer");
+            return RedirectToAction("GetAllStockTransfer");
         }
 
 

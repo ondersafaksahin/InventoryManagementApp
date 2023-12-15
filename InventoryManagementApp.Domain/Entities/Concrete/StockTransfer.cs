@@ -16,7 +16,6 @@ namespace InventoryManagementApp.Domain.Entities.Concrete
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public Status Status { get; set; }
-        public TransactionStatus TransactionStatus { get; set; }
 
         //IEntity
         public int ID { get; set; }

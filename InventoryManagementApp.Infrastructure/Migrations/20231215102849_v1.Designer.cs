@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagementApp.Infrastructure.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    [Migration("20231213121019_h1")]
-    partial class h1
+    [Migration("20231215102849_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -146,7 +146,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.Property<string>("BatchCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -154,7 +154,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 13, 15, 10, 18, 978, DateTimeKind.Local).AddTicks(112));
+                        .HasDefaultValue(new DateTime(2023, 12, 15, 13, 28, 49, 398, DateTimeKind.Local).AddTicks(9822));
 
                     b.Property<DateTime?>("ExpireDate")
                         .HasColumnType("datetime2");
@@ -181,6 +181,9 @@ namespace InventoryManagementApp.Infrastructure.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("BatchCode")
+                        .IsUnique();
+
                     b.ToTable("Batches");
                 });
 
@@ -198,7 +201,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 13, 15, 10, 18, 979, DateTimeKind.Local).AddTicks(1379));
+                        .HasDefaultValue(new DateTime(2023, 12, 15, 13, 28, 49, 400, DateTimeKind.Local).AddTicks(6775));
 
                     b.Property<int>("GoodID")
                         .HasColumnType("int");
@@ -590,7 +593,7 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 13, 15, 10, 18, 980, DateTimeKind.Local).AddTicks(444));
+                        .HasDefaultValue(new DateTime(2023, 12, 15, 13, 28, 49, 402, DateTimeKind.Local).AddTicks(6900));
 
                     b.Property<float?>("GrossWeight")
                         .HasColumnType("real");
@@ -1103,9 +1106,6 @@ namespace InventoryManagementApp.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TransactionStatus")
                         .HasColumnType("int");
 
                     b.HasKey("ID");

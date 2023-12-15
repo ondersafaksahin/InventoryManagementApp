@@ -22,6 +22,5 @@ namespace InventoryManagementApp.Application.DTOs.StockTransferDTOs
         public Batch? Batch { get; set; }
         public int? BatchId { get; set; }
         public DateTime? CreatedDate { get; set; }
-        public TransactionStatus TransactionStatus { get; set; }
     }
 }

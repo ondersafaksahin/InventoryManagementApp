@@ -24,14 +24,14 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Description</th>
+                        <th scope="col">Good Code</th>
                         <th scope="col">Good Name</th>
                         <th scope="col">Batch Code</th>
-                        <th scope="col">Source Warehouse</th>
-                        <th scope="col">Destination Warehouse</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Source Wh.</th>
+                        <th scope="col">Destination Wh.</th>
+                        <th scope="col">Amount</th>
                         <th class="text-center" scope="col">Actions</th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -39,14 +39,15 @@
                     {
                         <tr>
                             <th scope="row">@transfer.ID</th>
-                            <td>@transfer.Amount</td>
-                            <td>@transfer.Description</td>
+                            <td>@transfer.GoodCode</td>
                             <td>@transfer.GoodName</td>
                             <td>@transfer.BatchCode</td>
+                            <td>@transfer.CreatedDate.Value.ToShortDateString()</td>
                             <td>@transfer.SourceWarehouseName</td>
                             <td>@transfer.DestinationWarehouseName</td>
+                            <td>@transfer.Amount</td>
                             <td class="text-center">
-                                <a class="btn pt-0" asp-action="Details" asp-controller="StockTransfer" asp-route-id="@transfer.ID" asp-route-active=true type="button" data-toggle="popover" title="Details">
+                                <a class="btn pt-0" asp-action="Details" asp-controller="StockTransfer" asp-route-id="@transfer.ID" asp-route-active=false type="button" data-toggle="popover" title="Details">
                                     <i class="fas fa-search" style="color: dodgerblue; font-size: 20px;"></i>
                                 </a>
                                 <a class="btn pt-0" asp-action="Reversed" asp-controller="StockTransfer" asp-route-stockTransferId="@transfer.ID" asp-route-active=false type="button" data-toggle="popover" title="Reverse">
