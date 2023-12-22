@@ -55,16 +55,7 @@
                     <div class="row">
                         <div class="form-floating mb-6 col-md-5">
                             <div class="input-group mb-3">
-                                <select class="form-select" asp-for="@Model.SourceWarehouseID" placeholder="SourceWarehouse" aria-label="SourceWarehouse">
-                                    <option selected value="">Select the source warehouse...</option>
-                                    @if (Model.WarehouseList != null)
-                                    {
-                                        @foreach (var item in Model.WarehouseList)
-                                        {
-                                            <option value="@item.Value">@item.Text</option>
-                                        }
-                                    }
-                                </select>
+                                <input type="text" class="form-control" asp-for="@Model.SourceWarehouseID" id="sourceWarehouseInput" placeholder="SourceWarehouse" aria-label="SourceWarehouse" value="@ViewBag.SourceWareHouse" readonly/>
                             </div>
                         </div>
                         <div class="col-md-2 text-center pt-2">

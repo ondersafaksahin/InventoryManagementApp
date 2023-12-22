@@ -14,17 +14,15 @@ namespace InventoryManagementApp.Presentation.Models.ViewModels.InventoryVMs
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public Status Status { get; set; }
-
-        //Additional Properties
         public float Amount { get; set; }
-
-        //Navigation Properties
-        public virtual Good Good { get; set; }
-        public int GoodId { get; set; }
-        public virtual Warehouse? Warehouse { get; set; }
-        public int? WarehouseId { get; set; }
-        public Batch? Batch { get; set; }
-        public int? BatchId { get; set; }
         public List<Reservation>? Reservations { get; set; }
+        public string GoodName { get; set; }
+        public int GoodId { get; set; }
+        public string? WarehouseName { get; set; }
+        public int? WarehouseId { get; set; }
+        public string? BatchCode { get; set; }
+        public int? BatchId { get; set; }
+
+
     }
 }

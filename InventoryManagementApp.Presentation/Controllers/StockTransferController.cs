@@ -15,6 +15,7 @@ using InventoryManagementApp.Presentation.Models.ViewModels.SalesOrderDetailsVMs
 using InventoryManagementApp.Presentation.Models.ViewModels.StockTransferVMs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Cryptography.Xml;
 
 namespace InventoryManagementApp.Presentation.Controllers
 {
@@ -83,8 +84,11 @@ namespace InventoryManagementApp.Presentation.Controllers
 
         //Adding stock transfer
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(int id)
         {
+            InventoryVM inventoryVm = _mapper.Map<InventoryVM>(await _inventoryService.GetById(id));
+            ViewBag.SourceWareHouse = await _wareHouseService.GetNameById(inventoryVm.WarehouseId);
+            TempData["SourceWareHouseId"] = inventoryVm.WarehouseId;
             StockTransferCreateVM stockTransferCreateVM = new()
             {
                 GoodsList = await GetGoods(),
@@ -98,6 +102,9 @@ namespace InventoryManagementApp.Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(StockTransferCreateVM stockTransferCreateVM)
         {
+            int sourceWarehouseId = (int)TempData["SourceWareHouseId"];
+            stockTransferCreateVM.SourceWarehouseID = sourceWarehouseId;
+            ModelState.Clear();
             if (ModelState.IsValid)
             {
                 try

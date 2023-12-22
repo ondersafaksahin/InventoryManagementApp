@@ -55,7 +55,7 @@
                                 <a class="btn pt-0" asp-action="Delete" asp-controller="Inventory" asp-route-id="@inventory.ID" asp-route-active=false type="button" data-toggle="popover" title="Delete">
                                     <i class="far fa-trash-alt" style="color:red;font-size:20px"></i>
                                 </a>
-                                <a class="btn pt-0" asp-action="Create" asp-controller="StockTransfer" asp-route-id="@inventory.ID" asp-route-active=false type="button" data-toggle="popover" title="Transfer">
+                                <a class="btn pt-0 create-transfer-btn" asp-action="Create" asp-controller="StockTransfer" asp-route-id="@inventory.ID" asp-route-active=false type="button" data-toggle="popover" title="Transfer">
                                     <i class="fas fa-exchange-alt" style="color:#4caf50;font-size:20px"></i>
                                 </a>
                             </td>
@@ -101,8 +101,6 @@
     });
 
 </script>
-
-
 
 <script>
     $(function () {
